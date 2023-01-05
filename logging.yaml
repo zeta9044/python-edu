@@ -1,0 +1,51 @@
+version: 1
+# disable_existing_loggers: True
+formatters:
+  simple:
+    format: '%(asctime)s - %(name)s - %(levelname)s - %(funcName)s - %(message)s'
+handlers:
+  console:
+    class: logging.StreamHandler
+    level: DEBUG
+    formatter: simple
+    stream: ext://sys.stdout
+  db2xml_file:
+    class: logging.handlers.TimedRotatingFileHandler
+    level: DEBUG
+    formatter: simple
+    when: D
+    backupCount: 7
+    encoding: utf-8
+    filename: ./log/db2xml.log
+    #filters: [db2xml_filter]
+  xml2db_file:
+    class: logging.handlers.TimedRotatingFileHandler
+    level: DEBUG
+    formatter: simple
+    when: D
+    backupCount: 7
+    encoding: utf-8
+    filename: ./log/xml2db.log
+    #filters: [xml2db_filter]    
+loggers:
+  transform_db2xml:
+    level: DEBUG
+    handlers: [console,db2xml_file]
+    propagate: no
+  db2xml:
+    level: DEBUG
+    handlers: [console,db2xml_file]
+    propagate: no
+  xml2db:
+    level: DEBUG
+    handlers: [console,xml2db_file]
+    propagate: no       
+filters:
+  db2xml_filter: 
+    name: db2xml
+  xml2db_filter: 
+    name: xml2db
+
+root:
+  level: INFO
+  handlers: [console]
