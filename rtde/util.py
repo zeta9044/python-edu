@@ -130,7 +130,7 @@ def set_log(yaml_location, logger_name):
 
 # DB접속, 매개변수 받기 정의
 def create_engine(args:argparse.Namespace):
-    if args is None:
+    if args.db_url is None:
         db_url = 'postgresql://LIAUSR:LIAUSR@192.168.0.160:5432/postgres'
     else :
         db_url = args.db_url
