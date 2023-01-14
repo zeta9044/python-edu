@@ -41,7 +41,7 @@ def convert_utf8(lang_list):
     jj = get_encode_dic(lang_list)
     for j in jj:
         try:
-            if jj[j] != 'none':
+            if jj[j] != 'none' and jj[j] != 'utf-8':
                 with open(j,"r",encoding=jj[j]) as read_file:
                     s = read_file.read()
                 with open(j,"w",encoding='utf-8') as write_file:
@@ -57,3 +57,16 @@ if __name__ == "__main__":
     convert_utf8(get_extension_list(path,'.groovy'))
     convert_utf8(get_extension_list(path,'.jj'))
     convert_utf8(get_extension_list(path,'.jjt'))
+
+from tkinter import *
+
+tk = Tk()
+label = Label(tk,text='zeta')
+label.pack()
+
+def event():
+    button['text'] = '버튼 누름'
+
+button = Button(tk,text='버튼1,누르면 변해',command=event)
+button.pack()
+tk.mainloop()
