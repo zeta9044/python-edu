@@ -3,7 +3,7 @@ import codecs
 import os
 import shutil
 
-def convert_to_utf8(file_path):
+def convert_to_uft8_file(file_path):
     # 인코딩 타입 확인
     with open(file_path, 'rb') as f:
         result = chardet.detect(f.read())
@@ -24,4 +24,4 @@ def convert_to_utf8(file_path):
     shutil.move(new_file_path,file_path)
 
 
-convert_to_utf8('c:/Users/zeta/Downloads/cp949.txt')
+convert_to_uft8_file('c:/Users/zeta/Downloads/cp949.txt')
