@@ -20,6 +20,7 @@ def convert_to_utf8(file_path):
     with codecs.open(file_path, 'r', encoding=result["encoding"], errors='ignore') as f_input, codecs.open(new_file_path, 'w', encoding='utf-8') as f_output:
         f_output.write(f_input.read())
 
+    # 기존파일에 덮어쓰기
     shutil.move(new_file_path,file_path)
 
 
