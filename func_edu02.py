@@ -18,11 +18,6 @@ class ValueCell:
 
 
 mul = ValueCell(1)
-# print(add2)
-# print(add2.update(lambda x : x+5))
-# print(add2.val())
-# print(add2.update(lambda x : x-5))
-# print(add2.val())
 mul.update(lambda x : (x+1)**2)
 print(mul.val())
 mul.update(lambda x : (x+1)**2)
