@@ -1,0 +1,752 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+            PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+            "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.datastreams.impactstream.dao.HistoryDao">
+  <resultMap id="getDBTreeListMap" type="java.util.HashMap">
+    <result column="LABEL" javaType="java.lang.String" property="LABEL" />
+    <result column="DBID" javaType="java.lang.String" property="DBID" />
+    <result column="OBJID" javaType="java.lang.String" property="OBJID" />
+    <result column="OBJTYPE" javaType="java.lang.String" property="OBJTYPE" />
+    <result column="BIZ_ID" javaType="java.lang.String" property="BIZ_ID" />
+    <result column="PRJ_ID" javaType="java.lang.String" property="PRJ_ID" />
+    <result column="PRJ_KOR_NAME" javaType="java.lang.String" property="PRJ_KOR_NAME" />
+    <result column="REF_BIZ_ID" javaType="java.lang.String" property="REF_BIZ_ID" />
+  </resultMap>
+  <resultMap id="getDGBDBTreeListMap" type="java.util.HashMap">
+    <result column="LABEL" javaType="java.lang.String" property="LABEL" />
+    <result column="DBID" javaType="java.lang.String" property="DBID" />
+    <result column="OBJID" javaType="java.lang.String" property="OBJID" />
+    <result column="OBJTYPE" javaType="java.lang.String" property="OBJTYPE" />
+    <result column="BIZ_ID" javaType="java.lang.String" property="BIZ_ID" />
+    <result column="PRJ_ID" javaType="java.lang.String" property="PRJ_ID" />
+    <result column="PRJ_KOR_NAME" javaType="java.lang.String" property="PRJ_KOR_NAME" />
+    <result column="REF_BIZ_ID" javaType="java.lang.String" property="REF_BIZ_ID" />
+  </resultMap>
+  <select id="getSrcHistoryDateList" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamHistory.xml.getSrcHistoryDateList */ /* ImpactStreamHistory.xml.getSrcHistoryDateList */ 
+<include refid="impact.pagingSql_Start" />
+        SELECT DISTINCT TO_CHAR(MODIFY_DATE,'YYYY-MM-DD')   AS "MODIFY_DATE"
+        FROM AIS0099 A
+        WHERE PRJ_ID <include refid="impact.fullPrjIdSql" />
+        AND MODIFY_DATE &lt;=  now()
+        AND A.DEL_YN = 'N'
+        ORDER BY "MODIFY_DATE" desc
+        <include refid="impact.pagingSql_End" />
+  </select>
+  <select id="getSrcHistoryListDate" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamHistory.xml.getSrcHistoryListDate */ /* ImpactStreamHistory.xml.getSrcHistoryListDate */ 
+<include refid="impact.pagingSql_Start" />
+        SELECT FN_PRJTREENAME(A.PRJ_ID)                             AS "BIZ_PATH"
+        ,TO_CHAR(A.MODIFY_DATE,'YYYY')                        AS "M_YEAR"
+        ,TO_CHAR(A.MODIFY_DATE,'MM-DD')                       AS "M_DATE"
+        ,A.MODIFY_FILE_NAME                                   AS "FILE_NAME"
+        ,A.MODIFY_FILE_FULL_NAME                              AS "FILE_FULL_NAME"
+        ,A.SRC_FILE_FULL_PATH                                 AS "FILE_PATH"
+        ,A.ORG_FILE_PATH                                      AS "ORG_FILE_PATH"
+        ,TO_CHAR(A.MODIFY_DATE,'hh24:mi:ss')                  AS "M_TIME"
+        ,A.PRJ_ID                                             AS "PRJ_ID"
+        ,A.FILE_ID                                            AS "FILE_ID"
+        ,B.EXT_CD                                             AS "LANGTYPE"
+        
+        ,AP_COMMON_FN_DATE_EDITMASK(COLLECTION_DT)  AS "COLLECTION_DT"
+        FROM AIS0099 A, AIS0010 B
+        WHERE A.PRJ_ID <include refid="impact.fullPrjIdSql" />
+    <if test="modifyDate !=null and modifyDate !=''">
+            AND TO_CHAR(A.MODIFY_DATE,'YYYY-MM-DD') = #{modifyDate}
+        </if>
+        AND A.MODIFY_DATE &lt;=  now()
+        AND A.DEL_YN = 'N'
+        AND A.PRJ_ID  = B.PRJ_ID
+        AND A.FILE_ID = B.FILE_ID
+        ORDER BY "M_TIME" DESC
+        <include refid="impact.pagingSql_End" />
+  </select>
+  <select id="getSrcHistoryListFile" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamHistory.xml.getSrcHistoryListFile */ /* ImpactStreamHistory.xml.getSrcHistoryListFile */ 
+<include refid="impact.pagingSql_Start" />
+        SELECT FN_PRJTREENAME(A.PRJ_ID)                             AS "BIZ_PATH"
+        ,TO_CHAR(A.MODIFY_DATE,'YYYY')                        AS "M_YEAR"
+        ,TO_CHAR(A.MODIFY_DATE,'MM-DD')                       AS "M_DATE"
+        ,A.MODIFY_FILE_NAME                                   AS "FILE_NAME"
+        ,A.MODIFY_FILE_FULL_NAME                              AS "FILE_FULL_NAME"
+        ,A.SRC_FILE_FULL_PATH                                 AS "FILE_PATH"
+        ,A.ORG_FILE_PATH                                      AS "ORG_FILE_PATH"
+        ,TO_CHAR(A.MODIFY_DATE,'hh24:mi:ss')                  AS "M_TIME"
+        ,A.PRJ_ID                                             AS "PRJ_ID"
+        ,A.FILE_ID                                            AS "FILE_ID"
+        ,B.EXT_CD                                             AS "LANGTYPE"
+        ,AP_COMMON_FN_DATE_EDITMASK(A.COLLECTION_DT)          AS "COLLECTION_DT"
+        FROM AIS0099 A, AIS0010 B
+        WHERE A.PRJ_ID <include refid="impact.fullPrjIdSql" />
+    <if test="fileName !=null and fileName !=''">
+      <if test="nameLikeType == 0">
+                AND UPPER(A.MODIFY_FILE_NAME) LIKE '%' || #{fileName}
+            </if>
+      <if test="nameLikeType == 1">
+                AND UPPER(A.MODIFY_FILE_NAME) LIKE #{fileName} || '%'
+            </if>
+      <if test="nameLikeType == 2">
+                AND UPPER(A.MODIFY_FILE_NAME) LIKE '%' || #{fileName} || '%'
+            </if>
+    </if>
+        AND A.DEL_YN = 'N'
+        AND A.PRJ_ID  = B.PRJ_ID
+        AND A.FILE_ID = B.FILE_ID
+        ORDER BY "FILE_NAME", "M_YEAR" DESC, "M_DATE" DESC, "M_TIME" DESC, A.MODIFY_DATE DESC, "ORG_FILE_PATH"
+        <include refid="impact.pagingSql_End" />
+  </select>
+  <select id="getSrcFrequencyList" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamHistory.xml.getSrcFrequencyList */ /* ImpactStreamHistory.xml.getSrcFrequencyList */ 
+        SELECT ROW_NUMBER() OVER() AS NUM
+        ,RANK
+        ,FILE_NAME
+        ,CNT
+        ,TRIM(TO_CHAR(CNT,'999,999,999,999')) DECIMAL_CNT
+        FROM(
+        SELECT RANK() OVER (ORDER BY COUNT(ORG_FILE_PATH) DESC ) AS RANK
+        ,MODIFY_FILE_NAME AS FILE_NAME
+        ,COUNT(ORG_FILE_PATH) AS CNT
+        ,ORG_FILE_PATH AS FILE_PATH
+        FROM AIS0099
+        WHERE TO_CHAR(MODIFY_DATE,'YYYY') = #{year}
+        AND PRJ_ID <include refid="impact.fullPrjIdSql" />
+        AND DEL_YN = 'N'
+        GROUP BY ORG_FILE_PATH, MODIFY_FILE_NAME
+        ORDER BY CNT DESC
+        ) DATA
+        limit 10
+    </select>
+  <select id="getSrcFrequencyQMList" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamHistory.xml.getSrcFrequencyQMList */ /* ImpactStreamHistory.xml.getSrcFrequencyQMList */ 
+<if test="fqcType == 'quarter'">
+            WITH QT_TOT AS
+            (
+            SELECT CEIL(TO_NUMBER(TO_CHAR(MODIFY_DATE,'MM')) / 3)  AS QT
+            ,COUNT(*)                                        AS QT_CNT
+            FROM AIS0099
+            WHERE PRJ_ID <include refid="impact.fullPrjIdSql" />
+            AND TO_CHAR(MODIFY_DATE, 'YYYY') = #year#
+            AND DEL_YN = 'N'
+            GROUP BY CEIL(TO_NUMBER(TO_CHAR(MODIFY_DATE,'MM')) / 3)
+            )
+            SELECT TO_CHAR(QT_NAME.GUNB) || 'Querter' AS NAME
+            ,NVL(QT_TOT.QT_CNT,0) M0
+            FROM QT_TOT
+            right outer join
+            ( SELECT 1 AS GUNB FROM DUAL UNION ALL
+            SELECT 2 AS GUNB FROM DUAL UNION ALL
+            SELECT 3 AS GUNB FROM DUAL UNION ALL
+            SELECT 4 AS GUNB FROM DUAL
+            ) QT_NAME
+            on QT_NAME.GUNB = QT_TOT.QT
+            ORDER BY QT_NAME.GUNB
+        </if>
+    <if test="fqcType == 'month'">
+            WITH MON_TOT AS
+            (
+            SELECT TO_CHAR(MODIFY_DATE,'MM')  AS MM
+            ,COUNT(*)                   AS MM_CNT
+            FROM AIS0099
+            WHERE PRJ_ID <include refid="impact.fullPrjIdSql" />
+            AND TO_CHAR(MODIFY_DATE,'YYYY') = #year#
+            AND DEL_YN = 'N'
+            GROUP BY TO_CHAR(MODIFY_DATE,'MM')
+            )
+            SELECT TO_CHAR(TO_NUMBER(MON.GUNB)) || 'M' AS NAME
+            ,NVL(MON_TOT.MM_CNT,0) M0
+            FROM MON_TOT
+            ,(SELECT '01' AS GUNB FROM DUAL UNION ALL
+            SELECT '02' AS GUNB FROM DUAL UNION ALL
+            SELECT '03' AS GUNB FROM DUAL UNION ALL
+            SELECT '04' AS GUNB FROM DUAL UNION ALL
+            SELECT '05' AS GUNB FROM DUAL UNION ALL
+            SELECT '06' AS GUNB FROM DUAL UNION ALL
+            SELECT '07' AS GUNB FROM DUAL UNION ALL
+            SELECT '08' AS GUNB FROM DUAL UNION ALL
+            SELECT '09' AS GUNB FROM DUAL UNION ALL
+            SELECT '10' AS GUNB FROM DUAL UNION ALL
+            SELECT '11' AS GUNB FROM DUAL UNION ALL
+            SELECT '12' AS GUNB FROM DUAL
+            ) MON
+            WHERE MON.GUNB = MON_TOT.MM(+)
+            ORDER BY MON.GUNB
+        </if>
+  </select>
+  <select id="getSourceHistoryByFileList" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamHistory.xml.getSourceHistoryByFileList */ /* ImpactStreamHistory.xml.getSourceHistoryByFileList */ 
+        SELECT TO_CHAR(MODIFY_DATE,'YYYY') AS M_YEAR
+             ,TO_CHAR(MODIFY_DATE,'MM-DD') AS M_DATE
+             ,MODIFY_FILE_NAME AS FILE_NAME
+             ,SRC_FILE_FULL_PATH AS FILE_PATH
+             ,ORG_FILE_PATH
+             ,TO_CHAR(MODIFY_DATE,'hh24:mi:ss') AS M_TIME
+             ,MODIFY_FILE_VER AS VERSION
+             ,MODIFY_RASN_NAME AS M_DESC
+             ,MODIFY_USER AS M_USER
+        FROM AIS0099
+        WHERE PRJ_ID IN (SELECT PRJ_ID
+                         FROM AIS1001
+                         WHERE UPPER_BIZ_ID = #{prjId}
+                           AND DEL_YN = 'N')
+          AND FILE_ID = #{fileId}
+          AND DEL_YN = 'N'
+        ORDER BY MODIFY_FILE_NAME, MODIFY_FILE_VER DESC
+    </select>
+  <select id="getConfList" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamHistory.xml.getConfList */ /* ImpactStreamHistory.xml.getConfList */ 
+        SELECT #{num}                        AS NUM
+        , FN_BIZTREENAME(A10.PRJ_ID,0) AS BIZ_PATH
+        , (SELECT A.BIZ_ID
+        FROM VW_AIS1000 A, AIS1001 B
+        WHERE 1=1
+        AND A.BIZ_ID = B.UPPER_BIZ_ID
+        AND B.PRJ_ID = A10.PRJ_ID
+        )                            AS BIZ_ID
+        , A10.PRJ_ID                   AS PRJ_ID
+        , A10.FILE_ID                  AS FILE_ID
+        , A10.SRC_FILE_NAME            AS SRC_FILE_NAME
+        , A10.CAPS_SRC_FILE_NAME       AS CAPS_SRC_FILE_NAME
+        , A10.ORG_FILE_PATH            AS ORG_FILE_PATH
+        , A10.SRC_FILE_FULL_PATH       AS SRC_FILE_FULL_PATH
+        , A10.FILE_ANLY_YN             AS FILE_ANLY_YN
+        , A10.EXT_CD                   AS LANGTYPE
+        , (SELECT A.PRJ_KOR_NAME
+        FROM AIS1001 A
+        WHERE A.PRJ_ID = A10.PRJ_ID
+        )                            AS PRJ_KOR_NAME
+        FROM AIS0010 A10
+        , (
+        SELECT
+        DISTINCT A99.PRJ_ID
+        , A99.FILE_ID
+        FROM (
+        SELECT P.CFIGMG_RSRC_ID
+        , P.CFIGMG_RSRC_VER_NO
+        FROM TB_MMAL_FILE_INFO P
+        <if test="id !=null">
+            WHERE P.CFIGMG_RSRC_ID     = #{id:NUMERIC}
+            AND P.CFIGMG_RSRC_VER_NO = #{ver:NUMERIC}
+            AND P.IMPACT_ANAL_YN = 'Y'
+        </if>
+        UNION ALL
+        SELECT P.CFIGMG_RSRC_ID
+        , MAX(P.CFIGMG_RSRC_VER_NO) AS CFIGMG_RSRC_VER_NO
+        FROM TB_MMAL_FILE_INFO P
+        , TB_MMAL_FILE_INFO DT
+        <if test="id !=null">
+            WHERE DT.CFIGMG_RSRC_ID     = #id:NUMERIC#
+            AND DT.CFIGMG_RSRC_VER_NO = #ver:NUMERIC#
+            AND P.DVLP_SVR_PATH_NM    = DT.DVLP_SVR_PATH_NM
+            AND P.CFIGMG_FILE_PATH_NM = DT.CFIGMG_FILE_PATH_NM
+            AND P.CFIGMG_FILE_NM      = DT.CFIGMG_FILE_NM
+            AND P.PJT_TYPE = 'P'
+            AND DT.PJT_TYPE &lt;&gt; 'P'
+            AND DT.CFIGMG_FILE_CRT_DTTI &gt; TO_DATE('2015-04-01', 'yyyy-mm-dd')
+        </if>
+        GROUP BY P.CFIGMG_RSRC_ID, P.CFIGMG_FILE_PATH_NM, P.DVLP_SVR_PATH_NM, P.CFIGMG_FILE_NM
+        ) DTT
+        , AIS0099 A99
+        WHERE A99.APP_SEQ_ID = DTT.CFIGMG_RSRC_ID
+        AND A99.APP_VER    = DTT.CFIGMG_RSRC_VER_NO
+        AND A99.FILE_ID IS NOT NULL
+        ) B
+        WHERE A10.PRJ_ID  = B.PRJ_ID
+        AND A10.FILE_ID = B.FILE_ID
+        AND A10.END_DATE IS NULL
+        ORDER BY A10.SRC_FILE_NAME
+    </select>
+  <select id="getConfChk" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamHistory.xml.getConfChk */ /* ImpactStreamHistory.xml.getConfChk */ 
+        SELECT *
+        FROM NPCM_D.TH_EAI_ENTRY_ANALYSIS_SND
+        WHERE ENTRY_ID = #{id}
+        AND REV      = #{ver}
+    </select>
+  <select id="getPackageSynonyms" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamHistory.xml.getPackageSynonyms */ /* ImpactStreamHistory.xml.getPackageSynonyms */ 
+        SELECT ROW_NUMBER() OVER() AS NUM
+             , DBOBJ_OWNER
+             , DBOBJ_NAME
+        FROM VW_DBCRELINFO
+        WHERE DBOBJ_TYPE = 'SYNONYM'
+          AND JOB_ID          = #{dbId}
+          AND DBREF_OBJ_ID    = #{dbobjId}
+    </select>
+  <select id="getProcedureInfo" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamHistory.xml.getProcedureInfo */ /* ImpactStreamHistory.xml.getProcedureInfo */ 
+        SELECT DISTINCT DBOBJ_NAME
+                      , DBOBJ_OWNER
+        FROM VW_DBCPROCINFO
+        WHERE JOB_ID = #{dbId}
+          AND DBOBJ_ID = #{dbobjId}
+    </select>
+  <select id="getProcedureSrcInfo" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamHistory.xml.getProcedureSrcInfo */ /* ImpactStreamHistory.xml.getProcedureSrcInfo */ 
+        SELECT SRC_TEXT
+        FROM AIS0310_HTY A
+           , AIS0301 B
+           , AIS0301_HTY C
+        WHERE B.JOB_ID = A.JOB_ID
+          AND B.JOB_ID = C.JOB_ID
+          AND B.DBOBJ_ID = A.DBOBJ_ID
+          AND B.DBOBJ_ID = C.DBOBJ_ID
+          AND B.DBOBJ_CHNG_CODE = A.REGCODE
+          AND B.DBOBJ_CHNG_CODE = C.REGCODE
+          AND B.JOB_ID = #{dbId}
+          AND B.DBOBJ_ID = #{dbobjId}
+        ORDER BY SRC_LINE
+    </select>
+  <select id="getProcedureArguments" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamHistory.xml.getProcedureArguments */ /* ImpactStreamHistory.xml.getProcedureArguments */ 
+        SELECT *
+        FROM VW_DBCPROCINFO2
+        WHERE DBSTOR_TYPE = 'PROCEDURE'
+          AND JOB_ID = #{dbId}
+          AND DBOBJ_ID = #{dbobjId}
+    </select>
+  <select id="getProcedureSyn" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamHistory.xml.getProcedureSyn */ /* ImpactStreamHistory.xml.getProcedureSyn */ 
+        SELECT ROW_NUMBER() OVER() AS NUM
+             , DBOBJ_OWNER
+             , DBOBJ_NAME
+        FROM VW_DBCRELINFO
+        WHERE DBOBJ_TYPE = 'SYNONYM'
+          AND JOB_ID          = #{dbId}
+          AND DBREF_OBJ_ID    = #{dbobjId}
+    </select>
+  <select id="getFunctionSysn" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamHistory.xml.getFunctionSysn */ /* ImpactStreamHistory.xml.getFunctionSysn */ 
+        SELECT ROW_NUMBER() OVER() AS NUM
+             , DBOBJ_OWNER
+             , DBOBJ_NAME
+        FROM VW_DBCRELINFO
+        WHERE DBOBJ_TYPE = 'SYNONYM'
+          AND JOB_ID          = #{dbId}
+          AND DBREF_OBJ_ID    = #{dbobjId}
+    </select>
+  <select id="getTriggerTreeList" parameterType="java.util.HashMap" resultMap="getDBTreeListMap">/* ImpactStreamHistory.xml.getTriggerTreeList */ /* ImpactStreamHistory.xml.getTriggerTreeList */ 
+        SELECT DISTINCT TRIG_NAME  AS LABEL
+                      ,JOB_ID              AS DBID
+                      ,DBOBJ_ID            AS OBJID
+                      ,'trg'               AS OBJTYPE
+                      ,#{bizId}             AS BIZ_ID
+                      ,#{prjId}             AS PRJ_ID
+                      ,#{prjName}           AS PRJ_KOR_NAME
+                      ,#{refBizId}          AS REF_BIZ_ID
+        FROM VW_DBCTRIGINFO
+        WHERE JOB_ID = #{dbId}
+        ORDER BY TRIG_NAME
+    </select>
+  <select id="getTriggerInfo" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamHistory.xml.getTriggerInfo */ /* ImpactStreamHistory.xml.getTriggerInfo */ 
+        SELECT TRIG_NAME
+             , DBOBJ_OWNER
+        FROM VW_DBCTRIGINFO
+        WHERE JOB_ID = #{dbId}
+          AND DBOBJ_ID = #{dbobjId}
+    </select>
+  <select id="getTriggerSrcInfo" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamHistory.xml.getTriggerSrcInfo */ /* ImpactStreamHistory.xml.getTriggerSrcInfo */ 
+        SELECT SRC_TEXT
+        FROM AIS0310_HTY A
+           , AIS0301 B
+           , AIS0301_HTY C
+        WHERE B.JOB_ID = A.JOB_ID
+          AND B.JOB_ID = C.JOB_ID
+          AND B.DBOBJ_ID = A.DBOBJ_ID
+          AND B.DBOBJ_ID = C.DBOBJ_ID
+          AND B.DBOBJ_CHNG_CODE = A.REGCODE
+          AND B.DBOBJ_CHNG_CODE = C.REGCODE
+          AND B.JOB_ID = #{dbId}
+          AND B.DBOBJ_ID = #{dbobjId}
+        ORDER BY SRC_LINE
+    </select>
+  <select id="getTriggerColumn" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamHistory.xml.getTriggerColumn */ /* ImpactStreamHistory.xml.getTriggerColumn */ 
+</select>
+  <select id="getSynonymTreeList" parameterType="java.util.HashMap" resultMap="getDBTreeListMap">/* ImpactStreamHistory.xml.getSynonymTreeList */ /* ImpactStreamHistory.xml.getSynonymTreeList */ 
+        SELECT CASE WHEN TBLJOB_ID IS NULL THEN '[NONE]' || SYN_NAME ELSE SYN_NAME END AS LABEL
+             ,JOB_ID              AS DBID
+             ,DBOBJ_ID            AS OBJID
+             ,'syn'               AS OBJTYPE
+             ,#{bizId}             AS BIZ_ID
+             ,#{prjId}             AS PRJ_ID
+             ,#{prjName}           AS PRJ_KOR_NAME
+             ,#{refBizId}          AS REF_BIZ_ID
+        FROM VW_DBCSYNINFO
+        WHERE JOB_ID = #{dbId}
+        ORDER BY SYN_NAME
+    </select>
+  <select id="getSynonymInfo" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamHistory.xml.getSynonymInfo */ /* ImpactStreamHistory.xml.getSynonymInfo */ 
+        SELECT A.SYN_NAME
+             , A.DBOBJ_OWNER
+             , A.DBTBL_NAME  AS DBOBJ_NAME
+             , A.DBTBL_OWNER AS DBTBL_OWNER
+             , (SELECT B.DBOBJ_TYPE FROM VW_DBCOBJINFO B WHERE B.JOB_ID = A.TBLJOB_ID AND B.DBOBJ_ID = A.DBTBL_ID ) AS DBOBJ_TYPE
+             , A.DBLINK_NAME
+             , A.DBTBL_ID AS DBOBJ_ID
+        FROM VW_DBCSYNINFO A
+        WHERE JOB_ID = #{dbId}
+          AND DBOBJ_ID = #{dbobjId}
+    </select>
+  <select id="getSynonymColumnInfo" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamHistory.xml.getSynonymColumnInfo */ /* ImpactStreamHistory.xml.getSynonymColumnInfo */ 
+        SELECT COL_NAME
+             , COL_TYPE
+             , COL_SIZE
+             , PRECISION
+             , SCALE
+             , COL_PKEY_YN
+             , COL_FKEY_YN
+             , COL_NULL_YN
+             , COL_DESC
+        FROM VW_DBCTBLINFO
+        WHERE DBOBJ_ID = (
+            SELECT DBTBL_ID
+            FROM VW_DBCSYNINFO
+            WHERE JOB_ID = #{dbId}
+          AND DBOBJ_ID = #{dbobjId}
+            )
+    </select>
+  <select id="getSynonymTriggers" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamHistory.xml.getSynonymTriggers */ /* ImpactStreamHistory.xml.getSynonymTriggers */ 
+        SELECT D.TRIG_NAME
+             , D.TRIG_TYPE
+             , D.TRIG_EVENT
+             , D.DBOBJ_OWNER
+             , D.ACTION_TYPE
+             , D.BASE_OBJ_TYPE
+             , D.DBOBJ_ID
+        FROM VW_DBCRELINFO C
+           , VW_DBCTRIGINFO D
+        WHERE C.JOB_ID          = #{dbId}
+          AND C.DBREF_OBJ_ID    = #{dbobjId}
+          AND C.JOB_ID          = D.JOB_ID
+          AND C.DBOBJ_ID        = D.DBOBJ_ID
+    </select>
+  <select id="getTableSynonyms" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamHistory.xml.getTableSynonyms */ /* ImpactStreamHistory.xml.getTableSynonyms */ 
+        SELECT ROW_NUMBER() OVER() AS NUM
+             , DBOBJ_OWNER
+             , DBOBJ_NAME
+        FROM VW_DBCRELINFO
+        WHERE DBOBJ_TYPE = 'SYNONYM'
+          AND JOB_ID          = #{dbId}
+          AND DBREF_OBJ_ID    = #{dbobjId}
+    </select>
+  <select id="getIndexTreeList" parameterType="java.util.HashMap" resultMap="getDBTreeListMap">/* ImpactStreamHistory.xml.getIndexTreeList */ /* ImpactStreamHistory.xml.getIndexTreeList */ 
+        SELECT DISTINCT DBIDX_NAME AS LABEL
+                      ,JOB_ID              AS DBID
+                      ,DBOBJ_ID            AS OBJID
+                      ,'idx'               AS OBJTYPE
+                      ,#{bizId}             AS BIZ_ID
+                      ,#{prjId}             AS PRJ_ID
+                      ,#{prjName}           AS PRJ_KOR_NAME
+                      ,#{refBizId}          AS REF_BIZ_ID
+        FROM VW_DBCIDXINFO
+        WHERE JOB_ID = #{dbId}
+        ORDER BY DBIDX_NAME
+    </select>
+  <select id="getDGBIndexTreeList" parameterType="java.util.HashMap" resultMap="getDGBDBTreeListMap">/* ImpactStreamHistory.xml.getDGBIndexTreeList */ /* ImpactStreamHistory.xml.getDGBIndexTreeList */ 
+        SELECT DISTINCT DBIDX_NAME AS LABEL
+                      ,JOB_ID              AS DBID
+                      ,DBOBJ_ID            AS OBJID
+                      ,'idx'               AS OBJTYPE
+                      ,#{bizId}             AS BIZ_ID
+                      ,#{prjId}             AS PRJ_ID
+                      ,#{prjName}           AS PRJ_KOR_NAME
+                      ,#{refBizId}          AS REF_BIZ_ID
+        FROM VW_DBCIDXINFO
+        WHERE JOB_ID = #{dbId}
+        ORDER BY DBIDX_NAME
+    </select>
+  <select id="getDGBIndexTreeListOtherBiz" parameterType="java.util.HashMap" resultMap="getDGBDBTreeListMap">/* ImpactStreamHistory.xml.getDGBIndexTreeListOtherBiz */ /* ImpactStreamHistory.xml.getDGBIndexTreeListOtherBiz */ 
+        SELECT DISTINCT DBIDX_NAME AS LABEL
+                      ,JOB_ID              AS DBID
+                      ,DBOBJ_ID            AS OBJID
+                      ,'idx'               AS OBJTYPE
+                      ,#{bizId}             AS BIZ_ID
+                      ,#{prjId}             AS PRJ_ID
+                      ,#{prjName}           AS PRJ_KOR_NAME
+                      ,#{refBizId}          AS REF_BIZ_ID
+        FROM VW_DBCIDXINFO
+        WHERE JOB_ID = #{dbId}
+          and substr(DBIDX_NAME, 4, 2) = (select to_char(BIZ_DESC) from VW_AIS1000 where biz_id = #{bizId})
+        ORDER BY DBIDX_NAME
+    </select>
+  <select id="getDGBSequenceTreeList" parameterType="java.util.HashMap" resultMap="getDGBDBTreeListMap">/* ImpactStreamHistory.xml.getDGBSequenceTreeList */ /* ImpactStreamHistory.xml.getDGBSequenceTreeList */ 
+        SELECT DISTINCT DBSEQ_NAME AS LABEL
+                      ,JOB_ID              AS DBID
+                      ,DBOBJ_ID            AS OBJID
+                      ,'seq'               AS OBJTYPE
+                      ,#{bizId}             AS BIZ_ID
+                      ,#{prjId}             AS PRJ_ID
+                      ,#{prjName}           AS PRJ_KOR_NAME
+                      ,#{refBizId}          AS REF_BIZ_ID
+        FROM VW_DBCSEQINFO
+        WHERE JOB_ID = #{dbId}
+        ORDER BY DBSEQ_NAME
+    </select>
+  <select id="getDGBSequenceTreeListOtherBiz" parameterType="java.util.HashMap" resultMap="getDGBDBTreeListMap">/* ImpactStreamHistory.xml.getDGBSequenceTreeListOtherBiz */ /* ImpactStreamHistory.xml.getDGBSequenceTreeListOtherBiz */ 
+        SELECT DISTINCT DBSEQ_NAME AS LABEL
+                      ,JOB_ID              AS DBID
+                      ,DBOBJ_ID            AS OBJID
+                      ,'seq'               AS OBJTYPE
+                      ,#{bizId}             AS BIZ_ID
+                      ,#{prjId}             AS PRJ_ID
+                      ,#{prjName}           AS PRJ_KOR_NAME
+                      ,#{refBizId}          AS REF_BIZ_ID
+        FROM VW_DBCSEQINFO
+        WHERE JOB_ID = #{dbId}
+          and substr(DBSEQ_NAME, 4, 2) = (select to_char(BIZ_DESC) from VW_AIS1000 where biz_id = #{bizId})
+        ORDER BY DBSEQ_NAME
+    </select>
+  <select id="getSequenceTreeList" parameterType="java.util.HashMap" resultMap="getDBTreeListMap">/* ImpactStreamHistory.xml.getSequenceTreeList */ /* ImpactStreamHistory.xml.getSequenceTreeList */ 
+        SELECT DISTINCT DBSEQ_NAME AS LABEL
+                      ,JOB_ID              AS DBID
+                      ,DBOBJ_ID            AS OBJID
+                      ,'seq'               AS OBJTYPE
+                      ,#{bizId}             AS BIZ_ID
+                      ,#{prjId}             AS PRJ_ID
+                      ,#{prjName}           AS PRJ_KOR_NAME
+                      ,#{refBizId}          AS REF_BIZ_ID
+        FROM VW_DBCSEQINFO
+        WHERE JOB_ID = #{dbId}
+        ORDER BY DBSEQ_NAME
+    </select>
+  <select id="getDbHistoryList" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamHistory.xml.getDbHistoryList */ /* ImpactStreamHistory.xml.getDbHistoryList */ 
+<include refid="impact.pagingSql_Start" />
+        SELECT DISTINCT FN_PRJTREENAME(D.PRJ_ID) AS BIZ_PATH
+        ,TO_CHAR(A2.DBOBJ_REG_DATE,'YYYY') AS M_YEAR
+        ,TO_CHAR(A2.DBOBJ_REG_DATE,'MM-DD') AS M_DATE
+        ,C.JOB_NAME
+        ,B.DBOBJ_OWNER AS SCHEMA_NAME
+        ,TO_CHAR(A2.DBOBJ_REG_DATE,'YYYY-MM-DD') AS DBOBJ_CHNG_DATE
+        ,A2.DBOBJ_NAME AS OBJ_NAME
+        ,A2.DBOBJ_TYPE AS DB_OBJ_TYPE
+        ,TO_CHAR(A2.DBOBJ_REG_DATE,'hh24:mi:ss') AS M_TIME
+        FROM AIS0301_HTY A2
+        ,AIS1011 B
+        ,AIS1010 C
+        ,AIS1003 D
+        WHERE A2.JOB_ID = B.JOB_ID
+        AND B.JOB_ID = C.JOB_ID
+        AND C.JOB_ID = D.JOB_ID
+        AND A2.DBOBJ_OWNER = B.DBOBJ_OWNER
+        AND D.PRJ_ID <include refid="impact.fullPrjIdSql" />
+        AND C.DEL_YN = 'N'
+        AND C.JOB_TYPE = 'JC'
+        AND B.RCV_TYPE = '03'
+        <if test="objType != 'ALL'">
+        AND A2.DBOBJ_TYPE = #{objType}
+        </if>
+        AND A2.DBOBJ_CHNG_DATE IS NOT NULL
+        <if test="objName != null and objName != ''">
+      <if test="nameLikeType == 0">
+                AND UPPER(A2.DBOBJ_NAME) LIKE '%' || #{objName}
+            </if>
+      <if test="nameLikeType == 1">
+                AND UPPER(A2.DBOBJ_NAME) LIKE #{objName} || '%'
+            </if>
+      <if test="nameLikeType == 2">
+                AND UPPER(A2.DBOBJ_NAME) LIKE '%' || #{objName} || '%'
+            </if>
+    </if>
+        AND TO_CHAR(A2.DBOBJ_REG_DATE, 'YYYY-MM-DD') = #{modifyDate}
+        /*ORDER BY TO_CHAR(A2.DBOBJ_REG_DATE,'YYYY'), B.DBOBJ_OWNER, A2.DBOBJ_NAME*/
+        ORDER BY M_YEAR DESC, M_DATE DESC, B.DBOBJ_OWNER, A2.DBOBJ_NAME
+        <include refid="impact.pagingSql_End" />
+  </select>
+  <select id="getDbHistoryDateList" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamHistory.xml.getDbHistoryDateList */ /* ImpactStreamHistory.xml.getDbHistoryDateList */ 
+<include refid="impact.pagingSql_Start" />
+        SELECT DISTINCT TO_CHAR(A2.DBOBJ_REG_DATE,'YYYY-MM-DD') AS MODIFY_DATE
+        FROM AIS0301_HTY A2
+        ,AIS1011 B
+        ,AIS1010 C
+        ,AIS1003 D
+        WHERE A2.JOB_ID = B.JOB_ID
+        AND B.JOB_ID = C.JOB_ID
+        AND C.JOB_ID = D.JOB_ID
+        AND A2.DBOBJ_OWNER = B.DBOBJ_OWNER
+        AND D.PRJ_ID <include refid="impact.fullPrjIdSql" />
+        AND C.DEL_YN = 'N'
+        AND C.JOB_TYPE = 'JC'
+        AND B.RCV_TYPE = '03'
+        <if test="objType != 'ALL'">
+        AND A2.DBOBJ_TYPE = #{objType}
+        </if>
+    <if test="objName != null and objName != ''">
+      <if test="nameLikeType == 0">
+                AND UPPER(A2.DBOBJ_NAME) LIKE '%' || #{objName}
+            </if>
+      <if test="nameLikeType == 1">
+                AND UPPER(A2.DBOBJ_NAME) LIKE #{objName} || '%'
+            </if>
+      <if test="nameLikeType == 2">
+                AND UPPER(A2.DBOBJ_NAME) LIKE '%' || #{objName} || '%'
+            </if>
+    </if>
+        AND A2.DBOBJ_CHNG_DATE IS NOT NULL
+        ORDER BY MODIFY_DATE DESC
+        <include refid="impact.pagingSql_End" />
+  </select>
+  <select id="getDbFrequencyList" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamHistory.xml.getDbFrequencyList */ /* ImpactStreamHistory.xml.getDbFrequencyList */ 
+        SELECT RANK
+        ,'[' || DBOBJ_OWNER || ']' || DBOBJ_NAME AS DBOBJ_NAME
+        ,CNT
+        ,TRIM(TO_CHAR(CNT,'999,999,999,999')) DECIMAL_CNT
+        FROM (
+        SELECT A2.JOB_ID
+        ,A2.DBOBJ_ID
+        ,COUNT(A2.DBOBJ_NAME) AS CNT
+        ,RANK() OVER (ORDER BY COUNT(A2.DBOBJ_NAME) DESC ) AS RANK
+        ,A2.DBOBJ_OWNER
+        ,A2.DBOBJ_NAME
+        FROM AIS0301 A1
+        ,AIS0301_HTY A2
+        ,AIS1011 B
+        ,AIS1010 C
+        ,AIS1003 D
+        WHERE A1.JOB_ID = A2.JOB_ID
+        AND A1.DBOBJ_ID = A2.DBOBJ_ID
+        AND A2.DBOBJ_CHNG_DATE IS NOT NULL
+        <if test="objType != 'ALL'">
+        AND A2.DBOBJ_TYPE = #{objType}
+        </if>
+        AND A2.JOB_ID = B.JOB_ID
+        AND B.JOB_ID = C.JOB_ID
+        AND C.JOB_ID = D.JOB_ID
+        AND A2.DBOBJ_OWNER = B.DBOBJ_OWNER
+        AND D.PRJ_ID <include refid="impact.fullPrjIdSql" />
+        AND C.DEL_YN = 'N'
+        AND TO_CHAR(A2.DBOBJ_REG_DATE,'YYYY') = #{year}
+        GROUP BY A2.JOB_ID, A2.DBOBJ_ID, A2.DBOBJ_OWNER, A2.DBOBJ_NAME
+        ORDER BY CNT DESC
+        ) DAT
+        limit 10
+    </select>
+  <select id="getDbFrequencyQMList" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamHistory.xml.getDbFrequencyQMList */ /* ImpactStreamHistory.xml.getDbFrequencyQMList */ 
+<if test="fqcType == &quot;quarter&quot;">
+            WITH DBQT_TOT AS
+            (
+            SELECT SUM(CASE WHEN CEIL(TO_NUMBER(TO_CHAR(A.DBOBJ_CHNG_DATE, 'MM')) / 3) = 1 THEN 1 END) AS qt01
+            ,SUM(CASE WHEN CEIL(TO_NUMBER(TO_CHAR(A.DBOBJ_CHNG_DATE, 'MM')) / 3) = 2 THEN 1 END) AS qt02
+            ,SUM(CASE WHEN CEIL(TO_NUMBER(TO_CHAR(A.DBOBJ_CHNG_DATE, 'MM')) / 3) = 3 THEN 1 END) AS qt03
+            ,SUM(CASE WHEN CEIL(TO_NUMBER(TO_CHAR(A.DBOBJ_CHNG_DATE, 'MM')) / 3) = 4 THEN 1 END) AS qt04
+            FROM (
+            SELECT DISTINCT A2.DBOBJ_CHNG_DATE
+            FROM AIS0301 A1,AIS0301_HTY A2
+            ,AIS1011 B
+            ,AIS1010 C
+            ,AIS1003 D
+            WHERE A1.JOB_ID = A2.JOB_ID
+            AND A1.DBOBJ_ID = A2.DBOBJ_ID
+            AND A2.JOB_ID = B.JOB_ID
+            AND A2.DBOBJ_CHNG_DATE IS NOT NULL
+            AND B.JOB_ID = C.JOB_ID
+            AND C.JOB_ID = D.JOB_ID
+            AND D.PRJ_ID <include refid="impact.fullPrjIdSql" />
+            AND C.DEL_YN = 'N'
+            AND TO_CHAR(A2.DBOBJ_CHNG_DATE, 'YYYY') = #{year}
+            ) A
+            )
+            SELECT CASE WHEN DBQT_CNT.GUNB =1 THEN '1Querter'
+            WHEN DBQT_CNT.GUNB =2 THEN '2Querter'
+            WHEN DBQT_CNT.GUNB =3 THEN '3Querter'
+            WHEN DBQT_CNT.GUNB =4 THEN '4Querter'
+            ELSE '' END AS NAME
+            ,CASE WHEN DBQT_CNT.GUNB =1 THEN NVL(DBQT_TOT.qt01,0)
+            WHEN DBQT_CNT.GUNB =2 THEN NVL(DBQT_TOT.qt02,0)
+            WHEN DBQT_CNT.GUNB =3 THEN NVL(DBQT_TOT.qt03,0)
+            WHEN DBQT_CNT.GUNB =4 THEN NVL(DBQT_TOT.qt04,0)
+            ELSE 0 END AS M0
+            FROM DBQT_TOT
+            ,(SELECT 1 AS GUNB FROM DUAL UNION ALL
+            SELECT 2 FROM DUAL UNION ALL
+            SELECT 3 FROM DUAL UNION ALL
+            SELECT 4 FROM DUAL
+            ) DBQT_CNT
+        </if>
+    <if test="fqcType == &quot;month&quot;">
+            WITH DBOBJ_TOT AS
+            (SELECT SUM(CASE WHEN TO_CHAR(A.DBOBJ_CHNG_DATE, 'MM') = '01' THEN 1 END) AS m01
+            ,SUM(CASE WHEN TO_CHAR(A.DBOBJ_CHNG_DATE, 'MM') = '02' THEN 1 END) AS m02
+            ,SUM(CASE WHEN TO_CHAR(A.DBOBJ_CHNG_DATE, 'MM') = '03' THEN 1 END) AS m03
+            ,SUM(CASE WHEN TO_CHAR(A.DBOBJ_CHNG_DATE, 'MM') = '04' THEN 1 END) AS m04
+            ,SUM(CASE WHEN TO_CHAR(A.DBOBJ_CHNG_DATE, 'MM') = '05' THEN 1 END) AS m05
+            ,SUM(CASE WHEN TO_CHAR(A.DBOBJ_CHNG_DATE, 'MM') = '06' THEN 1 END) AS m06
+            ,SUM(CASE WHEN TO_CHAR(A.DBOBJ_CHNG_DATE, 'MM') = '07' THEN 1 END) AS m07
+            ,SUM(CASE WHEN TO_CHAR(A.DBOBJ_CHNG_DATE, 'MM') = '08' THEN 1 END) AS m08
+            ,SUM(CASE WHEN TO_CHAR(A.DBOBJ_CHNG_DATE, 'MM') = '09' THEN 1 END) AS m09
+            ,SUM(CASE WHEN TO_CHAR(A.DBOBJ_CHNG_DATE, 'MM') = '10' THEN 1 END) AS m10
+            ,SUM(CASE WHEN TO_CHAR(A.DBOBJ_CHNG_DATE, 'MM') = '11' THEN 1 END) AS m11
+            ,SUM(CASE WHEN TO_CHAR(A.DBOBJ_CHNG_DATE, 'MM') = '12' THEN 1 END) AS m12
+            FROM (
+            SELECT DISTINCT A2.DBOBJ_CHNG_DATE
+            FROM AIS0301 A1
+            ,AIS0301_HTY A2
+            ,AIS1011 B
+            ,AIS1010 C
+            ,AIS1003 D
+            WHERE A1.JOB_ID = A2.JOB_ID
+            AND A1.DBOBJ_ID = A2.DBOBJ_ID
+            AND A2.DBOBJ_CHNG_DATE IS NOT NULL
+            AND A2.JOB_ID = B.JOB_ID
+            AND B.JOB_ID = C.JOB_ID
+            AND C.JOB_ID = D.JOB_ID
+            AND D.PRJ_ID <include refid="impact.fullPrjIdSql" />
+            AND C.DEL_YN = 'N'
+            AND TO_CHAR(A2.DBOBJ_CHNG_DATE, 'YYYY') = #{year}
+            ) A
+            )
+            SELECT CASE WHEN DBOBJ_CNT.GUNB =1 THEN '1M'
+            WHEN DBOBJ_CNT.GUNB =2 THEN '2M'
+            WHEN DBOBJ_CNT.GUNB =3 THEN '3M'
+            WHEN DBOBJ_CNT.GUNB =4 THEN '4M'
+            WHEN DBOBJ_CNT.GUNB =5 THEN '5M'
+            WHEN DBOBJ_CNT.GUNB =6 THEN '6M'
+            WHEN DBOBJ_CNT.GUNB =7 THEN '7M'
+            WHEN DBOBJ_CNT.GUNB =8 THEN '8M'
+            WHEN DBOBJ_CNT.GUNB =9 THEN '9M'
+            WHEN DBOBJ_CNT.GUNB =10 THEN '10M'
+            WHEN DBOBJ_CNT.GUNB =11 THEN '11M'
+            WHEN DBOBJ_CNT.GUNB =12 THEN '12M'
+            ELSE '' END AS NAME
+            ,CASE WHEN DBOBJ_CNT.GUNB =1 THEN NVL(DBOBJ_TOT.m01,0)
+            WHEN DBOBJ_CNT.GUNB =2 THEN NVL(DBOBJ_TOT.m02,0)
+            WHEN DBOBJ_CNT.GUNB =3 THEN NVL(DBOBJ_TOT.m03,0)
+            WHEN DBOBJ_CNT.GUNB =4 THEN NVL(DBOBJ_TOT.m04,0)
+            WHEN DBOBJ_CNT.GUNB =5 THEN NVL(DBOBJ_TOT.m05,0)
+            WHEN DBOBJ_CNT.GUNB =6 THEN NVL(DBOBJ_TOT.m06,0)
+            WHEN DBOBJ_CNT.GUNB =7 THEN NVL(DBOBJ_TOT.m07,0)
+            WHEN DBOBJ_CNT.GUNB =8 THEN NVL(DBOBJ_TOT.m08,0)
+            WHEN DBOBJ_CNT.GUNB =9 THEN NVL(DBOBJ_TOT.m09,0)
+            WHEN DBOBJ_CNT.GUNB =10 THEN NVL(DBOBJ_TOT.m10,0)
+            WHEN DBOBJ_CNT.GUNB =11 THEN NVL(DBOBJ_TOT.m11,0)
+            WHEN DBOBJ_CNT.GUNB =12 THEN NVL(DBOBJ_TOT.m12,0)
+            ELSE 0 END AS M0
+            FROM DBOBJ_TOT
+            ,(SELECT 1 AS GUNB FROM DUAL UNION ALL
+            SELECT 2 FROM DUAL UNION ALL
+            SELECT 3 FROM DUAL UNION ALL
+            SELECT 4 FROM DUAL UNION ALL
+            SELECT 5 FROM DUAL UNION ALL
+            SELECT 6 FROM DUAL UNION ALL
+            SELECT 7 FROM DUAL UNION ALL
+            SELECT 8 FROM DUAL UNION ALL
+            SELECT 9 FROM DUAL UNION ALL
+            SELECT 10 FROM DUAL UNION ALL
+            SELECT 11 FROM DUAL UNION ALL
+            SELECT 12 FROM DUAL
+            ) DBOBJ_CNT
+        </if>
+  </select>
+  <select id="getDbHistoryByDbobjList" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamHistory.xml.getDbHistoryByDbobjList */ /* ImpactStreamHistory.xml.getDbHistoryByDbobjList */ 
+        SELECT DISTINCT TO_CHAR(A.DBOBJ_CHNG_DATE,'YYYY') AS M_YEAR
+                      ,TO_CHAR(A.DBOBJ_CHNG_DATE,'MM-DD') AS M_DATE
+                      ,B.DBOBJ_OWNER AS SCHEMA_NAME
+                      ,A.DBOBJ_NAME
+                      ,A.DBOBJ_TYPE
+                      ,CASE WHEN A.DBOBJ_CHG_TYPE = 'I' THEN 'CREATE'
+                            WHEN A.DBOBJ_CHG_TYPE = 'U' THEN 'ALTER'
+                            WHEN A.DBOBJ_CHG_TYPE = 'D' THEN 'DROP'
+                            ELSE '' END AS CHG_TYPE
+                      ,TO_CHAR(A.DBOBJ_CHNG_DATE,'hh24:mi:ss') AS M_TIME
+                      ,A.MODIFY_USER AS M_USER
+        FROM AIS0071_CHG A
+           ,AIS1011 B
+           ,AIS1010 C
+           ,AIS1003 D
+        WHERE A.JOB_ID = B.JOB_ID
+          AND B.JOB_ID = C.JOB_ID
+          AND C.JOB_ID = D.JOB_ID
+          AND A.DBOBJ_OWNER = B.DBOBJ_OWNER
+          AND B.JOB_ID      = #{dbSysId}
+          AND A.DBOBJ_TYPE  = #{objType}
+          AND A.DBOBJ_ID    = #{objId}
+          AND C.USE_YN = 'Y'
+          AND C.DEL_YN = 'N'
+        ORDER BY TO_CHAR(A.DBOBJ_CHNG_DATE,'YYYY'), B.DBOBJ_OWNER, A.DBOBJ_NAME
+    </select>
+</mapper>

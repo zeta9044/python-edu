@@ -1,0 +1,3207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+            PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+            "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.datastreams.impactstream.dao.RelationControlDao">
+  <resultMap id="getTotalFileRelAndPrjNameMap" type="java.util.HashMap">
+    <result column="FROMID" javaType="java.lang.String" property="FROMID" />
+    <result column="BIZ_ID" javaType="java.lang.String" property="BIZ_ID" />
+    <result column="OBJID" javaType="java.lang.String" property="OBJID" />
+    <result column="FILE_ID" javaType="java.lang.String" property="FILE_ID" />
+    <result column="LABEL" javaType="java.lang.String" property="LABEL" />
+    <result column="REL_ID" javaType="java.lang.String" property="REL_ID" />
+    <result column="REL_PRJ_ID" javaType="java.lang.String" property="REL_PRJ_ID" />
+    <result column="REL_FILE_ID" javaType="java.lang.String" property="REL_FILE_ID" />
+    <result column="REL_FILE_NAME" javaType="java.lang.String" property="REL_FILE_NAME" />
+    <result column="REL_OBJ_NAME" javaType="java.lang.String" property="REL_OBJ_NAME" />
+    <result column="OBJTYPE" javaType="java.lang.String" property="OBJTYPE" />
+    <result column="FILE_PATH" javaType="java.lang.String" property="FILE_PATH" />
+    <result column="REL_DEPTH" javaType="java.lang.String" property="REL_DEPTH" />
+    <result column="DEPTH" javaType="java.lang.String" property="DEPTH" />
+    <result column="PRJ_PATH" javaType="java.lang.String" property="PRJ_PATH" />
+    <result column="MAX_DEPTH" javaType="java.lang.String" property="MAX_DEPTH" />
+  </resultMap>
+  <resultMap id="tempTableMap" type="java.util.HashMap">
+    <result column="SEQ_ID" javaType="java.lang.String" property="SEQ_ID" />
+    <result column="CAL_ID" javaType="java.lang.String" property="CAL_ID" />
+    <result column="BIZ_ID" javaType="java.lang.String" property="BIZ_ID" />
+    <result column="PRJ_ID" javaType="java.lang.String" property="PRJ_ID" />
+    <result column="OBJ_ID" javaType="java.lang.String" property="OBJ_ID" />
+    <result column="FILE_ID" javaType="java.lang.String" property="FILE_ID" />
+    <result column="FUNC_ID" javaType="java.lang.String" property="FUNC_ID" />
+    <result column="PRJ_PATH" javaType="java.lang.String" property="PRJ_PATH" />
+    <result column="FILE_NAME" javaType="java.lang.String" property="FILE_NAME" />
+    <result column="FUNC_NAME" javaType="java.lang.String" property="FUNC_NAME" />
+    <result column="FILE_PATH" javaType="java.lang.String" property="FILE_PATH" />
+    <result column="FILE_COMMENT" javaType="java.lang.String" property="FILE_COMMENT" />
+    <result column="OBJ_NAME" javaType="java.lang.String" property="OBJ_NAME" />
+    <result column="OBJ_TYPE" javaType="java.lang.String" property="OBJ_TYPE" />
+    <result column="DBC_CHECK" javaType="java.lang.String" property="DBC_CHECK" />
+    <result column="REL_CAL_ID" javaType="java.lang.String" property="REL_CAL_ID" />
+    <result column="REL_PRJ_ID" javaType="java.lang.String" property="REL_PRJ_ID" />
+    <result column="REL_OBJ_ID" javaType="java.lang.String" property="REL_OBJ_ID" />
+    <result column="REL_FILE_ID" javaType="java.lang.String" property="REL_FILE_ID" />
+    <result column="REL_FUNC_ID" javaType="java.lang.String" property="REL_FUNC_ID" />
+    <result column="REL_FILE_NAME" javaType="java.lang.String" property="REL_FILE_NAME" />
+    <result column="REL_FUNC_NAME" javaType="java.lang.String" property="REL_FUNC_NAME" />
+    <result column="REL_DEPTH" javaType="java.lang.String" property="REL_DEPTH" />
+  </resultMap>
+  <resultMap id="getSrcCalledListMap" type="java.util.HashMap">
+    <result column="L__GRID__LINE__NUM" javaType="java.lang.String" property="L__GRID__LINE__NUM" />
+    <result column="PGNO" javaType="java.lang.String" property="PGNO" />
+    <result column="TOTALCNT" javaType="java.lang.String" property="TOTALCNT" />
+    <result column="RANK" javaType="java.lang.String" property="RANK" />
+    <result column="PRJ_KOR_NAME" javaType="java.lang.String" property="PRJ_KOR_NAME" />
+    <result column="PRJ_ID" javaType="java.lang.String" property="PRJ_ID" />
+    <result column="BIZ_PATH" javaType="java.lang.String" property="BIZ_PATH" />
+    <result column="FILE_NAME" javaType="java.lang.String" property="FILE_NAME" />
+    <result column="FILE_PATH" javaType="java.lang.String" property="FILE_PATH" />
+    <result column="ORG_FILE_PATH" javaType="java.lang.String" property="ORG_FILE_PATH" />
+    <result column="CNT" javaType="java.lang.String" property="CNT" />
+    <result column="DECIMAL_CNT" javaType="java.lang.String" property="DECIMAL_CNT" />
+  </resultMap>
+  <resultMap id="getTableCallListMap" type="java.util.HashMap">
+    <result column="L__GRID__LINE__NUM" javaType="java.lang.String" property="L__GRID__LINE__NUM" />
+    <result column="PGNO" javaType="java.lang.String" property="PGNO" />
+    <result column="TOTALCNT" javaType="java.lang.String" property="TOTALCNT" />
+    <result column="RANK" javaType="java.lang.String" property="RANK" />
+    <result column="TABLE_NAME" javaType="java.lang.String" property="TABLE_NAME" />
+    <result column="CNT" javaType="java.lang.String" property="CNT" />
+    <result column="DECIMAL_CNT" javaType="java.lang.String" property="DECIMAL_CNT" />
+    <result column="CRUD" javaType="java.lang.String" property="CRUD" />
+  </resultMap>
+  <resultMap id="FuncRelAndPrjNameMap" type="java.util.HashMap">
+    <result column="FROMID" javaType="java.lang.String" property="FROMID" />
+    <result column="BIZ_ID" javaType="java.lang.String" property="BIZ_ID" />
+    <result column="OBJID" javaType="java.lang.String" property="OBJID" />
+    <result column="FILE_ID" javaType="java.lang.String" property="FILE_ID" />
+    <result column="FUNC_ID" javaType="java.lang.String" property="FUNC_ID" />
+    <result column="LABEL" javaType="java.lang.String" property="LABEL" />
+    <result column="FILE_NAME" javaType="java.lang.String" property="FILE_NAME" />
+    <result column="REL_ID" javaType="java.lang.String" property="REL_ID" />
+    <result column="REL_PRJ_ID" javaType="java.lang.String" property="REL_PRJ_ID" />
+    <result column="REL_FILE_ID" javaType="java.lang.String" property="REL_FILE_ID" />
+    <result column="REL_OBJ_ID" javaType="java.lang.String" property="REL_OBJ_ID" />
+    <result column="REL_FUNC_ID" javaType="java.lang.String" property="REL_FUNC_ID" />
+    <result column="REL_FILE_NAME" javaType="java.lang.String" property="REL_FILE_NAME" />
+    <result column="REL_OBJ_NAME" javaType="java.lang.String" property="REL_OBJ_NAME" />
+    <result column="OBJTYPE" javaType="java.lang.String" property="OBJTYPE" />
+    <result column="FILE_PATH" javaType="java.lang.String" property="FILE_PATH" />
+    <result column="REL_DEPTH" javaType="java.lang.String" property="REL_DEPTH" />
+    <result column="DEPTH" javaType="java.lang.String" property="DEPTH" />
+    <result column="PRJ_PATH" javaType="java.lang.String" property="PRJ_PATH" />
+    <result column="MAX_DEPTH" javaType="java.lang.String" property="MAX_DEPTH" />
+  </resultMap>
+  <select id="getTotalCallingFileinfo" parameterType="java.util.HashMap" resultMap="tempTableMap">/* ImpactStreamRelation.xml.getTotalCallingFileinfo */ /* ImpactStreamRelation.xml.getTotalCallingFileinfo */ 
+        SELECT #{seqId}                 AS SEQ_ID
+             ,1                        AS CAL_ID
+             ,C.BIZ_ID    			   AS BIZ_ID
+             ,A.PRJ_ID    			   AS PRJ_ID
+             ,0                        AS OBJ_ID
+             ,A.FILE_ID                AS FILE_ID
+             ,0                        AS FUNC_ID
+             ,fn_PRJTREENAME(B.PRJ_ID) AS PRJ_PATH
+             ,'CALLING'                AS FILE_NAME
+             ,''                       AS FUNC_NAME
+             ,A.ORG_FILE_PATH          AS FILE_PATH
+             ,''                       AS FILE_COMMENT
+             ,'File'                   AS OBJ_NAME
+             ,'file'                   AS OBJ_TYPE
+             ,''                       AS DBC_CHECK
+             ,0                        AS REL_CAL_ID
+             ,0                        AS REL_PRJ_ID
+             ,0                        AS REL_OBJ_ID
+             ,0                        AS REL_FILE_ID
+             ,0                        AS REL_FUNC_ID
+             ,''                       AS REL_FILE_NAME
+             ,''                       AS REL_FUNC_NAME
+             ,0                        AS REL_DEPTH
+        FROM VW_AIS0010 A
+           ,AIS1001 B
+           ,VW_AIS1000 C
+        WHERE A.PRJ_ID  = #{prjId}
+          AND A.FILE_ID = CAST(#{fileId} AS NUMERIC)
+          AND A.PRJ_ID  = B.PRJ_ID
+          AND C.BIZ_ID  = B.UPPER_BIZ_ID
+    </select>
+  <select id="getTotalCallingNextNode" parameterType="java.util.HashMap" resultMap="tempTableMap">/* ImpactStreamRelation.xml.getTotalCallingNextNode */ /* ImpactStreamRelation.xml.getTotalCallingNextNode */ 
+        SELECT ${seqId} AS SEQ_ID
+             ,nextval('${tempSequenceName}') AS CAL_ID
+             ,BIZ_ID
+             ,PRJ_ID
+             ,0 AS OBJ_ID
+             ,FILE_ID
+             ,0 AS FUNC_ID
+             ,PRJ_PATH
+             ,FILE_NAME
+             ,'' AS FUNC_NAME
+             ,FILE_PATH
+             ,FILE_COMMENT
+             ,OBJ_NAME
+             ,OBJ_TYPE
+             ,DBC_CHECK
+             ,REL_CAL_ID
+             ,REL_PRJ_ID
+             ,0 AS REL_OBJ_ID
+             ,REL_FILE_ID
+             ,0 AS REL_FUNC_ID
+             ,REL_FILE_NAME
+             ,'' AS REL_FUNC_NAME
+             ,REL_DEPTH
+        FROM ( SELECT DISTINCT A.PRJ_ID
+                             ,G.BIZ_ID
+                             ,fn_PRJTREENAME(F.PRJ_ID) AS PRJ_PATH
+                             ,0 AS FILE_ID
+                             ,A.TABLE_NAME AS FILE_NAME
+                             ,'' AS FILE_PATH
+                             ,(SELECT DISTINCT TBL_KOR_NAME
+                               FROM VW_DBCTBLINFO
+                               WHERE TBL_NAME = A.TABLE_NAME
+                                                          limit 1 ) AS FILE_COMMENT
+           ,CASE WHEN A.TABLE_NAME IN (SELECT DISTINCT TBL_NAME FROM VW_DBCTBLINFO) THEN '[Y]' ELSE '[N]'END AS DBC_CHECK
+        ,'Table' AS OBJ_NAME
+        ,'tbl' AS OBJ_TYPE
+        ,B.CAL_ID AS REL_CAL_ID
+        ,B.PRJ_ID AS REL_PRJ_ID
+        ,B.FILE_ID AS REL_FILE_ID
+        ,B.FILE_NAME AS REL_FILE_NAME
+        ,CAST(#{relDepth} AS NUMERIC )+1 AS REL_DEPTH
+        FROM AIS0102 A, ${tempTableName}  B
+                ,AIS1001 F
+                ,VW_AIS1000 G
+        WHERE B.REL_DEPTH =  CAST(#{relDepth} AS NUMERIC )
+          AND A.PRJ_ID    = B.PRJ_ID
+          AND A.INLINEVIEW_YN = 'N'
+          AND A.FILE_ID = B.FILE_ID
+          AND A.PRJ_ID = F.PRJ_ID
+          AND G.BIZ_ID = F.UPPER_BIZ_ID
+          AND B.OBJ_TYPE = 'file'
+        UNION
+        SELECT DISTINCT A.PRJ_ID
+                      ,G.BIZ_ID
+                      ,fn_PRJTREENAME(F.PRJ_ID) AS PRJ_PATH
+                      ,0 AS FILE_ID
+                      ,A.STOD_NAME AS FILE_NAME
+                      ,'' AS FILE_PATH
+                      ,(SELECT DISTINCT DBOBJ_NAME
+                        FROM VW_DBCPROCINFO
+                        WHERE DBOBJ_NAME = A.STOD_NAME
+                                                   limit 1 ) AS FILE_COMMENT
+        ,CASE WHEN A.STOD_NAME IN (SELECT DISTINCT DBOBJ_NAME FROM VW_DBCPROCINFO) THEN '[Y]' ELSE '[N]'END AS DBC_CHECK
+        ,'Table' AS OBJ_NAME
+        ,'tbl' AS OBJ_TYPE
+        ,B.CAL_ID AS REL_CAL_ID
+        ,B.PRJ_ID AS REL_PRJ_ID
+        ,B.FILE_ID AS REL_FILE_ID
+        ,B.FILE_NAME AS REL_FILE_NAME
+        ,CAST(#{relDepth} AS NUMERIC )+1 AS REL_DEPTH
+        FROM AIS0104 A, ${tempTableName}  B
+        ,AIS1001 F
+        ,VW_AIS1000 G
+        WHERE B.REL_DEPTH =  CAST(#{relDepth} AS NUMERIC )
+        AND A.PRJ_ID    = B.PRJ_ID
+        AND A.FILE_ID   = B.FILE_ID
+        AND A.PRJ_ID    = F.PRJ_ID
+        AND G.BIZ_ID    = F.UPPER_BIZ_ID
+        AND B.OBJ_TYPE  = 'file'
+        UNION
+        SELECT DISTINCT A.PRJ_ID
+                      ,G.BIZ_ID
+                      ,fn_PRJTREENAME(F.PRJ_ID) AS PRJ_PATH
+                      ,0 AS FILE_ID
+                      ,CASE WHEN SUBSTR(A.COL_NAME,1,2) = '::' THEN
+                                (SELECT H.VARVALUE || ' [' || H.VARNAME || ']'
+                                 FROM AIS0107 H
+                                 WHERE A.PRJ_ID   = H.PRJ_ID
+                                   AND A.FILE_ID  = H.FILE_ID
+                                   AND A.COL_NAME = H.VARNAME )
+                            ELSE
+                                A.COL_NAME
+            END AS FILE_NAME
+                      ,'' AS FILE_PATH
+                      ,(SELECT DISTINCT COL_KOR_NAME
+                        FROM VW_DBCTBLINFO
+                        WHERE COL_NAME = A.COL_NAME
+                          AND TBL_NAME = C.TABLE_NAME
+                                                   limit 1 ) AS FILE_COMMENT
+        ,CASE WHEN A.COL_NAME IN (SELECT DISTINCT COL_NAME FROM VW_DBCTBLINFO WHERE C.TABLE_NAME = TBL_NAME) THEN '[Y]' ELSE '[N]'END AS DBC_CHECK
+        ,'Column' AS OBJ_NAME
+        ,'col' AS OBJ_TYPE
+        ,B.CAL_ID AS REL_CAL_ID
+        ,B.PRJ_ID AS REL_PRJ_ID
+        ,B.FILE_ID AS REL_FILE_ID
+        ,B.FILE_NAME AS REL_FILE_NAME
+        ,CAST(#{relDepth} AS NUMERIC )+1 AS REL_DEPTH
+        FROM AIS0103 A, ${tempTableName}  B, AIS0102 C,
+        AIS1001 F, VW_AIS1000 G
+        WHERE B.REL_DEPTH =  CAST(#{relDepth} AS NUMERIC )
+        AND A.PRJ_ID = B.PRJ_ID
+        AND B.PRJ_ID = C.PRJ_ID
+        AND A.SQL_ID = C.SQL_ID
+        AND B.FILE_NAME = C.TABLE_NAME
+        AND A.FILE_ID = B.REL_FILE_ID
+        AND A.FILE_ID = C.FILE_ID
+        AND A.TABLE_ID = C.TABLE_ID
+        AND C.INLINEVIEW_YN = 'N'
+        AND A.PRJ_ID = F.PRJ_ID
+        AND G.BIZ_ID = F.UPPER_BIZ_ID
+        AND B.OBJ_TYPE = 'tbl'
+        UNION
+        SELECT A.PRJ_ID
+             ,B.BIZ_ID
+             ,fn_PRJTREENAME(C.PRJ_ID) AS PRJ_PATH
+             ,A.FILE_ID
+             ,A.FILE_NAME
+             ,A.FILE_PATH
+             ,A.FILE_COMMENT
+             ,A.DBC_CHECK
+             ,A.OBJ_NAME
+             ,A.OBJ_TYPE
+             ,A.REL_CAL_ID
+             ,A.REL_PRJ_ID
+             ,A.REL_FILE_ID
+             ,A.REL_FILE_NAME
+             ,A.REL_DEPTH
+        FROM (
+            SELECT DISTINCT B.PRJ_ID
+                          ,B.FILE_ID AS FILE_ID
+                          ,B.SRC_FILE_NAME AS FILE_NAME
+                          ,B.ORG_FILE_PATH AS FILE_PATH
+                          ,'' AS FILE_COMMENT
+                          ,'' AS DBC_CHECK
+                          ,'FILE' AS OBJ_NAME
+                          ,'file' AS OBJ_TYPE
+                          ,D.CAL_ID AS REL_CAL_ID
+                          ,D.PRJ_ID AS REL_PRJ_ID
+                          ,D.FILE_ID AS REL_FILE_ID
+                          ,D.FILE_NAME AS REL_FILE_NAME
+                          ,(CAST(#{relDepth} AS NUMERIC )+1) AS REL_DEPTH
+            FROM (SELECT CALL_PRJ_ID, CALL_FILE_ID, PRJ_ID, FILE_ID
+                  FROM AIS0052
+                  WHERE PRJ_ID IN (SELECT DISTINCT REF_PRJ_ID
+                                   FROM VW_REFPRJID
+                                   WHERE PRJ_ID IN (SELECT PRJ_ID
+                                                    FROM ${tempTableName}
+                                                    WHERE REL_DEPTH = CAST(#relDepth# AS NUMERIC ) ) )) A
+               ,VW_AIS0010_UI B
+               ,${tempTableName}  D
+            WHERE A.PRJ_ID = D.PRJ_ID
+              AND A.FILE_ID = D.FILE_ID
+              AND A.CALL_PRJ_ID  = B.PRJ_ID
+              AND A.CALL_FILE_ID = B.FILE_ID
+              AND D.REL_DEPTH = CAST(#{relDepth} AS NUMERIC )
+              AND D.OBJ_TYPE &lt;&gt; 'tbl'
+              AND NOT EXISTS (
+                    SELECT 1
+                    FROM ${tempTableName}
+                    WHERE PRJ_ID = B.PRJ_ID
+                      AND FILE_ID = B.FILE_ID
+                )
+        ) A
+           ,VW_AIS1000 B
+           ,AIS1001 C
+        WHERE A.PRJ_ID = C.PRJ_ID
+          AND C.UPPER_BIZ_ID = B.BIZ_ID
+          AND B.DEL_YN = 'N'
+          AND C.DEL_YN = 'N'
+            ) DATA
+    </select>
+  <select id="getTotalFileRelCallingListAndPrjName" parameterType="java.util.HashMap" resultMap="getTotalFileRelAndPrjNameMap">/* ImpactStreamRelation.xml.getTotalFileRelCallingListAndPrjName */ /* ImpactStreamRelation.xml.getTotalFileRelCallingListAndPrjName */ 
+        SELECT FROMID, BIZ_ID, OBJID, FILE_ID, LABEL,
+               REL_ID, REL_PRJ_ID, REL_FILE_ID, REL_FILE_NAME,
+               REL_OBJ_NAME, OBJTYPE, FILE_PATH, REL_DEPTH,
+               DEPTH, PRJ_PATH,
+               MAX(DEPTH) OVER() AS MAX_DEPTH
+        FROM (
+                 with recursive calling_tree(depth,fromid,biz_id,objid,file_id,label,rel_id,rel_prj_id,rel_file_id,rel_file_name,rel_obj_name,objtype,file_path,rel_depth,prj_path) as (
+                     select
+                         cast( 1 as numeric) as depth ,
+                         CAL_ID as fromid ,
+                         BIZ_ID as BIZ_ID ,
+                         PRJ_ID as OBJID ,
+                         FILE_ID as FILE_ID ,
+                         case
+                             when OBJ_TYPE = 'col' then FILE_NAME || ' -' || DBC_CHECK || FILE_COMMENT
+                             else case
+                                      when OBJ_TYPE = 'tbl' then FILE_NAME || ' -' || DBC_CHECK || FILE_COMMENT || ' [' || PRJ_PATH || ']'
+                                      else FILE_NAME || ' -' || FILE_COMMENT || ' [' || PRJ_PATH || '] [PATH] ' || FILE_PATH
+                                 end
+                             end as label ,
+                         REL_CAL_ID as REL_ID ,
+                         REL_PRJ_ID ,
+                         REL_FILE_ID as REL_FILE_ID ,
+                         REL_FILE_NAME as REL_FILE_NAME ,
+                         OBJ_NAME as REL_OBJ_NAME ,
+                         OBJ_TYPE as OBJTYPE ,
+                         FILE_PATH ,
+                         REL_DEPTH ,
+                         PRJ_PATH
+                     from ${tempTableName} a
+                     where a.rel_depth &gt;= 0
+                       and a.seq_id = #{seqId}
+                       and a.rel_cal_id = 0
+                     union all
+                     select
+                         ABS(cast(b.REL_DEPTH as numeric) + 1)+1 as depth ,
+                         a.CAL_ID as fromid ,
+                         a.BIZ_ID as BIZ_ID ,
+                         a.PRJ_ID as OBJID ,
+                         a.FILE_ID as FILE_ID ,
+                         case
+                             when a.OBJ_TYPE = 'col' then a.FILE_NAME || ' -' || a.DBC_CHECK || a.FILE_COMMENT
+                             else case
+                                      when a.OBJ_TYPE = 'tbl' then a.FILE_NAME || ' -' || a.DBC_CHECK || a.FILE_COMMENT || ' [' || a.PRJ_PATH || ']'
+                                      else a.FILE_NAME || ' -' || a.FILE_COMMENT || ' [' || a.PRJ_PATH || '] [PATH] ' || a.FILE_PATH
+                                 end
+                             end as label ,
+                         a.REL_CAL_ID as REL_ID ,
+                         a.REL_PRJ_ID ,
+                         a.REL_FILE_ID as REL_FILE_ID ,
+                         a.REL_FILE_NAME as REL_FILE_NAME ,
+                         a.OBJ_NAME as REL_OBJ_NAME ,
+                         a.OBJ_TYPE as OBJTYPE ,
+                         a.FILE_PATH ,
+                         a.REL_DEPTH ,
+                         a.PRJ_PATH
+                     from ${tempTableName} a, calling_tree b
+                     where  a.rel_depth &gt;= 0
+                       and a.seq_id = #{seqId}
+                       and a.rel_cal_id = b.fromid
+                 )
+                 select
+                     *
+                 from calling_tree
+                 order by depth
+             ) DATA
+    </select>
+  <select id="getTotalCalledFileinfo" parameterType="java.util.HashMap" resultMap="tempTableMap">/* ImpactStreamRelation.xml.getTotalCalledFileinfo */ /* ImpactStreamRelation.xml.getTotalCalledFileinfo */ 
+        SELECT #{seqId}                 AS SEQ_ID
+             ,1 							AS CAL_ID
+             ,C.BIZ_ID 						AS BIZ_ID
+             ,A.PRJ_ID 						AS PRJ_ID
+             ,0          					AS OBJ_ID
+             ,A.FILE_ID 					AS FILE_ID
+             ,0              				AS FUNC_ID
+             ,fn_PRJTREENAME(B.PRJ_ID) 		AS PRJ_PATH
+             ,'CALLED' 						AS FILE_NAME
+             ,'' 							AS FUNC_NAME
+             ,A.ORG_FILE_PATH 	            AS FILE_PATH
+             ,'' 				            AS FILE_COMMENT
+             ,'File'                        AS OBJ_NAME
+             ,'file'                        AS OBJ_TYPE
+             ,''                            AS DBC_CHECK
+             ,0                             AS REL_CAL_ID
+             ,0                             AS REL_PRJ_ID
+             ,0                             AS REL_OBJ_ID
+             ,0                             AS REL_FILE_ID
+             ,0                             AS REL_FUNC_ID
+             ,''                            AS REL_FILE_NAME
+             ,''                            AS REL_FUNC_NAME
+             ,0                             AS REL_DEPTH
+        FROM VW_AIS0010 A
+           ,AIS1001 B
+           ,VW_AIS1000 C
+        WHERE A.PRJ_ID  = #{prjId}
+          AND A.FILE_ID = CAST(#{fileId} AS NUMERIC)
+          AND A.PRJ_ID = B.PRJ_ID
+          AND C.BIZ_ID = B.UPPER_BIZ_ID
+    </select>
+  <select id="getTotalCalledNextNode" parameterType="java.util.HashMap" resultMap="tempTableMap">/* ImpactStreamRelation.xml.getTotalCalledNextNode */ /* ImpactStreamRelation.xml.getTotalCalledNextNode */ 
+        SELECT ${seqId} 					 								AS SEQ_ID
+             ,nextval('$tempSequenceName$') 									AS CAL_ID
+             ,B.BIZ_ID                                                      AS BIZ_ID
+             ,A.PRJ_ID                                                      AS PRJ_ID
+             ,0 														    AS OBJ_ID
+             ,A.FILE_ID                                                     AS FILE_ID
+             ,0 														    AS FUNC_ID
+             ,fn_PRJTREENAME(C.PRJ_ID) 										AS PRJ_PATH
+             ,A.FILE_NAME                                                   AS FILE_NAME
+             ,'' 															AS FUNC_NAME
+             ,A.FILE_PATH                                                   AS FILE_PATH
+             ,A.FILE_COMMENT                                                AS FILE_COMMENT
+             ,A.OBJ_NAME                                                    AS OBJ_NAME
+             ,A.OBJ_TYPE                                                    AS OBJ_TYPE
+             ,A.DBC_CHECK                                                   AS DBC_CHECK
+             ,A.REL_CAL_ID                                                  AS REL_CAL_ID
+             ,A.REL_PRJ_ID                                                  AS REL_PRJ_ID
+             ,0 															AS REL_OBJ_ID
+             ,A.REL_FILE_ID                                                 AS REL_FILE_ID
+             ,0                                               				AS REL_FUNC_ID
+             ,A.REL_FILE_NAME                                               AS REL_FILE_NAME
+             ,'' 															AS REL_FUNC_NAME
+             ,A.REL_DEPTH                                                   AS REL_DEPTH
+        FROM (SELECT DISTINCT B.PRJ_ID
+                            ,B.FILE_ID 									    AS FILE_ID
+                            ,B.SRC_FILE_NAME 									AS FILE_NAME
+                            ,B.ORG_FILE_PATH 									AS FILE_PATH
+                            ,'' 												AS FILE_COMMENT
+                            ,'' 												AS DBC_CHECK
+                            ,'FILE' 											AS OBJ_NAME
+                            ,'file' 											AS OBJ_TYPE
+                            ,D.CAL_ID 											AS REL_CAL_ID
+                            ,D.PRJ_ID 										    AS REL_PRJ_ID
+                            ,D.FILE_ID 										AS REL_FILE_ID
+                            ,D.FILE_NAME 										AS REL_FILE_NAME
+                            ,(CAST(#{relDepth} AS NUMERIC )-1) 								AS REL_DEPTH
+              FROM (SELECT CALL_PRJ_ID, CALL_FILE_ID, PRJ_ID, FILE_ID
+                    FROM AIS0052
+                    WHERE CALL_PRJ_ID IN (SELECT DISTINCT REF_PRJ_ID
+                                          FROM VW_REFPRJID
+                                          WHERE PRJ_ID IN (SELECT PRJ_ID
+                                                           FROM ${tempTableName}
+                                                           WHERE REL_DEPTH = CAST(#{relDepth} AS NUMERIC ) ))) A
+                 ,VW_AIS0010_UI B
+                 ,${tempTableName}  D
+              WHERE A.CALL_PRJ_ID       = D.PRJ_ID
+                AND A.CALL_FILE_ID      = D.FILE_ID
+                AND A.PRJ_ID  = B.PRJ_ID
+                AND A.FILE_ID = B.FILE_ID
+                AND D.REL_DEPTH    = CAST(#{relDepth} AS NUMERIC )
+                AND NOT EXISTS (
+                      SELECT 1
+                      FROM ${tempTableName}
+                      WHERE  PRJ_ID   = B.PRJ_ID
+                        AND FILE_ID = B.FILE_ID
+                  )
+        ) A
+           ,VW_AIS1000 B
+           ,AIS1001 C
+        WHERE A.PRJ_ID = C.PRJ_ID
+          AND C.UPPER_BIZ_ID = B.BIZ_ID
+          AND B.DEL_YN = 'N'
+          AND C.DEL_YN = 'N'
+    </select>
+  <select id="getTotalFileRelCalledListAndPrjName" parameterType="java.util.HashMap" resultMap="getTotalFileRelAndPrjNameMap">/* ImpactStreamRelation.xml.getTotalFileRelCalledListAndPrjName */ /* ImpactStreamRelation.xml.getTotalFileRelCalledListAndPrjName */ 
+        SELECT FROMID, BIZ_ID, OBJID, FILE_ID, LABEL,
+               REL_ID, REL_PRJ_ID, REL_FILE_ID, REL_FILE_NAME,
+               REL_OBJ_NAME, OBJTYPE, FILE_PATH, REL_DEPTH,
+               DEPTH, PRJ_PATH,
+               MAX(DEPTH) OVER() AS MAX_DEPTH
+        FROM (
+                 with recursive called_tree(depth,fromid,biz_id,objid,file_id,label,rel_id,rel_prj_id,rel_file_id,rel_file_name,rel_obj_name,objtype,file_path,rel_depth,prj_path) as (
+                     select
+                         cast( 1 as numeric) as depth ,
+                         CAL_ID as fromid ,
+                         BIZ_ID as BIZ_ID ,
+                         PRJ_ID as OBJID ,
+                         FILE_ID as FILE_ID ,
+                         FILE_NAME || ' -' || DBC_CHECK || FILE_COMMENT || ' [' || PRJ_PATH || '] [PATH] ' || FILE_PATH as label ,
+                         REL_CAL_ID as REL_ID ,
+                         REL_PRJ_ID ,
+                         REL_FILE_ID as REL_FILE_ID ,
+                         REL_FILE_NAME as REL_FILE_NAME ,
+                         OBJ_NAME as REL_OBJ_NAME ,
+                         OBJ_TYPE as OBJTYPE ,
+                         FILE_PATH ,
+                         REL_DEPTH ,
+                         PRJ_PATH
+                     from ${tempTableName} a
+                     where a.rel_depth &lt;= 0
+                       and a.seq_id = #{seqId}
+                       and a.rel_cal_id = 0
+                     union all
+                     select
+                         ABS(cast(b.REL_DEPTH as numeric) + 1)+1 as depth ,
+                         a.CAL_ID as fromid ,
+                         a.BIZ_ID as BIZ_ID ,
+                         a.PRJ_ID as OBJID ,
+                         a.FILE_ID as FILE_ID ,
+                         a.FILE_NAME || ' -' || a.DBC_CHECK || a.FILE_COMMENT || ' [' || a.PRJ_PATH || '] [PATH] ' || a.FILE_PATH as label ,
+                         a.REL_CAL_ID as REL_ID ,
+                         a.REL_PRJ_ID ,
+                         a.REL_FILE_ID as REL_FILE_ID ,
+                         a.REL_FILE_NAME as REL_FILE_NAME ,
+                         a.OBJ_NAME as REL_OBJ_NAME ,
+                         a.OBJ_TYPE as OBJTYPE ,
+                         a.FILE_PATH ,
+                         a.REL_DEPTH ,
+                         a.PRJ_PATH
+                     from ${tempTableName} a, called_tree b
+                     where  a.rel_depth &lt;= 0
+                       and a.seq_id = #{seqId}
+                       and a.rel_cal_id = b.fromid
+                 )
+                 select
+                     *
+                 from called_tree
+                 order by depth
+             ) DATA
+    </select>
+  <select id="getSrcCalledList" parameterType="java.util.HashMap" resultMap="getSrcCalledListMap">/* ImpactStreamRelation.xml.getSrcCalledList */ /* ImpactStreamRelation.xml.getSrcCalledList */ 
+<if test="isPIEData == &quot;N&quot;">
+      <include refid="impact.pagingSql_Start" />
+    </if>
+    <if test="isPIEData == &quot;Y&quot;">
+            SELECT 0 AS L__GRID__LINE__NUM
+            , 1 AS PGNO
+            , DTT.*
+            , 0 AS TOTALCNT
+            FROM (
+        </if>
+        SELECT RANK() OVER (ORDER BY CNT DESC ) AS RANK
+        ,PRJ_KOR_NAME
+        ,PRJ_ID
+        ,fn_PRJTREENAME(PRJ_ID) AS BIZ_PATH
+        ,FILE_NAME
+        ,FILE_PATH
+        ,ORG_FILE_PATH
+        ,CNT
+        ,DECIMAL_CNT
+        FROM (
+        SELECT B.PRJ_KOR_NAME
+        , B.PRJ_ID
+        , B.SRC_FILE_NAME AS FILE_NAME
+        , B.ORG_FILE_PATH AS FILE_PATH
+        , SUBSTR(B.ORG_FILE_PATH, 49) AS ORG_FILE_PATH
+        , B.CNT AS CNT
+        , TRIM(TO_CHAR(B.CNT,'999,999,999,999')) DECIMAL_CNT
+        FROM (
+        SELECT B.PRJ_ID
+        , B.SRC_FILE_NAME
+        , B.ORG_FILE_PATH
+        , (SELECT COUNT(X.FILE_ID) AS CNT
+        FROM AIS0052 X
+        WHERE X.PRJ_ID  = B.PRJ_ID
+        AND X.FILE_ID = B.FILE_ID
+        ) CNT
+        , C.PRJ_KOR_NAME
+        FROM VW_AIS0010_UI B
+        , (
+        SELECT PRJ_ID, PRJ_KOR_NAME
+        FROM AIS1001
+        WHERE UPPER_BIZ_ID IN (
+        WITH RECURSIVE BIZ_INFO (BIZ_ID) AS (
+        SELECT
+        A.BIZ_ID
+        FROM
+        VW_AIS1000 A
+        WHERE
+        A.BIZ_ID = #{prjId}
+        AND A.DEL_YN = 'N'
+        UNION ALL
+        SELECT
+        A.BIZ_ID
+        FROM
+        VW_AIS1000 A ,
+        BIZ_INFO B
+        WHERE
+        A.DEL_YN = 'N'
+        AND A.UPPER_BIZ_ID = B.BIZ_ID
+        )
+        SELECT
+        BIZ_ID
+        FROM
+        BIZ_INFO
+        )
+        AND DEL_YN = 'N'
+        <if test="site == &quot;DGBANK&quot;">
+            AND PRJ_ID &gt; 3000
+        </if>
+        ) C
+        WHERE B.PRJ_ID  = C.PRJ_ID
+        <if test="langType != 'ALL'">
+        AND B.EXT_CD IN (
+        SELECT EXT_CD
+        FROM AIS2102
+        WHERE LANG_CD = #{langType}
+        )
+        </if>
+        ) B
+        ) DT
+        <if test="isPIEData == &quot;Y&quot;">
+            ) DTT
+            WHERE RANK &lt;= 10
+        </if>
+    <if test="isPIEData == &quot;N&quot;">
+      <include refid="impact.pagingSql_End" />
+    </if>
+  </select>
+  <select id="getSrcCallingPie" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamRelation.xml.getSrcCallingPie */ /* ImpactStreamRelation.xml.getSrcCallingPie */ 
+        SELECT *
+        FROM (
+        SELECT RANK() OVER (ORDER BY CNT DESC ) AS RANK
+        , ( SELECT C.PRJ_KOR_NAME FROM AIS1001 C WHERE C.PRJ_ID = DT.PRJ_ID ) AS PRJ_KOR_NAME
+        , PRJ_ID
+        , fn_PRJTREENAME(PRJ_ID) AS BIZ_PATH
+        , FILE_NAME
+        , FILE_PATH
+        , ORG_FILE_PATH
+        , CNT
+        , DECIMAL_CNT
+        FROM ( SELECT B.PRJ_ID
+        , B.SRC_FILE_NAME AS FILE_NAME
+        , B.SRC_FILE_FULL_PATH AS FILE_PATH
+        , B.ORG_FILE_PATH
+        , B.CNT AS CNT
+        , TRIM(TO_CHAR(B.CNT,'999,999,999,999')) DECIMAL_CNT
+        FROM (
+        SELECT DATA.PRJ_ID
+        , DATA.CALL_PRJ_ID
+        , DATA.CALL_FILE_ID
+        , B.SRC_FILE_NAME
+        , B.SRC_FILE_FULL_PATH
+        , B.ORG_FILE_PATH
+        , COUNT(DATA.CALL_FILE_ID) AS CNT
+        FROM (
+        SELECT /* +RULE INDEX ( B AIS0010_PK ) */
+        C.CALL_PRJ_ID AS PRJ_ID
+        , C.CALL_PRJ_ID
+        , C.CALL_FILE_ID
+        FROM AIS0052 C
+        WHERE C.CALL_PRJ_ID <include refid="impact.fullPrjIdSql" />
+        UNION ALL
+        SELECT /* +RULE INDEX ( B AIS0010_PK ) */
+        C.CALL_PRJ_ID AS PRJ_ID
+        , C.CALL_PRJ_ID
+        , C.CALL_FILE_ID
+        FROM AIS0054 C
+        WHERE C.CALL_PRJ_ID <include refid="impact.fullPrjIdSql" />
+        ) DATA
+        , VW_AIS0010_UI B
+        WHERE DATA.PRJ_ID       = B.PRJ_ID
+        AND DATA.CALL_FILE_ID = B.FILE_ID
+        AND B.PRJ_ID <include refid="impact.fullPrjIdSql" />
+    <if test="langType != 'ALL'">
+            AND B.EXT_CD IN (
+            SELECT EXT_CD
+            FROM AIS2102
+            WHERE LANG_CD = #{langType}
+            )
+        </if>
+        GROUP BY DATA.PRJ_ID, DATA.CALL_PRJ_ID, DATA.CALL_FILE_ID, B.SRC_FILE_NAME, B.SRC_FILE_FULL_PATH, B.ORG_FILE_PATH
+        ) B
+        ) DT
+        ) X
+        WHERE RANK &lt;= 10
+    </select>
+  <select id="getSrcCallingList" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamRelation.xml.getSrcCallingList */ /* ImpactStreamRelation.xml.getSrcCallingList */ 
+<include refid="impact.pagingSql_Start" />
+        SELECT *
+        FROM (
+        SELECT RANK() OVER (ORDER BY CNT DESC ) AS "RANK"
+        , ( SELECT C.PRJ_KOR_NAME FROM AIS1001 C WHERE C.PRJ_ID = DT.PRJ_ID ) AS "PRJ_KOR_NAME"
+        , PRJ_ID AS "PRJ_ID"
+        , fn_PRJTREENAME(PRJ_ID) AS "BIZ_PATH"
+        , FILE_NAME AS "FILE_NAME"
+        , FILE_PATH AS "FILE_PATH"
+        , ORG_FILE_PATH AS "ORG_FILE_PATH"
+        , CNT AS "CNT"
+        , DECIMAL_CNT AS "DECIMAL_CNT"
+        FROM ( SELECT B.PRJ_ID
+        , B.SRC_FILE_NAME AS FILE_NAME
+        , B.SRC_FILE_FULL_PATH AS FILE_PATH
+        , B.ORG_FILE_PATH
+        , B.CNT AS CNT
+        , TRIM(TO_CHAR(B.CNT,'999,999,999,999')) DECIMAL_CNT
+        FROM (
+        SELECT DATA.PRJ_ID
+        , DATA.CALL_PRJ_ID
+        , DATA.CALL_FILE_ID
+        , B.SRC_FILE_NAME
+        , B.SRC_FILE_FULL_PATH
+        , B.ORG_FILE_PATH
+        , COUNT(DATA.CALL_FILE_ID) AS CNT
+        FROM (
+        SELECT /* +RULE INDEX ( B AIS0010_PK ) */
+        C.CALL_PRJ_ID AS PRJ_ID
+        , C.CALL_PRJ_ID
+        , C.CALL_FILE_ID
+        FROM AIS0052 C
+        WHERE C.CALL_PRJ_ID <include refid="impact.fullPrjIdSql" />
+        UNION ALL
+        SELECT /* +RULE INDEX ( B AIS0010_PK ) */
+        C.CALL_PRJ_ID AS PRJ_ID
+        , C.CALL_PRJ_ID
+        , C.CALL_FILE_ID
+        FROM AIS0054 C
+        WHERE C.CALL_PRJ_ID <include refid="impact.fullPrjIdSql" />
+        ) DATA
+        , VW_AIS0010_UI B
+        WHERE DATA.PRJ_ID       = B.PRJ_ID
+        AND DATA.CALL_FILE_ID = B.FILE_ID
+        AND B.PRJ_ID <include refid="impact.fullPrjIdSql" />
+    <if test="langType != 'ALL'">
+            AND B.EXT_CD IN (
+            SELECT EXT_CD
+            FROM AIS2102
+            WHERE LANG_CD = #{langType}
+            )
+        </if>
+        GROUP BY DATA.PRJ_ID, DATA.CALL_PRJ_ID, DATA.CALL_FILE_ID, B.SRC_FILE_NAME, B.SRC_FILE_FULL_PATH, B.ORG_FILE_PATH
+        ) B
+        ) DT
+        ) X
+        <include refid="impact.pagingSql_End" />
+  </select>
+  <select id="getTableCallList" parameterType="java.util.HashMap" resultMap="getTableCallListMap">/* ImpactStreamRelation.xml.getTableCallList */ /* ImpactStreamRelation.xml.getTableCallList */ 
+<if test="isPIEData == &quot;N&quot;">
+      <include refid="impact.pagingSql_Start" />
+    </if>
+    <if test="isPIEData == &quot;Y&quot;">
+            SELECT 0 AS L__GRID__LINE__NUM
+            , 1 AS PGNO
+            , DT.*
+            , 0 AS TOTALCNT
+            FROM (
+        </if>
+        SELECT RANK() OVER ( ORDER BY CC.CNT DESC ) AS RANK
+        , CC.CAPS_TABLE_NAME AS TABLE_NAME
+        , CC.CNT AS CNT
+        , TRIM(TO_CHAR(CC.CNT,'999,999,999,999')) AS DECIMAL_CNT
+        , CC.C||CC.R||CC.U||CC.D AS CRUD
+        , NULL as BIZ_PATH
+        FROM (SELECT A.CAPS_TABLE_NAME
+        ,MAX(CASE WHEN A.QUERY_TYPE ='C' THEN 'C' ELSE '' END) AS C
+        ,MAX(CASE WHEN A.QUERY_TYPE ='R' THEN 'R' ELSE '' END) AS R
+        ,MAX(CASE WHEN A.QUERY_TYPE ='U' THEN 'U' ELSE '' END) AS U
+        ,MAX(CASE WHEN A.QUERY_TYPE ='D' THEN 'D' ELSE '' END) AS D
+        ,COUNT(*) AS CNT
+        FROM AIS0102 A
+        WHERE A.INLINEVIEW_YN = 'N'
+        AND (A.PRJ_ID, A.FILE_ID) IN
+        ( SELECT /*+RULE INDEX ( B AIS0010_PK ) */
+        B.PRJ_ID , B.FILE_ID
+        FROM VW_AIS0010_UI B
+        WHERE B.PRJ_ID <include refid="impact.fullPrjIdSql" />
+        AND RTRIM(B.FILE_LST_YN) = 'Y'
+        )
+        <if test="crudType != 'ALL' ">
+        AND A.QUERY_TYPE = UPPER(#{crudType})
+        </if>
+        GROUP BY A.CAPS_TABLE_NAME
+        ) CC
+        ORDER BY CNT DESC
+        <if test="isPIEData == &quot;Y&quot;">
+            ) DT
+            WHERE RANK &lt;= 5
+        </if>
+    <if test="isPIEData == &quot;N&quot;">
+      <include refid="impact.pagingSql_End" />
+    </if>
+  </select>
+  <select id="getTableCallByCRUD" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamRelation.xml.getTableCallByCRUD */ /* ImpactStreamRelation.xml.getTableCallByCRUD */ 
+        SELECT CRUD AS "CRUD"
+        , DECIMAL_CNT AS "DECIMAL_CNT"
+        , DECIMAL_CNT AS "CNT"
+        FROM (SELECT CRUD, COUNT(*) AS DECIMAL_CNT
+        FROM (SELECT /*+RULE INDEX ( B AIS0010_PK ) */
+        DISTINCT
+        A.PRJ_ID, A.FILE_ID, A.SQL_ID, A.TABLE_ID,
+        CASE WHEN A.QUERY_TYPE = 'S' THEN 'R'
+        ELSE A.QUERY_TYPE END AS CRUD
+        FROM AIS0102 A
+        WHERE A.INLINEVIEW_YN = 'N'
+        AND (A.PRJ_ID, A.FILE_ID) IN
+        ( SELECT B.PRJ_ID , B.FILE_ID
+        FROM VW_AIS0010_UI B
+        WHERE B.PRJ_ID   <include refid="impact.fullPrjIdSql" />
+        AND RTRIM(B.FILE_LST_YN) = 'Y'
+        )
+        ) X
+        GROUP BY CRUD
+        ) XX
+    </select>
+  <select id="getFuncRelationSearchList" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamRelation.xml.getFuncRelationSearchList */ /* ImpactStreamRelation.xml.getFuncRelationSearchList */ 
+<include refid="impact.pagingSql_Start" />
+        SELECT B.PRJ_ID AS "PRJ_ID"
+        , fn_PRJTREENAME(B.PRJ_ID) AS "BIZ_PATH"
+        , B.FILE_ID AS "FILE_ID"
+        , B.SRC_FILE_NAME AS "FILE_NAME"
+        , B.SRC_FILE_FULL_PATH AS "SRC_FILE_FULL_PATH"
+        , B.ORG_FILE_PATH AS "ORG_FILE_PATH"
+        , B.EXT_CD AS "EXT_CD"
+        , D.OBJ_ID AS "OBJ_ID"
+        , D.FUNC_ID AS "FUNC_ID"
+        , D.FUNC_NAME AS "FUNC_NAME"
+        FROM AIS0012 D
+        , VW_AIS0010_UI B
+        WHERE D.PRJ_ID  <include refid="impact.fullPrjIdSql" />
+        AND D.PRJ_ID  = B.PRJ_ID
+        AND D.FILE_ID = B.FILE_ID
+        <if test="searchFile !=null and searchFile !=''">
+      <if test="fileLikeType == 0 ">
+                AND B.CAPS_SRC_FILE_NAME LIKE '%' || #{searchFile}
+            </if>
+      <if test="fileLikeType == 1 ">
+                AND B.CAPS_SRC_FILE_NAME LIKE #{searchFile} || '%'
+            </if>
+      <if test="fileLikeType == 2 ">
+                AND B.CAPS_SRC_FILE_NAME LIKE '%' || #{searchFile} || '%'
+            </if>
+    </if>
+    <if test="searchName !=null and searchName !=''">
+      <if test="nameLikeType == 0 ">
+                AND UPPER(D.FUNC_NAME) LIKE '%' || #{searchName}
+            </if>
+      <if test="nameLikeType == 1 ">
+                AND UPPER(D.FUNC_NAME) LIKE #{searchName} || '%'
+            </if>
+      <if test="nameLikeType == 2 ">
+                AND UPPER(D.FUNC_NAME) LIKE '%' || #{searchName} || '%'
+            </if>
+    </if>
+    <if test="langType != 'ALL' ">
+            AND B.EXT_CD IN(SELECT BB.EXT_CD
+            FROM AIS2101 AA, AIS2102 BB
+            WHERE AA.LANG_CD = #{langType}
+            AND BB.LANG_CD = AA.LANG_CD )
+        </if>
+        AND EXISTS (SELECT 1
+        FROM AIS0052 X
+        WHERE X.PRJ_ID  = D.PRJ_ID
+        AND X.FILE_ID = D.FILE_ID
+        AND X.OBJ_ID  = D.OBJ_ID
+        AND X.FUNC_ID = D.FUNC_ID
+        UNION ALL
+        SELECT 1
+        FROM AIS0052 X
+        WHERE X.CALL_PRJ_ID  = D.PRJ_ID
+        AND X.CALL_FILE_ID = D.FILE_ID
+        AND X.CALL_OBJ_ID  = D.OBJ_ID
+        AND X.CALL_FUNC_ID = D.FUNC_ID
+        )
+        ORDER BY B.SRC_FILE_NAME, D.FUNC_NAME
+        <include refid="impact.pagingSql_End" />
+  </select>
+  <select id="getFuncInfoByCalledList" parameterType="java.util.HashMap" resultMap="tempTableMap">/* ImpactStreamRelation.xml.getFuncInfoByCalledList */ /* ImpactStreamRelation.xml.getFuncInfoByCalledList */ 
+        SELECT
+            <if test="seqId !=null and seqId !=''">
+             #{seqId}        AS SEQ_ID
+            </if>
+    <if test="seqId ==null or seqId ==''">
+                null        AS SEQ_ID
+            </if>
+             ,1 AS CAL_ID
+             ,C.BIZ_ID
+             ,D.PRJ_ID
+             ,D.OBJ_ID
+             ,D.FILE_ID
+             ,D.FUNC_ID
+             ,fn_PRJTREENAME(D.PRJ_ID) AS PRJ_PATH
+             ,'CALLED' AS FILE_NAME
+             ,'CALLED' AS FUNC_NAME
+             ,A.ORG_FILE_PATH AS FILE_PATH
+             ,''              AS FILE_COMMENT
+             ,'Func' AS OBJ_NAME
+             ,'func' AS OBJ_TYPE
+             ,''              AS DBC_CHECK
+             ,0 AS REL_CAL_ID
+             ,0 AS REL_PRJ_ID
+             ,0 AS REL_OBJ_ID
+             ,0 AS REL_FILE_ID
+             ,'' AS REL_FILE_NAME
+             ,0 AS REL_FUNC_ID
+             ,0 AS REL_FUNC_NAME
+             ,0 AS REL_DEPTH
+        FROM VW_AIS0010 A
+           ,AIS1001 B
+           ,AIS1000 C
+           ,AIS0012 D
+        WHERE D.PRJ_ID  = CAST(#{prjId} AS TEXT)
+          AND D.FILE_ID = CAST(#{fileId} AS NUMERIC)
+          AND D.OBJ_ID  = CAST(#{objId} AS NUMERIC)
+          AND D.FUNC_ID = CAST(#{funcId} AS NUMERIC)
+          AND D.PRJ_ID  = B.PRJ_ID
+          AND C.BIZ_ID  = B.UPPER_BIZ_ID
+          AND D.PRJ_ID  = A.PRJ_ID
+          AND D.FILE_ID = A.FILE_ID
+    </select>
+  <select id="getFuncCalledNextNode" parameterType="java.util.HashMap" resultMap="tempTableMap">/* ImpactStreamRelation.xml.getFuncCalledNextNode */ /* ImpactStreamRelation.xml.getFuncCalledNextNode */ 
+        SELECT
+            <if test="seqId != null and seqId != ''">
+                #{seqId} AS SEQ_ID
+            </if>
+    <if test="seqId == null or seqId == ''">
+                null AS SEQ_ID
+            </if>
+             ,nextval('${tempSequenceName}') AS CAL_ID
+             ,(SELECT UPPER_BIZ_ID FROM AIS1001 WHERE A.PRJ_ID = PRJ_ID ) AS BIZ_ID
+             ,A.PRJ_ID
+             ,A.OBJ_ID
+             ,A.FILE_ID
+             ,A.FUNC_ID
+             ,fn_PRJTREENAME(A.PRJ_ID) AS PRJ_PATH
+             ,A.FILE_NAME
+             ,A.FUNC_NAME
+             ,A.FILE_PATH
+             ,'' AS FILE_COMMENT
+             ,A.OBJ_NAME
+             ,A.OBJ_TYPE
+             ,'' AS DBC_CHECK
+             ,A.REL_CAL_ID
+             ,A.REL_PRJ_ID
+             ,A.REL_OBJ_ID
+             ,A.REL_FILE_ID
+             ,A.REL_FUNC_ID
+             ,A.REL_FILE_NAME
+             ,A.REL_FUNC_NAME
+             ,A.REL_DEPTH
+        FROM (
+                 SELECT --+ ORDERED ( AIS0052 AIS0052_PK )
+                     DISTINCT C.PRJ_ID
+                      , C.FILE_ID        AS FILE_ID
+                      , B.SRC_FILE_NAME  AS FILE_NAME
+                      , C.OBJ_ID         AS OBJ_ID
+                      , C.FUNC_ID        AS FUNC_ID
+                      , C.FUNC_NAME      AS FUNC_NAME
+                      , B.ORG_FILE_PATH  AS FILE_PATH
+                      , 'Func'           AS OBJ_NAME
+                      , 'func'           AS OBJ_TYPE
+                      , D.CAL_ID         AS REL_CAL_ID
+                      , D.PRJ_ID         AS REL_PRJ_ID
+                      , D.FILE_ID        AS REL_FILE_ID
+                      , D.FILE_NAME      AS REL_FILE_NAME
+                      , D.OBJ_ID         AS REL_OBJ_ID
+                      , D.FUNC_ID        AS REL_FUNC_ID
+                      , D.FUNC_NAME      AS REL_FUNC_NAME
+                      , (#{relDepth} -1) AS REL_DEPTH
+        <if test="seqId != null and seqId != ''">
+                 FROM VW_AIS0010 B
+                    , AIS0012    C
+                    , AIS0052    A
+                    , ${tempTableName} D
+                 WHERE A.CALL_PRJ_ID    = D.PRJ_ID
+                   AND A.CALL_FILE_ID   = D.FILE_ID
+                   AND A.CALL_OBJ_ID    = D.OBJ_ID
+                   AND A.CALL_FUNC_ID   = D.FUNC_ID
+                   AND A.PRJ_ID         = C.PRJ_ID
+                   AND A.FILE_ID        = C.FILE_ID
+                   AND A.OBJ_ID         = C.OBJ_ID
+                   AND A.FUNC_ID        = C.FUNC_ID
+                   AND A.PRJ_ID         = B.PRJ_ID
+                   AND A.FILE_ID        = B.FILE_ID
+                   AND D.REL_DEPTH      = CAST(#{relDepth} AS NUMERIC)
+                   AND B.PRJ_ID IN (SELECT DISTINCT REF_PRJ_ID
+                                    FROM VW_REFPRJID A1, ${tempTableName} A2
+                                    WHERE A1.PRJ_ID     = A2.PRJ_ID
+                                      AND A2.REL_DEPTH  = CAST(#{relDepth} AS NUMERIC)
+                                      AND A2.REL_CAL_ID &gt; -1
+                                      AND A2.SEQ_ID     = CAST(#{seqId} as NUMERIC)
+                 )
+                   AND NOT EXISTS (SELECT 1
+                                   FROM ${tempTableName}  A2
+                                   WHERE REL_PRJ_ID   = C.PRJ_ID
+                                     AND REL_FILE_ID  = C.FILE_ID
+                                     AND REL_OBJ_ID   = C.OBJ_ID
+                                     AND REL_FUNC_ID  = C.FUNC_ID
+                                     AND A2.SEQ_ID     = CAST(#{seqId} as NUMERIC)
+                     )
+                   AND D.SEQ_ID         = CAST(#{seqId} as NUMERIC)
+                 UNION ALL
+                 SELECT DISTINCT C.PRJ_ID
+                               , C.FILE_ID        AS FILE_ID
+                               , B.SRC_FILE_NAME  AS FILE_NAME
+                               , C.OBJ_ID         AS OBJ_ID
+                               , 0                AS FUNC_ID
+                               , C.OBJ_NAME       AS FUNC_NAME
+                               , B.ORG_FILE_PATH  AS FILE_PATH
+                               , 'Func'           AS OBJ_NAME
+                               , 'func'           AS OBJ_TYPE
+                               , D.CAL_ID         AS REL_CAL_ID
+                               , D.PRJ_ID         AS REL_PRJ_ID
+                               , D.FILE_ID        AS REL_FILE_ID
+                               , D.FILE_NAME      AS REL_FILE_NAME
+                               , D.OBJ_ID         AS REL_OBJ_ID
+                               , D.FUNC_ID        AS REL_FUNC_ID
+                               , D.FUNC_NAME      AS REL_FUNC_NAME
+                               , (#{relDepth} -1) AS REL_DEPTH
+                 FROM (SELECT CALL_PRJ_ID
+                            , CALL_FILE_ID
+                            , CALL_OBJ_ID
+                            , CALL_FUNC_ID
+                            , PRJ_ID
+                            , FILE_ID
+                            , OBJ_ID
+                            , FUNC_ID
+                       FROM AIS0052
+                       WHERE PRJ_ID IN (SELECT DISTINCT REF_PRJ_ID
+                                        FROM VW_REFPRJID A1, ${tempTableName} A2
+                                        WHERE A1.PRJ_ID     = A2.PRJ_ID
+                                          AND A2.REL_DEPTH  = CAST(#{relDepth} AS NUMERIC)
+                                          AND A2.REL_CAL_ID &gt; -1
+                                          AND A2.SEQ_ID     = CAST(#{seqId} as NUMERIC)
+                       )
+                         AND CALL_TYPE = 'PROCESStoJAVA'
+                       UNION
+                       SELECT CALL_PRJ_ID
+                            , CALL_FILE_ID
+                            , CALL_OBJ_ID
+                            , CALL_FUNC_ID
+                            , PRJ_ID
+                            , FILE_ID
+                            , OBJ_ID
+                            , FUNC_ID
+                       FROM AIS0054
+                       WHERE PRJ_ID IN (SELECT DISTINCT REF_PRJ_ID
+                                        FROM VW_REFPRJID A1, ${tempTableName} A2
+                                        WHERE A1.PRJ_ID     = A2.PRJ_ID
+                                          AND A2.REL_DEPTH  = CAST(#{relDepth} AS NUMERIC)
+                                          AND A2.REL_CAL_ID &gt; -1
+                                          AND A2.SEQ_ID     = CAST(#{seqId} as NUMERIC)
+                       )
+                         AND CALL_TYPE = 'PROCESStoJAVA'
+                 ) A
+                    , VW_AIS0010 B
+                    , AIS0011 C
+                    , ${tempTableName} D
+                 WHERE A.CALL_PRJ_ID    = D.PRJ_ID
+                   AND A.CALL_FILE_ID   = D.FILE_ID
+                   AND A.CALL_OBJ_ID    = D.OBJ_ID
+                   AND A.CALL_FUNC_ID   = D.FUNC_ID
+                   AND A.PRJ_ID         = C.PRJ_ID
+                   AND A.FILE_ID        = C.FILE_ID
+                   AND A.OBJ_ID         = C.OBJ_ID
+                   AND A.FUNC_ID        = C.FUNC_ID
+                   AND A.PRJ_ID         = B.PRJ_ID
+                   AND A.FILE_ID        = B.FILE_ID
+                   AND D.REL_DEPTH      = CAST(#{relDepth} AS NUMERIC)
+                   AND D.SEQ_ID     = CAST(#{seqId} as NUMERIC)
+                   AND NOT EXISTS (SELECT 1
+                                   FROM ${tempTableName}  A2
+                                   WHERE REL_PRJ_ID   = C.PRJ_ID
+                                     AND REL_FILE_ID  = C.FILE_ID
+                                     AND REL_OBJ_ID   = C.OBJ_ID
+                                     AND REL_FUNC_ID  = C.FUNC_ID
+                                     AND A2.SEQ_ID     = CAST(#{seqId} as NUMERIC)
+                     )
+                 UNION ALL
+                 SELECT DISTINCT C.PRJ_ID
+                               , C.FILE_ID        AS FILE_ID
+                               , B.SRC_FILE_NAME  AS FILE_NAME
+                               , C.OBJ_ID         AS OBJ_ID
+                               , C.FUNC_ID        AS FUNC_ID
+                               , C.FUNC_NAME      AS FUNC_NAME
+                               , B.ORG_FILE_PATH  AS FILE_PATH
+                               , 'Func'           AS OBJ_NAME
+                               , 'func'           AS OBJ_TYPE
+                               , D.CAL_ID         AS REL_CAL_ID
+                               , D.PRJ_ID         AS REL_PRJ_ID
+                               , D.FILE_ID        AS REL_FILE_ID
+                               , D.FILE_NAME      AS REL_FILE_NAME
+                               , D.OBJ_ID         AS REL_OBJ_ID
+                               , D.FUNC_ID        AS REL_FUNC_ID
+                               , D.FUNC_NAME      AS REL_FUNC_NAME
+                               , (#{relDepth} -1) AS REL_DEPTH
+                 FROM (SELECT CALL_PRJ_ID
+                            , CALL_FILE_ID
+                            , CALL_OBJ_ID
+                            , CALL_FUNC_ID
+                            , PRJ_ID
+                            , FILE_ID
+                            , OBJ_ID
+                            , FUNC_ID
+                       FROM AIS0052
+                       WHERE PRJ_ID IN (SELECT DISTINCT REF_PRJ_ID
+                                        FROM VW_REFPRJID A1, ${tempTableName} A2
+                                        WHERE A1.PRJ_ID     = A2.PRJ_ID
+                                          AND A2.REL_DEPTH  = CAST(#{relDepth} AS NUMERIC)
+                                          AND A2.REL_CAL_ID &gt; -1
+                                          AND A2.SEQ_ID     = CAST(#{seqId} as NUMERIC)
+                       )
+                         AND CALL_TYPE = 'JAVAtoPROCESS'
+                       UNION
+                       SELECT CALL_PRJ_ID
+                            , CALL_FILE_ID
+                            , CALL_OBJ_ID
+                            , CALL_FUNC_ID
+                            , PRJ_ID
+                            , FILE_ID
+                            , OBJ_ID
+                            , FUNC_ID
+                       FROM AIS0054
+                       WHERE PRJ_ID IN (SELECT DISTINCT REF_PRJ_ID
+                                        FROM VW_REFPRJID A1, ${tempTableName} A2
+                                        WHERE A1.PRJ_ID     = A2.PRJ_ID
+                                          AND A2.REL_DEPTH  = CAST(#{relDepth} AS NUMERIC)
+                                          AND A2.REL_CAL_ID &gt; -1
+                                          AND A2.SEQ_ID     = CAST(#{seqId} as NUMERIC)
+                       )
+                         AND CALL_TYPE = 'JAVAtoPROCESS'
+                 ) A
+                    , VW_AIS0010 B
+                    , AIS0012 C
+                    , ${tempTableName} D
+                 WHERE A.CALL_PRJ_ID    = D.PRJ_ID
+                   AND A.CALL_FILE_ID   = D.FILE_ID
+                   AND A.CALL_OBJ_ID    = D.OBJ_ID
+                   AND A.CALL_FUNC_ID   = D.FUNC_ID
+                   AND A.PRJ_ID         = C.PRJ_ID
+                   AND A.FILE_ID        = C.FILE_ID
+                   AND A.OBJ_ID         = C.OBJ_ID
+                   AND A.FUNC_ID        = C.FUNC_ID
+                   AND A.PRJ_ID         = B.PRJ_ID
+                   AND A.FILE_ID        = B.FILE_ID
+                   AND D.REL_DEPTH      = CAST(#{relDepth} AS NUMERIC)
+                   AND D.SEQ_ID     = CAST(#{seqId} as NUMERIC)
+                   AND NOT EXISTS (SELECT 1
+                                   FROM ${tempTableName}   A2
+                                   WHERE REL_PRJ_ID   = C.PRJ_ID
+                                     AND REL_FILE_ID  = C.FILE_ID
+                                     AND REL_OBJ_ID   = C.OBJ_ID
+                                     AND REL_FUNC_ID  = C.FUNC_ID
+                                     AND A2.SEQ_ID     = CAST(#{seqId} as NUMERIC)
+                     )
+        </if>
+    <if test="seqId == null or seqId == ''">
+            FROM (SELECT CALL_PRJ_ID
+            , CALL_FILE_ID
+            , CALL_OBJ_ID
+            , CALL_FUNC_ID
+            , PRJ_ID
+            , FILE_ID
+            , OBJ_ID
+            , FUNC_ID
+            FROM AIS0052
+            WHERE PRJ_ID IN (SELECT DISTINCT REF_PRJ_ID
+            FROM VW_REFPRJID
+            WHERE PRJ_ID IN (SELECT PRJ_ID
+
+            FROM ${tempTableName}
+            WHERE REL_DEPTH = CAST(#{relDepth} as NUMERIC)
+            )
+            )
+            ) A
+            , VW_AIS0010 B
+            , AIS0012 C
+            , ${tempTableName} D
+            WHERE A.CALL_PRJ_ID    = D.PRJ_ID
+            AND A.CALL_FILE_ID   = D.FILE_ID
+            AND A.CALL_OBJ_ID    = D.OBJ_ID
+            AND A.CALL_FUNC_ID   = D.FUNC_ID
+            AND A.PRJ_ID         = C.PRJ_ID
+            AND A.FILE_ID        = C.FILE_ID
+            AND A.OBJ_ID         = C.OBJ_ID
+            AND A.FUNC_ID        = C.FUNC_ID
+            AND A.PRJ_ID         = B.PRJ_ID
+            AND A.FILE_ID        = B.FILE_ID
+            AND D.REL_DEPTH      =  CAST(#{relDepth} as NUMERIC)
+            AND NOT EXISTS (SELECT 1
+            FROM ${tempTableName}
+            WHERE REL_PRJ_ID   = C.PRJ_ID
+            AND REL_FILE_ID  = C.FILE_ID
+            AND REL_OBJ_ID   = C.OBJ_ID
+            AND REL_FUNC_ID  = C.FUNC_ID
+            )
+
+
+            UNION ALL
+            SELECT --+ ORDERED
+            DISTINCT C.PRJ_ID
+            , C.FILE_ID        AS FILE_ID
+            , B.SRC_FILE_NAME  AS FILE_NAME
+            , C.OBJ_ID         AS OBJ_ID
+            , 0                AS FUNC_ID
+            , C.OBJ_NAME       AS FUNC_NAME
+            , B.ORG_FILE_PATH  AS FILE_PATH
+            , 'Func'           AS OBJ_NAME
+            , 'func'           AS OBJ_TYPE
+            , D.CAL_ID         AS REL_CAL_ID
+            , D.PRJ_ID         AS REL_PRJ_ID
+            , D.FILE_ID        AS REL_FILE_ID
+            , D.FILE_NAME      AS REL_FILE_NAME
+            , D.OBJ_ID         AS REL_OBJ_ID
+            , D.FUNC_ID        AS REL_FUNC_ID
+            , D.FUNC_NAME      AS REL_FUNC_NAME
+            , (#{relDepth}-1) AS REL_DEPTH
+            FROM (SELECT CALL_PRJ_ID
+            , CALL_FILE_ID
+            , CALL_OBJ_ID
+            , CALL_FUNC_ID
+            , PRJ_ID
+            , FILE_ID
+            , OBJ_ID
+            , FUNC_ID
+            FROM AIS0052
+            WHERE PRJ_ID IN (SELECT DISTINCT REF_PRJ_ID
+            FROM VW_REFPRJID
+            WHERE PRJ_ID IN (SELECT PRJ_ID
+
+            FROM ${tempTableName}
+            WHERE REL_DEPTH = CAST(#{relDepth} as NUMERIC)
+            )
+            )
+            AND CALL_TYPE = 'PROCESStoJAVA'
+            UNION
+            SELECT CALL_PRJ_ID
+            , CALL_FILE_ID
+            , CALL_OBJ_ID
+            , CALL_FUNC_ID
+            , PRJ_ID
+            , FILE_ID
+            , OBJ_ID
+            , FUNC_ID
+            FROM AIS0054
+            WHERE PRJ_ID IN (SELECT DISTINCT REF_PRJ_ID
+            FROM VW_REFPRJID
+            WHERE PRJ_ID IN (SELECT PRJ_ID
+
+            FROM ${tempTableName}
+            WHERE REL_DEPTH = CAST(#{relDepth} as NUMERIC)
+            )
+            )
+            AND CALL_TYPE = 'PROCESStoJAVA'
+            ) A
+            , VW_AIS0010 B
+            , AIS0011 C
+            , ${tempTableName} D
+            WHERE A.CALL_PRJ_ID    = D.PRJ_ID
+            AND A.CALL_FILE_ID   = D.FILE_ID
+            AND A.CALL_OBJ_ID    = D.OBJ_ID
+            AND A.PRJ_ID         = C.PRJ_ID
+            AND A.FILE_ID        = C.FILE_ID
+            AND A.OBJ_ID         = C.OBJ_ID
+            AND A.PRJ_ID         = B.PRJ_ID
+            AND A.FILE_ID        = B.FILE_ID
+            AND D.REL_DEPTH      = CAST(#{relDepth} as NUMERIC)
+            AND NOT EXISTS (SELECT 1
+            FROM ${tempTableName}
+            WHERE REL_PRJ_ID   = C.PRJ_ID
+            AND REL_FILE_ID  = C.FILE_ID
+            AND REL_OBJ_ID   = C.OBJ_ID
+            )
+            UNION ALL
+            SELECT --+ ORDERED
+            DISTINCT C.PRJ_ID
+            , C.FILE_ID        AS FILE_ID
+            , B.SRC_FILE_NAME  AS FILE_NAME
+            , C.OBJ_ID         AS OBJ_ID
+            , C.FUNC_ID        AS FUNC_ID
+            , C.FUNC_NAME      AS FUNC_NAME
+            , B.ORG_FILE_PATH  AS FILE_PATH
+            , 'Func'           AS OBJ_NAME
+            , 'func'           AS OBJ_TYPE
+            , D.CAL_ID         AS REL_CAL_ID
+            , D.PRJ_ID         AS REL_PRJ_ID
+            , D.FILE_ID        AS REL_FILE_ID
+            , D.FILE_NAME      AS REL_FILE_NAME
+            , D.OBJ_ID         AS REL_OBJ_ID
+            , D.FUNC_ID        AS REL_FUNC_ID
+            , D.FUNC_NAME      AS REL_FUNC_NAME
+            , (#{relDepth}-1) AS REL_DEPTH
+            FROM (SELECT CALL_PRJ_ID
+            , CALL_FILE_ID
+            , CALL_OBJ_ID
+            , CALL_FUNC_ID
+            , PRJ_ID
+            , FILE_ID
+            , OBJ_ID
+            , FUNC_ID
+            FROM AIS0052
+            WHERE PRJ_ID IN (SELECT DISTINCT REF_PRJ_ID
+            FROM VW_REFPRJID
+            WHERE PRJ_ID IN (SELECT PRJ_ID
+
+            FROM ${tempTableName}
+            WHERE REL_DEPTH = CAST(#{relDepth} as NUMERIC)
+            )
+            )
+            AND CALL_TYPE = 'JAVAtoPROCESS'
+            UNION
+            SELECT CALL_PRJ_ID
+            , CALL_FILE_ID
+            , CALL_OBJ_ID
+            , CALL_FUNC_ID
+            , PRJ_ID
+            , FILE_ID
+            , OBJ_ID
+            , FUNC_ID
+            FROM AIS0054
+            WHERE PRJ_ID IN (SELECT DISTINCT REF_PRJ_ID
+            FROM VW_REFPRJID
+            WHERE PRJ_ID IN (SELECT PRJ_ID
+
+            FROM ${tempTableName}
+            WHERE REL_DEPTH = CAST(#{relDepth} as NUMERIC)
+            )
+            )
+            AND CALL_TYPE = 'JAVAtoPROCESS'
+            ) A
+            , VW_AIS0010 B
+            , AIS0012 C
+            , ${tempTableName} D
+            WHERE A.CALL_PRJ_ID    = D.PRJ_ID
+            AND A.CALL_FILE_ID   = D.FILE_ID
+            AND A.CALL_OBJ_ID    = D.OBJ_ID
+
+            AND A.PRJ_ID         = C.PRJ_ID
+            AND A.FILE_ID        = C.FILE_ID
+            AND A.OBJ_ID         = C.OBJ_ID
+            AND A.FUNC_ID        = C.FUNC_ID
+            AND A.PRJ_ID         = B.PRJ_ID
+            AND A.FILE_ID        = B.FILE_ID
+            AND D.REL_DEPTH      = CAST(#{relDepth} as NUMERIC)
+            AND NOT EXISTS (SELECT 1
+            FROM ${tempTableName}
+            WHERE REL_PRJ_ID   = C.PRJ_ID
+            AND REL_FILE_ID  = C.FILE_ID
+            AND REL_OBJ_ID   = C.OBJ_ID
+            AND REL_FUNC_ID  = C.FUNC_ID
+            )
+        </if>
+
+             ) A
+    </select>
+  <select id="getFuncRelCalledListAndPrjName" parameterType="java.util.HashMap" resultMap="FuncRelAndPrjNameMap">/* ImpactStreamRelation.xml.getFuncRelCalledListAndPrjName */ /* ImpactStreamRelation.xml.getFuncRelCalledListAndPrjName */ 
+        SELECT FROMID, BIZ_ID, OBJID, FILE_ID, FUNC_ID, LABEL, FILE_NAME,
+               REL_ID, REL_PRJ_ID, REL_FILE_ID, REL_FILE_NAME,
+               REL_OBJ_NAME, OBJTYPE, FILE_PATH, REL_DEPTH,
+               DEPTH, PRJ_PATH,
+               MAX(DEPTH) OVER() AS MAX_DEPTH
+        FROM (
+                 with recursive called_tree(depth,fromid,biz_id,objid,file_id,file_name,obj_id,func_id,label,rel_id,rel_prj_id,rel_file_id,rel_file_name,rel_obj_name,objtype,file_path,rel_depth,prj_path) as (
+                     select
+                         cast( 1 as numeric) as depth ,
+                         CAL_ID as fromid ,
+                         BIZ_ID as BIZ_ID ,
+                         PRJ_ID as OBJID ,
+                         FILE_ID as FILE_ID ,
+                         FILE_NAME  as FILE_NAME ,
+                         OBJ_ID as obj_id ,
+                         FUNC_ID as func_id,
+                         FUNC_NAME as LABEL,
+                         REL_CAL_ID as REL_ID ,
+                         REL_PRJ_ID ,
+                         REL_FILE_ID as REL_FILE_ID ,
+                         REL_FILE_NAME as REL_FILE_NAME ,
+                         REL_OBJ_ID as rel_obj_id,
+                         REL_FUNC_ID as rel_func_id,
+                         REL_FUNC_NAME as rel_func_name,
+                         OBJ_NAME as REL_OBJ_NAME ,
+                         OBJ_TYPE as OBJTYPE ,
+                         FILE_PATH ,
+                         REL_DEPTH ,
+                         PRJ_PATH
+                     from ${tempTableName} a
+                     where a.rel_depth &lt;= 0
+                       and a.rel_cal_id = 0
+                     union all
+                     select
+                         ABS(cast(b.REL_DEPTH as numeric) + 1)+1 as depth ,
+                         a.CAL_ID as fromid ,
+                         a.BIZ_ID as BIZ_ID ,
+                         a.PRJ_ID as OBJID ,
+                         a.FILE_ID as FILE_ID ,
+                         a.FILE_NAME  as FILE_NAME ,
+                         a.OBJ_ID as obj_id ,
+                         a.FUNC_ID as func_id,
+                         a.FUNC_NAME as LABEL,
+                         a.REL_CAL_ID as REL_ID ,
+                         a.REL_PRJ_ID ,
+                         a.REL_FILE_ID as REL_FILE_ID ,
+                         a.REL_FILE_NAME as REL_FILE_NAME ,
+                         a.REL_OBJ_ID as rel_obj_id,
+                         a.REL_FUNC_ID as rel_func_id,
+                         a.REL_FUNC_NAME as rel_func_name,
+                         a.OBJ_NAME as REL_OBJ_NAME ,
+                         a.OBJ_TYPE as OBJTYPE ,
+                         a.FILE_PATH ,
+                         a.REL_DEPTH ,
+                         a.PRJ_PATH
+                     from ${tempTableName} a, called_tree b
+                     where  a.rel_depth &lt;= 0
+                       and a.rel_cal_id = b.fromid
+                 )
+                 select
+                     *
+                 from called_tree
+                 order by depth
+             ) DATA
+    </select>
+  <select id="getFuncInfoByCallingList" parameterType="java.util.HashMap" resultMap="tempTableMap">/* ImpactStreamRelation.xml.getFuncInfoByCallingList */ /* ImpactStreamRelation.xml.getFuncInfoByCallingList */ 
+        SELECT
+        <if test="seqId !=null and seqId !=''">
+            #{seqId}        AS SEQ_ID
+        </if>
+    <if test="seqId ==null or seqId ==''">
+            null        AS SEQ_ID
+        </if>
+        ,1 AS CAL_ID
+        ,C.BIZ_ID
+        ,D.PRJ_ID
+        ,D.OBJ_ID
+        ,D.FILE_ID
+        ,D.FUNC_ID
+        ,fn_PRJTREENAME(D.PRJ_ID) AS PRJ_PATH
+        ,'CALLING' AS FILE_NAME
+        ,'CALLING' AS FUNC_NAME
+        ,A.ORG_FILE_PATH AS FILE_PATH
+        ,''              AS FILE_COMMENT
+        ,'Func' AS OBJ_NAME
+        ,'func' AS OBJ_TYPE
+        ,''              AS DBC_CHECK
+        ,0 AS REL_CAL_ID
+        ,0 AS REL_PRJ_ID
+        ,0 AS REL_OBJ_ID
+        ,0 AS REL_FILE_ID
+        ,'' AS REL_FILE_NAME
+        ,0 AS REL_FUNC_ID
+        ,'' AS REL_FUNC_NAME
+        ,0 AS REL_DEPTH
+        FROM VW_AIS0010 A
+        ,AIS1001 B
+        ,AIS1000 C
+        ,AIS0012 D
+        WHERE D.PRJ_ID  = CAST(#{prjId} AS TEXT)
+        AND D.FILE_ID = CAST(#{fileId} AS NUMERIC)
+        AND D.OBJ_ID  = CAST(#{objId} AS NUMERIC)
+        AND D.FUNC_ID = CAST(#{funcId} AS NUMERIC)
+        AND D.PRJ_ID  = B.PRJ_ID
+        AND C.BIZ_ID  = B.UPPER_BIZ_ID
+        AND D.PRJ_ID  = A.PRJ_ID
+        AND D.FILE_ID = A.FILE_ID
+    </select>
+  <select id="getFuncCallingNextNode" parameterType="java.util.HashMap" resultMap="tempTableMap">/* ImpactStreamRelation.xml.getFuncCallingNextNode */ /* ImpactStreamRelation.xml.getFuncCallingNextNode */ 
+        SELECT
+        <if test="seqId != null and seqId != ''">
+            #{seqId} AS SEQ_ID
+        </if>
+    <if test="seqId == null or seqId == ''">
+            null AS SEQ_ID
+        </if>
+        ,nextval('${tempSequenceName}') AS CAL_ID
+        ,A.BIZ_ID
+        ,A.PRJ_ID
+        ,A.OBJ_ID
+        ,A.FILE_ID
+        ,A.FUNC_ID
+        ,A.PRJ_PATH
+        ,A.FILE_NAME
+        ,A.FUNC_NAME
+        ,A.FILE_PATH
+        ,'' AS FILE_COMMENT
+        ,A.OBJ_NAME
+        ,A.OBJ_TYPE
+        ,'' AS DBC_CHECK
+        ,A.REL_CAL_ID
+        ,A.REL_PRJ_ID
+        ,A.REL_OBJ_ID
+        ,A.REL_FILE_ID
+        ,A.REL_FUNC_ID
+        ,A.REL_FILE_NAME
+        ,A.REL_FUNC_NAME
+        ,A.REL_DEPTH
+        FROM (
+        SELECT DISTINCT A.PRJ_ID
+        ,G.BIZ_ID
+        ,fn_PRJTREENAME(F.PRJ_ID) AS PRJ_PATH
+        ,0 AS FILE_ID
+        ,A.TABLE_NAME AS FILE_NAME
+        ,0 AS OBJ_ID
+        ,0 AS FUNC_ID
+        ,A.TABLE_NAME AS FUNC_NAME
+        ,'' AS FILE_PATH
+        ,'Table' AS OBJ_NAME
+        ,'tbl' AS OBJ_TYPE
+        ,B.CAL_ID AS REL_CAL_ID
+        ,B.PRJ_ID AS REL_PRJ_ID
+        ,B.FILE_ID AS REL_FILE_ID
+        ,B.FILE_NAME AS REL_FILE_NAME
+        ,B.OBJ_ID AS REL_OBJ_ID
+        ,B.FUNC_ID AS REL_FUNC_ID
+        ,B.FUNC_NAME AS REL_FUNC_NAME
+        ,(#{relDepth}+1)  AS REL_DEPTH
+        <if test="seqId != null and seqId != ''">
+            FROM AIS0102 A, ${tempTableName}  B
+            ,AIS1001 F
+            ,AIS1000 G
+            WHERE B.REL_DEPTH =CAST(#{relDepth} AS NUMERIC)
+            AND A.PRJ_ID    = B.PRJ_ID
+            AND A.INLINEVIEW_YN = 'N'
+            AND A.FILE_ID = B.FILE_ID
+            AND A.OBJ_ID  = B.OBJ_ID
+            AND A.FUNC_ID = B.FUNC_ID
+            AND A.PRJ_ID  = F.PRJ_ID
+            AND G.BIZ_ID  = RTRIM(F.UPPER_BIZ_ID)
+            AND B.OBJ_TYPE = 'func'
+            AND B.SEQ_ID  =CAST(#{seqId} as NUMERIC)
+            UNION
+            SELECT DISTINCT A.PRJ_ID
+            ,G.BIZ_ID
+            ,fn_PRJTREENAME(F.PRJ_ID) AS PRJ_PATH
+            ,0 AS FILE_ID
+            ,A.COL_NAME AS FILE_NAME
+            ,0 AS OBJ_ID
+            ,0 AS FUNC_ID
+            ,A.COL_NAME AS FUNC_NAME
+            ,'' AS FILE_PATH
+            ,'Column' AS OBJ_NAME
+            ,'col' AS OBJ_TYPE
+            ,B.CAL_ID AS REL_CAL_ID
+            ,B.PRJ_ID AS REL_PRJ_ID
+            ,B.FILE_ID AS REL_FILE_ID
+            ,B.FILE_NAME AS REL_FILE_NAME
+            ,B.OBJ_ID AS REL_OBJ_ID
+            ,B.FUNC_ID AS REL_FUNC_ID
+            ,B.FUNC_NAME AS REL_FUNC_NAME
+            ,(#{relDepth} +1)  AS REL_DEPTH
+            FROM AIS0103 A, ${tempTableName}  B, AIS0102 C,
+            AIS1001 F, AIS1000 G
+            WHERE B.REL_DEPTH =CAST(#{relDepth} AS NUMERIC)
+            AND A.PRJ_ID = B.PRJ_ID
+            AND B.PRJ_ID = C.PRJ_ID
+            AND A.SQL_ID = C.SQL_ID
+            AND B.FILE_NAME = C.TABLE_NAME
+            AND A.FILE_ID = B.FILE_ID
+            AND A.OBJ_ID  = B.OBJ_ID
+            AND A.FUNC_ID = B.FUNC_ID
+            AND A.FILE_ID = C.FILE_ID
+            AND A.TABLE_ID = C.TABLE_ID
+            AND C.INLINEVIEW_YN = 'N'
+            AND A.PRJ_ID = F.PRJ_ID
+            AND G.BIZ_ID = RTRIM(F.UPPER_BIZ_ID)
+            AND B.OBJ_TYPE = 'tbl'
+            AND B.SEQ_ID  =CAST(#{seqId} as NUMERIC)
+            UNION
+            SELECT A.PRJ_ID
+            , B.BIZ_ID
+            , fn_PRJTREENAME(C.PRJ_ID) AS PRJ_PATH
+            , A.FILE_ID
+            , A.FILE_NAME
+            , A.OBJ_ID
+            , A.FUNC_ID
+            , A.FUNC_NAME
+            , A.FILE_PATH
+            , A.OBJ_NAME
+            , A.OBJ_TYPE
+            , A.REL_CAL_ID
+            , A.REL_PRJ_ID
+            , A.REL_FILE_ID
+            , A.REL_FILE_NAME
+            , A.REL_OBJ_ID
+            , A.REL_FUNC_ID
+            , A.REL_FUNC_NAME
+            , A.REL_DEPTH
+            FROM (
+            SELECT --+ ORDERED ( AIS0052 AIS0052_PK )
+            DISTINCT B.PRJ_ID
+            , B.FILE_ID           AS FILE_ID
+            , B.SRC_FILE_NAME     AS FILE_NAME
+            , H.OBJ_ID            AS OBJ_ID
+            , H.FUNC_ID           AS FUNC_ID
+            , H.FUNC_NAME         AS FUNC_NAME
+            , B.ORG_FILE_PATH     AS FILE_PATH
+            , 'Func'              AS OBJ_NAME
+            , 'func'              AS OBJ_TYPE
+            , D.CAL_ID            AS REL_CAL_ID
+            , D.PRJ_ID            AS REL_PRJ_ID
+            , D.FILE_ID           AS REL_FILE_ID
+            , D.FILE_NAME         AS REL_FILE_NAME
+            , D.OBJ_ID            AS REL_OBJ_ID
+            , D.FUNC_ID           AS REL_FUNC_ID
+            , D.FUNC_NAME         AS REL_FUNC_NAME
+            , (#{relDepth} +1)    AS REL_DEPTH
+            FROM VW_AIS0010 B
+            , AIS0012 H
+            , AIS0052 A
+            , ${tempTableName} D
+            WHERE A.PRJ_ID       = D.PRJ_ID
+            AND A.FILE_ID      = D.FILE_ID
+            AND A.OBJ_ID       = D.OBJ_ID
+            AND A.FUNC_ID      = D.FUNC_ID
+            AND A.CALL_PRJ_ID  = B.PRJ_ID
+            AND A.CALL_FILE_ID = B.FILE_ID
+            AND A.CALL_PRJ_ID  = H.PRJ_ID
+            AND A.CALL_FILE_ID = H.FILE_ID
+            AND A.CALL_OBJ_ID  = H.OBJ_ID
+            AND A.CALL_FUNC_ID = H.FUNC_ID
+            AND D.REL_DEPTH    =CAST(#{relDepth} AS NUMERIC)
+            AND D.OBJ_TYPE    &lt;&gt; 'tbl'
+            AND D.SEQ_ID  =CAST(#{seqId} as NUMERIC)
+            AND B.PRJ_ID IN (SELECT DISTINCT REF_PRJ_ID
+            FROM VW_REFPRJID A1, ${tempTableName}  A2
+            WHERE A1.PRJ_ID     = A2.PRJ_ID
+            AND A2.REL_DEPTH  =CAST(#{relDepth} AS NUMERIC)
+            AND A2.REL_CAL_ID &gt; -1
+            AND A2.SEQ_ID  =CAST(#{seqId} as NUMERIC)
+            )
+            AND NOT EXISTS (SELECT 1
+            FROM ${tempTableName}  A2
+            WHERE PRJ_ID  = H.PRJ_ID
+            AND FILE_ID = H.FILE_ID
+            AND OBJ_ID  = H.OBJ_ID
+            AND FUNC_ID = H.FUNC_ID
+            AND A2.SEQ_ID  =CAST(#{seqId} as NUMERIC)
+            )
+            UNION ALL
+            SELECT --+ ORDERED ( AIS0054 AIS0054_PK )
+            DISTINCT B.PRJ_ID
+            , B.FILE_ID           AS FILE_ID
+            , B.SRC_FILE_NAME     AS FILE_NAME
+            , H.OBJ_ID            AS OBJ_ID
+            , H.FUNC_ID           AS FUNC_ID
+            , H.FUNC_NAME         AS FUNC_NAME
+            , B.ORG_FILE_PATH     AS FILE_PATH
+            , 'Func'              AS OBJ_NAME
+            , 'func'              AS OBJ_TYPE
+            , D.CAL_ID            AS REL_CAL_ID
+            , D.PRJ_ID            AS REL_PRJ_ID
+            , D.FILE_ID           AS REL_FILE_ID
+            , D.FILE_NAME         AS REL_FILE_NAME
+            , D.OBJ_ID            AS REL_OBJ_ID
+            , D.FUNC_ID           AS REL_FUNC_ID
+            , D.FUNC_NAME         AS REL_FUNC_NAME
+            ,  (#{relDepth} +1)    AS REL_DEPTH
+            FROM VW_AIS0010 B
+            , AIS0012 H
+            , AIS0054 A
+            , ${tempTableName} D
+            WHERE A.PRJ_ID       = D.PRJ_ID
+            AND A.FILE_ID      = D.FILE_ID
+            AND A.OBJ_ID       = D.OBJ_ID
+            AND A.FUNC_ID      = D.FUNC_ID
+            AND A.CALL_PRJ_ID  = B.PRJ_ID
+            AND A.CALL_FILE_ID = B.FILE_ID
+            AND A.CALL_PRJ_ID  = H.PRJ_ID
+            AND A.CALL_FILE_ID = H.FILE_ID
+            AND A.CALL_OBJ_ID  = H.OBJ_ID
+            AND A.CALL_FUNC_ID = H.FUNC_ID
+            AND D.REL_DEPTH    =CAST(#{relDepth} AS NUMERIC)
+            AND D.OBJ_TYPE    &lt;&gt; 'tbl'
+            AND D.SEQ_ID  =CAST(#{seqId} as NUMERIC)
+            AND B.PRJ_ID IN (SELECT DISTINCT REF_PRJ_ID
+            FROM VW_REFPRJID A1, ${tempTableName}  A2
+            WHERE A1.PRJ_ID     = A2.PRJ_ID
+            AND A2.REL_DEPTH  =CAST(#{relDepth} AS NUMERIC)
+            AND A2.REL_CAL_ID &gt; -1
+            AND A2.SEQ_ID  =CAST(#{seqId} as NUMERIC)
+            )
+            AND NOT EXISTS (SELECT 1
+            FROM ${tempTableName}  A2
+            WHERE PRJ_ID  = H.PRJ_ID
+            AND FILE_ID = H.FILE_ID
+            AND OBJ_ID  = H.OBJ_ID
+            AND FUNC_ID = H.FUNC_ID
+            AND A2.SEQ_ID  =CAST(#{seqId} as NUMERIC)
+            )
+            UNION ALL
+            SELECT --+ ORDERED ( AIS0052 AIS0052_PK )
+            DISTINCT B.PRJ_ID
+            , B.FILE_ID           AS FILE_ID
+            , B.SRC_FILE_NAME     AS FILE_NAME
+            , H.OBJ_ID            AS OBJ_ID
+            , 0                   AS FUNC_ID
+            , H.OBJ_NAME          AS FUNC_NAME
+            , B.ORG_FILE_PATH     AS FILE_PATH
+            , 'Func'              AS OBJ_NAME
+            , 'func'              AS OBJ_TYPE
+            , D.CAL_ID            AS REL_CAL_ID
+            , D.PRJ_ID            AS REL_PRJ_ID
+            , D.FILE_ID           AS REL_FILE_ID
+            , D.FILE_NAME         AS REL_FILE_NAME
+            , D.OBJ_ID            AS REL_OBJ_ID
+            , D.FUNC_ID           AS REL_FUNC_ID
+            , D.FUNC_NAME         AS REL_FUNC_NAME
+            , (#{relDepth} +1)    AS REL_DEPTH
+            FROM VW_AIS0010 B
+            , AIS0011 H
+            , AIS0052 A
+            , ${tempTableName} D
+            WHERE A.PRJ_ID       = D.PRJ_ID
+            AND A.FILE_ID      = D.FILE_ID
+            AND A.OBJ_ID       = D.OBJ_ID
+            AND A.CALL_PRJ_ID  = B.PRJ_ID
+            AND A.CALL_FILE_ID = B.FILE_ID
+            AND A.CALL_PRJ_ID  = H.PRJ_ID
+            AND A.CALL_FILE_ID = H.FILE_ID
+            AND A.CALL_OBJ_ID  = H.OBJ_ID
+            AND D.REL_DEPTH    = " + relDepth + "
+            AND D.OBJ_TYPE    &lt;&gt; 'tbl'
+            AND A.CALL_TYPE = 'JAVAtoPROCESS'
+            AND D.SEQ_ID  = CAST(#{seqId} as NUMERIC)
+            AND B.PRJ_ID IN (SELECT DISTINCT REF_PRJ_ID
+            FROM VW_REFPRJID A1, ${tempTableName}  A2
+            WHERE A1.PRJ_ID     = A2.PRJ_ID
+            AND A2.REL_DEPTH  =CAST(#{relDepth} AS NUMERIC)
+            AND A2.REL_CAL_ID &gt; -1
+            AND A2.SEQ_ID  =CAST(#{seqId} as NUMERIC)
+            )
+            AND NOT EXISTS (SELECT 1
+            FROM ${tempTableName}  A2
+            WHERE PRJ_ID  = H.PRJ_ID
+            AND FILE_ID = H.FILE_ID
+            AND OBJ_ID  = H.OBJ_ID
+            AND A2.SEQ_ID  =CAST(#{seqId} as NUMERIC)
+            )
+            UNION ALL
+            SELECT --+ ORDERED ( AIS0054 AIS0054_PK )
+            DISTINCT B.PRJ_ID
+            , B.FILE_ID           AS FILE_ID
+            , B.SRC_FILE_NAME     AS FILE_NAME
+            , H.OBJ_ID            AS OBJ_ID
+            , 0                   AS FUNC_ID
+            , H.OBJ_NAME          AS FUNC_NAME
+            , B.ORG_FILE_PATH     AS FILE_PATH
+            , 'Func'              AS OBJ_NAME
+            , 'func'              AS OBJ_TYPE
+            , D.CAL_ID            AS REL_CAL_ID
+            , D.PRJ_ID            AS REL_PRJ_ID
+            , D.FILE_ID           AS REL_FILE_ID
+            , D.FILE_NAME         AS REL_FILE_NAME
+            , D.OBJ_ID            AS REL_OBJ_ID
+            , D.FUNC_ID           AS REL_FUNC_ID
+            , D.FUNC_NAME         AS REL_FUNC_NAME
+            ,  (#{relDepth} +1)   AS REL_DEPTH
+            FROM VW_AIS0010 B
+            , AIS0011 H
+            , AIS0054 A
+            , ${tempTableName} D
+            WHERE A.PRJ_ID       = D.PRJ_ID
+            AND A.FILE_ID      = D.FILE_ID
+            AND A.OBJ_ID       = D.OBJ_ID
+            AND A.CALL_PRJ_ID  = B.PRJ_ID
+            AND A.CALL_FILE_ID = B.FILE_ID
+            AND A.CALL_PRJ_ID  = H.PRJ_ID
+            AND A.CALL_FILE_ID = H.FILE_ID
+            AND A.CALL_OBJ_ID  = H.OBJ_ID
+            AND D.REL_DEPTH    = CAST(#{relDepth} AS NUMERIC)
+            AND D.OBJ_TYPE    &lt;&gt; 'tbl'
+            AND A.CALL_TYPE = 'JAVAtoPROCESS'
+            AND D.SEQ_ID  =CAST(#{seqId} as NUMERIC)
+            AND B.PRJ_ID IN (SELECT DISTINCT REF_PRJ_ID
+            FROM VW_REFPRJID A1, ${tempTableName}  A2
+            WHERE A1.PRJ_ID     = A2.PRJ_ID
+            AND A2.REL_DEPTH  =CAST(#{relDepth} AS NUMERIC)
+            AND A2.REL_CAL_ID &gt; -1
+            AND A2.SEQ_ID  =CAST(#{seqId} as NUMERIC)
+            )
+            AND NOT EXISTS (SELECT 1
+            FROM ${tempTableName}  A2
+            WHERE PRJ_ID  = H.PRJ_ID
+            AND FILE_ID = H.FILE_ID
+            AND OBJ_ID  = H.OBJ_ID
+            AND A2.SEQ_ID  =CAST(#{seqId} as NUMERIC)
+            )
+            UNION ALL
+            SELECT --+ ORDERED ( AIS0052 AIS0052_PK )
+            DISTINCT B.PRJ_ID
+            , B.FILE_ID           AS FILE_ID
+            , B.SRC_FILE_NAME     AS FILE_NAME
+            , H.OBJ_ID            AS OBJ_ID
+            , 0                   AS FUNC_ID
+            , H.OBJ_NAME          AS FUNC_NAME
+            , B.ORG_FILE_PATH     AS FILE_PATH
+            , 'Func'              AS OBJ_NAME
+            , 'func'              AS OBJ_TYPE
+            , D.CAL_ID            AS REL_CAL_ID
+            , D.PRJ_ID            AS REL_PRJ_ID
+            , D.FILE_ID           AS REL_FILE_ID
+            , D.FILE_NAME         AS REL_FILE_NAME
+            , D.OBJ_ID            AS REL_OBJ_ID
+            , D.FUNC_ID           AS REL_FUNC_ID
+            , D.FUNC_NAME         AS REL_FUNC_NAME
+            , (#{relDepth} +1)    AS REL_DEPTH
+            FROM VW_AIS0010 B
+            , AIS0011 H
+            , AIS0052 A
+            , ${tempTableName} D
+            WHERE A.PRJ_ID       = D.PRJ_ID
+            AND A.FILE_ID      = D.FILE_ID
+            AND A.OBJ_ID       = D.OBJ_ID
+            AND A.CALL_PRJ_ID  = B.PRJ_ID
+            AND A.CALL_FILE_ID = B.FILE_ID
+            AND A.CALL_PRJ_ID  = H.PRJ_ID
+            AND A.CALL_FILE_ID = H.FILE_ID
+            AND A.CALL_OBJ_ID  = H.OBJ_ID
+            AND D.REL_DEPTH    = CAST(#{relDepth} AS NUMERIC)
+            AND D.OBJ_TYPE    &lt;&gt; 'tbl'
+            AND A.CALL_TYPE = 'PROCESStoJAVA'
+            AND D.SEQ_ID  = CAST(#{seqId} as NUMERIC)
+            AND B.PRJ_ID IN (SELECT DISTINCT REF_PRJ_ID
+            FROM VW_REFPRJID A1, ${tempTableName}  A2
+            WHERE A1.PRJ_ID     = A2.PRJ_ID
+            AND A2.REL_DEPTH  = CAST(#{relDepth} AS NUMERIC)
+            AND A2.REL_CAL_ID &gt; -1
+            )
+            AND NOT EXISTS (SELECT 1
+            FROM  ${tempTableName}  A2
+            WHERE PRJ_ID  = H.PRJ_ID
+            AND FILE_ID = H.FILE_ID
+            AND OBJ_ID  = H.OBJ_ID
+            AND A2.SEQ_ID  = CAST(#{seqId} as NUMERIC)
+            )
+            UNION ALL
+            SELECT --+ ORDERED ( AIS0054 AIS0054_PK )
+            DISTINCT B.PRJ_ID
+            , B.FILE_ID           AS FILE_ID
+            , B.SRC_FILE_NAME     AS FILE_NAME
+            , H.OBJ_ID            AS OBJ_ID
+            , 0                   AS FUNC_ID
+            , H.OBJ_NAME          AS FUNC_NAME
+            , B.ORG_FILE_PATH     AS FILE_PATH
+            , 'Func'              AS OBJ_NAME
+            , 'func'              AS OBJ_TYPE
+            , D.CAL_ID            AS REL_CAL_ID
+            , D.PRJ_ID            AS REL_PRJ_ID
+            , D.FILE_ID           AS REL_FILE_ID
+            , D.FILE_NAME         AS REL_FILE_NAME
+            , D.OBJ_ID            AS REL_OBJ_ID
+            , D.FUNC_ID           AS REL_FUNC_ID
+            , D.FUNC_NAME         AS REL_FUNC_NAME
+            ,  (#{relDepth} +1)    AS REL_DEPTH
+            FROM VW_AIS0010 B
+            , AIS0011 H
+            , AIS0054 A
+            ,  ${tempTableName} D
+            WHERE A.PRJ_ID       = D.PRJ_ID
+            AND A.FILE_ID      = D.FILE_ID
+            AND A.OBJ_ID       = D.OBJ_ID
+            AND A.CALL_PRJ_ID  = B.PRJ_ID
+            AND A.CALL_FILE_ID = B.FILE_ID
+            AND A.CALL_PRJ_ID  = H.PRJ_ID
+            AND A.CALL_FILE_ID = H.FILE_ID
+            AND A.CALL_OBJ_ID  = H.OBJ_ID
+            AND D.REL_DEPTH    =CAST(#{relDepth} AS NUMERIC)
+            AND D.OBJ_TYPE    &lt;&gt; 'tbl'
+            AND A.CALL_TYPE = 'PROCESStoJAVA'
+            AND D.SEQ_ID  =   CAST(#{seqId} as NUMERIC)
+            AND B.PRJ_ID IN (SELECT DISTINCT REF_PRJ_ID
+            FROM VW_REFPRJID A1,  ${tempTableName}  A2
+            WHERE A1.PRJ_ID     = A2.PRJ_ID
+            AND A2.REL_DEPTH  =CAST(#{relDepth} AS NUMERIC)
+            AND A2.REL_CAL_ID &gt; -1
+            AND A2.SEQ_ID  =  CAST(#{seqId} as NUMERIC)
+            )
+            AND NOT EXISTS (SELECT 1
+            FROM ${tempTableName}  A2
+            WHERE PRJ_ID  = H.PRJ_ID
+            AND FILE_ID = H.FILE_ID
+            AND OBJ_ID  = H.OBJ_ID
+            AND A2.SEQ_ID  =  CAST(#{seqId} as NUMERIC)
+            )
+            ) A
+            , AIS1000 B
+            , AIS1001 C
+            WHERE A.PRJ_ID       = C.PRJ_ID
+            AND C.UPPER_BIZ_ID = B.BIZ_ID
+            AND B.DEL_YN       = 'N'
+            AND C.DEL_YN       = 'N'
+        </if>
+    <if test="seqId == null or seqId == ''">
+            FROM AIS0102 A,
+            ${tempTableName} B ,
+            AIS1001 F ,
+            AIS1000 G
+            WHERE
+            B.REL_DEPTH = CAST(#{relDepth} AS NUMERIC)
+            AND A.PRJ_ID = B.PRJ_ID
+            AND A.INLINEVIEW_YN = 'N'
+            AND A.FILE_ID = B.FILE_ID
+            AND A.OBJ_ID = B.OBJ_ID
+            AND A.FUNC_ID = B.FUNC_ID
+            AND A.PRJ_ID = F.PRJ_ID
+            AND G.BIZ_ID = RTRIM(F.UPPER_BIZ_ID)
+            AND B.OBJ_TYPE = 'func'
+            UNION
+            SELECT
+            DISTINCT A.PRJ_ID ,
+            G.BIZ_ID ,
+            fn_PRJTREENAME(F.PRJ_ID) AS PRJ_PATH ,
+            0 AS FILE_ID ,
+            A.COL_NAME AS FILE_NAME ,
+            0 AS OBJ_ID ,
+            0 AS FUNC_ID ,
+            A.COL_NAME AS FUNC_NAME ,
+            '' AS FILE_PATH ,
+            'Column' AS OBJ_NAME ,
+            'col' AS OBJ_TYPE ,
+            B.CAL_ID AS REL_CAL_ID ,
+            B.PRJ_ID AS REL_PRJ_ID ,
+            B.FILE_ID AS REL_FILE_ID ,
+            B.FILE_NAME AS REL_FILE_NAME ,
+            B.OBJ_ID AS REL_OBJ_ID ,
+            B.FUNC_ID AS REL_FUNC_ID ,
+            B.FUNC_NAME AS REL_FUNC_NAME ,
+            (#{relDepth} + 1) AS REL_DEPTH
+            FROM
+            AIS0103 A,
+            ${tempTableName} B,
+            AIS0102 C,
+            AIS1001 F,
+            AIS1000 G
+            WHERE
+            B.REL_DEPTH = CAST(#{relDepth} AS NUMERIC)
+            AND A.PRJ_ID = B.PRJ_ID
+            AND B.PRJ_ID = C.PRJ_ID
+            AND A.SQL_ID = C.SQL_ID
+            AND B.FILE_NAME = C.TABLE_NAME
+            AND A.FILE_ID = B.FILE_ID
+            AND A.OBJ_ID = B.OBJ_ID
+            AND A.FUNC_ID = B.FUNC_ID
+            AND A.FILE_ID = C.FILE_ID
+            AND A.TABLE_ID = C.TABLE_ID
+            AND C.INLINEVIEW_YN = 'N'
+            AND A.PRJ_ID = F.PRJ_ID
+            AND G.BIZ_ID = RTRIM(F.UPPER_BIZ_ID)
+            AND B.OBJ_TYPE = 'tbl'
+            UNION
+            SELECT
+            A.PRJ_ID ,
+            B.BIZ_ID ,
+            fn_PRJTREENAME(C.PRJ_ID) AS PRJ_PATH ,
+            A.FILE_ID ,
+            A.FILE_NAME ,
+            A.OBJ_ID ,
+            A.FUNC_ID ,
+            A.FUNC_NAME ,
+            A.FILE_PATH ,
+            A.OBJ_NAME ,
+            A.OBJ_TYPE ,
+            A.REL_CAL_ID ,
+            A.REL_PRJ_ID ,
+            A.REL_FILE_ID ,
+            A.REL_FILE_NAME ,
+            A.REL_OBJ_ID ,
+            A.REL_FUNC_ID ,
+            A.REL_FUNC_NAME ,
+            A.REL_DEPTH
+            FROM
+            (
+            SELECT
+            DISTINCT B.PRJ_ID ,
+            B.FILE_ID AS FILE_ID ,
+            B.SRC_FILE_NAME AS FILE_NAME ,
+            H.OBJ_ID AS OBJ_ID ,
+            H.FUNC_ID AS FUNC_ID ,
+            H.FUNC_NAME AS FUNC_NAME ,
+            B.ORG_FILE_PATH AS FILE_PATH ,
+            'Func' AS OBJ_NAME ,
+            'func' AS OBJ_TYPE ,
+            D.CAL_ID AS REL_CAL_ID ,
+            D.PRJ_ID AS REL_PRJ_ID ,
+            D.FILE_ID AS REL_FILE_ID ,
+            D.FILE_NAME AS REL_FILE_NAME ,
+            D.OBJ_ID AS REL_OBJ_ID ,
+            D.FUNC_ID AS REL_FUNC_ID ,
+            D.FUNC_NAME AS REL_FUNC_NAME ,
+            (#{relDepth} + 1) AS REL_DEPTH
+            FROM
+            (
+            SELECT
+            CALL_PRJ_ID ,
+            CALL_FILE_ID ,
+            CALL_OBJ_ID ,
+            CALL_FUNC_ID ,
+            PRJ_ID ,
+            FILE_ID ,
+            OBJ_ID ,
+            FUNC_ID
+            FROM
+            AIS0052
+            WHERE
+            PRJ_ID IN (
+            SELECT
+            DISTINCT REF_PRJ_ID
+            FROM
+            VW_REFPRJID
+            WHERE
+            PRJ_ID IN (
+            SELECT
+            PRJ_ID
+            FROM
+            ${tempTableName}
+            WHERE
+            REL_DEPTH = CAST(#{relDepth} AS NUMERIC) ) )
+            UNION
+            SELECT
+            CALL_PRJ_ID ,
+            CALL_FILE_ID ,
+            CALL_OBJ_ID ,
+            CALL_FUNC_ID ,
+            PRJ_ID ,
+            FILE_ID ,
+            OBJ_ID ,
+            FUNC_ID
+            FROM
+            AIS0054
+            WHERE
+            PRJ_ID IN (
+            SELECT
+            DISTINCT REF_PRJ_ID
+            FROM
+            VW_REFPRJID
+            WHERE
+            PRJ_ID IN (
+            SELECT
+            PRJ_ID
+            FROM
+            ${tempTableName}
+            WHERE
+            REL_DEPTH = CAST(#{relDepth} AS NUMERIC) ) ) ) A ,
+            VW_AIS0010 B ,
+            AIS0012 H ,
+            ${tempTableName} D
+            WHERE
+            A.PRJ_ID = D.PRJ_ID
+            AND A.FILE_ID = D.FILE_ID
+            AND A.OBJ_ID = D.OBJ_ID
+            AND A.FUNC_ID = D.FUNC_ID
+            AND A.CALL_PRJ_ID = B.PRJ_ID
+            AND A.CALL_FILE_ID = B.FILE_ID
+            AND A.CALL_PRJ_ID = H.PRJ_ID
+            AND A.CALL_FILE_ID = H.FILE_ID
+            AND A.CALL_OBJ_ID = H.OBJ_ID
+            AND A.CALL_FUNC_ID = H.FUNC_ID
+            AND D.REL_DEPTH = CAST(#{relDepth} AS NUMERIC)
+            AND D.OBJ_TYPE &lt;&gt; 'tbl'
+            AND NOT EXISTS (
+            SELECT
+            1
+            FROM
+            ${tempTableName}
+            WHERE
+            PRJ_ID = H.PRJ_ID
+            AND FILE_ID = H.FILE_ID
+            AND OBJ_ID = H.OBJ_ID
+            AND FUNC_ID = H.FUNC_ID )
+            UNION ALL
+            SELECT
+            DISTINCT B.PRJ_ID ,
+            B.FILE_ID AS FILE_ID ,
+            B.SRC_FILE_NAME AS FILE_NAME ,
+            H.OBJ_ID AS OBJ_ID ,
+            0 AS FUNC_ID ,
+            H.OBJ_NAME AS FUNC_NAME ,
+            B.ORG_FILE_PATH AS FILE_PATH ,
+            'Func' AS OBJ_NAME ,
+            'func' AS OBJ_TYPE ,
+            D.CAL_ID AS REL_CAL_ID ,
+            D.PRJ_ID AS REL_PRJ_ID ,
+            D.FILE_ID AS REL_FILE_ID ,
+            D.FILE_NAME AS REL_FILE_NAME ,
+            D.OBJ_ID AS REL_OBJ_ID ,
+            D.FUNC_ID AS REL_FUNC_ID ,
+            D.FUNC_NAME AS REL_FUNC_NAME ,
+            (#{relDepth} + 1) AS REL_DEPTH
+            FROM
+            (
+            SELECT
+            CALL_PRJ_ID ,
+            CALL_FILE_ID ,
+            CALL_OBJ_ID ,
+            CALL_FUNC_ID ,
+            PRJ_ID ,
+            FILE_ID ,
+            OBJ_ID ,
+            FUNC_ID
+            FROM
+            AIS0052
+            WHERE
+            PRJ_ID IN (
+            SELECT
+            DISTINCT REF_PRJ_ID
+            FROM
+            VW_REFPRJID
+            WHERE
+            PRJ_ID IN (
+            SELECT
+            PRJ_ID
+            FROM
+            ${tempTableName}
+            WHERE
+            REL_DEPTH = CAST(#{relDepth} AS NUMERIC) ) )
+            AND CALL_TYPE = 'JAVAtoPROCESS'
+            UNION
+            SELECT
+            CALL_PRJ_ID ,
+            CALL_FILE_ID ,
+            CALL_OBJ_ID ,
+            CALL_FUNC_ID ,
+            PRJ_ID ,
+            FILE_ID ,
+            OBJ_ID ,
+            FUNC_ID
+            FROM
+            AIS0054
+            WHERE
+            PRJ_ID IN (
+            SELECT
+            DISTINCT REF_PRJ_ID
+            FROM
+            VW_REFPRJID
+            WHERE
+            PRJ_ID IN (
+            SELECT
+            PRJ_ID
+            FROM
+            ${tempTableName}
+            WHERE
+            REL_DEPTH = CAST(#{relDepth} AS NUMERIC) ) )
+            AND CALL_TYPE = 'JAVAtoPROCESS' ) A ,
+            VW_AIS0010 B ,
+            AIS0011 H ,
+            ${tempTableName} D
+            WHERE
+            A.PRJ_ID = D.PRJ_ID
+            AND A.FILE_ID = D.FILE_ID
+            AND A.OBJ_ID = D.OBJ_ID
+            AND A.CALL_PRJ_ID = B.PRJ_ID
+            AND A.CALL_FILE_ID = B.FILE_ID
+            AND A.CALL_PRJ_ID = H.PRJ_ID
+            AND A.CALL_FILE_ID = H.FILE_ID
+            AND A.CALL_OBJ_ID = H.OBJ_ID
+            AND D.REL_DEPTH = CAST(#{relDepth} AS NUMERIC)
+            AND D.OBJ_TYPE &lt;&gt; 'tbl'
+            AND NOT EXISTS (
+            SELECT
+            1
+            FROM
+            ${tempTableName}
+            WHERE
+            PRJ_ID = H.PRJ_ID
+            AND FILE_ID = H.FILE_ID
+            AND OBJ_ID = H.OBJ_ID )
+            UNION ALL
+            SELECT
+            DISTINCT B.PRJ_ID ,
+            B.FILE_ID AS FILE_ID ,
+            B.SRC_FILE_NAME AS FILE_NAME ,
+            H.OBJ_ID AS OBJ_ID ,
+            H.FUNC_ID AS FUNC_ID ,
+            H.FUNC_NAME AS FUNC_NAME ,
+            B.ORG_FILE_PATH AS FILE_PATH ,
+            'Func' AS OBJ_NAME ,
+            'func' AS OBJ_TYPE ,
+            D.CAL_ID AS REL_CAL_ID ,
+            D.PRJ_ID AS REL_PRJ_ID ,
+            D.FILE_ID AS REL_FILE_ID ,
+            D.FILE_NAME AS REL_FILE_NAME ,
+            D.OBJ_ID AS REL_OBJ_ID ,
+            D.FUNC_ID AS REL_FUNC_ID ,
+            D.FUNC_NAME AS REL_FUNC_NAME ,
+            (#{relDepth} + 1) AS REL_DEPTH
+            FROM
+            (
+            SELECT
+            CALL_PRJ_ID ,
+            CALL_FILE_ID ,
+            CALL_OBJ_ID ,
+            CALL_FUNC_ID ,
+            PRJ_ID ,
+            FILE_ID ,
+            OBJ_ID ,
+            FUNC_ID
+            FROM
+            AIS0052
+            WHERE
+            PRJ_ID IN (
+            SELECT
+            DISTINCT REF_PRJ_ID
+            FROM
+            VW_REFPRJID
+            WHERE
+            PRJ_ID IN (
+            SELECT
+            PRJ_ID
+            FROM
+            ${tempTableName}
+            WHERE
+            REL_DEPTH = CAST(#{relDepth} AS NUMERIC) ) )
+            AND CALL_TYPE = 'PROCESStoJAVA'
+            UNION
+            SELECT
+            CALL_PRJ_ID ,
+            CALL_FILE_ID ,
+            CALL_OBJ_ID ,
+            CALL_FUNC_ID ,
+            PRJ_ID ,
+            FILE_ID ,
+            OBJ_ID ,
+            FUNC_ID
+            FROM
+            AIS0054
+            WHERE
+            PRJ_ID IN (
+            SELECT
+            DISTINCT REF_PRJ_ID
+            FROM
+            VW_REFPRJID
+            WHERE
+            PRJ_ID IN (
+            SELECT
+            PRJ_ID
+            FROM
+            ${tempTableName}
+            WHERE
+            REL_DEPTH = CAST(#{relDepth} AS NUMERIC) ) )
+            AND CALL_TYPE = 'PROCESStoJAVA' ) A ,
+            VW_AIS0010 B ,
+            AIS0012 H ,
+            ${tempTableName} D
+            WHERE
+            A.PRJ_ID = D.PRJ_ID
+            AND A.FILE_ID = D.FILE_ID
+            AND A.OBJ_ID = D.OBJ_ID
+            AND A.CALL_PRJ_ID = B.PRJ_ID
+            AND A.CALL_FILE_ID = B.FILE_ID
+            AND A.CALL_PRJ_ID = H.PRJ_ID
+            AND A.CALL_FILE_ID = H.FILE_ID
+            AND A.CALL_OBJ_ID = H.OBJ_ID
+            AND A.CALL_FUNC_ID = H.FUNC_ID
+            AND D.REL_DEPTH = CAST(#{relDepth} AS NUMERIC)
+            AND D.OBJ_TYPE &lt;&gt; 'tbl'
+            AND NOT EXISTS (
+            SELECT
+            1
+            FROM
+            ${tempTableName}
+            WHERE
+            PRJ_ID = H.PRJ_ID
+            AND FILE_ID = H.FILE_ID
+            AND OBJ_ID = H.OBJ_ID
+            AND FUNC_ID = H.FUNC_ID ) ) A ,
+            AIS1000 B ,
+            AIS1001 C
+            WHERE
+            A.PRJ_ID = C.PRJ_ID
+            AND C.UPPER_BIZ_ID = B.BIZ_ID
+            AND B.DEL_YN = 'N'
+            AND C.DEL_YN = 'N'
+        </if>
+
+        ) A
+    </select>
+  <select id="getFuncRelCallingListAndPrjName" parameterType="java.util.HashMap" resultMap="FuncRelAndPrjNameMap">/* ImpactStreamRelation.xml.getFuncRelCallingListAndPrjName */ /* ImpactStreamRelation.xml.getFuncRelCallingListAndPrjName */ 
+        SELECT FROMID, BIZ_ID, OBJID, FILE_ID, FUNC_ID, LABEL || '-[' || FILE_NAME || ']' AS LABEL , FILE_NAME,
+               REL_ID, REL_PRJ_ID, REL_FILE_ID, REL_FILE_NAME,
+               REL_OBJ_NAME, OBJTYPE, FILE_PATH, REL_DEPTH,
+               DEPTH, PRJ_PATH,
+               MAX(DEPTH) OVER() AS MAX_DEPTH
+        FROM (
+                 with recursive called_tree(depth,fromid,biz_id,objid,file_id,file_name,obj_id,func_id,label,rel_id,rel_prj_id,rel_file_id,rel_file_name,rel_obj_name,objtype,file_path,rel_depth,prj_path) as (
+                     select
+                         cast( 1 as numeric) as depth ,
+                         CAL_ID as fromid ,
+                         BIZ_ID as BIZ_ID ,
+                         PRJ_ID as OBJID ,
+                         FILE_ID as FILE_ID ,
+                         FILE_NAME  as FILE_NAME ,
+                         OBJ_ID as obj_id ,
+                         FUNC_ID as func_id,
+                         FUNC_NAME as LABEL,
+                         REL_CAL_ID as REL_ID ,
+                         REL_PRJ_ID ,
+                         REL_FILE_ID as REL_FILE_ID ,
+                         REL_FILE_NAME as REL_FILE_NAME ,
+                         REL_OBJ_ID as rel_obj_id,
+                         REL_FUNC_ID as rel_func_id,
+                         REL_FUNC_NAME as rel_func_name,
+                         OBJ_NAME as REL_OBJ_NAME ,
+                         OBJ_TYPE as OBJTYPE ,
+                         FILE_PATH ,
+                         REL_DEPTH ,
+                         PRJ_PATH
+                     from ${tempTableName} a
+                     where a.rel_depth &gt;= 0
+                       and a.rel_cal_id = 0
+                     union all
+                     select
+                         ABS(cast(b.REL_DEPTH as numeric) + 1)+1 as depth ,
+                         a.CAL_ID as fromid ,
+                         a.BIZ_ID as BIZ_ID ,
+                         a.PRJ_ID as OBJID ,
+                         a.FILE_ID as FILE_ID ,
+                         a.FILE_NAME  as FILE_NAME ,
+                         a.OBJ_ID as obj_id ,
+                         a.FUNC_ID as func_id,
+                         a.FUNC_NAME as LABEL,
+                         a.REL_CAL_ID as REL_ID ,
+                         a.REL_PRJ_ID ,
+                         a.REL_FILE_ID as REL_FILE_ID ,
+                         a.REL_FILE_NAME as REL_FILE_NAME ,
+                         a.REL_OBJ_ID as rel_obj_id,
+                         a.REL_FUNC_ID as rel_func_id,
+                         a.REL_FUNC_NAME as rel_func_name,
+                         a.OBJ_NAME as REL_OBJ_NAME ,
+                         a.OBJ_TYPE as OBJTYPE ,
+                         a.FILE_PATH ,
+                         a.REL_DEPTH ,
+                         a.PRJ_PATH
+                     from ${tempTableName} a, called_tree b
+                     where  a.rel_depth &gt;= 0
+                       and a.rel_cal_id = b.fromid
+                 )
+                 select
+                     *
+                 from called_tree
+                 order by depth
+             ) DATA
+    </select>
+  <select id="getRelationSearch" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamRelation.xml.getRelationSearch */ /* ImpactStreamRelation.xml.getRelationSearch */ 
+<include refid="impact.pagingSql_Start" />
+        SELECT DT.PRJ_ID                    AS "PRJ_ID"
+        , fn_PRJTREENAME(DT.PRJ_ID)    AS "BIZ_PATH"
+        , DT.FILE_ID                   AS "FILE_ID"
+        , DT.PRJ_NAME                  AS "PRJ_NAME"
+        , DT.FILE_NAME                 AS "FILE_NAME"
+        , DT.SRC_FILE_FULL_PATH        AS "SRC_FILE_FULL_PATH"
+        , DT.ORG_FILE_PATH             AS "ORG_FILE_PATH"
+        , DT.EXT_CD                    AS "EXT_CD"
+        FROM (
+        SELECT DISTINCT
+        B.PRJ_ID                    AS PRJ_ID
+        , B.FILE_ID                   AS FILE_ID
+        , C.PRJ_KOR_NAME              AS PRJ_NAME
+        , B.SRC_FILE_NAME             AS FILE_NAME
+        , B.ORG_FILE_PATH             AS SRC_FILE_FULL_PATH
+        , SUBSTR(B.ORG_FILE_PATH, 49) AS ORG_FILE_PATH
+        , B.EXT_CD                    AS EXT_CD
+        FROM VW_AIS0010_UI B
+        , (
+        SELECT PRJ_ID, PRJ_KOR_NAME
+        FROM AIS1001
+        WHERE UPPER_BIZ_ID IN (
+        WITH RECURSIVE BIZ_INFO (BIZ_ID) AS (
+        SELECT
+        A.BIZ_ID
+        FROM
+        VW_AIS1000 A
+        WHERE
+        A.BIZ_ID = #{prjId}
+        AND A.DEL_YN = 'N'
+        UNION ALL
+        SELECT
+        A.BIZ_ID
+        FROM
+        VW_AIS1000 A ,
+        BIZ_INFO B
+        WHERE
+        A.DEL_YN = 'N'
+        AND A.UPPER_BIZ_ID = B.BIZ_ID
+        )
+        SELECT
+        BIZ_ID
+        FROM
+        BIZ_INFO
+        )
+        AND DEL_YN = 'N'
+        <if test="site == 'DGBANK' ">
+            AND PRJ_ID &gt; 3000
+        </if>
+        ) C
+        WHERE B.PRJ_ID   = C.PRJ_ID
+        <if test="searchName !=null and searchName !=''">
+      <if test="nameLikeType == 0 ">
+                AND B.CAPS_SRC_FILE_NAME LIKE '%' || #{searchName}
+            </if>
+      <if test="nameLikeType == 1 ">
+                AND B.CAPS_SRC_FILE_NAME LIKE #{searchName} || '%'
+            </if>
+      <if test="nameLikeType == 2 ">
+                AND B.CAPS_SRC_FILE_NAME LIKE '%' || #{searchName} || '%'
+            </if>
+    </if>
+    <if test="langType != 'ALL' ">
+            AND B.EXT_CD IN(SELECT BB.EXT_CD
+            FROM AIS2101 AA, AIS2102 BB
+            WHERE AA.LANG_CD = #{langType}
+            AND BB.LANG_CD = AA.LANG_CD )
+        </if>
+    <if test="levelType == '01' ">
+            AND EXISTS ( SELECT 1
+            FROM AIS0052 DT
+            WHERE DT.CALL_PRJ_ID  = B.PRJ_ID
+            AND DT.CALL_FILE_ID = B.FILE_ID
+            <if test="site == 'DGBANK' ">
+                AND DT.CALL_PRJ_ID &gt; 3000
+            </if>
+
+            )
+        </if>
+    <if test="levelType == '02' ">
+            AND EXISTS ( SELECT 1
+            FROM AIS0052 DT
+            WHERE DT.PRJ_ID  = B.PRJ_ID
+            AND DT.FILE_ID = B.FILE_ID
+            <if test="site == 'DGBANK' ">
+                AND DT.CALL_PRJ_ID &gt; 3000
+            </if>
+
+            )
+        </if>
+    <if test="levelType == '03' ">
+            AND EXISTS ( SELECT 1
+            FROM AIS0052 DT
+            WHERE DT.CALL_PRJ_ID  = B.PRJ_ID
+            AND DT.CALL_FILE_ID = B.FILE_ID
+            <if test="site == 'DGBANK' ">
+                AND DT.CALL_PRJ_ID &gt; 3000
+            </if>
+            UNION
+            SELECT 1
+            FROM AIS0052 DT
+            WHERE DT.PRJ_ID  = B.PRJ_ID
+            AND DT.FILE_ID = B.FILE_ID
+            <if test="site == 'DGBANK' ">
+                AND DT.CALL_PRJ_ID &gt; 3000
+            </if>
+            )
+        </if>
+        ORDER BY B.SRC_FILE_NAME
+        ) DT
+        <include refid="impact.pagingSql_End" />
+  </select>
+  <select id="getRelationTableSearch" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamRelation.xml.getRelationTableSearch */ /* ImpactStreamRelation.xml.getRelationTableSearch */ 
+<include refid="impact.pagingSql_Start" />
+        SELECT DISTINCT D.PRJ_ID AS "PRJ_ID"
+        ,fn_PRJTREENAME(D.PRJ_ID) AS "BIZ_PATH"
+        ,D.TABLE_ID AS "TABLE_ID"
+        ,E.FILE_ID AS "FILE_ID"
+        ,E.SRC_FILE_FULL_PATH AS "SRC_FILE_FULL_PATH"
+        ,E.SRC_FILE_NAME AS "FILE_NAME"
+        ,E.EXT_CD AS "EXT_CD"
+        ,E.ORG_FILE_PATH AS "ORG_FILE_PATH"
+        ,F.PRJ_KOR_NAME as "PRJ_NAME"
+        ,B.JOB_NAME AS "DB_NAME"
+        ,A.DBOBJ_OWNER AS "OWNER"
+        ,D.CAPS_TABLE_NAME AS "TABLE_NAME"
+        ,CASE WHEN D.CAPS_TABLE_NAME LIKE '::%' THEN D.CAPS_TABLE_NAME || ' [' || H.VARVALUE || ']'
+        ELSE D.CAPS_TABLE_NAME END AS "TABLE_NAME_SRC"
+        FROM
+        AIS1011 A
+        inner join
+        AIS1010 B
+        on A.JOB_ID = B.JOB_ID
+
+        inner join
+        AIS1003 C
+        on B.JOB_ID = C.JOB_ID
+
+        right outer join
+        AIS1001 F
+        on C.PRJ_ID = F.PRJ_ID
+
+        inner join
+        AIS0102 D
+        on D.PRJ_ID = F.PRJ_ID
+
+        inner join
+        VW_AIS0010_UI E
+        on 	D.PRJ_ID = E.PRJ_ID
+        and D.FILE_ID = E.FILE_ID
+
+        left outer join
+        AIS0107 H
+        on 	D.PRJ_ID = H.PRJ_ID
+        and D.FILE_ID = H.FILE_ID
+        and D.TABLE_NAME = H.VARNAME
+        WHERE B.DEL_YN      = 'N'
+        AND E.PRJ_ID <include refid="impact.fullPrjIdSql" />
+        AND D.INLINEVIEW_YN = 'N'
+        <if test="searchName !=null and searchName !=''">
+      <if test="nameLikeType == 0 ">
+                AND D.CAPS_TABLE_NAME LIKE '%' || #{searchName}
+            </if>
+      <if test="nameLikeType == 1 ">
+                AND D.CAPS_TABLE_NAME LIKE #{searchName} || '%'
+            </if>
+      <if test="nameLikeType == 2 ">
+                AND D.CAPS_TABLE_NAME LIKE '%' || #{searchName} || '%'
+            </if>
+    </if>
+    <if test="langType != 'ALL' ">
+            AND E.EXT_CD IN(SELECT BB.EXT_CD
+            FROM AIS2101 AA, AIS2102 BB
+            WHERE AA.LANG_CD = #{langType}
+            AND BB.LANG_CD = AA.LANG_CD )
+        </if>
+        ORDER BY D.CAPS_TABLE_NAME, E.SRC_FILE_NAME
+        <include refid="impact.pagingSql_End" />
+  </select>
+  <select id="getSqlFreList" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamRelation.xml.getSqlFreList */ /* ImpactStreamRelation.xml.getSqlFreList */ 
+<include refid="impact.pagingSql_Start" />
+        SELECT /*+RULE ( C AIS1001_PK ) */
+        DATA.PRJ_ID AS "PRJ_ID"
+        , FN_PRJTREENAME(DATA.PRJ_ID) AS "BIZ_PATH"
+        , C.PRJ_KOR_NAME AS "PRJ_KOR_NAME"
+        , DATA.FILE_ID AS "FILE_ID"
+        , DATA.FILE_NAME AS "FILE_NAME"
+        , DATA.FILE_PATH AS "FILE_PATH"
+        , DATA.ORG_FILE_PATH AS "ORG_FILE_PATH"
+        , C.UPPER_BIZ_ID AS "BIZ_ID"
+        , DATA.LANGTYPE AS "LANGTYPE"
+        , DATA.FILE_ANLY_YN AS "FILE_ANLY_YN"
+        , (DATA.TOT_CNT + DATA.NOTANALSQL) AS "TOT_CNT"
+        , DATA.SEL AS "SEL"
+        , DATA.INS AS "INS"
+        , DATA.UPD AS "UPD"
+        , DATA.DEL AS "DEL"
+        , DATA.OTHER AS "OTHER"
+        , DATA.NOTANALSQL AS "NOTANALSQL"
+        , DATA.NOTANALSQL || CASE WHEN DATA.NOTMAPCOL &gt; 0 THEN ' (' || DATA.NOTMAPCOL || ')' ELSE '' END AS "NOTANALSQL_DISP"
+        , DATA.NOTMAPCOL AS "NOTMAPCOL"
+        , DATA.OBJTYPE AS "OBJTYPE"
+        FROM (SELECT DT.PRJ_ID
+        , DT.FILE_ID
+        , DT.FILE_NAME
+        , DT.FILE_PATH
+        , DT.ORG_FILE_PATH
+        , DT.EXT_CD AS LANGTYPE
+        , DT.FILE_ANLY_YN
+        , DT.TOT_CNT
+        , DT.SELECT_ AS SEL
+        , DT.INSERT_ AS INS
+        , DT.UPDATE_ AS UPD
+        , DT.DELETE_ AS DEL
+        , DT.TOT_CNT - ( DT.SELECT_ + DT.INSERT_ + DT.UPDATE_ + DT.DELETE_ ) AS OTHER
+        , DT.NOTANALSQL                                                      AS NOTANALSQL
+        , DT.NOTMAPCOL                                                       AS NOTMAPCOL
+        , 'file' AS OBJTYPE
+        FROM (SELECT DTT.PRJ_ID
+        , DTT.FILE_ID
+        , DTT.FILE_NAME
+        , DTT.FILE_PATH
+        , DTT.ORG_FILE_PATH
+        , DTT.EXT_CD
+        , DTT.FILE_ANLY_YN
+        , COUNT(*) AS TOT_CNT
+        , COUNT(CASE WHEN UPPER(DTT.SQL_SRC_HEADER) LIKE 'SELECT%' THEN 1 END) AS SELECT_
+        , COUNT(CASE WHEN UPPER(DTT.SQL_SRC_HEADER) LIKE 'INSERT%' THEN 1 END) AS INSERT_
+        , COUNT(CASE WHEN UPPER(DTT.SQL_SRC_HEADER) LIKE 'UPDATE%' THEN 1 END) AS UPDATE_
+        , COUNT(CASE WHEN UPPER(DTT.SQL_SRC_HEADER) LIKE 'DELETE%' THEN 1 END) AS DELETE_
+        , (SELECT /*+RULE INDEX ( AIS0108 IDX_AIS0108_PRJIDFILEID ) */
+        COUNT(*)
+        FROM VW_AIS0108 R
+        WHERE R.PRJ_ID  = DTT.PRJ_ID
+        AND R.FILE_ID = DTT.FILE_ID
+        )                                  AS NOTANALSQL
+        ,  (SELECT /*+RULE INDEX ( AIS0103 AIS0103_PK ) */
+        COUNT(*)
+        FROM AIS0103 R
+        WHERE R.PRJ_ID   = DTT.PRJ_ID
+        AND R.FILE_ID  = DTT.FILE_ID
+        AND R.SQL_ID   &gt; 0
+        AND R.TABLE_ID = 0
+        AND R.COL_ID   &gt; 0
+        )                                 AS NOTMAPCOL
+        FROM (
+        SELECT B.PRJ_ID
+        , B.FILE_ID
+        , B.SRC_FILE_NAME AS FILE_NAME
+        , B.SRC_FILE_FULL_PATH AS FILE_PATH
+        , B.ORG_FILE_PATH
+        , B.EXT_CD
+        , 'Y' AS FILE_ANLY_YN
+        , SUBSTR(A.SQL_SRC,1,10) AS SQL_SRC_HEADER
+        FROM VW_AIS0100 A
+        , VW_AIS0010 B
+        WHERE B.PRJ_ID   <include refid="impact.fullPrjIdSql" />
+        AND A.PRJ_ID  = B.PRJ_ID
+        AND A.FILE_ID = B.FILE_ID
+        <if test="searchName !=null and searchName !=''">
+      <if test="nameLikeType == 0 ">
+                AND UPPER(B.SRC_FILE_NAME) LIKE '%' || #{searchName}
+            </if>
+      <if test="nameLikeType == 1 ">
+                AND UPPER(B.SRC_FILE_NAME) LIKE #{searchName} || '%'
+            </if>
+      <if test="nameLikeType == 2 ">
+                AND UPPER(B.SRC_FILE_NAME) LIKE '%' || #{searchName} || '%'
+            </if>
+    </if>
+    <if test="langType != 'ALL' ">
+            AND B.EXT_CD IN(SELECT BB.EXT_CD
+            FROM AIS2101 AA, AIS2102 BB
+            WHERE AA.LANG_CD = #{langType}
+            AND BB.LANG_CD = AA.LANG_CD )
+        </if>
+        ) DTT
+        GROUP BY DTT.FILE_NAME
+        , DTT.PRJ_ID
+        , DTT.FILE_ID
+        , DTT.FILE_NAME
+        , DTT.FILE_PATH
+        , DTT.ORG_FILE_PATH
+        , DTT.EXT_CD
+        , DTT.FILE_ANLY_YN
+        ) DT
+        ORDER BY DT.TOT_CNT DESC
+        )DATA,
+        AIS1001  C
+        WHERE C.PRJ_ID  = RTRIM(DATA.PRJ_ID)
+        <include refid="impact.pagingSql_End" />
+  </select>
+  <select id="getTblFreList" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamRelation.xml.getTblFreList */ /* ImpactStreamRelation.xml.getTblFreList */ 
+<include refid="impact.pagingSql_Start" />
+        SELECT TABLE_NAME AS "TABLE_NAME"
+        , TRIM(TO_CHAR(TOT_CNT, '999,999,999,999')) AS "TOT_CNT"
+        , TRIM(TO_CHAR(C_CNT,   '999,999,999,999')) AS "C_CNT"
+        , TRIM(TO_CHAR(R_CNT,   '999,999,999,999')) AS "R_CNT"
+        , TRIM(TO_CHAR(U_CNT,   '999,999,999,999')) AS "U_CNT"
+        , TRIM(TO_CHAR(D_CNT,   '999,999,999,999')) AS "D_CNT"
+        , TRIM(TO_CHAR(ETC_CNT, '999,999,999,999')) AS "ETC_CNT"
+        FROM (
+        SELECT A.CAPS_TABLE_NAME AS TABLE_NAME
+        , COUNT(*)                                                             AS TOT_CNT
+        , COUNT(CASE WHEN QUERY_TYPE = 'C' THEN 1 END)                         AS C_CNT
+        , COUNT(CASE WHEN QUERY_TYPE = 'R' THEN 1 END)                         AS R_CNT
+        , COUNT(CASE WHEN QUERY_TYPE = 'U' THEN 1 END)                         AS U_CNT
+        , COUNT(CASE WHEN QUERY_TYPE = 'D' THEN 1 END)                         AS D_CNT
+        , COUNT(CASE WHEN QUERY_TYPE NOT IN ( 'C', 'R', 'U', 'D' ) THEN 1 END) AS ETC_CNT
+        FROM AIS0102 A
+        WHERE A.INLINEVIEW_YN = 'N'
+        AND (A.PRJ_ID, A.FILE_ID) IN ( SELECT /*+RULE INDEX ( B AIS0010_PK ) */
+        B.PRJ_ID
+        , B.FILE_ID
+        FROM VW_AIS0010_UI B
+        WHERE B.PRJ_ID   <include refid="impact.fullPrjIdSql" />
+        AND RTRIM(B.FILE_LST_YN) = 'Y'
+        <if test="langType != 'ALL' ">
+            AND B.EXT_CD IN(SELECT BB.EXT_CD
+            FROM AIS2101 AA, AIS2102 BB
+            WHERE AA.LANG_CD = #{langType}
+            AND BB.LANG_CD = AA.LANG_CD )
+        </if>
+        )
+        <if test="searchName !=null and searchName !=''">
+      <if test="nameLikeType == 0 ">
+                AND CAPS_TABLE_NAME LIKE '%' || #{searchName}
+            </if>
+      <if test="nameLikeType == 1 ">
+                AND CAPS_TABLE_NAME LIKE #{searchName} || '%'
+            </if>
+      <if test="nameLikeType == 2 ">
+                AND CAPS_TABLE_NAME LIKE '%' || #{searchName} || '%'
+            </if>
+    </if>
+        GROUP BY A.CAPS_TABLE_NAME
+        ORDER BY TOT_CNT DESC
+        ) X
+        <include refid="impact.pagingSql_End" />
+  </select>
+  <select id="getTblUsePgmList" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamRelation.xml.getTblUsePgmList */ /* ImpactStreamRelation.xml.getTblUsePgmList */ 
+<include refid="impact.pagingSql_Start" />
+        SELECT DT.DBOBJ_NAME                  AS "DBOBJ_NAME"
+        ,DT.DBOBJ_NAME_DISP             AS "DBOBJ_NAME_DISP"
+        ,DT.DBOBJ_OWNER                 AS "DBOBJ_OWNER"
+        ,DT.DBOBJ_OWNER_PRG             AS "DBOBJ_OWNER_PRG"
+        ,DT.DBOBJ_ID                    AS "DBOBJ_ID"
+        ,DT.DBC_TYPE                    AS "DBC_TYPE"
+        ,CASE WHEN DT.SEL_GUBUN = 'APP'
+        THEN 'N'
+        ELSE 'Y'         END      AS DBC_TABLE_YN
+        ,CASE WHEN DT.USE_YN = 'Y'
+        THEN 'USED'
+        ELSE 'NOT USED'  END      AS USE_NM
+        ,DT.SEL_GUBUN                   AS SEL_GUBUN
+        , #{prjId}                       AS BIZ_ID
+        FROM (
+        SELECT PRG.DBOBJ_NAME                       AS DBOBJ_NAME
+        ,PRG.DBOBJ_NAME_DISP                  AS DBOBJ_NAME_DISP
+        ,(case when DBC.DBOBJ_OWNER is null then PRG.DBOBJ_OWNER else DBC.DBOBJ_OWNER end) AS DBOBJ_OWNER
+        ,PRG.DBOBJ_OWNER                      AS DBOBJ_OWNER_PRG
+        ,DBC.DBOBJ_ID                         AS DBOBJ_ID
+        ,DBC.DBC_TYPE                         AS DBC_TYPE
+        ,'Y'                                  AS USE_YN
+        ,CASE WHEN DBC.DBOBJ_ID IS NULL
+        THEN PRG.SEL_GUBUN
+        ELSE DBC.SEL_GUBUN END          AS SEL_GUBUN
+        FROM (
+        SELECT DTT.DBOBJ_NAME
+        ,DTT.DBOBJ_NAME_DISP
+        ,DTT.DBOBJ_OWNER
+        ,DTT.DBOBJ_ID
+        ,DTT.DBC_TYPE
+        ,DTT.SEL_GUBUN
+        FROM (SELECT CASE WHEN SUBSTR(CAPS_TABLE_NAME,1,2) = '::' THEN
+        (SELECT B.VARVALUE || ' [' || B.VARNAME || ']'
+        FROM AIS0107 B
+        WHERE B.PRJ_ID = A.PRJ_ID
+        AND B.FILE_ID = A.FILE_ID
+        AND B.OBJ_ID  = A.OBJ_ID
+        AND B.FUNC_ID = A.FUNC_ID
+        AND B.VARNAME = A.CAPS_TABLE_NAME
+        )
+        ELSE
+        CAPS_TABLE_NAME
+        END                AS DBOBJ_NAME_DISP
+        ,CAPS_TABLE_NAME    AS DBOBJ_NAME
+        ,UPPER(OWNER_NAME)  AS DBOBJ_OWNER
+        ,NULL               AS DBOBJ_ID
+        ,'TABLE'            AS DBC_TYPE
+        ,'APP'              AS SEL_GUBUN
+        FROM AIS0102 A
+        WHERE PRJ_ID <include refid="impact.fullPrjIdSql" />
+    <if test="searchName !=null and searchName !=''">
+      <if test="nameLikeType == 0 ">
+                AND CAPS_TABLE_NAME LIKE '%' || #{searchName}
+            </if>
+      <if test="nameLikeType == 1 ">
+                AND CAPS_TABLE_NAME LIKE #{searchName} || '%'
+            </if>
+      <if test="nameLikeType == 2 ">
+                AND CAPS_TABLE_NAME LIKE '%' || #{searchName} || '%'
+            </if>
+    </if>
+        AND CAPS_TABLE_NAME   &lt;&gt;   CASE WHEN 'N' = 'N' THEN 'DUAL' ELSE ' ' END
+        AND INLINEVIEW_YN     =    'N'
+        ) DTT
+        GROUP BY DTT.DBOBJ_NAME, DTT.DBOBJ_NAME_DISP, DTT.DBOBJ_OWNER, DTT.DBOBJ_ID, DTT.DBC_TYPE, DTT.SEL_GUBUN
+        ) PRG
+        left outer join
+        (
+        SELECT CAPS_DBOBJ_NAME    AS DBOBJ_NAME
+        ,UPPER(DBOBJ_OWNER) AS DBOBJ_OWNER
+        ,DBOBJ_ID           AS DBOBJ_ID
+        ,DBOBJ_TYPE         AS DBC_TYPE
+        ,'DBC'              AS SEL_GUBUN
+        FROM VW_DBCOBJINFO
+        WHERE DBOBJ_TYPE IN ( 'TABLE', 'SYNONYM', 'VIEW' )
+        AND JOB_ID     IN ( SELECT JOB_ID
+        FROM AIS1003
+        WHERE PRJ_ID IN ( SELECT REL_PRJ_ID
+        FROM AIS1002
+        WHERE PRJ_ID <include refid="impact.fullPrjIdSql" />
+        UNION
+        SELECT PRJ_ID
+        FROM AIS1001
+        WHERE UPPER_BIZ_ID IN (
+        with recursive BIZ_INFO (BIZ_ID) as (
+        select
+        A.BIZ_ID
+        from
+        VW_AIS1000 A
+        where
+        A.BIZ_ID = #{prjId}
+        and A.DEL_YN = 'N'
+        union all
+        select
+        A.BIZ_ID
+        from
+        VW_AIS1000 A ,
+        BIZ_INFO B
+        where
+        A.DEL_YN = 'N'
+        and A.UPPER_BIZ_ID = B.BIZ_ID )
+        select
+        BIZ_ID
+        from
+        BIZ_INFO
+        )
+        AND DEL_YN = 'N'
+        )
+        )
+        ) DBC
+        on  PRG.DBOBJ_NAME  = DBC.DBOBJ_NAME
+        AND (case when PRG.DBOBJ_OWNER is null then DBC.DBOBJ_OWNER else PRG.DBOBJ_OWNER end) = DBC.DBOBJ_OWNER
+        UNION
+        SELECT DBC.DBOBJ_NAME                  AS DBOBJ_NAME
+        ,DBC.DBOBJ_NAME                  AS DBOBJ_NAME_DISP
+        ,DBC.DBOBJ_OWNER                 AS DBOBJ_OWNER
+        ,PRG.DBOBJ_OWNER                 AS DBOBJ_OWNER_PRG
+        ,DBC.DBOBJ_ID                    AS DBOBJ_ID
+        ,DBC.DBC_TYPE                    AS DBC_TYPE
+        ,CASE WHEN PRG.DBOBJ_NAME IS NULL
+        THEN 'N'
+        ELSE 'Y'           END     AS USE_YN
+        ,DBC.SEL_GUBUN                   AS SEL_GUBUN
+        FROM (
+        SELECT CAPS_TABLE_NAME    AS DBOBJ_NAME
+        ,UPPER(OWNER_NAME)  AS DBOBJ_OWNER
+        ,NULL               AS DBOBJ_ID
+        ,NULL               AS DBC_TYPE
+        ,'PROG'             AS SEL_GUBUN
+        FROM AIS0102
+        WHERE PRJ_ID <include refid="impact.fullPrjIdSql" />
+    <if test="searchName !=null and searchName !=''">
+      <if test="nameLikeType == 0 ">
+                AND CAPS_TABLE_NAME LIKE '%' || #{searchName}
+            </if>
+      <if test="nameLikeType == 1 ">
+                AND CAPS_TABLE_NAME LIKE #{searchName} || '%'
+            </if>
+      <if test="nameLikeType == 2 ">
+                AND CAPS_TABLE_NAME LIKE '%' || #{searchName} || '%'
+            </if>
+    </if>
+        AND INLINEVIEW_YN     =    'N'
+        GROUP BY CAPS_TABLE_NAME, UPPER(OWNER_NAME)
+        ) PRG
+        left outer join
+        (
+        SELECT CAPS_DBOBJ_NAME    AS DBOBJ_NAME
+        ,UPPER(DBOBJ_OWNER) AS DBOBJ_OWNER
+        ,DBOBJ_ID           AS DBOBJ_ID
+        ,DBOBJ_TYPE         AS DBC_TYPE
+        ,'DBC'              AS SEL_GUBUN
+        FROM VW_DBCOBJINFO
+        WHERE DBOBJ_TYPE IN ( 'TABLE', 'SYNONYM', 'VIEW' )
+        AND JOB_ID     IN ( SELECT JOB_ID
+        FROM AIS1003
+        WHERE PRJ_ID IN ( SELECT REL_PRJ_ID
+        FROM AIS1002
+        WHERE PRJ_ID <include refid="impact.fullPrjIdSql" />
+        UNION
+        SELECT PRJ_ID
+        FROM AIS1001
+        WHERE UPPER_BIZ_ID IN(
+        with recursive BIZ_INFO (BIZ_ID) as (
+        select
+        A.BIZ_ID
+        from
+        VW_AIS1000 A
+        where
+        A.BIZ_ID = #{prjId}
+        and A.DEL_YN = 'N'
+        union all
+        select
+        A.BIZ_ID
+        from
+        VW_AIS1000 A ,
+        BIZ_INFO B
+        where
+        A.DEL_YN = 'N'
+        and A.UPPER_BIZ_ID = B.BIZ_ID )
+        select
+        BIZ_ID
+        from
+        BIZ_INFO
+        )
+        AND DEL_YN = 'N'
+        )
+        )
+        <if test="searchName !=null and searchName !=''">
+      <if test="nameLikeType == 0 ">
+                AND CAPS_DBOBJ_NAME LIKE '%' || #{searchName}
+            </if>
+      <if test="nameLikeType == 1 ">
+                AND CAPS_DBOBJ_NAME LIKE #{searchName} || '%'
+            </if>
+      <if test="nameLikeType == 2 ">
+                AND CAPS_DBOBJ_NAME LIKE '%' || #{searchName} || '%'
+            </if>
+    </if>
+        ) DBC
+        on  PRG.DBOBJ_NAME  = DBC.DBOBJ_NAME
+        AND (case when PRG.DBOBJ_OWNER is null then DBC.DBOBJ_OWNER else PRG.DBOBJ_OWNER end) = DBC.DBOBJ_OWNER
+        ) DT
+        <if test="useYn != 'ALL' ">
+            WHERE DT.USE_YN = #{useYn}
+        </if>
+    <include refid="impact.pagingSql_End" />
+  </select>
+  <select id="getColumnList" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamRelation.xml.getColumnList */ /* ImpactStreamRelation.xml.getColumnList */ 
+        SELECT DISTINCT
+        DT.DBOBJ_OWNER
+        ,DT.TBL_NAME
+        ,DT.COL_NAME
+        ,DT.COL_TYPE
+        ,DT.COL_SIZE
+        ,DT.PRECISION
+        ,DT.SCALE
+        ,DT.COL_PKEY_YN
+        ,DT.COL_FKEY_YN
+        ,DT.COL_NULL_YN
+        ,DT.COL_KOR_NAME AS COL_DESC
+        ,DT.COL_USE_GBN
+        FROM (SELECT DBOBJ_OWNER
+        ,TBL_NAME
+        ,COL_NAME
+        ,COL_TYPE
+        ,COL_SIZE
+        ,(CASE WHEN PRECISION = NULL THEN '0' ELSE PRECISION END) AS PRECISION
+        ,(CASE WHEN SCALE = NULL THEN '0' ELSE SCALE END) AS SCALE
+        ,(CASE WHEN COL_PKEY_YN = NULL THEN 'N' ELSE COL_PKEY_YN END) AS COL_PKEY_YN
+        ,(CASE WHEN COL_FKEY_YN = NULL THEN 'N' ELSE COL_FKEY_YN END) AS COL_FKEY_YN
+        ,COL_NULL_YN
+        ,COL_DESC
+        ,(CASE WHEN (SELECT 'Y'
+        FROM AIS0103 A36, AIS0102 A31
+        WHERE A36.PRJ_ID        = A31.PRJ_ID
+        AND A36.FILE_ID    = A31.FILE_ID
+        AND A36.SQL_ID     = A31.SQL_ID
+        AND A36.TABLE_ID   = A31.TABLE_ID
+        AND A36.COL_NAME   = A.COL_NAME
+        AND A31.TABLE_NAME = A.TBL_NAME
+        limit 1
+        ) = NULL THEN 'N' ELSE (SELECT 'Y'
+        FROM AIS0103 A36, AIS0102 A31
+        WHERE A36.PRJ_ID        = A31.PRJ_ID
+        AND A36.FILE_ID    = A31.FILE_ID
+        AND A36.SQL_ID     = A31.SQL_ID
+        AND A36.TABLE_ID   = A31.TABLE_ID
+        AND A36.COL_NAME   = A.COL_NAME
+        AND A31.TABLE_NAME = A.TBL_NAME
+        limit 1
+        ) END ) AS COL_USE_GBN
+        ,COL_KOR_NAME
+        FROM VW_DBCTBLINFO A
+        WHERE TBL_NAME    = #{tableName}
+        AND (CASE WHEN DBOBJ_OWNER = NULL THEN ' ' ELSE DBOBJ_OWNER END)  LIKE (CASE WHEN #{dbOwner} = NULL THEN '%' ELSE #{dbOwner} END)
+        AND 'TABLE'     = #{dbcType}
+        AND 'Y'         = #{dbcTableYn}
+        UNION ALL
+        SELECT DBOBJ_OWNER AS DBOBJ_OWNER
+        ,VIEW_NAME  AS TBL_NAME
+        ,COL_NAME
+        ,COL_TYPE
+        ,COL_SIZE
+        ,(CASE WHEN PRECISION = NULL THEN '0' ELSE PRECISION END) AS PRECISION
+        ,(CASE WHEN SCALE = NULL THEN '0' ELSE SCALE END) AS SCALE
+        ,(CASE WHEN COL_PKEY_YN = NULL THEN 'N' ELSE COL_PKEY_YN END) AS COL_PKEY_YN
+        ,(CASE WHEN COL_FKEY_YN = NULL THEN 'N' ELSE COL_FKEY_YN END) AS COL_FKEY_YN
+        ,COL_NULL_YN
+        ,COL_DESC
+        ,(CASE WHEN (SELECT 'Y'
+          FROM AIS0103 A36, AIS0102 A31
+          WHERE A36.PRJ_ID        = A31.PRJ_ID
+          AND A36.FILE_ID    = A31.FILE_ID
+          AND A36.SQL_ID     = A31.SQL_ID
+          AND A36.TABLE_ID   = A31.TABLE_ID
+          AND A36.COL_NAME   = A.COL_NAME
+          AND A31.TABLE_NAME = A.TBL_NAME
+          limit 1
+          ) = NULL THEN 'N' ELSE (SELECT 'Y'
+          FROM AIS0103 A36, AIS0102 A31
+          WHERE A36.PRJ_ID        = A31.PRJ_ID
+          AND A36.FILE_ID    = A31.FILE_ID
+          AND A36.SQL_ID     = A31.SQL_ID
+          AND A36.TABLE_ID   = A31.TABLE_ID
+          AND A36.COL_NAME   = A.COL_NAME
+          AND A31.TABLE_NAME = A.TBL_NAME
+          limit 1
+        ) END ) AS COL_USE_GBN
+        ,'' AS COL_KOR_NAME
+        FROM VW_DBCVIEWINFO2 A
+        WHERE VIEW_NAME    = #{tableName}
+        AND (CASE WHEN DBOBJ_OWNER = NULL THEN ' ' ELSE DBOBJ_OWNER END)  LIKE (CASE WHEN #{dbOwner} = NULL THEN '%' ELSE #{dbOwner} END)
+        AND 'VIEW'       = #{dbcType}
+        AND 'Y'          = #{dbcTableYn}
+        UNION ALL
+        SELECT B.DBTBL_OWNER AS DBOBJ_OWNER
+        ,B.SYN_NAME   AS TBL_NAME
+        ,COL_NAME
+        ,COL_TYPE
+        ,COL_SIZE
+        ,(CASE WHEN PRECISION = NULL THEN '0' ELSE PRECISION END) AS PRECISION
+        ,(CASE WHEN SCALE = NULL THEN '0' ELSE SCALE END) AS SCALE
+        ,(CASE WHEN COL_PKEY_YN = NULL THEN 'N' ELSE COL_PKEY_YN END) AS COL_PKEY_YN
+        ,(CASE WHEN COL_FKEY_YN = NULL THEN 'N' ELSE COL_FKEY_YN END) AS COL_FKEY_YN
+        ,COL_NULL_YN
+        ,COL_DESC
+        ,(CASE WHEN (SELECT 'Y'
+           FROM AIS0103 A36, AIS0102 A31
+           WHERE A36.PRJ_ID        = A31.PRJ_ID
+           AND A36.FILE_ID    = A31.FILE_ID
+           AND A36.SQL_ID     = A31.SQL_ID
+           AND A36.TABLE_ID   = A31.TABLE_ID
+           AND A36.COL_NAME   = A.COL_NAME
+           AND A31.TABLE_NAME = A.TBL_NAME
+           limit 1
+           ) = NULL THEN 'N' ELSE (SELECT 'Y'
+           FROM AIS0103 A36, AIS0102 A31
+           WHERE A36.PRJ_ID        = A31.PRJ_ID
+           AND A36.FILE_ID    = A31.FILE_ID
+           AND A36.SQL_ID     = A31.SQL_ID
+           AND A36.TABLE_ID   = A31.TABLE_ID
+           AND A36.COL_NAME   = A.COL_NAME
+           AND A31.TABLE_NAME = A.TBL_NAME
+           limit 1
+        ) END ) AS COL_USE_GBN
+        ,A.COL_KOR_NAME
+        FROM VW_DBCTBLINFO A, VW_DBCSYNINFO B
+        WHERE B.SYN_NAME   = #{tableName}	/* 2010.08.31. LeeYH. Modify... */
+        AND B.TBLJOB_ID  = A.JOB_ID
+        AND B.DBTBL_OWNER= A.DBOBJ_OWNER
+        AND B.DBTBL_ID   = A.DBOBJ_ID
+        AND 'SYNONYM'    = #{dbcType}
+        AND 'Y'          = #{dbcTableYn}
+        UNION ALL
+        SELECT B.OWNER_NAME        AS DBOBJ_OWNER
+        ,B.CAPS_TABLE_NAME   AS TBL_NAME
+        ,CASE WHEN A.COL_NAME LIKE '::%' THEN A.COL_NAME || ' [' ||H.VARVALUE || ']'
+        ELSE A.COL_NAME END AS COL_NAME
+        ,''         AS COL_TYPE
+        ,NULL       AS COL_SIZE
+        ,0          AS PRECISION
+        ,0          AS SCALE
+        ,'N'        AS COL_PKEY_YN
+        ,'N'        AS COL_FKEY_YN
+        ,'Y'        AS COL_NULL_YN
+        ,''         AS COL_DESC
+        ,'Y'        AS COL_USE_GBN
+        ,''         AS COL_KOR_NAME
+        FROM AIS0103 A
+        INNER
+        JOIN AIS0102 B ON A.PRJ_ID          = B.PRJ_ID
+                        AND A.FILE_ID      = B.FILE_ID
+                        AND A.SQL_ID       = B.SQL_ID
+                        AND A.TABLE_ID     = B.TABLE_ID
+                        AND B.CAPS_TABLE_NAME   = #{tableName}
+                        AND (CASE WHEN B.OWNER_NAME = NULL THEN ' ' ELSE B.OWNER_NAME END) LIKE (CASE WHEN #{dbOwner} = NULL THEN '%' ELSE #{dbOwner} END)
+                        AND 'N'          = #{dbcTableYn}
+                        AND A.COL_VALUE_YN = 'N'
+        LEFT OUTER
+        JOIN AIS0107 H ON A.PRJ_ID       = H.PRJ_ID
+                        AND A.FILE_ID      = H.FILE_ID
+                        AND A.COL_NAME     = H.VARNAME
+        GROUP BY A.COL_NAME,H.VARVALUE, B.OWNER_NAME, B.CAPS_TABLE_NAME
+        ) DT
+        ORDER BY DT.COL_NAME
+    </select>
+  <select id="getTblUsePgmList2" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamRelation.xml.getTblUsePgmList2 */ /* ImpactStreamRelation.xml.getTblUsePgmList2 */ 
+<include refid="impact.pagingSql_Start" />
+        SELECT DISTINCT PRJ_ID
+        ,fn_PRJTREENAME(PRJ_ID) AS BIZ_PATH
+        ,PRJ_KOR_NAME
+        ,FILE_ID
+        ,FILE_NAME
+        ,FILE_PATH
+        ,ORG_FILE_PATH
+        ,LINE_NO
+        ,QUERY_LINE_NO AS LINE_NO_DISP
+        ,QUERY_TYPE
+        ,0 as SQL_ID
+        ,UPPER_BIZ_ID AS BIZ_ID
+        ,EXT_CD AS LANGTYPE
+        ,FILE_ANLY_YN
+        ,'file' AS OBJTYPE
+        FROM(
+        SELECT X.PRJ_ID
+        ,X.PRJ_KOR_NAME
+        ,X.FILE_ID
+        ,X.SRC_FILE_NAME AS FILE_NAME
+        ,X.FILE_PATH
+        ,X.ORG_FILE_PATH
+        ,X.SQL_LINE
+        ,X.LINE_NO
+        ,X.QUERY_LINE_NO
+        ,X.QUERY_TYPE
+        ,X.SQL_ID
+        ,X.SQL_TYPE
+        ,X.UPPER_BIZ_ID
+        ,X.EXT_CD
+        ,X.FILE_ANLY_YN
+        FROM (
+        SELECT A.PRJ_ID
+        ,F.PRJ_KOR_NAME
+        ,B.SRC_FILE_NAME
+        ,B.SRC_FILE_FULL_PATH AS FILE_PATH
+        ,B.ORG_FILE_PATH
+        ,A.QUERY_TYPE
+        ,A.QUERY_LINE_NO
+        ,B.FILE_ID
+        ,E.SQL_ID
+        ,E.LINE_NO
+        ,E.LINE_NO AS SQL_LINE
+        ,E.sql_src_type AS SQL_TYPE
+        ,F.UPPER_BIZ_ID
+        ,B.EXT_CD
+        ,'Y' AS FILE_ANLY_YN
+        FROM AIS0102 A
+        ,VW_AIS0010_UI B
+        ,VW_AIS0100 E
+        ,AIS1001 F
+        WHERE A.PRJ_ID <include refid="impact.fullPrjIdSql" />
+        AND A.CAPS_TABLE_NAME = #{tableName}
+        <if test="searchOwnerName !=null and searchOwnerName !=''">
+           AND A.OWNER_NAME = #{searchOwnerName}
+        </if>
+    <if test="searchOwnerName ==null or searchOwnerName ==''">
+           AND ( A.OWNER_NAME IS NULL OR A.OWNER_NAME = '' )
+        </if>
+    <if test="searchName !=null and searchName !=''">
+      <if test="nameLikeType == 0 ">
+                AND UPPER(B.SRC_FILE_NAME) LIKE '%' || #{searchName}
+            </if>
+      <if test="nameLikeType == 1 ">
+                AND UPPER(B.SRC_FILE_NAME) LIKE #{searchName} || '%'
+            </if>
+      <if test="nameLikeType == 2 ">
+                AND UPPER(B.SRC_FILE_NAME) LIKE '%' || #{searchName} || '%'
+            </if>
+    </if>
+    <if test="langType != 'ALL' ">
+            AND B.EXT_CD IN(SELECT BB.EXT_CD
+            FROM AIS2101 AA, AIS2102 BB
+            WHERE AA.LANG_CD = #{langType}
+            AND BB.LANG_CD = AA.LANG_CD )
+        </if>
+        AND A.PRJ_ID   = F.PRJ_ID
+        AND A.PRJ_ID   = B.PRJ_ID
+        AND A.PRJ_ID   = E.PRJ_ID
+        AND A.FILE_ID  = B.FILE_ID
+        AND A.FILE_ID  = E.FILE_ID
+        AND A.SQL_ID   = E.SQL_ID
+        AND A.INLINEVIEW_YN = 'N'
+        AND B.FILE_LST_YN = 'Y'
+        ) X
+        ) DAT
+        ORDER BY FILE_NAME, LINE_NO
+        <include refid="impact.pagingSql_End" />
+  </select>
+  <insert id="insertTempTable" parameterType="java.util.HashMap">/* ImpactStreamRelation.xml.insertTempTable */ /* ImpactStreamRelation.xml.insertTempTable */ 
+        INSERT INTO ${tempTableName}
+        VALUES
+            ( #{SEQ_ID}
+            , CAST(#{CAL_ID} AS NUMERIC )
+            , #{BIZ_ID}
+            , #{PRJ_ID}
+            , CAST(#{OBJ_ID} AS NUMERIC )
+            , CAST(#{FILE_ID} AS NUMERIC )
+            , CAST(#{FUNC_ID} AS NUMERIC )
+            , #{PRJ_PATH}
+            , #{FILE_NAME}
+            , #{FUNC_NAME}
+            , #{FILE_PATH}
+            , #{FILE_COMMENT}
+            , #{OBJ_NAME#}
+            , #{OBJ_TYPE}
+            , #{DBC_CHECK}
+            , CAST(#{REL_CAL_ID} AS NUMERIC )
+            , #{REL_PRJ_ID}
+            , CAST(#{REL_OBJ_ID} AS NUMERIC )
+            , CAST(#{REL_FILE_ID} AS NUMERIC )
+            , CAST(#{REL_FUNC_ID} AS NUMERIC )
+            , #{REL_FILE_NAME}
+            , #{REL_FUNC_NAME}
+            , CAST(#{REL_DEPTH} AS NUMERIC ))
+    </insert>
+  <update id="createTotalTempSequence" parameterType="java.lang.String">/* ImpactStreamRelation.xml.createTotalTempSequence */ /* ImpactStreamRelation.xml.createTotalTempSequence */ 
+        CREATE SEQUENCE ${tempSequence}
+            START WITH 1
+            MAXVALUE 100000000
+            MINVALUE 1 NOCYCLE
+            CACHE 20
+            NOORDER
+    </update>
+  <update id="createTotalTempSequenceNextVal" parameterType="java.util.HashMap">/* ImpactStreamRelation.xml.createTotalTempSequenceNextVal */ /* ImpactStreamRelation.xml.createTotalTempSequenceNextVal */ 
+        SELECT nextval('${tempSequenceName}') AS ColumnVal
+    </update>
+  <update id="createTotalTempTable" parameterType="java.util.HashMap">/* ImpactStreamRelation.xml.createTotalTempTable */ /* ImpactStreamRelation.xml.createTotalTempTable */ 
+        CREATE TABLE ${tempTableName}
+        (
+            SEQ_ID varchar(2000)
+            ,CAL_ID numeric
+            ,BIZ_ID varchar(36)
+            ,PRJ_ID varchar(1000)
+            ,OBJ_ID numeric
+            ,FILE_ID numeric
+            ,FUNC_ID numeric
+            ,PRJ_PATH varchar(1000)
+            ,FILE_NAME varchar(1000)
+            ,FUNC_NAME varchar(1000)
+            ,FILE_PATH varchar(1000)
+            ,FILE_COMMENT varchar(128)
+            ,OBJ_NAME varchar(128)
+            ,OBJ_TYPE varchar(128)
+            ,DBC_CHECK varchar(128)
+            ,REL_CAL_ID numeric
+            ,REL_PRJ_ID varchar(1000)
+            ,REL_OBJ_ID numeric
+            ,REL_FILE_ID numeric
+            ,REL_FUNC_ID numeric
+            ,REL_FILE_NAME varchar(1000)
+            ,REL_FUNC_NAME varchar(1000)
+            ,REL_DEPTH numeric
+        )
+    </update>
+  <update id="dropTotalFileRelinfoTable" parameterType="java.util.HashMap">/* ImpactStreamRelation.xml.dropTotalFileRelinfoTable */ /* ImpactStreamRelation.xml.dropTotalFileRelinfoTable */ 
+        DROP TABLE ${tempTableName} CASCADE CONSTRAINTS
+    </update>
+  <update id="dropTotalFileRelinfoSequence" parameterType="java.util.HashMap">/* ImpactStreamRelation.xml.dropTotalFileRelinfoSequence */ /* ImpactStreamRelation.xml.dropTotalFileRelinfoSequence */ 
+        DROP SEQUENCE ${tempSequenceName}
+    </update>
+  <delete id="deleteTotalFileRelinfoTable" parameterType="java.util.HashMap">/* ImpactStreamRelation.xml.deleteTotalFileRelinfoTable */ /* ImpactStreamRelation.xml.deleteTotalFileRelinfoTable */ 
+        DELETE FROM ${tempTableName} WHERE SEQ_ID = ${seqId}
+    </delete>
+</mapper>

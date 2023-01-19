@@ -1,0 +1,2440 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+            PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+            "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.datastreams.impactstream.dao.InfoControlDao">
+  <resultMap id="getTotalSearchMap" type="java.util.HashMap">
+    <result column="L__GRID__LINE__NUM" javaType="java.lang.String" property="L__GRID__LINE__NUM" />
+    <result column="PGNO" javaType="java.lang.String" property="PGNO" />
+    <result column="TOTALCNT" javaType="java.lang.String" property="TOTALCNT" />
+    <result column="PRJ_ID" javaType="java.lang.String" property="PRJ_ID" />
+    <result column="FILE_ID" javaType="java.lang.String" property="FILE_ID" />
+    <result column="OBJ_ID" javaType="java.lang.String" property="OBJ_ID" />
+    <result column="FUNC_ID" javaType="java.lang.String" property="FUNC_ID" />
+    <result column="SQL_ID" javaType="java.lang.String" property="SQL_ID" />
+    <result column="TABLE_ID" javaType="java.lang.String" property="TABLE_ID" />
+    <result column="DBOBJ_ID" javaType="java.lang.String" property="DBOBJ_ID" />
+    <result column="BIZ_PATH" javaType="java.lang.String" property="BIZ_PATH" />
+    <result column="PRJ_NAME" javaType="java.lang.String" property="PRJ_NAME" />
+    <result column="TABLE_NAME" javaType="java.lang.String" property="TABLE_NAME" />
+    <result column="FILE_NAME" javaType="java.lang.String" property="FILE_NAME" />
+    <result column="FILE_PATH" javaType="java.lang.String" property="FILE_PATH" />
+    <result column="ORG_FILE_PATH" javaType="java.lang.String" property="ORG_FILE_PATH" />
+    <result column="FUNC_NAME" javaType="java.lang.String" property="FUNC_NAME" />
+    <result column="TGT_NAME" javaType="java.lang.String" property="TGT_NAME" />
+    <result column="SQL_START_LINE_NO" javaType="java.lang.String" property="SQL_START_LINE_NO" />
+    <result column="SQL_START_LINE_NO_DISP" javaType="java.lang.String" property="SQL_START_LINE_NO_DISP" />
+    <result column="OBJ_NAME" javaType="java.lang.String" property="OBJ_NAME" />
+    <result column="OBJ_NAME_SOURCE" javaType="java.lang.String" property="OBJ_NAME_SOURCE" />
+    <result column="OBJ_NAME_DISP" javaType="java.lang.String" property="OBJ_NAME_DISP" />
+    <result column="START_LINE_NO" javaType="java.lang.String" property="START_LINE_NO" />
+    <result column="VARNAME" javaType="java.lang.String" property="VARNAME" />
+    <result column="VARVALUE" javaType="java.lang.String" property="VARVALUE" />
+    <result column="QUERY_TYPE" javaType="java.lang.String" property="QUERY_TYPE" />
+    <result column="SQL_TYPE" javaType="java.lang.String" property="SQL_TYPE" />
+    <result column="FILE_ANLY_YN" javaType="java.lang.String" property="FILE_ANLY_YN" />
+    <result column="BEGINLINE" javaType="java.lang.String" property="BEGINLINE" />
+    <result column="BEGINCOLUMN" javaType="java.lang.String" property="BEGINCOLUMN" />
+    <result column="LANGTYPE" javaType="java.lang.String" property="LANGTYPE" />
+    <result column="OBJTYPE" javaType="java.lang.String" property="OBJTYPE" />
+    <result column="INLINEVIEW_YN" javaType="java.lang.String" property="INLINEVIEW_YN" />
+    <result column="INLINEVIEW_SRC" javaType="java.lang.String" property="INLINEVIEW_SRC" />
+    <result column="COLUMN_NO" javaType="java.lang.String" property="COLUMN_NO" />
+    <result column="BIZUNIT_NAME" javaType="java.lang.String" property="BIZUNIT_NAME" />
+    <result column="GUBUN" javaType="java.lang.String" property="GUBUN" />
+    <result column="FUNC_ACCS_TYPE" javaType="java.lang.String" property="FUNC_ACCS_TYPE" />
+    <result column="TS_BLOCK_NM" javaType="java.lang.String" property="TS_BLOCK_NM" />
+  </resultMap>
+  <resultMap id="getNotAnalSqlDataMap" type="java.util.HashMap">
+    <result column="L__GRID__LINE__NUM" javaType="java.lang.String" property="L__GRID__LINE__NUM" />
+    <result column="PGNO" javaType="java.lang.String" property="PGNO" />
+    <result column="TOTALCNT" javaType="java.lang.String" property="TOTALCNT" />
+    <result column="FILE_NAME" javaType="java.lang.String" property="FILE_NAME" />
+    <result column="FUNC_NAME" javaType="java.lang.String" property="FUNC_NAME" />
+    <result column="LANGTYPE" javaType="java.lang.String" property="LANGTYPE" />
+    <result column="LINE_NO" javaType="java.lang.String" property="LINE_NO" />
+    <result column="BIZ_PATH" javaType="java.lang.String" property="BIZ_PATH" />
+    <result column="FILE_PATH" javaType="java.lang.String" property="FILE_PATH" />
+    <result column="ORG_FILE_PATH" javaType="java.lang.String" property="ORG_FILE_PATH" />
+    <result column="PRJ_ID" javaType="java.lang.String" property="PRJ_ID" />
+    <result column="FILE_ID" javaType="java.lang.String" property="FILE_ID" />
+    <result column="SQL_ID" javaType="java.lang.String" property="SQL_ID" />
+    <result column="OBJ_ID" javaType="java.lang.String" property="OBJ_ID" />
+    <result column="FUNC_ID" javaType="java.lang.String" property="FUNC_ID" />
+    <result column="SQL_SRC" javaType="java.lang.String" jdbcType="CLOB" property="SQL_SRC" />
+    <result column="SQL_SRC_TYPE" javaType="java.lang.String" property="SQL_SRC_TYPE" />
+    <result column="ERRMSG" javaType="java.lang.String" property="ERRMSG" />
+    <result column="RST_MSG" javaType="java.lang.String" property="RST_MSG" />
+  </resultMap>
+  <sql id="getMatrixPrjId">
+        IN(
+   SELECT PRJ_ID
+   FROM AIS1001
+   WHERE UPPER_BIZ_ID= #{bizId}
+        AND DEL_YN = 'N'
+        )
+    </sql>
+  <sql id="getMatrixPrjIdPopup">
+        IN(
+   SELECT PRJ_ID
+   FROM AIS1001
+   WHERE UPPER_BIZ_ID= #{bizId}
+        AND DEL_YN = 'N'
+        UNION
+        SELECT PRJ_ID
+        FROM AIS1002
+        WHERE REL_PRJ_ID= #{bizId}
+        )
+    </sql>
+  <sql id="fullMatrixPrjId">
+        IN (
+    SELECT PRJ_ID
+    FROM AIS1001
+    WHERE UPPER_BIZ_ID IN(
+                        SELECT BIZ_ID
+                        FROM VW_AIS1000 AIS
+                        WHERE DEL_YN = 'N'
+                        START WITH BIZ_ID = #{prjId}
+        CONNECT BY PRIOR BIZ_ID = UPPER_BIZ_ID
+        AND DEL_YN = 'N'  )
+        AND DEL_YN = 'N'
+        )
+    </sql>
+  <select id="getTotalSearch" parameterType="java.util.HashMap" resultMap="getTotalSearchMap">/* ImpactStreamInfo.xml.getTotalSearch */ /* ImpactStreamInfo.xml.getTotalSearch */ 
+<include refid="impact.pagingSql_Start" />
+    <if test="searchType == 'tbl'">
+            SELECT DISTINCT DT.PRJ_ID
+            , DT.FILE_ID
+            , DT.OBJ_ID
+            , DT.FUNC_ID
+            , 0 AS SQL_ID
+            , 0 AS TABLE_ID
+            , 0 AS DBOBJ_ID
+            , fn_PRJTREENAME(DT.PRJ_ID) AS BIZ_PATH
+            , DT.PRJ_NAME
+            , DT.FILE_NAME
+            , DT.FILE_FULL_PATH AS FILE_PATH
+            , DT.ORG_FILE_PATH
+            , DT.FUNC_NAME
+            , '' as TGT_NAME
+            , DT.SQL_START_LINE_NO
+            , DT.START_LINE_NO AS SQL_START_LINE_NO_DISP
+            , DT.OBJ_NAME
+            , DT.OBJ_NAME_SOURCE
+            , DT.OBJ_NAME_DISP
+            , DT.OBJ_NAME_DISP AS TABLE_NAME
+            , DT.VARNAME
+            , '\' || LPAD(DT.VARVALUE,LENGTH(DT.VARVALUE)-1) AS VARVALUE
+            , DT.START_LINE_NO
+            , DT.QUERY_TYPE
+            , DT.FILE_ANLY_YN
+            , DT.BEGINLINE
+            , DT.BEGINCOLUMN
+            , DT.SQL_TYPE
+            , DT.LANGTYPE
+            , 'file' as OBJTYPE
+            , '' AS INLINEVIEW_YN
+            , '' AS INLINEVIEW_SRC
+            , DT.COLUMN_NO
+            , DT.BIZUNIT_NAME
+            , '' AS GUBUN
+            , '' AS FUNC_ACCS_TYPE
+            , 'N' AS TS_BLOCK_NM
+            FROM (SELECT DATA.PRJ_NAME
+            , DATA.PRJ_ID
+            , DATA.FILE_ID
+            , DATA.OBJ_ID
+            , DATA.FUNC_ID
+            , DATA.SQL_ID
+            , DATA.TABLE_ID
+            , CASE WHEN SUBSTR(DATA.TABLE_NAME,1,2) = '::' THEN
+            DATA.VARNAME
+            ELSE
+            DATA.TABLE_NAME
+            END AS OBJ_NAME
+            , CASE WHEN SUBSTR(DATA.TABLE_NAME,1,2) = '::' THEN
+            DATA.VARNAME
+            ELSE
+            DATA.TABLE_NAME
+            END AS OBJ_NAME_SOURCE
+            
+            , CASE WHEN SUBSTR(DATA.TABLE_NAME,1,2) = '::' THEN
+            DATA.VARVALUE || ' [' || DATA.VARNAME || ']'
+            ELSE
+            DATA.TABLE_NAME
+            END AS OBJ_NAME_DISP
+            , DATA.VARNAME
+            , DATA.VARVALUE
+            , DATA.FILE_NAME
+            , DATA.FILE_FULL_PATH
+            , DATA.ORG_FILE_PATH
+            , DATA.FUNC_NAME
+            , CASE WHEN DATA.SQL_TYPE = 'EM' THEN
+            DATA.SQL_LINE
+            ELSE
+            CASE WHEN DATA.EXT_CD IN ('XML', 'XSQL') THEN
+            DATA.SQL_LINE
+            ELSE
+            DATA.FUNC_START_LINE_NO
+            END
+            END AS SQL_START_LINE_NO
+            , DATA.TABLE_LINE_NO AS START_LINE_NO
+            , DATA.LINE_NO
+            , DATA.QUERY_TYPE
+            , DATA.FILE_ANLY_YN
+            , DATA.BEGINLINE
+            , DATA.BEGINCOLUMN
+            , DATA.SQL_TYPE
+            , DATA.EXT_CD AS LANGTYPE
+            , DATA.COLUMN_NO
+            , DATA.BIZUNIT_NAME
+            FROM (SELECT F.PRJ_KOR_NAME AS PRJ_NAME
+            , X.PRJ_ID
+            , X.FILE_ID
+            , X.OBJ_ID
+            , X.FUNC_ID
+            , X.SQL_ID
+            , X.TABLE_ID
+            , X.TABLE_NAME
+            , X.FILE_NAME
+            , X.FILE_FULL_PATH
+            , X.ORG_FILE_PATH
+            , G.FUNC_NAME
+            , G.START_LINE_NO AS FUNC_START_LINE_NO
+            , X.TABLE_LINE_NO
+            , E.LINE_NO
+            , E.LINE_NO AS SQL_LINE
+            , X.QUERY_TYPE
+            , E.SQL_SRC_TYPE AS SQL_TYPE
+            , X.FILE_ANLY_YN
+            , X.EXT_CD
+            , H.VARNAME
+            , H.VARVALUE
+            , H.BEGINLINE
+            , H.BEGINCOLUMN
+            , X.COLUMN_NO
+            , X.BIZUNIT_NAME
+            FROM (SELECT
+            A.PRJ_ID
+            , A.FILE_ID
+            , A.OBJ_ID
+            , A.FUNC_ID
+            , A.SQL_ID
+            , A.TABLE_ID
+            , A.QUERY_LINE_NO AS TABLE_LINE_NO
+            , A.CAPS_TABLE_NAME AS TABLE_NAME
+            , CASE WHEN A.QUERY_TYPE = 'S' THEN 'R'
+            WHEN A.QUERY_TYPE = 'C' AND A.SQL_STATE = 'CREATE-TABLE' THEN 'C(CREATE)'
+            WHEN A.QUERY_TYPE = 'M' AND A.SQL_STATE = 'MERGE' THEN 'M(MERGE)'
+            WHEN A.QUERY_TYPE = 'T' AND A.SQL_STATE = 'DROP' THEN 'D(DROP)'
+            ELSE A.QUERY_TYPE END AS QUERY_TYPE
+            , A.SQL_OBJ_TYPE
+            , B.SRC_FILE_NAME AS FILE_NAME
+            , B.SRC_FILE_FULL_PATH AS FILE_FULL_PATH
+            , B.ORG_FILE_PATH
+            , B.EXT_CD
+            , 'Y' AS FILE_ANLY_YN
+            , A.COLUMN_NO
+            , '' as BIZUNIT_NAME
+            FROM AIS0102 A
+            , VW_AIS0010_UI B
+            WHERE B.PRJ_ID
+            <include refid="impact.fullPrjIdSql" />
+            AND B.PRJ_ID = A.PRJ_ID
+            AND B.FILE_ID = A.FILE_ID
+            AND RTRIM(B.FILE_LST_YN) = 'Y'
+            AND RTRIM(A.INLINEVIEW_YN) = 'N'
+            <if test="searchFile !=null and searchFile !=''">
+        <if test="fileLikeType == 0 ">
+                    AND B.CAPS_SRC_FILE_NAME LIKE '%' || #{searchFile}
+                </if>
+        <if test="fileLikeType == 1 ">
+                    AND B.CAPS_SRC_FILE_NAME LIKE #{searchFile} || '%'
+                </if>
+        <if test="fileLikeType == 2 ">
+                    AND B.CAPS_SRC_FILE_NAME LIKE '%' || #{searchFile} || '%'
+                </if>
+      </if>
+      <if test="langType2 == 'ALL' ">
+        <if test="langType != 'ALL' ">
+                    AND B.EXT_CD IN(SELECT BB.EXT_CD
+                    FROM AIS2101 AA, AIS2102 BB
+                    WHERE AA.LANG_CD = #{langType}
+                    AND BB.LANG_CD = AA.LANG_CD )
+                </if>
+      </if>
+      <if test="langType2 != 'ALL' ">
+        <if test="langType != 'ALL' ">
+                    AND B.EXT_CD = #{langType2}
+                </if>
+      </if>
+            ) X
+            inner join
+            VW_AIS0100 E
+            on X.PRJ_ID = E.PRJ_ID
+            AND X.FILE_ID = E.FILE_ID
+            AND X.SQL_ID = E.SQL_ID
+            left outer join
+            AIS0012 G
+            on X.PRJ_ID = G.PRJ_ID
+            AND X.FILE_ID = G.FILE_ID
+            AND X.OBJ_ID = G.OBJ_ID
+            AND X.FUNC_ID = G.FUNC_ID
+            inner join
+            AIS1001 F
+            on X.PRJ_ID = F.PRJ_ID
+            left outer join
+            AIS0107 H
+            on X.FILE_ID = H.FILE_ID
+            AND X.TABLE_NAME = H.VARNAME
+            AND X.PRJ_ID = H.PRJ_ID
+            ) DATA
+            ) DT
+            <if test="searchName !=null and searchName !=''">
+        <if test="nameLikeType == 0 ">
+                    WHERE UPPER(DT.OBJ_NAME_DISP) LIKE '%' || #{searchName}
+                </if>
+        <if test="nameLikeType == 1 ">
+                    WHERE UPPER(DT.OBJ_NAME_DISP) LIKE #{searchName} || '%'
+                </if>
+        <if test="nameLikeType == 2 ">
+                    WHERE UPPER(DT.OBJ_NAME_DISP) LIKE '%' || #{searchName} || '%'
+                </if>
+      </if>
+    </if>
+    <if test="searchType == 'col' ">
+            SELECT DISTINCT DT.PRJ_ID
+            , DT.FILE_ID
+            , DT.OBJ_ID
+            , DT.FUNC_ID
+            , 0 AS SQL_ID
+            , 0 AS TABLE_ID
+            , 0 AS DBOBJ_ID
+            , fn_PRJTREENAME(DT.PRJ_ID) AS BIZ_PATH
+            , DT.PRJ_NAME
+            , DT.FILE_NAME
+            , DT.FILE_PATH
+            , DT.ORG_FILE_PATH
+            , DT.FUNC_NAME
+            , '' as TGT_NAME
+            , DT.OBJ_NAME
+            , DT.OBJ_NAME_SOURCE
+            , DT.OBJ_NAME_DISP
+            , DT.TABLE_NAME
+            , DT.SQL_START_LINE_NO
+            , DT.START_LINE_NO AS SQL_START_LINE_NO_DISP
+            , DT.VARNAME
+            , '\' || LPAD(DT.VARVALUE,LENGTH(DT.VARVALUE)-1) AS VARVALUE
+            , DT.START_LINE_NO
+            , DT.QUERY_TYPE
+            , DT.FILE_ANLY_YN
+            , DT.BEGINLINE
+            , DT.BEGINCOLUMN
+            , DT.SQL_TYPE
+            , DT.LANGTYPE
+            , 'file' as OBJTYPE
+            , DT.INLINEVIEW_YN
+            , DT.INLINEVIEW_SRC
+            , DT.COLUMN_NO
+            , DT.BIZUNIT_NAME
+            , '' AS GUBUN
+            , '' AS FUNC_ACCS_TYPE
+            , 'N' AS TS_BLOCK_NM
+            FROM (SELECT DATA.PRJ_ID
+            , DATA.FILE_ID
+            , DATA.OBJ_ID
+            , DATA.FUNC_ID
+            , DATA.SQL_ID
+            , DATA.TABLE_ID
+            , DATA.COL_ID
+            , DATA.CAPS_TABLE_NAME AS TABLE_NAME
+            , DATA.PRJ_KOR_NAME AS PRJ_NAME
+            , CASE WHEN SUBSTR(DATA.COL_NAME,1,2) = '::' THEN
+            DATA.VARNAME
+            ELSE
+            DATA.COL_NAME
+            END AS OBJ_NAME
+            , CASE WHEN SUBSTR(DATA.COL_NAME,1,2) = '::' THEN
+            DATA.VARNAME
+            ELSE
+            DATA.COL_NAME_SRC
+            END AS OBJ_NAME_SOURCE
+            , CASE WHEN SUBSTR(DATA.COL_NAME,1,2) = '::' THEN
+            DATA.VARVALUE || ' [' || DATA.VARNAME || ']'
+            ELSE
+            DATA.COL_NAME
+            END AS OBJ_NAME_DISP
+            , DATA.VARNAME
+            , DATA.VARVALUE
+            , DATA.FILE_NAME
+            , DATA.FILE_PATH
+            , DATA.ORG_FILE_PATH
+            , DATA.FUNC_NAME
+            , CASE WHEN DATA.SQL_TYPE = 'EM' THEN
+            DATA.SQL_LINE
+            ELSE
+            CASE WHEN DATA.EXT_CD IN ('XML', 'XSQL') THEN
+            DATA.SQL_LINE
+            ELSE
+            DATA.START_LINE_NO
+            END
+            END AS SQL_START_LINE_NO
+            , DATA.COL_LINE_NO AS START_LINE_NO
+            , DATA.LINE_NO
+            , DATA.QUERY_TYPE
+            , DATA.UPPER_BIZ_ID AS BIZ_ID
+            , DATA.EXT_CD AS LANGTYPE
+            , DATA.FILE_ANLY_YN
+            , DATA.BEGINLINE
+            , DATA.BEGINCOLUMN
+            , DATA.SQL_TYPE
+            , DATA.INLINEVIEW_YN
+            , substring( DATA.INLINEVIEW_SRC::varchar,1,3000 ) as INLINEVIEW_SRC
+            , DATA.COLUMN_NO
+            , DATA.BIZUNIT_NAME
+            FROM (SELECT X.PRJ_ID
+            , F.PRJ_KOR_NAME
+            , X.FILE_ID
+            , X.CAPS_TABLE_NAME
+            , X.SRC_FILE_NAME AS FILE_NAME
+            , X.SRC_FILE_FULL_PATH AS FILE_PATH
+            , X.ORG_FILE_PATH
+            , G.FUNC_NAME
+            , G.START_LINE_NO
+            , E.LINE_NO AS SQL_LINE
+            , X.OBJ_ID
+            , X.FUNC_ID
+            , X.TABLE_ID
+            , X.COL_ID
+            , X.COL_NAME
+            , X.COL_NAME_SRC
+            , X.COL_LINE_NO
+            , E.LINE_NO
+            , X.QUERY_TYPE
+            , E.SQL_SRC_TYPE AS SQL_TYPE
+            , X.SQL_ID
+            , F.UPPER_BIZ_ID
+            , X.EXT_CD
+            , X.FILE_ANLY_YN
+            , H.VARNAME
+            , H.VARVALUE
+            , H.BEGINLINE
+            , H.BEGINCOLUMN
+            , X.INLINEVIEW_YN
+            , X.INLINEVIEW_SRC
+            , X.COLUMN_NO
+            , X.BIZUNIT_NAME
+            FROM (SELECT
+            D.PRJ_ID
+            , D.FILE_ID
+            , D.SQL_ID
+            , D.TABLE_ID
+            , D.OBJ_ID
+            , D.FUNC_ID
+            , D.COL_NAME
+            , D.COL_NAME_SRC
+            , D.COL_ID
+            , D.QUERY_LINE_NO AS COL_LINE_NO
+            , A.CAPS_TABLE_NAME
+            , CASE WHEN A.QUERY_TYPE = 'S' THEN 'R'
+            WHEN A.QUERY_TYPE = 'C' AND A.SQL_STATE = 'CREATE-TABLE' THEN 'C(CREATE)'
+            WHEN A.QUERY_TYPE = 'M' AND A.SQL_STATE = 'MERGE' THEN 'M(MERGE)'
+            WHEN A.QUERY_TYPE = 'T' AND A.SQL_STATE = 'DROP' THEN 'D(DROP)'
+            ELSE A.QUERY_TYPE END AS QUERY_TYPE
+            , B.SRC_FILE_NAME
+            , B.SRC_FILE_FULL_PATH
+            , B.ORG_FILE_PATH
+            , B.EXT_CD
+            , 'Y' AS FILE_ANLY_YN
+            , A.INLINEVIEW_YN
+            , A.INLINEVIEW_SRC
+            , D.COLUMN_NO
+            , '' AS BIZUNIT_NAME
+            FROM AIS0102 A
+            , VW_AIS0010_UI B
+            , AIS0103 D
+            WHERE B.PRJ_ID
+            <include refid="impact.fullPrjIdSql" />
+            AND B.PRJ_ID = A.PRJ_ID
+            AND B.FILE_ID = A.FILE_ID
+            AND RTRIM(B.FILE_LST_YN) = 'Y'
+            AND A.PRJ_ID = D.PRJ_ID
+            AND A.FILE_ID = D.FILE_ID
+            AND A.PRJ_ID = D.PRJ_ID
+            AND A.SQL_ID = D.SQL_ID
+            AND A.TABLE_ID = D.TABLE_ID
+            <if test="searchFile !=null and searchFile !=''">
+        <if test="fileLikeType == 0 ">
+                    AND B.CAPS_SRC_FILE_NAME LIKE '%' || #{searchFile}
+                </if>
+        <if test="fileLikeType == 1">
+                    AND B.CAPS_SRC_FILE_NAME LIKE #{searchFile} || '%'
+                </if>
+        <if test="fileLikeType == 2 ">
+                    AND B.CAPS_SRC_FILE_NAME LIKE '%' || #{searchFile} || '%'
+                </if>
+      </if>
+      <if test="langType2 == 'ALL' ">
+        <if test="langType != 'ALL' ">
+                    AND B.EXT_CD IN(SELECT BB.EXT_CD
+                    FROM AIS2101 AA, AIS2102 BB
+                    WHERE AA.LANG_CD = #{langType}
+                    AND BB.LANG_CD = AA.LANG_CD )
+                </if>
+      </if>
+      <if test="langType2 != 'ALL' ">
+        <if test="langType != 'ALL' ">
+                    AND B.EXT_CD = #{langType2}
+                </if>
+      </if>
+            ) X
+            inner join
+            VW_AIS0100 E
+            on X.PRJ_ID = E.PRJ_ID
+            AND X.FILE_ID = E.FILE_ID
+            AND X.SQL_ID = E.SQL_ID
+            left outer join
+            AIS0012 G
+            on X.PRJ_ID = G.PRJ_ID
+            AND X.FILE_ID = G.FILE_ID
+            AND X.OBJ_ID = G.OBJ_ID
+            AND X.FUNC_ID = G.FUNC_ID
+            inner join
+            AIS1001 F
+            on X.PRJ_ID = F.PRJ_ID
+            left outer join
+            AIS0107 H
+            on X.PRJ_ID = H.PRJ_ID
+            AND X.FILE_ID = H.FILE_ID
+            AND X.COL_NAME = H.VARNAME
+            ) DATA
+            ) DT
+            <if test="searchName !=null and searchName !=''">
+        <if test="nameLikeType == 0 ">
+                    WHERE UPPER(DT.OBJ_NAME_DISP) LIKE '%' || #{searchName}
+                </if>
+        <if test="nameLikeType == 1">
+                    WHERE UPPER(DT.OBJ_NAME_DISP) LIKE #{searchName} || '%'
+                </if>
+        <if test="nameLikeType == 2 ">
+                    WHERE UPPER(DT.OBJ_NAME_DISP) LIKE '%' || #{searchName} || '%'
+                </if>
+      </if>
+            order by DT.START_LINE_NO, dt.COLUMN_NO
+        </if>
+    <if test="searchType == 'func' ">
+            SELECT A.PRJ_ID AS "PRJ_ID"
+            , A.FILE_ID
+            , A.OBJ_ID
+            , A.FUNC_ID
+            , '' AS SQL_ID
+            , '' AS TABLE_ID
+            , '' AS DBOBJ_ID
+            , FN_PRJTREENAME(A.PRJ_ID) AS BIZ_PATH
+            , C.PRJ_KOR_NAME AS PRJ_NAME
+            , B.SRC_FILE_NAME AS FILE_NAME
+            , B.SRC_FILE_FULL_PATH AS FILE_PATH
+            , B.ORG_FILE_PATH
+            , A.FUNC_NAME
+            , '' as TGT_NAME
+            , A.START_LINE_NO AS SQL_START_LINE_NO
+            , A.START_LINE_NO AS SQL_START_LINE_NO_DISP
+            , '' AS OBJ_NAME
+            , '' AS OBJ_NAME_SOURCE
+            , '' AS OBJ_NAME_DISP
+            , '' AS TABLE_NAME
+            , '' AS VARNAME
+            , '' AS VARVALUE
+            , A.START_LINE_NO
+            , '' AS QUERY_TYPE
+            , 'Y' AS FILE_ANLY_YN
+            , '' AS BEGINLINE
+            , '' AS BEGINCOLUMN
+            , B.EXT_CD AS LANGTYPE
+            , '' AS SQL_TYPE
+            , 'file' as OBJTYPE
+            , '' AS INLINEVIEW_YN
+            , '' AS INLINEVIEW_SRC
+            , '' AS COLUMN_NO
+            , '' AS BIZUNIT_NAME
+            , '' AS GUBUN
+            , A.FUNC_ACCS_TYPE AS FUNC_ACCS_TYPE
+            , 'N' AS TS_BLOCK_NM
+            FROM AIS0012 A
+            , VW_AIS0010_UI B
+            , AIS1001 C
+            WHERE A.PRJ_ID
+            <include refid="impact.fullPrjIdSql" />
+            AND A.PRJ_ID = B.PRJ_ID
+            AND B.PRJ_ID = C.PRJ_ID
+            AND A.FILE_ID = B.FILE_ID
+            <if test="searchFile !=null and searchFile !=''">
+        <if test="fileLikeType == 0 ">
+                    AND B.CAPS_SRC_FILE_NAME LIKE '%' || #{searchFile}
+                </if>
+        <if test="fileLikeType == 1">
+                    AND B.CAPS_SRC_FILE_NAME LIKE #{searchFile} || '%'
+                </if>
+        <if test="fileLikeType == 2 ">
+                    AND B.CAPS_SRC_FILE_NAME LIKE '%' || #{searchFile} || '%'
+                </if>
+      </if>
+      <if test="searchName !=null and searchName !=''">
+        <if test="nameLikeType == 0 ">
+                    AND UPPER(A.FUNC_NAME) LIKE '%' || #{searchName}
+                </if>
+        <if test="nameLikeType == 1">
+                    AND UPPER(A.FUNC_NAME) LIKE #{searchName} || '%'
+                </if>
+        <if test="nameLikeType == 2 ">
+                    AND UPPER(A.FUNC_NAME) LIKE '%' || #{searchName} || '%'
+                </if>
+      </if>
+      <if test="langType2 == 'ALL' ">
+        <if test="langType != 'ALL' ">
+                    AND B.EXT_CD IN(SELECT BB.EXT_CD
+                    FROM AIS2101 AA, AIS2102 BB
+                    WHERE AA.LANG_CD = #{langType}
+                    AND BB.LANG_CD = AA.LANG_CD )
+                </if>
+      </if>
+      <if test="langType2 != 'ALL' ">
+        <if test="langType != 'ALL' ">
+                    AND B.EXT_CD = #{langType2}
+                </if>
+      </if>
+            AND RTRIM(B.FILE_LST_YN) = 'Y'
+            ORDER BY BIZ_PATH, FUNC_NAME, SRC_FILE_NAME
+        </if>
+    <if test="searchType == 'file' ">
+            SELECT B.PRJ_ID
+            , B.FILE_ID
+            , '' AS OBJ_ID
+            , '' AS FUNC_ID
+            , '' AS SQL_ID
+            , '' AS TABLE_ID
+            , '' AS DBOBJ_ID
+            , FN_PRJTREENAME(B.PRJ_ID) AS BIZ_PATH
+            , C.PRJ_KOR_NAME AS PRJ_NAME
+            , B.SRC_FILE_NAME AS FILE_NAME
+            , B.SRC_FILE_FULL_PATH AS FILE_PATH
+            , B.ORG_FILE_PATH
+            , '' AS FUNC_NAME
+            , '' as TGT_NAME
+            , '' AS SQL_START_LINE_NO
+            , '' AS SQL_START_LINE_NO_DISP
+            , '' AS OBJ_NAME
+            , '' AS OBJ_NAME_DISP
+            , '' AS OBJ_NAME_SOURCE
+            , '' AS TABLE_NAME
+            , '' AS VARNAME
+            , '' AS VARVALUE
+            , '' AS START_LINE_NO
+            , '' AS QUERY_TYPE
+            , 'Y' AS FILE_ANLY_YN
+            , '' AS BEGINLINE
+            , '' AS BEGINCOLUMN
+            , B.EXT_CD AS LANGTYPE
+            , '' AS SQL_TYPE
+            , 'file' as OBJTYPE
+            , '' AS INLINEVIEW_YN
+            , '' AS INLINEVIEW_SRC
+            , '' AS COLUMN_NO
+            , '' AS BIZUNIT_NAME
+            , '' AS GUBUN
+            , '' AS FUNC_ACCS_TYPE
+            , CASE WHEN B.EXT_CD IN ( 'BLKSQL', 'BLK', 'BLKOUT', 'BLKSCL' )
+            THEN NULL ELSE
+            'N'
+            END AS TS_BLOCK_NM
+            FROM VW_AIS0010_UI B
+            , AIS1001 C
+            WHERE B.PRJ_ID
+            <include refid="impact.fullPrjIdSql" />
+            AND B.PRJ_ID = C.PRJ_ID
+            AND RTRIM(B.FILE_LST_YN) = 'Y'
+            <if test="searchFile !=null and searchFile !=''">
+        <if test="fileLikeType == 0 ">
+                    AND B.CAPS_SRC_FILE_NAME LIKE '%' || #{searchFile}
+                </if>
+        <if test="fileLikeType == 1">
+                    AND B.CAPS_SRC_FILE_NAME LIKE #{searchFile} || '%'
+                </if>
+        <if test="fileLikeType == 2 ">
+                    AND B.CAPS_SRC_FILE_NAME LIKE '%' || #{searchFile} || '%'
+                </if>
+      </if>
+      <if test="searchName !=null and searchName !=''">
+        <if test="nameLikeType == 0 ">
+</if>
+        <if test="nameLikeType == 1">
+</if>
+        <if test="nameLikeType == 2 ">
+</if>
+      </if>
+      <if test="langType2 == 'ALL' ">
+        <if test="langType != 'ALL' ">
+                    AND B.EXT_CD IN(SELECT BB.EXT_CD
+                    FROM AIS2101 AA, AIS2102 BB
+                    WHERE AA.LANG_CD = #{langType}
+                    AND BB.LANG_CD = AA.LANG_CD )
+                </if>
+      </if>
+      <if test="langType2 != 'ALL' ">
+        <if test="langType != 'ALL' ">
+                    AND B.EXT_CD = #{langType2}
+                </if>
+      </if>
+            ORDER BY BIZ_PATH, SRC_FILE_NAME
+        </if>
+    <if test="searchType == 'sys' ">
+            SELECT DISTINCT B.PRJ_ID
+            , B.FILE_ID
+            , D.OBJ_ID AS OBJ_ID
+            , D.FUNC_ID AS FUNC_ID
+            , 0 AS SQL_ID
+            , 0 AS TABLE_ID
+            , '' AS DBOBJ_ID
+            , A.SRV_NAME AS TGT_NAME
+            , FN_PRJTREENAME(B.PRJ_ID) AS BIZ_PATH
+            , C.PRJ_KOR_NAME AS PRJ_NAME
+            , B.SRC_FILE_NAME AS FILE_NAME
+            , B.SRC_FILE_FULL_PATH AS FILE_PATH
+            , B.ORG_FILE_PATH
+            , D.FUNC_NAME AS FUNC_NAME
+            , '' AS SQL_START_LINE_NO
+            , '' AS SQL_START_LINE_NO_DISP
+            , '' AS OBJ_NAME
+            , '' AS OBJ_NAME_DISP
+            , '' AS OBJ_NAME_SOURCE
+            , '' AS TABLE_NAME
+            , '' AS VARNAME
+            , '' AS VARVALUE
+            , D.START_LINE_NO AS START_LINE_NO
+            , '' AS QUERY_TYPE
+            , 'Y' AS FILE_ANLY_YN
+            , '' AS BEGINLINE
+            , '' AS BEGINCOLUMN
+            , B.EXT_CD AS LANGTYPE
+            , '' AS SQL_TYPE
+            , 'FILE' AS OBJTYPE
+            , '' AS INLINEVIEW_YN
+            , '' AS INLINEVIEW_SRC
+            , '' AS COLUMN_NO
+            , '' AS BIZUNIT_NAME
+            , 'FUNC' AS GUBUN
+            , '' AS FUNC_ACCS_TYPE
+            , 'N' AS TS_BLOCK_NM
+            FROM AIS1020 A
+            , VW_AIS0010_UI B
+            , AIS1001 C
+            , AIS0012 D
+            WHERE B.PRJ_ID
+            <include refid="impact.fullPrjIdSql" />
+            AND A.TGT_SRV_ID = C.TGT_SRV_ID
+            AND B.PRJ_ID = C.PRJ_ID
+            AND B.PRJ_ID = D.PRJ_ID
+            AND B.FILE_ID = D.FILE_ID
+            AND RTRIM(B.FILE_LST_YN) = 'Y'
+            <if test="searchFile !=null and searchFile !=''">
+        <if test="fileLikeType == 0 ">
+                    AND B.CAPS_SRC_FILE_NAME LIKE '%' || #{searchFile}
+                </if>
+        <if test="fileLikeType == 1">
+                    AND B.CAPS_SRC_FILE_NAME LIKE #{searchFile} || '%'
+                </if>
+        <if test="fileLikeType == 2 ">
+                    AND B.CAPS_SRC_FILE_NAME LIKE '%' || #{searchFile} || '%'
+                </if>
+      </if>
+      <if test="searchName !=null and searchName !=''">
+        <if test="nameLikeType == 0 ">
+                    AND UPPER(A.SRV_NAME) LIKE '%' || #{searchName}
+                </if>
+        <if test="nameLikeType == 1">
+                    AND UPPER(A.SRV_NAME) LIKE #{searchName} || '%'
+                </if>
+        <if test="nameLikeType == 2 ">
+                    AND UPPER(A.SRV_NAME) LIKE '%' || #{searchName} || '%'
+                </if>
+      </if>
+      <if test="langType2 == 'ALL' ">
+        <if test="langType != 'ALL' ">
+                    AND B.EXT_CD IN(SELECT BB.EXT_CD
+                    FROM AIS2101 AA, AIS2102 BB
+                    WHERE AA.LANG_CD = #{langType}
+                    AND BB.LANG_CD = AA.LANG_CD )
+                </if>
+      </if>
+      <if test="langType2 != 'ALL' ">
+        <if test="langType != 'ALL' ">
+                    AND B.EXT_CD = #{langType2}
+                </if>
+      </if>
+            UNION ALL
+            SELECT DISTINCT B.PRJ_ID
+            , B.FILE_ID
+            , E.OBJ_ID AS OBJ_ID
+            , E.FUNC_ID AS FUNC_ID
+            , E.SQL_ID AS SQL_ID
+            , E.TABLE_ID AS TABLE_ID
+            , '' AS DBOBJ_ID
+            , (case when A.SRV_NAME = null then 'NO CATEGORY' else A.SRV_NAME end) as TGT_NAME
+            , FN_PRJTREENAME(B.PRJ_ID) AS BIZ_PATH
+            , C.PRJ_KOR_NAME AS PRJ_NAME
+            , B.SRC_FILE_NAME AS FILE_NAME
+            , B.SRC_FILE_FULL_PATH AS FILE_PATH
+            , B.ORG_FILE_PATH
+            , E.TABLE_NAME AS FUNC_NAME
+            , '' AS SQL_START_LINE_NO
+            , '' AS SQL_START_LINE_NO_DISP
+            , '' AS OBJ_NAME
+            , '' AS OBJ_NAME_DISP
+            , '' AS OBJ_NAME_SOURCE
+            , '' AS TABLE_NAME
+            , '' AS VARNAME
+            , '' AS VARVALUE
+            , E.QUERY_LINE_NO AS START_LINE_NO
+            , '' AS QUERY_TYPE
+            , 'Y' AS FILE_ANLY_YN
+            , '' AS BEGINLINE
+            , '' AS BEGINCOLUMN
+            , B.EXT_CD AS LANGTYPE
+            , '' AS SQL_TYPE
+            , 'FILE' AS OBJTYPE
+            , '' AS INLINEVIEW_YN
+            , '' AS INLINEVIEW_SRC
+            , '' AS COLUMN_NO
+            , '' AS BIZUNIT_NAME
+            , 'TBL' AS GUBUN
+            , '' AS FUNC_ACCS_TYPE
+            , 'N' AS TS_BLOCK_NM
+            FROM AIS1020 A
+            right outer join
+            (SELECT V1.*, V3.TGT_SRV_ID
+            FROM VW_DBCOBJINFO V1
+            , AIS1003 V2
+            , AIS1001 V3
+            WHERE V1.JOB_ID = V2.JOB_ID
+            AND V2.PRJ_ID = V3.PRJ_ID
+            AND V3.PRJ_ID IN ( SELECT REL_PRJ_ID FROM AIS1002 WHERE PRJ_ID
+            <include refid="impact.fullPrjIdSql" />
+            )
+            ) V1
+            on A.TGT_SRV_ID = V1.TGT_SRV_ID
+            right outer join
+            AIS0102 E
+            on V1.CAPS_DBOBJ_NAME = E.CAPS_TABLE_NAME
+            inner join
+            VW_AIS0010_UI B
+            on B.PRJ_ID = E.PRJ_ID
+            AND B.FILE_ID = E.FILE_ID
+            inner join
+            AIS1001 C
+            on B.PRJ_ID = C.PRJ_ID
+            WHERE B.PRJ_ID
+            <include refid="impact.fullPrjIdSql" />
+      <if test="searchFile !=null and searchFile !=''">
+        <if test="fileLikeType == 0 ">
+                    AND B.CAPS_SRC_FILE_NAME LIKE '%' || #{searchFile}
+                </if>
+        <if test="fileLikeType == 1">
+                    AND B.CAPS_SRC_FILE_NAME LIKE #{searchFile} || '%'
+                </if>
+        <if test="fileLikeType == 2 ">
+                    AND B.CAPS_SRC_FILE_NAME LIKE '%' || #{searchFile} || '%'
+                </if>
+      </if>
+      <if test="searchName !=null and searchName !=''">
+        <if test="nameLikeType == 0 ">
+                    AND UPPER(A.SRV_NAME) LIKE '%' || #{searchName}
+                </if>
+        <if test="nameLikeType == 1">
+                    AND UPPER(A.SRV_NAME) LIKE #{searchName} || '%'
+                </if>
+        <if test="nameLikeType == 2 ">
+                    AND UPPER(A.SRV_NAME) LIKE '%' || #{searchName} || '%'
+                </if>
+      </if>
+      <if test="langType2 == 'ALL' ">
+        <if test="langType != 'ALL' ">
+                    AND B.EXT_CD IN(SELECT BB.EXT_CD
+                    FROM AIS2101 AA, AIS2102 BB
+                    WHERE AA.LANG_CD = #{langType}
+                    AND BB.LANG_CD = AA.LANG_CD )
+                </if>
+      </if>
+      <if test="langType2 != 'ALL' ">
+        <if test="langType != 'ALL' ">
+                    AND B.EXT_CD = #{langType2}
+                </if>
+      </if>
+    </if>
+    <include refid="impact.pagingSql_End" />
+  </select>
+  <select id="getNotAnalSqlData" parameterType="java.util.HashMap" resultMap="getNotAnalSqlDataMap">/* ImpactStreamInfo.xml.getNotAnalSqlData */ /* ImpactStreamInfo.xml.getNotAnalSqlData */ 
+<include refid="impact.pagingSql_Start" />
+        SELECT FILE_NAME AS "FILE_NAME"
+        , FUNC_NAME AS "FUNC_NAME"
+        , LANG_TYPE AS LANGTYPE
+        , LINE_NO AS "LINE_NO"
+        , BIZ_PATH AS "BIZ_PATH"
+        , FILE_PATH AS "FILE_PATH"
+        , PRJ_ID AS "PRJ_ID"
+        , FILE_ID AS "FILE_ID"
+        , SQL_ID AS "SQL_ID"
+        , OBJ_ID AS "OBJ_ID"
+        , FUNC_ID AS "FUNC_ID"
+        , SQL_SRC AS "SQL_SRC"
+        , SQL_SRC_TYPE AS "SQL_SRC_TYPE"
+        , ERRMSG AS "ERRMSG"
+        , ORG_FILE_PATH AS "ORG_FILE_PATH"
+        , RST_MSG AS "RST_MSG"
+        FROM (SELECT A.SRC_FILE_NAME          AS FILE_NAME
+        , C.FUNC_NAME
+        , E.LANG_CD                AS LANG_TYPE
+        , B.LINE_NO
+        , fn_PRJTREENAME(B.PRJ_ID) AS BIZ_PATH
+        , A.SRC_FILE_FULL_PATH     AS FILE_PATH
+        , B.PRJ_ID
+        , B.FILE_ID
+        , B.SQL_ID
+        , B.OBJ_ID
+        , B.FUNC_ID
+        , B.SQL_SRC
+        , B.SQL_SRC_TYPE
+        , B.ERRMSG
+        , A.ORG_FILE_PATH
+        , 'SQL Parsing ERROR' AS RST_MSG
+        FROM 	VW_AIS0108 B
+        inner join
+        VW_AIS0010_UI A
+        on B.PRJ_ID = A.PRJ_ID
+        and B.FILE_ID = A.FILE_ID
+
+        inner join
+        AIS2102 E
+        on A.EXT_CD = E.EXT_CD
+
+        left outer join
+        AIS0012 C
+        on B.PRJ_ID = C.PRJ_ID
+        and B.FILE_ID = C.FILE_ID
+        and B.OBJ_ID = C.OBJ_ID
+        and B.FUNC_ID = C.FUNC_ID
+        WHERE B.PRJ_ID <include refid="impact.fullPrjIdSql" />
+    <if test="searchName != null and searchName != ''">
+      <if test="nameLikeType == 0">
+                AND A.CAPS_SRC_FILE_NAME LIKE '%' || #{searchName}
+            </if>
+      <if test="nameLikeType == 1">
+                AND A.CAPS_SRC_FILE_NAME LIKE #{searchName} || '%'
+            </if>
+      <if test="nameLikeType == 2">
+                AND A.CAPS_SRC_FILE_NAME LIKE '%' || #{searchName} || '%'
+            </if>
+    </if>
+
+        AND A.EXT_CD IN(SELECT BB.EXT_CD
+        FROM AIS2101 AA, AIS2102 BB
+        WHERE AA.LANG_CD = #{langType}
+        AND BB.LANG_CD = AA.LANG_CD )
+
+        UNION ALL
+        SELECT A.SRC_FILE_NAME          AS FILE_NAME
+        , C.FUNC_NAME
+        , E.LANG_CD                AS LANG_TYPE
+        , B.LINE_NO
+        , fn_PRJTREENAME(B.PRJ_ID) AS BIZ_PATH
+        , A.SRC_FILE_FULL_PATH     AS FILE_PATH
+        , B.PRJ_ID
+        , B.FILE_ID
+        , B.SQL_ID
+        , B.OBJ_ID
+        , B.FUNC_ID
+        , B.SQL_SRC
+        , B.SQL_SRC_TYPE
+        , AP_COMMON_FN_GET_NOMAPPING_COLUMN(B.PRJ_ID, B.FILE_ID, B.SQL_ID)  AS ERRMSG
+        , A.ORG_FILE_PATH
+        , '[' ||
+        (SELECT COUNT(*) FROM AIS0103 R WHERE B.PRJ_ID = R.PRJ_ID AND B.FILE_ID = R.FILE_ID AND B.SQL_ID = R.SQL_ID AND R.TABLE_ID = 0) ||
+        '] Column Mapping ERROR' AS RST_MSG
+        FROM  VW_AIS0108 B
+        inner join
+        VW_AIS0010_UI A
+        on B.PRJ_ID = A.PRJ_ID
+        and B.FILE_ID = A.FILE_ID
+
+        inner join
+        AIS2102 E
+        on A.EXT_CD = E.EXT_CD
+
+        left outer join
+        AIS0012 C
+        on B.PRJ_ID = C.PRJ_ID
+        and B.FILE_ID = C.FILE_ID
+        and B.OBJ_ID = C.OBJ_ID
+        and B.FUNC_ID = C.FUNC_ID
+        WHERE ( B.PRJ_ID, B.FILE_ID, B.SQL_ID ) IN
+        ( SELECT DISTINCT F.PRJ_ID, F.FILE_ID, F.SQL_ID
+        FROM AIS0103 F
+        WHERE F.PRJ_ID <include refid="impact.fullPrjIdSql" />
+        AND F.TABLE_ID = 0
+        AND NOT EXISTS ( SELECT 1
+        FROM AIS0100 FF, AIS0100 F1
+        WHERE FF.PRJ_ID    = F1.PRJ_ID
+        AND FF.FILE_ID   = F1.FILE_ID
+        AND FF.LINE_NO   = F1.LINE_NO
+        AND FF.COLUMN_NO = F1.COLUMN_NO
+        AND F1.PRJ_ID    = F.PRJ_ID
+        AND F1.FILE_ID   = F.FILE_ID
+        AND F1.SQL_ID    = F.SQL_ID
+        limit 1
+        )
+        )
+        <if test="searchName != null and searchName != ''">
+      <if test="nameLikeType == 0">
+                AND A.CAPS_SRC_FILE_NAME LIKE '%' || #{searchName}
+            </if>
+      <if test="nameLikeType == 1">
+                AND A.CAPS_SRC_FILE_NAME LIKE #{searchName} || '%'
+            </if>
+      <if test="nameLikeType == 2">
+                AND A.CAPS_SRC_FILE_NAME LIKE '%' || #{searchName} || '%'
+            </if>
+    </if>
+
+        AND A.EXT_CD IN(SELECT BB.EXT_CD
+        FROM AIS2101 AA, AIS2102 BB
+        WHERE AA.LANG_CD = #{langType}
+        AND BB.LANG_CD = AA.LANG_CD )
+
+        ) X
+        <include refid="impact.pagingSql_End" />
+  </select>
+  <select id="getNoRefProgram" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamInfo.xml.getNoRefProgram */ /* ImpactStreamInfo.xml.getNoRefProgram */ 
+<include refid="impact.pagingSql_Start" />
+        SELECT DISTINCT A.PACKAGE_NAME AS "FACKAGE_NAME"
+        ,D.BIZ_KOR_NAME AS "BIZ_KOR_NAME"
+        ,C.PRJ_KOR_NAME AS "PRJ_NAME"
+        ,C.PRJ_ID AS "PRJ_ID"
+        ,fn_PRJTREENAME(C.PRJ_ID) AS "BIZ_PATH"
+        ,E.LANG_CD AS "LANG_CD"
+        ,B.SRC_FILE_FULL_PATH AS "FILE_PATH"
+        ,B.SRC_FILE_NAME AS "FILE_NAME"
+        ,B.ORG_FILE_PATH AS "ORG_FILE_PATH"
+        ,A.FILE_ID AS "FILE_ID"
+        ,A.START_LINE_NO AS "LINE_NO"
+        FROM
+        (
+        SELECT DT.*
+        FROM (
+        SELECT a.HEDR_FILE_NAME AS PACKAGE_NAME
+        , '' AS LANG_TYPE
+        , a.PRJ_ID
+        , a.FILE_ID
+        , a.START_LINE_NO
+        FROM AIS0031 a
+        left outer join
+        AIS0011 d
+        on   a.PRJ_ID          = d.PRJ_ID
+        AND a.HEDR_FILE_NAME  = d.OBJ_NAME
+        AND a.PKG_NAME        = d.PACKAGE
+        WHERE a.PRJ_ID <include refid="impact.fullPrjIdSql" />
+        AND a.HEDR_TYPE       = 'I'
+        AND a.HEDR_FILE_NAME != '*'
+        AND a.HEDR_FILE_NAME != '*;'
+        AND a.HEDR_FILE_NAME != 'N/A'
+        AND d.OBJ_NAME IS NULL
+        ) DT
+        left outer join
+        AIS0010 B
+        on  DT.PRJ_ID  = B.PRJ_ID
+        AND DT.FILE_ID = B.FILE_ID
+        WHERE B.EXT_CD IN ('C', 'PC')
+        UNION
+        SELECT DT.*
+        FROM (
+        SELECT a.PKG_NAME || '.' || a.HEDR_FILE_NAME AS PACKAGE_NAME
+        , '' AS LANG_TYPE
+        , a.PRJ_ID
+        , a.FILE_ID
+        , a.START_LINE_NO
+        FROM AIS0031 a
+        left outer join
+        AIS0011 d
+        on  a.PRJ_ID = d.PRJ_ID
+        AND a.HEDR_FILE_NAME = d.OBJ_NAME
+        AND a.PKG_NAME = d.PACKAGE
+        WHERE a.PRJ_ID <include refid="impact.fullPrjIdSql" />
+        AND a.HEDR_TYPE = 'I'
+        AND a.PKG_NAME IS NOT NULL
+        AND a.HEDR_FILE_NAME != '*'
+        AND a.HEDR_FILE_NAME != '*;'
+        AND a.HEDR_FILE_NAME != 'N/A'
+        AND d.OBJ_NAME IS NULL
+        AND a.PKG_NAME NOT LIKE 'java%'
+        AND a.PKG_NAME NOT LIKE 'org%'
+        AND a.PKG_NAME NOT LIKE 'sun%'
+        AND a.PKG_NAME NOT LIKE 'weblogic%'
+        AND a.PKG_NAME NOT LIKE 'oracle%'
+        AND a.PKG_NAME NOT LIKE 'com.lgcns.laf%'
+        ) DT
+        left outer join
+        AIS0010 B
+        on  DT.PRJ_ID  = B.PRJ_ID
+        AND DT.FILE_ID = B.FILE_ID
+        WHERE B.EXT_CD NOT IN ('C', 'PC')
+        ) A,
+        VW_AIS0010 B,
+        AIS1001 C,
+        VW_AIS1000 D,
+        AIS2102 E
+        WHERE B.PRJ_ID <include refid="impact.fullPrjIdSql" />
+        AND a.PRJ_ID       = b.PRJ_ID
+        AND B.PRJ_ID       = C.PRJ_ID
+        AND A.FILE_ID      = B.FILE_ID
+        AND b.EXT_CD       = e.EXT_CD
+        AND C.UPPER_BIZ_ID = D.BIZ_ID
+        AND B.DISPLAY_YN   = 'Y'
+        <if test="searchName !=null and searchName !=''">
+      <if test="nameLikeType == 0 ">
+                AND B.CAPS_SRC_FILE_NAME LIKE '%' || #{searchName}
+            </if>
+      <if test="nameLikeType == 1">
+                AND B.CAPS_SRC_FILE_NAME LIKE #{searchName} || '%'
+            </if>
+      <if test="nameLikeType == 2 ">
+                AND B.CAPS_SRC_FILE_NAME LIKE '%' || #{searchName} || '%'
+            </if>
+    </if>
+    <if test="packageName !=null and packageName !=''">
+      <if test="packageLikeType == 0 ">
+                AND UPPER(A.PACKAGE_NAME) LIKE '%' || #{packageName}
+            </if>
+      <if test="packageLikeType == 1">
+                AND UPPER(A.PACKAGE_NAME) LIKE #{packageName} || '%'
+            </if>
+      <if test="packageLikeType == 2 ">
+                AND UPPER(A.PACKAGE_NAME) LIKE '%' || #{packageName} || '%'
+            </if>
+    </if>
+    <if test="langType != 'ALL' ">
+            AND B.EXT_CD IN(SELECT BB.EXT_CD
+            FROM AIS2101 AA, AIS2102 BB
+            WHERE AA.LANG_CD = #{langType}
+            AND BB.LANG_CD = AA.LANG_CD )
+        </if>
+        ORDER BY D.BIZ_KOR_NAME, C.PRJ_KOR_NAME, B.SRC_FILE_NAME
+        <include refid="impact.pagingSql_End" />
+  </select>
+  <select id="getNoUseObjList" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamInfo.xml.getNoUseObjList */ /* ImpactStreamInfo.xml.getNoUseObjList */ 
+<include refid="impact.pagingSql_Start" />
+    <if test="objType == 'file' ">
+            SELECT DISTINCT B.BIZ_KOR_NAME AS "GRP_NAME",
+            C.PRJ_ID AS "PRJ_ID"
+            , fn_PRJTREENAME(C.PRJ_ID) AS "BIZ_PATH"
+            , C.PRJ_KOR_NAME AS "PRJ_NAME"
+            , D.SRC_FILE_NAME AS "FILE_NAME"
+            , D.SRC_FILE_FULL_PATH AS "FILE_PATH"
+            , D.EXT_CD AS "EXT_CD"
+            , F.LANG_NAME AS "LANG_NAME"
+            , D.FILE_ID AS "FILE_ID"
+            , D.ORG_FILE_PATH AS "ORG_FILE_PATH"
+            , '0' AS "LINE_NO"
+            , 'SQL Unused' AS "ITEM_NAME"
+            FROM VW_AIS1000 B
+            , AIS1001 C
+            , VW_AIS0010_UI D
+            , AIS2101 F
+            , AIS2102 G
+            WHERE C.UPPER_BIZ_ID  = B.BIZ_ID
+            AND C.PRJ_ID  = D.PRJ_ID
+            AND C.PRJ_ID <include refid="impact.fullPrjIdSql" />
+            AND G.EXT_CD  = D.EXT_CD
+            AND G.LANG_CD = F.LANG_CD
+            AND NOT EXISTS ((SELECT 'X'
+            FROM VW_AIS0100 A
+            WHERE A.PRJ_ID <include refid="impact.fullPrjIdSql" />
+            AND A.PRJ_ID  = D.PRJ_ID
+            AND A.FILE_ID = D.FILE_ID
+            limit 1)
+            UNION ALL
+            (SELECT 'X'
+            FROM VW_AIS0108 A
+            WHERE A.PRJ_ID <include refid="impact.fullPrjIdSql" />
+            AND A.PRJ_ID  = D.PRJ_ID
+            AND A.FILE_ID = D.FILE_ID
+            limit 1)
+            )
+            <if test="searchName !=null and searchName !=''">
+        <if test="nameLikeType == 0 ">
+                    AND D.CAPS_SRC_FILE_NAME LIKE '%' || #{searchName}
+                </if>
+        <if test="nameLikeType == 1">
+                    AND D.CAPS_SRC_FILE_NAME LIKE #{searchName} || '%'
+                </if>
+        <if test="nameLikeType == 2 ">
+                    AND D.CAPS_SRC_FILE_NAME LIKE '%' || #{searchName} || '%'
+                </if>
+      </if>
+      <if test="langType != 'ALL' ">
+                AND D.EXT_CD IN(SELECT BB.EXT_CD
+                FROM AIS2101 AA, AIS2102 BB
+                WHERE AA.LANG_CD = #{langType}
+                AND BB.LANG_CD = AA.LANG_CD )
+            </if>
+            ORDER BY B.BIZ_KOR_NAME, C.PRJ_KOR_NAME, D.SRC_FILE_NAME
+        </if>
+    <if test="objType == 'func' ">
+            SELECT DISTINCT B.PRJ_ID AS "PRJ_ID"
+            ,B.PRJ_KOR_NAME AS "PRJ_NAME"
+            ,fn_PRJTREENAME(B.PRJ_ID) AS "BIZ_PATH"
+            ,D.FILE_ID AS "FILE_ID"
+            ,D.SRC_FILE_NAME AS "FILE_NAME"
+            ,D.SRC_FILE_FULL_PATH AS "FILE_PATH"
+            ,D.EXT_CD AS "EXT_CD"
+            ,G.LANG_NAME AS "LANG_NAME"
+            ,D.ORG_FILE_PATH AS "ORG_FILE_PATH"
+            ,E.FUNC_ID AS "FUNC_ID"
+            ,E.FUNC_NAME AS "FUNC_NAME"
+            ,E.START_LINE_NO AS "LINE_NO"
+            ,'SQL Unused' AS "ITEM_NAME"
+            FROM AIS1001 B
+            ,VW_AIS0010_UI D
+            ,AIS0012 E
+            ,AIS2101 G
+            ,AIS2102 H
+            WHERE B.PRJ_ID  = D.PRJ_ID
+            AND E.PRJ_ID  = D.PRJ_ID
+            AND E.FILE_ID = D.FILE_ID
+            AND B.PRJ_ID <include refid="impact.fullPrjIdSql" />
+            AND H.EXT_CD = D.EXT_CD
+            AND H.LANG_CD = G.LANG_CD
+            AND NOT EXISTS ((SELECT 'X'
+            FROM VW_AIS0100 A
+            WHERE A.PRJ_ID <include refid="impact.fullPrjIdSql" />
+            AND A.PRJ_ID  = D.PRJ_ID
+            AND A.FILE_ID = D.FILE_ID
+            limit 1)
+            UNION ALL
+            (SELECT 'X'
+            FROM VW_AIS0108 A
+            WHERE A.PRJ_ID <include refid="impact.fullPrjIdSql" />
+            AND A.PRJ_ID  = D.PRJ_ID
+            AND A.FILE_ID = D.FILE_ID
+            limit 1)
+            )
+            <if test="searchName !=null and searchName !=''">
+        <if test="nameLikeType == 0 ">
+                    AND UPPER(E.FUNC_NAME) LIKE '%' || #{searchName}
+                </if>
+        <if test="nameLikeType == 1">
+                    AND UPPER(E.FUNC_NAME) LIKE #{searchName} || '%'
+                </if>
+        <if test="nameLikeType == 2 ">
+                    AND UPPER(E.FUNC_NAME) LIKE '%' || #{searchName} || '%'
+                </if>
+      </if>
+      <if test="langType != 'ALL' ">
+                AND D.EXT_CD IN(SELECT BB.EXT_CD
+                FROM AIS2101 AA, AIS2102 BB
+                WHERE AA.LANG_CD = #{langType}
+                AND BB.LANG_CD = AA.LANG_CD )
+            </if>
+            ORDER BY B.PRJ_KOR_NAME
+        </if>
+    <include refid="impact.pagingSql_End" />
+  </select>
+  <select id="getPgmFileToFileX" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamInfo.xml.getPgmFileToFileX */ /* ImpactStreamInfo.xml.getPgmFileToFileX */ 
+        WITH REL_TBL_OBJ AS (
+        SELECT DISTINCT C.SRC_FILE_NAME AS OBJ_NAME_X
+        FROM VW_AIS0010_UI C
+        , (
+        
+        SELECT
+        DISTINCT A.PRJ_ID, A.FILE_ID, A.CALL_PRJ_ID, A.CALL_FILE_ID
+        FROM AIS0052 A
+        , VW_AIS0010_UI B
+        WHERE B.PRJ_ID <include refid="getMatrixPrjId" />
+        AND A.PRJ_ID  = B.PRJ_ID
+        AND A.FILE_ID = B.FILE_ID
+        <if test="axisYstr !=null and axisYstr !=''">
+      <if test="axisYstrLikeType == 0 ">
+                AND B.CAPS_SRC_FILE_NAME LIKE '%' || #{axisYstr}
+            </if>
+      <if test="axisYstrLikeType == 1">
+                AND B.CAPS_SRC_FILE_NAME LIKE #{axisYstr} || '%'
+            </if>
+      <if test="axisYstrLikeType == 2 ">
+                AND B.CAPS_SRC_FILE_NAME LIKE '%' || #{axisYstr} || '%'
+            </if>
+    </if>
+        ) DT
+        WHERE C.PRJ_ID  = DT.CALL_PRJ_ID
+        AND C.FILE_ID = DT.CALL_FILE_ID
+        <if test="axisXstr !=null and axisXstr !=''">
+      <if test="axisXstrLikeType == 0 ">
+                AND C.CAPS_SRC_FILE_NAME LIKE '%' || #{axisXstr}
+            </if>
+      <if test="axisXstrLikeType == 1">
+                AND C.CAPS_SRC_FILE_NAME LIKE #{axisXstr} || '%'
+            </if>
+      <if test="axisXstrLikeType == 2 ">
+                AND C.CAPS_SRC_FILE_NAME LIKE '%' || #{axisXstr} || '%'
+            </if>
+    </if>
+        ORDER BY C.SRC_FILE_NAME
+        )
+        SELECT A.OBJ_NAME_X AS "AXIS_NAME"
+        ,CEIL(B.MAX_CNT/100-1 ) AS "MAX_CNT"
+        ,B.MAX_CNT AS "TOLCNT"
+        ,PAGE AS "PAGE"
+        FROM (SELECT OBJ_NAME_X
+        ,CEIL (((ROW_NUMBER () OVER (ORDER BY OBJ_NAME_X))/CAST(#{pageGap} AS NUMERIC))-1) AS PAGE
+        FROM (SELECT OBJ_NAME_X
+        FROM REL_TBL_OBJ
+        GROUP BY OBJ_NAME_X) AA ) A
+        ,(SELECT COUNT(*) AS MAX_CNT
+        FROM (SELECT OBJ_NAME_X
+        FROM REL_TBL_OBJ
+        GROUP BY OBJ_NAME_X) BB ) B
+        WHERE PAGE = CAST(#{axisXidx} AS NUMERIC)
+    </select>
+  <select id="getPgmFileToFileY" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamInfo.xml.getPgmFileToFileY */ /* ImpactStreamInfo.xml.getPgmFileToFileY */ 
+        WITH REL_TBL_SRC AS (
+        SELECT DISTINCT C.SRC_FILE_NAME AS FILE_NAME_Y
+        FROM VW_AIS0010_UI C
+        , (
+        
+        SELECT
+        DISTINCT A.PRJ_ID, A.FILE_ID, A.CALL_PRJ_ID, A.CALL_FILE_ID
+        FROM AIS0052 A
+        , VW_AIS0010_UI B
+        WHERE A.CALL_PRJ_ID  = B.PRJ_ID
+        AND A.CALL_FILE_ID = B.FILE_ID
+        AND A.PRJ_ID <include refid="getMatrixPrjId" />
+    <if test="axisXstr !=null and axisXstr !=''">
+      <if test="axisXstrLikeType == 0 ">
+                AND B.CAPS_SRC_FILE_NAME LIKE '%' || #{axisXstr}
+            </if>
+      <if test="axisXstrLikeType == 1">
+                AND B.CAPS_SRC_FILE_NAME LIKE #{axisXstr} || '%'
+            </if>
+      <if test="axisXstrLikeType == 2 ">
+                AND B.CAPS_SRC_FILE_NAME LIKE '%' || #{axisXstr} || '%'
+            </if>
+    </if>
+        ) DT
+        WHERE C.PRJ_ID <include refid="getMatrixPrjId" />
+        AND C.PRJ_ID  = DT.PRJ_ID
+        AND C.FILE_ID = DT.FILE_ID
+        AND C.FILE_LST_YN = 'Y'
+        <if test="axisYstr !=null and axisYstr !=''">
+      <if test="axisYstrLikeType == 0 ">
+                AND C.CAPS_SRC_FILE_NAME LIKE '%' || #{axisYstr}
+            </if>
+      <if test="axisYstrLikeType == 1">
+                AND C.CAPS_SRC_FILE_NAME LIKE #{axisYstr} || '%'
+            </if>
+      <if test="axisYstrLikeType == 2 ">
+                AND C.CAPS_SRC_FILE_NAME LIKE '%' || #{axisYstr} || '%'
+            </if>
+    </if>
+    <if test="langType != 'ALL' ">
+            AND C.EXT_CD IN(SELECT BB.EXT_CD
+            FROM AIS2101 AA, AIS2102 BB
+            WHERE AA.LANG_CD = #{langType}
+            AND BB.LANG_CD = AA.LANG_CD )
+        </if>
+        ORDER BY C.SRC_FILE_NAME
+        )
+        SELECT FILE_NAME_Y AS "AXIS_NAME"
+        ,CEIL(B.MAX_CNT/100-1 ) AS "MAX_CNT"
+        ,B.MAX_CNT AS "TOLCNT"
+        ,PAGE AS "PAGE"
+        FROM (SELECT FILE_NAME_Y
+        ,CEIL (((ROW_NUMBER () OVER (ORDER BY FILE_NAME_Y))/CAST(#{pageGap} AS NUMERIC))-1) AS PAGE
+        FROM (SELECT FILE_NAME_Y
+        FROM REL_TBL_SRC
+        GROUP BY FILE_NAME_Y) AA
+        ) A
+        ,(SELECT COUNT(*) AS MAX_CNT
+        FROM (SELECT FILE_NAME_Y
+        FROM REL_TBL_SRC
+        GROUP BY FILE_NAME_Y) BB
+        ) B
+        WHERE PAGE = CAST(#{axisYidx} AS NUMERIC)
+    </select>
+  <select id="getPgmFileToFileR" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamInfo.xml.getPgmFileToFileR */ /* ImpactStreamInfo.xml.getPgmFileToFileR */ 
+        WITH REL_TBL_REL AS (
+        SELECT YLINE.SRC_FILE_NAME AS FILE_NAME_Y
+        , XLINE.SRC_FILE_NAME AS OBJ_NAME_X
+        , XLINE.CALL_TYPE
+        FROM (
+        /*Y*/
+        SELECT DISTINCT C.PRJ_ID, C.FILE_ID, C.SRC_FILE_NAME
+        FROM VW_AIS0010_UI C
+        , (
+        
+        SELECT
+        DISTINCT A.PRJ_ID, A.FILE_ID, A.CALL_PRJ_ID, A.CALL_FILE_ID
+        FROM AIS0052 A
+        WHERE EXISTS ( SELECT 1
+        FROM VW_AIS0010_UI B
+        WHERE A.CALL_PRJ_ID  = B.PRJ_ID
+        AND A.CALL_FILE_ID = B.FILE_ID
+        limit 1
+        )
+        AND A.PRJ_ID <include refid="getMatrixPrjId" />
+    <if test="axisXstr !=null and axisXstr !=''">
+      <if test="axisXstrLikeType == 0 ">
+                AND B.CAPS_SRC_FILE_NAME LIKE '%' || #{axisXstr}
+            </if>
+      <if test="axisXstrLikeType == 1">
+                AND B.CAPS_SRC_FILE_NAME LIKE #{axisXstr} || '%'
+            </if>
+      <if test="axisXstrLikeType == 2 ">
+                AND B.CAPS_SRC_FILE_NAME LIKE '%' || #{axisXstr} || '%'
+            </if>
+    </if>
+        ) DT
+        WHERE C.PRJ_ID <include refid="getMatrixPrjId" />
+        AND C.PRJ_ID        = DT.PRJ_ID
+        AND C.FILE_ID       = DT.FILE_ID
+        <if test="axisYstr !=null and axisYstr !=''">
+      <if test="axisYstrLikeType == 0 ">
+                AND C.CAPS_SRC_FILE_NAME LIKE '%' || #{axisYstr}
+            </if>
+      <if test="axisYstrLikeType == 1">
+                AND C.CAPS_SRC_FILE_NAME LIKE #{axisYstr} || '%'
+            </if>
+      <if test="axisYstrLikeType == 2 ">
+                AND C.CAPS_SRC_FILE_NAME LIKE '%' || #{axisYstr} || '%'
+            </if>
+    </if>
+    <if test="langType != 'ALL' ">
+            AND C.EXT_CD IN(SELECT BB.EXT_CD
+            FROM AIS2101 AA, AIS2102 BB
+            WHERE AA.LANG_CD = #{langType}
+            AND BB.LANG_CD = AA.LANG_CD )
+        </if>
+        ) YLINE
+        , (
+        /*X*/
+        SELECT DISTINCT DT.PRJ_ID, DT.FILE_ID, C.SRC_FILE_NAME, DT.CALL_TYPE
+        FROM VW_AIS0010_UI C
+        , (
+        
+        SELECT
+        DISTINCT A.PRJ_ID, A.FILE_ID, A.CALL_PRJ_ID, A.CALL_FILE_ID, A.CALL_TYPE
+        FROM AIS0052 A
+        WHERE EXISTS ( SELECT 1
+        FROM VW_AIS0010_UI B
+        WHERE A.PRJ_ID  = B.PRJ_ID
+        AND A.FILE_ID = B.FILE_ID
+        limit 1
+        )
+        <if test="axisYstr !=null and axisYstr !=''">
+      <if test="axisYstrLikeType == 0 ">
+                AND B.CAPS_SRC_FILE_NAME LIKE '%' || #{axisYstr}
+            </if>
+      <if test="axisYstrLikeType == 1">
+                AND B.CAPS_SRC_FILE_NAME LIKE #{axisYstr} || '%'
+            </if>
+      <if test="axisYstrLikeType == 2 ">
+                AND B.CAPS_SRC_FILE_NAME LIKE '%' || #{axisYstr} || '%'
+            </if>
+    </if>
+        AND A.PRJ_ID <include refid="getMatrixPrjId" />
+        ) DT
+        WHERE C.PRJ_ID       = DT.CALL_PRJ_ID
+        AND C.FILE_ID      = DT.CALL_FILE_ID
+        <if test="axisXstr !=null and axisXstr !=''">
+      <if test="axisXstrLikeType == 0 ">
+                AND C.CAPS_SRC_FILE_NAME LIKE '%' || #{axisXstr}
+            </if>
+      <if test="axisXstrLikeType == 1">
+                AND C.CAPS_SRC_FILE_NAME LIKE #{axisXstr} || '%'
+            </if>
+      <if test="axisXstrLikeType == 2 ">
+                AND C.CAPS_SRC_FILE_NAME LIKE '%' || #{axisXstr} || '%'
+            </if>
+    </if>
+        ) XLINE
+        where YLINE.PRJ_ID  = XLINE.PRJ_ID
+        and YLINE.FILE_ID = XLINE.FILE_ID
+        )
+        SELECT AA.OBJ_NAME_X AS "OBJ_FILE_NAME" ,
+        AA.FILE_NAME_Y AS "FILE_NAME"
+        FROM REL_TBL_REL AA
+        WHERE EXISTS ( SELECT 1
+        FROM (SELECT OBJ_NAME_X
+        FROM (SELECT OBJ_NAME_X
+        ,CEIL (((ROW_NUMBER () OVER (ORDER BY OBJ_NAME_X))/CAST(#{pageGap} AS NUMERIC))-1) AS PAGE
+        FROM (SELECT OBJ_NAME_X
+        FROM (SELECT OBJ_NAME_X
+        FROM REL_TBL_REL
+        GROUP BY OBJ_NAME_X) XXXX
+        ) XXX
+        ) XX
+        WHERE PAGE = CAST(#{axisXidx} AS NUMERIC)
+        ) X
+        WHERE AA.OBJ_NAME_X = OBJ_NAME_X )
+        AND EXISTS ( SELECT 1
+        FROM (SELECT FILE_NAME_Y
+        FROM (SELECT FILE_NAME_Y
+        ,CEIL (((ROW_NUMBER () OVER (ORDER BY FILE_NAME_Y))/CAST(#{pageGap} AS NUMERIC ))-1) AS PAGE
+        FROM (SELECT FILE_NAME_Y
+        FROM (SELECT FILE_NAME_Y
+        FROM REL_TBL_REL
+        GROUP BY FILE_NAME_Y) YYYY
+        ) YYY
+        ) YY
+        WHERE PAGE = CAST(#{axisYidx} AS NUMERIC)
+        ) Y
+        WHERE AA.FILE_NAME_Y = FILE_NAME_Y )
+    </select>
+  <select id="getPgmFuncToFileX" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamInfo.xml.getPgmFuncToFileX */ /* ImpactStreamInfo.xml.getPgmFuncToFileX */ 
+        WITH REL_TBL_FUNC AS (
+        SELECT DISTINCT C.FUNC_NAME AS OBJ_NAME_X
+        FROM AIS0012 C
+        , (
+        SELECT A.PRJ_ID, A.FILE_ID, A.OBJ_ID, A.FUNC_ID, A.CALL_PRJ_ID, A.CALL_FILE_ID, A.CALL_OBJ_ID, A.CALL_FUNC_ID
+        FROM AIS0052 A
+        , VW_AIS0010_UI B
+        WHERE B.PRJ_ID <include refid="getMatrixPrjId" />
+        AND A.PRJ_ID  = B.PRJ_ID
+        AND A.FILE_ID = B.FILE_ID
+        <if test="axisYstr != null and axisYstr != ''">
+      <if test="axisYstrLikeType == 0">
+                AND B.CAPS_SRC_FILE_NAME LIKE '%' || #{axisYstr}
+            </if>
+      <if test="axisYstrLikeType == 1">
+                AND B.CAPS_SRC_FILE_NAME LIKE #{axisYstr} || '%'
+            </if>
+      <if test="axisYstrLikeType == 2">
+                AND B.CAPS_SRC_FILE_NAME LIKE '%' || #{axisYstr} || '%'
+            </if>
+    </if>
+        ) DT
+        WHERE C.PRJ_ID  = DT.CALL_PRJ_ID
+        AND C.FILE_ID = DT.CALL_FILE_ID
+        AND C.OBJ_ID = DT.CALL_OBJ_ID
+        AND C.FUNC_ID = DT.CALL_FUNC_ID
+        <if test="axisXstr != null and axisXstr != ''">
+      <if test="axisXstrLikeType == 0">
+                AND UPPER(C.FUNC_NAME) LIKE '%' || #{axisXstr}
+            </if>
+      <if test="axisXstrLikeType == 1">
+                AND UPPER(C.FUNC_NAME) LIKE #{axisXstr} || '%'
+            </if>
+      <if test="axisXstrLikeType == 2">
+                AND UPPER(C.FUNC_NAME) LIKE '%' || #{axisXstr} || '%'
+            </if>
+    </if>
+        ORDER BY C.FUNC_NAME
+        )
+        SELECT A.OBJ_NAME_X AS "AXIS_NAME"
+        ,CEIL(B.MAX_CNT/100-1 ) AS "MAX_CNT"
+        ,B.MAX_CNT AS "TOLCNT"
+        ,PAGE AS "PAGE"
+        FROM (SELECT OBJ_NAME_X
+        ,CEIL (((ROW_NUMBER () OVER (ORDER BY OBJ_NAME_X ))/CAST(#{pageGap} AS NUMERIC))-1) AS PAGE
+        FROM (SELECT OBJ_NAME_X
+        FROM REL_TBL_FUNC
+        GROUP BY OBJ_NAME_X) X
+        ) A
+        ,(SELECT COUNT(*) AS MAX_CNT
+        FROM (SELECT OBJ_NAME_X
+        FROM REL_TBL_FUNC
+        GROUP BY OBJ_NAME_X) Y
+        ) B
+        WHERE PAGE = CAST(#{axisXidx} AS NUMERIC)
+    </select>
+  <select id="getPgmFuncToFileY" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamInfo.xml.getPgmFuncToFileY */ /* ImpactStreamInfo.xml.getPgmFuncToFileY */ 
+        WITH REL_TBL_FILE AS (
+        SELECT DISTINCT C.SRC_FILE_NAME AS FILE_NAME_Y
+        FROM VW_AIS0010_UI C
+        , (
+        SELECT A.PRJ_ID, A.FILE_ID, A.CALL_PRJ_ID, A.CALL_FILE_ID
+        FROM AIS0052 A
+        , AIS0012 B
+        WHERE A.CALL_PRJ_ID  = B.PRJ_ID
+        AND A.CALL_FILE_ID = B.FILE_ID
+        AND A.CALL_OBJ_ID  = B.OBJ_ID
+        AND A.CALL_FUNC_ID = B.FUNC_ID
+        AND A.PRJ_ID <include refid="getMatrixPrjId" />
+    <if test="axisXstr != null and axisXstr != ''">
+      <if test="axisXstrLikeType == 0">
+                AND UPPER(B.FUNC_NAME) LIKE '%' || #{axisXstr}
+            </if>
+      <if test="axisXstrLikeType == 1">
+                AND UPPER(B.FUNC_NAME) LIKE #{axisXstr} || '%'
+            </if>
+      <if test="axisXstrLikeType == 2">
+                AND UPPER(B.FUNC_NAME) LIKE '%' || #{axisXstr} || '%'
+            </if>
+    </if>
+        ) DT
+        WHERE C.PRJ_ID <include refid="getMatrixPrjId" />
+        AND C.PRJ_ID  = DT.PRJ_ID
+        AND C.FILE_ID = DT.FILE_ID
+        AND C.FILE_LST_YN = 'Y'
+        <if test="axisYstr != null and axisYstr != ''">
+      <if test="axisYstrLikeType == 0">
+                AND C.CAPS_SRC_FILE_NAME LIKE '%' || #{axisYstr}
+            </if>
+      <if test="axisYstrLikeType == 1">
+                AND C.CAPS_SRC_FILE_NAME LIKE #{axisYstr} || '%'
+            </if>
+      <if test="axisYstrLikeType == 2">
+                AND C.CAPS_SRC_FILE_NAME LIKE '%' || #{axisYstr} || '%'
+            </if>
+    </if>
+
+        AND C.EXT_CD IN(SELECT BB.EXT_CD
+        FROM AIS2101 AA
+        , AIS2102 BB
+        WHERE AA.LANG_CD = #{langType}
+        AND BB.LANG_CD = AA.LANG_CD )
+
+        ORDER BY C.SRC_FILE_NAME
+        )
+        SELECT A.FILE_NAME_Y AS "AXIS_NAME"
+        ,CEIL(B.MAX_CNT/100-1 ) AS "MAX_CNT"
+        ,B.MAX_CNT AS "TOLCNT"
+        ,PAGE AS "PAGE"
+        FROM (SELECT FILE_NAME_Y
+        ,CEIL (((ROW_NUMBER () OVER (ORDER BY FILE_NAME_Y ))/CAST(#{pageGap} AS NUMERIC))-1) AS PAGE
+        FROM (SELECT FILE_NAME_Y
+        FROM REL_TBL_FILE
+        GROUP BY FILE_NAME_Y) X
+        ) A
+        ,(SELECT COUNT(*) AS MAX_CNT
+        FROM (SELECT FILE_NAME_Y
+        FROM REL_TBL_FILE
+        GROUP BY FILE_NAME_Y) Y
+        ) B
+        WHERE PAGE = CAST(#{axisYidx} AS NUMERIC)
+    </select>
+  <select id="getPgmFuncToFileR" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamInfo.xml.getPgmFuncToFileR */ /* ImpactStreamInfo.xml.getPgmFuncToFileR */ 
+        WITH REL_TBL_REL AS (
+        SELECT YLINE.SRC_FILE_NAME AS FILE_NAME_Y
+        , XLINE.FUNC_NAME AS OBJ_NAME_X
+        ,CASE WHEN XLINE.SRC_FILE_NAME = YLINE.SRC_FILE_NAME THEN 'L'
+        WHEN XLINE.SRC_FILE_NAME &lt;&gt; YLINE.SRC_FILE_NAME THEN 'C' END AS TYPE
+        FROM (
+        /*Y*/
+        SELECT DISTINCT C.PRJ_ID, C.FILE_ID, C.SRC_FILE_NAME
+        FROM VW_AIS0010_UI C
+        , (
+        SELECT A.PRJ_ID, A.FILE_ID, A.CALL_PRJ_ID, A.CALL_FILE_ID
+        FROM AIS0052 A
+        , AIS0012 B
+        WHERE A.CALL_PRJ_ID  = B.PRJ_ID
+        AND A.CALL_FILE_ID = B.FILE_ID
+        AND A.CALL_OBJ_ID  = B.OBJ_ID
+        AND A.CALL_FUNC_ID = B.FUNC_ID
+        AND A.PRJ_ID <include refid="getMatrixPrjId" />
+    <if test="axisXstr != null and axisXstr != ''">
+      <if test="axisXstrLikeType == 0">
+                AND UPPER(B.FUNC_NAME) LIKE '%' || #{axisXstr}
+            </if>
+      <if test="axisXstrLikeType == 1">
+                AND UPPER(B.FUNC_NAME) LIKE #{axisXstr} || '%'
+            </if>
+      <if test="axisXstrLikeType == 2">
+                AND UPPER(B.FUNC_NAME) LIKE '%' || #{axisXstr} || '%'
+            </if>
+    </if>
+        ) DT
+        WHERE C.PRJ_ID <include refid="getMatrixPrjId" />
+        AND RTRIM(C.PRJ_ID)  = DT.PRJ_ID
+        AND C.FILE_ID = DT.FILE_ID
+        AND C.FILE_LST_YN = 'Y'
+        <if test="axisYstr != null and axisYstr != ''">
+      <if test="axisYstrLikeType == 0">
+                AND C.CAPS_SRC_FILE_NAME LIKE '%' || #{axisYstr}
+            </if>
+      <if test="axisYstrLikeType == 1">
+                AND C.CAPS_SRC_FILE_NAME LIKE #{axisYstr} || '%'
+            </if>
+      <if test="axisYstrLikeType == 2">
+                AND C.CAPS_SRC_FILE_NAME LIKE '%' || #{axisYstr} || '%'
+            </if>
+    </if>
+
+        AND C.EXT_CD IN(SELECT BB.EXT_CD
+        FROM AIS2101 AA
+        , AIS2102 BB
+        WHERE AA.LANG_CD = #{langType}
+        AND BB.LANG_CD = AA.LANG_CD )
+
+        ) YLINE
+        , (
+        /*X*/
+        SELECT DT.PRJ_ID, DT.FILE_ID, DT.OBJ_ID, DT.FUNC_ID, C.PRJ_ID AS CALL_PRJ_ID, C.FILE_ID AS CALL_FILE_ID, C.OBJ_ID AS CALL_OBJ_ID, C.FUNC_ID AS CALL_FUNC_ID, C.FUNC_NAME, D.SRC_FILE_NAME
+        FROM AIS0012 C
+        , (
+        SELECT A.PRJ_ID, A.FILE_ID, A.OBJ_ID, A.FUNC_ID, A.CALL_PRJ_ID, A.CALL_FILE_ID, A.CALL_OBJ_ID, A.CALL_FUNC_ID
+        FROM AIS0052 A
+        , VW_AIS0010_UI B
+        WHERE B.PRJ_ID <include refid="getMatrixPrjId" />
+        AND RTRIM(A.PRJ_ID)  = B.PRJ_ID
+        AND A.FILE_ID = B.FILE_ID
+        <if test="axisYstr != null and axisYstr != ''">
+      <if test="axisYstrLikeType == 0">
+                AND B.CAPS_SRC_FILE_NAME LIKE '%' || #{axisYstr}
+            </if>
+      <if test="axisYstrLikeType == 1">
+                AND B.CAPS_SRC_FILE_NAME LIKE #{axisYstr} || '%'
+            </if>
+      <if test="axisYstrLikeType == 2">
+                AND B.CAPS_SRC_FILE_NAME LIKE '%' || #{axisYstr} || '%'
+            </if>
+    </if>
+        ) DT
+        , VW_AIS0010_UI D
+        WHERE C.PRJ_ID  = RTRIM(DT.CALL_PRJ_ID)
+        AND C.FILE_ID = DT.CALL_FILE_ID
+        AND C.OBJ_ID = DT.CALL_OBJ_ID
+        AND C.FUNC_ID = DT.CALL_FUNC_ID
+        AND DT.CALL_PRJ_ID = D.PRJ_ID
+        AND DT.CALL_FILE_ID = D.FILE_ID
+        <if test="axisXstr != null and axisXstr != ''">
+      <if test="axisXstrLikeType == 0">
+                AND UPPER(C.FUNC_NAME) LIKE '%' || #{axisXstr}
+            </if>
+      <if test="axisXstrLikeType == 1">
+                AND UPPER(C.FUNC_NAME) LIKEE #{axisXstr} || '%'
+            </if>
+      <if test="axisXstrLikeType == 2">
+                AND UPPER(C.FUNC_NAME) LIKE '%' || #{axisXstr} || '%'
+            </if>
+    </if>
+        ) XLINE
+        WHERE YLINE.PRJ_ID  = XLINE.PRJ_ID
+        AND YLINE.FILE_ID = XLINE.FILE_ID
+        )
+        SELECT FILE_NAME_Y AS "FILE_NAME_Y"
+        ,OBJ_NAME_X AS "OBJ_NAME_X"
+        ,TYPE AS "TYPE"
+        FROM REL_TBL_REL AA
+        WHERE EXISTS ( SELECT 1
+        FROM (SELECT OBJ_NAME_X
+        FROM (SELECT OBJ_NAME_X
+        ,CEIL (((ROW_NUMBER () OVER (ORDER BY OBJ_NAME_X))/CAST(#{pageGap} AS NUMERIC))-1) AS PAGE
+        FROM (SELECT OBJ_NAME_X
+        FROM (SELECT OBJ_NAME_X
+        FROM REL_TBL_REL
+        GROUP BY OBJ_NAME_X) X
+        ) XX
+        ) XXX
+        WHERE PAGE = CAST(#{axisXidx} AS NUMERIC)
+        ) XXXX
+        WHERE AA.OBJ_NAME_X = OBJ_NAME_X )
+        AND EXISTS ( SELECT 1
+        FROM (SELECT FILE_NAME_Y
+        FROM (SELECT FILE_NAME_Y
+        ,CEIL (((ROW_NUMBER () OVER (ORDER BY FILE_NAME_Y))/CAST(#{pageGap} AS NUMERIC))-1) AS PAGE
+        FROM (SELECT FILE_NAME_Y
+        FROM (SELECT FILE_NAME_Y
+        FROM REL_TBL_REL
+        GROUP BY FILE_NAME_Y)  Y
+        ) YY
+        ) YYY
+        WHERE PAGE = CAST(#{axisYidx} AS NUMERIC)
+        ) YYYY
+        WHERE AA.FILE_NAME_Y = FILE_NAME_Y )
+    </select>
+  <select id="getPgmTableToFileX" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamInfo.xml.getPgmTableToFileX */ /* ImpactStreamInfo.xml.getPgmTableToFileX */ 
+        WITH REL_TBL_TABLE AS (
+        SELECT DATA.OBJ_NAME_X, DATA.TABLE_NAME_UI, DATA.TABLE_ORDER, COUNT(*) OVER() AS MAX_CNT
+        FROM (
+        SELECT DISTINCT UPPER(A.TABLE_NAME) AS TABLE_NAME_UI/*OBJ_NAME_X*/
+        
+        , CASE WHEN A.TABLE_NAME LIKE '::%' THEN (SELECT B.VARVALUE || ' [' || B.VARNAME || ']' AS NAME
+        FROM AIS0107 B
+        WHERE A.PRJ_ID     = B.PRJ_ID
+        AND A.FILE_ID    = B.FILE_ID
+        AND A.TABLE_NAME = B.VARNAME)
+        ELSE UPPER(A.TABLE_NAME) END AS OBJ_NAME_X/*TABLE_NAME_UI*/
+        , case when TRIM(SUBSTR(A.TABLE_NAME, 1, 2)) ='::' then 3
+        when TRIM(SUBSTR(A.TABLE_NAME, 1, 2)) ='' then 3
+        when TRIM(SUBSTR(A.TABLE_NAME, 1, 2)) ='*' then 2
+        else 1 end as TABLE_ORDER
+        FROM VW_AIS0010_UI C
+        , /*AIS0053 A*/AIS0102 A
+        WHERE C.PRJ_ID <include refid="getMatrixPrjId" />
+        AND C.PRJ_ID  = A.PRJ_ID
+        AND C.FILE_ID = A.FILE_ID
+        AND C.FILE_LST_YN = 'Y'
+        AND A.INLINEVIEW_YN  = 'N'
+        <if test="axisYstr !=null and axisYstr !=''">
+      <if test="axisYstrLikeType == 0 ">
+                AND C.CAPS_SRC_FILE_NAME LIKE '%' || #{axisYstr}
+            </if>
+      <if test="axisYstrLikeType == 1">
+                AND C.CAPS_SRC_FILE_NAME LIKE #{axisYstr} || '%'
+            </if>
+      <if test="axisYstrLikeType == 2 ">
+                AND C.CAPS_SRC_FILE_NAME LIKE '%' || #{axisYstr} || '%'
+            </if>
+    </if>
+        ) DATA
+        <if test="axisXstr !=null and axisXstr !=''">
+      <if test="axisXstrLikeType == 0 ">
+                WHERE DATA.OBJ_NAME_X LIKE '%' || #{axisXstr}
+            </if>
+      <if test="axisXstrLikeType == 1">
+                WHERE DATA.OBJ_NAME_X LIKE #{axisXstr} || '%'
+            </if>
+      <if test="axisXstrLikeType == 2 ">
+                WHERE DATA.OBJ_NAME_X LIKE '%' || #{axisXstr} || '%'
+            </if>
+    </if>
+        /*ORDER BY A.TABLE_NAME*/
+        ORDER BY DATA.TABLE_ORDER, DATA.OBJ_NAME_X
+        )
+        SELECT A.OBJ_NAME_X AS "AXIS_NAME"
+        , A.TABLE_NAME_UI AS "TABLE_NAME_UI"
+        , CEIL(A.MAX_CNT/100-1 ) AS "MAX_CNT"
+        , A.MAX_CNT AS "TOLCNT"
+        , PAGE AS "PAGE"
+        FROM (SELECT OBJ_NAME_X, MAX_CNT ,TABLE_NAME_UI
+        , CEIL (((ROW_NUMBER () OVER (ORDER BY TABLE_ORDER, OBJ_NAME_X ))/CAST(#{pageGap} AS NUMERIC))-1) AS PAGE
+        FROM REL_TBL_TABLE
+        ) A
+        WHERE PAGE = CAST(#{axisXidx} AS NUMERIC)
+    </select>
+  <select id="getPgmTableToFileY" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamInfo.xml.getPgmTableToFileY */ /* ImpactStreamInfo.xml.getPgmTableToFileY */ 
+        WITH REL_TBL_SRC AS (
+        SELECT DATA.FILE_NAME_Y, COUNT(*) OVER() AS MAX_CNT
+        FROM (
+        SELECT DISTINCT C.SRC_FILE_NAME AS FILE_NAME_Y
+        FROM VW_AIS0010_UI C
+        , /*AIS0053 A*/AIS0102 A
+        WHERE C.PRJ_ID <include refid="getMatrixPrjId" />
+        AND C.PRJ_ID  = A.PRJ_ID
+        AND C.FILE_ID = A.FILE_ID
+        AND C.FILE_LST_YN = 'Y'
+        <if test="axisYstr !=null and axisYstr !=''">
+      <if test="axisYstrLikeType == 0 ">
+                AND C.CAPS_SRC_FILE_NAME LIKE '%' || #{axisYstr}
+            </if>
+      <if test="axisYstrLikeType == 1">
+                AND C.CAPS_SRC_FILE_NAME LIKE #{axisYstr} || '%'
+            </if>
+      <if test="axisYstrLikeType == 2 ">
+                AND C.CAPS_SRC_FILE_NAME LIKE '%' || #{axisYstr} || '%'
+            </if>
+    </if>
+    <if test="axisXstr !=null and axisXstr !=''">
+      <if test="axisXstrLikeType == 0 ">
+                AND UPPER(A.TABLE_NAME) LIKE '%' || #{axisXstr}
+            </if>
+      <if test="axisXstrLikeType == 1">
+                AND UPPER(A.TABLE_NAME) LIKE #{axisXstr} || '%'
+            </if>
+      <if test="axisXstrLikeType == 2 ">
+                AND UPPER(A.TABLE_NAME) LIKE '%' || #{axisXstr} || '%'
+            </if>
+    </if>
+    <if test="langType != 'ALL' ">
+            AND C.EXT_CD IN(SELECT BB.EXT_CD
+            FROM AIS2101 AA, AIS2102 BB
+            WHERE AA.LANG_CD = #{langType}
+            AND BB.LANG_CD = AA.LANG_CD )
+        </if>
+        ) DATA
+        ORDER BY DATA.FILE_NAME_Y
+        )
+        SELECT A.FILE_NAME_Y AS "AXIS_NAME"
+        , CEIL(A.MAX_CNT/100-1 ) AS "MAX_CNT"
+        , A.MAX_CNT AS "TOLCNT"
+        , PAGE AS "PAGE"
+        FROM (SELECT FILE_NAME_Y, MAX_CNT
+        , CEIL (((ROW_NUMBER ()  OVER (ORDER BY FILE_NAME_Y ))/CAST(#{pageGap} AS NUMERIC))-1) AS PAGE
+        FROM REL_TBL_SRC
+        ) A
+        WHERE PAGE = CAST(#{axisYidx} AS NUMERIC)
+    </select>
+  <select id="getPgmTableToFileR" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamInfo.xml.getPgmTableToFileR */ /* ImpactStreamInfo.xml.getPgmTableToFileR */ 
+        WITH REL_TBL_REL AS (
+        SELECT DATA.TABLE_NAME_UI, DATA.TYPE, DATA.FILE_NAME, DATA.TABLE_NAME
+        FROM (
+        SELECT UPPER(A.TABLE_NAME) AS TABLE_NAME_UI/*TABLE_NAME*/
+        , /*MAX(A.CRUD_C) || MAX(A.CRUD_R) || MAX(A.CRUD_U) || MAX(A.CRUD_D)*/ A.QUERY_TYPE AS TYPE
+        , B.SRC_FILE_NAME AS FILE_NAME
+        , CASE WHEN A.TABLE_NAME LIKE '::%' THEN (SELECT B.VARVALUE || ' [' || B.VARNAME || ']' AS NAME
+        FROM AIS0107 B
+        WHERE A.PRJ_ID     = B.PRJ_ID
+        AND A.FILE_ID    = B.FILE_ID
+        AND A.TABLE_NAME = B.VARNAME)
+        ELSE UPPER(A.TABLE_NAME) END AS TABLE_NAME/*TABLE_NAME_UI*/
+        FROM AIS0102 /*AIS0053*/ A
+        , VW_AIS0010_UI B
+        WHERE B.PRJ_ID <include refid="getMatrixPrjId" />
+        AND A.PRJ_ID             = B.PRJ_ID
+        AND A.FILE_ID            = B.FILE_ID
+        AND RTRIM(B.FILE_LST_YN) = 'Y'
+        AND A.INLINEVIEW_YN      = 'N'
+        <if test="langType != 'ALL' ">
+            AND B.EXT_CD IN(SELECT BB.EXT_CD
+            FROM AIS2101 AA, AIS2102 BB
+            WHERE AA.LANG_CD = #{langType}
+            AND BB.LANG_CD = AA.LANG_CD )
+        </if>
+    <if test="axisYstr !=null and axisYstr !=''">
+      <if test="axisYstrLikeType == 0 ">
+                AND B.CAPS_SRC_FILE_NAME LIKE '%' || #{axisYstr}
+            </if>
+      <if test="axisYstrLikeType == 1 ">
+                AND B.CAPS_SRC_FILE_NAME LIKE #{axisYstr} || '%'
+            </if>
+      <if test="axisYstrLikeType == 2 ">
+                AND B.CAPS_SRC_FILE_NAME LIKE '%' || #{axisYstr} || '%'
+            </if>
+    </if>
+        /*GROUP BY TABLE_NAME, B.SRC_FILE_NAME*/
+        ) DATA
+        <if test="axisXstr !=null and axisXstr !=''">
+      <if test="axisXstrLikeType == 0 ">
+                WHERE DATA.TABLE_NAME LIKE '%' || #{axisXstr}
+            </if>
+      <if test="axisXstrLikeType == 1 ">
+                WHERE DATA.TABLE_NAME LIKE #{axisXstr} || '%'
+            </if>
+      <if test="axisXstrLikeType == 2 ">
+                WHERE DATA.TABLE_NAME LIKE '%' || #{axisXstr} || '%'
+            </if>
+    </if>
+        )
+        SELECT FILE_NAME AS "FILE_NAME"
+        ,TABLE_NAME AS "TABLE_NAME"
+        ,TYPE AS "TYPE"
+        FROM REL_TBL_REL AA
+        WHERE EXISTS ( SELECT 1
+        FROM (SELECT TABLE_NAME
+        FROM (SELECT TABLE_NAME
+        ,CEIL (((ROW_NUMBER () OVER (ORDER BY TABLE_NAME))/CAST(#{pageGap} AS NUMERIC))-1) AS PAGE
+        FROM (SELECT TABLE_NAME
+        FROM REL_TBL_REL
+        GROUP BY TABLE_NAME
+        ) X
+        ) XX
+        WHERE PAGE =  CAST(#{axisXidx} AS NUMERIC)
+        ) XXX
+        WHERE AA.TABLE_NAME = TABLE_NAME )
+        AND EXISTS ( SELECT 1
+        FROM (SELECT FILE_NAME
+        FROM (SELECT FILE_NAME
+        ,CEIL (((ROW_NUMBER () OVER (ORDER BY FILE_NAME))/CAST(#{pageGap} AS NUMERIC))-1) AS PAGE
+        FROM (SELECT FILE_NAME
+        FROM REL_TBL_REL
+        GROUP BY FILE_NAME
+        ) Y
+        ) YY
+        WHERE PAGE = CAST(#{axisYidx} AS NUMERIC)
+        ) YYY
+        WHERE AA.FILE_NAME = FILE_NAME )
+    </select>
+  <select id="getPgmColumnToFileX" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamInfo.xml.getPgmColumnToFileX */ /* ImpactStreamInfo.xml.getPgmColumnToFileX */ 
+        WITH REL_TBL_COL AS(
+        SELECT DATA.OBJ_NAME_X, DATA.COL_NAME_UI, DATA.COL_ORDER, COUNT(*) OVER() AS MAX_CNT
+        FROM (
+        SELECT DISTINCT UPPER(A.COL_NAME) AS COL_NAME_UI/*OBJ_NAME_X*/
+        
+        , CASE WHEN A.COL_NAME LIKE '::%' THEN (SELECT B.VARVALUE || ' [' || B.VARNAME || ']' AS NAME
+        FROM AIS0107 B
+        WHERE A.PRJ_ID     = B.PRJ_ID
+        AND A.FILE_ID    = B.FILE_ID
+        AND A.COL_NAME = B.VARNAME) || ' [' || D.CAPS_TABLE_NAME || ']'
+        ELSE A.COL_NAME || ' [' || D.CAPS_TABLE_NAME || ']' END AS OBJ_NAME_X/*COL_NAME_UI*/
+        , case when TRIM(SUBSTR(A.COL_NAME, 1, 2)) ='::' then 3
+        when TRIM(SUBSTR(A.COL_NAME, 1, 2)) ='' then 3
+        when TRIM(SUBSTR(A.COL_NAME, 1, 2)) ='*' then 2
+        else 1 end as COL_ORDER
+        FROM VW_AIS0010_UI C
+        , /*AIS0053 A*/AIS0103 A
+        , AIS0102 D
+        WHERE C.PRJ_ID <include refid="getMatrixPrjId" />
+        AND C.PRJ_ID       = A.PRJ_ID
+        AND C.FILE_ID      = A.FILE_ID
+        AND A.PRJ_ID       = D.PRJ_ID
+        AND A.FILE_ID      = D.FILE_ID
+        AND A.SQL_ID       = D.SQL_ID
+        AND A.TABLE_ID     = D.TABLE_ID
+        AND D.INLINEVIEW_YN = 'N'
+        AND A.COL_VALUE_YN = 'N'
+        AND C.FILE_LST_YN  = 'Y'
+        <if test="axisYstr != null and axisYstr != ''">
+      <if test="axisYstrLikeType == 0">
+                AND C.CAPS_SRC_FILE_NAME LIKE '%' || #{axisYstr}
+            </if>
+      <if test="axisYstrLikeType == 1">
+                AND C.CAPS_SRC_FILE_NAME LIKE #{axisYstr} || '%'
+            </if>
+      <if test="axisYstrLikeType == 2">
+                AND C.CAPS_SRC_FILE_NAME LIKE '%' || #{axisYstr} || '%'
+            </if>
+    </if>
+        ) DATA
+        <if test="axisXstr != null and axisXstr != ''">
+      <if test="axisXstrLikeType == 0">
+                WHERE UPPER(DATA.OBJ_NAME_X) LIKE '%' || #{axisXstr}
+            </if>
+      <if test="axisXstrLikeType == 1">
+                WHERE UPPER(DATA.OBJ_NAME_X) LIKE #{axisXstr} || '%'
+            </if>
+      <if test="axisXstrLikeType == 2">
+                WHERE UPPER(DATA.OBJ_NAME_X) LIKE '%' || #{axisXstr} || '%'
+            </if>
+    </if>
+        ORDER BY DATA.COL_ORDER, DATA.OBJ_NAME_X
+        /*ORDER BY A.COL_NAME*/
+        )
+        SELECT A.OBJ_NAME_X AS "AXIS_NAME"
+        , A.COL_NAME_UI AS "COL_NAME_UI"
+        , CEIL(A.MAX_CNT/100-1 ) AS "MAX_CNT"
+        , A.MAX_CNT AS "TOLCNT"
+        , PAGE AS "PAGE"
+        FROM (SELECT OBJ_NAME_X, MAX_CNT ,COL_NAME_UI
+        , CEIL (((ROW_NUMBER () OVER (ORDER BY COL_ORDER, OBJ_NAME_X ))/CAST(#{pageGap} AS NUMERIC))-1) AS PAGE
+        FROM REL_TBL_COL
+        ) A
+        WHERE PAGE = CAST(#{axisXidx} AS NUMERIC)
+    </select>
+  <select id="getPgmColumnToFileY" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamInfo.xml.getPgmColumnToFileY */ /* ImpactStreamInfo.xml.getPgmColumnToFileY */ 
+        WITH REL_TBL_SRC AS(
+        SELECT DISTINCT DATA.FILE_NAME_Y,
+        (SELECT COUNT(DISTINCT SUB.FILE_NAME_Y) FROM (
+        SELECT C.SRC_FILE_NAME AS FILE_NAME_Y
+        , CASE WHEN A.COL_NAME LIKE '::%' THEN (SELECT B.VARVALUE || ' [' || B.VARNAME || ']' AS NAME
+        FROM AIS0107 B
+        WHERE A.PRJ_ID     = B.PRJ_ID
+        AND A.FILE_ID    = B.FILE_ID
+        AND A.COL_NAME = B.VARNAME) || ' [' || D.CAPS_TABLE_NAME || ']'
+        ELSE A.COL_NAME || ' [' || D.CAPS_TABLE_NAME || ']' END AS COL_NAME
+        FROM VW_AIS0010_UI C
+        , /*AIS0053 A*/AIS0103 A
+        , AIS0102 D
+        WHERE C.PRJ_ID <include refid="getMatrixPrjId" />
+        AND C.PRJ_ID  = A.PRJ_ID
+        AND C.FILE_ID = A.FILE_ID
+        AND A.PRJ_ID = D.PRJ_ID
+        AND A.FILE_ID = D.FILE_ID
+        AND A.SQL_ID = D.SQL_ID
+        AND A.TABLE_ID = D.TABLE_ID
+        AND D.INLINEVIEW_YN = 'N'
+        AND A.COL_VALUE_YN = 'N'
+        AND C.FILE_LST_YN = 'Y'
+        <if test="axisYstr != null and axisYstr != ''">
+      <if test="axisYstrLikeType == 0">
+                AND C.CAPS_SRC_FILE_NAME LIKE '%' || #{axisYstr}
+            </if>
+      <if test="axisYstrLikeType == 1">
+                AND C.CAPS_SRC_FILE_NAME LIKE #{axisYstr} || '%'
+            </if>
+      <if test="axisYstrLikeType == 2">
+                AND C.CAPS_SRC_FILE_NAME LIKE '%' || #{axisYstr} || '%'
+            </if>
+    </if>
+
+        AND C.EXT_CD IN(SELECT BB.EXT_CD
+        FROM AIS2101 AA
+        , AIS2102 BB
+        WHERE AA.LANG_CD = #{langType}
+        AND BB.LANG_CD = AA.LANG_CD )
+
+        ) SUB
+        WHERE SUB.COL_NAME = DATA.COL_NAME
+        )AS MAX_CNT
+        FROM (
+        SELECT C.SRC_FILE_NAME AS FILE_NAME_Y
+        , CASE WHEN A.COL_NAME LIKE '::%' THEN (SELECT B.VARVALUE || ' [' || B.VARNAME || ']' AS NAME
+        FROM AIS0107 B
+        WHERE A.PRJ_ID     = B.PRJ_ID
+        AND A.FILE_ID    = B.FILE_ID
+        AND A.COL_NAME = B.VARNAME) || ' [' || D.CAPS_TABLE_NAME || ']'
+        ELSE A.COL_NAME || ' [' || D.CAPS_TABLE_NAME || ']' END AS COL_NAME
+        FROM VW_AIS0010_UI C
+        , /*AIS0053 A*/AIS0103 A
+        , AIS0102 D
+        WHERE C.PRJ_ID <include refid="getMatrixPrjId" />
+        AND C.PRJ_ID  = A.PRJ_ID
+        AND C.FILE_ID = A.FILE_ID
+        AND A.PRJ_ID = D.PRJ_ID
+        AND A.FILE_ID = D.FILE_ID
+        AND A.SQL_ID = D.SQL_ID
+        AND A.TABLE_ID = D.TABLE_ID
+        AND D.INLINEVIEW_YN = 'N'
+        AND A.COL_VALUE_YN = 'N'
+        AND C.FILE_LST_YN = 'Y'
+        <if test="axisYstr != null and axisYstr != ''">
+      <if test="axisYstrLikeType == 0">
+                AND C.CAPS_SRC_FILE_NAME LIKE '%' || #{axisYstr}
+            </if>
+      <if test="axisYstrLikeType == 1">
+                AND C.CAPS_SRC_FILE_NAME LIKE #{axisYstr} || '%'
+            </if>
+      <if test="axisYstrLikeType == 2">
+                AND C.CAPS_SRC_FILE_NAME LIKE '%' || #{axisYstr} || '%'
+            </if>
+    </if>
+
+        AND C.EXT_CD IN(SELECT BB.EXT_CD
+        FROM AIS2101 AA
+        , AIS2102 BB
+        WHERE AA.LANG_CD = #{langType}
+        AND BB.LANG_CD = AA.LANG_CD )
+
+        ) DATA
+        <if test="axisXstr != null and axisXstr != ''">
+      <if test="axisXstrLikeType == 0">
+                WHERE UPPER(DATA.COL_NAME) LIKE '%' || #{axisXstr}
+            </if>
+      <if test="axisXstrLikeType == 1">
+                WHERE UPPER(DATA.COL_NAME) LIKE #{axisXstr} || '%'
+            </if>
+      <if test="axisXstrLikeType == 2">
+                WHERE UPPER(DATA.COL_NAME) LIKE '%' || #{axisXstr} || '%'
+            </if>
+    </if>
+        ORDER BY DATA.FILE_NAME_Y
+        )
+        SELECT A.FILE_NAME_Y AS "AXIS_NAME"
+        , CEIL(A.MAX_CNT/100-1 ) AS "MAX_CNT"
+        , A.MAX_CNT AS "TOLCNT"
+        , PAGE AS "PAGE"
+        FROM (SELECT FILE_NAME_Y, MAX_CNT
+        , CEIL (((ROW_NUMBER ()  OVER (ORDER BY FILE_NAME_Y ))/CAST(#{pageGap} AS NUMERIC))-1) AS PAGE
+        FROM REL_TBL_SRC
+        ) A
+        WHERE PAGE = CAST(#{axisYidx} AS NUMERIC)
+    </select>
+  <select id="getPgmColumnToFileR" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamInfo.xml.getPgmColumnToFileR */ /* ImpactStreamInfo.xml.getPgmColumnToFileR */ 
+        WITH REL_TBL_REL AS (
+        SELECT DT.COL_NAME
+        , DT.TYPE
+        , DT.FILE_NAME
+        FROM (
+        SELECT /*UPPER(A.COL_NAME) AS COL_NAME*/
+        CASE WHEN A.COL_NAME LIKE '::%' THEN (SELECT B.VARVALUE || ' [' || B.VARNAME || ']' AS NAME
+        FROM AIS0107 B
+        WHERE A.PRJ_ID     = B.PRJ_ID
+        AND A.FILE_ID    = B.FILE_ID
+        AND A.COL_NAME = B.VARNAME)  || ' [' || C.CAPS_TABLE_NAME || ']'
+        ELSE A.COL_NAME END || ' [' || C.CAPS_TABLE_NAME || ']' AS COL_NAME
+        , /*MAX(A.CRUD_C) || MAX(A.CRUD_R) || MAX(A.CRUD_U) || MAX(A.CRUD_D)*/ c.QUERY_TYPE AS TYPE
+        , B.SRC_FILE_NAME AS FILE_NAME
+        FROM /*AIS0053*/AIS0103 A
+        , AIS0102 C
+        , VW_AIS0010_UI B
+        WHERE B.PRJ_ID <include refid="getMatrixPrjId" />
+        AND A.PRJ_ID = B.PRJ_ID
+        AND A.FILE_ID = B.FILE_ID
+        and a.prj_id = c.prj_id
+        and a.file_id = c.file_id
+        and a.sql_id = c.sql_id
+        and a.table_id = c.table_id
+        AND C.INLINEVIEW_YN = 'N'
+        and a.col_value_yn = 'N'
+        AND RTRIM(B.FILE_LST_YN) = 'Y'
+
+        AND B.EXT_CD IN(SELECT BB.EXT_CD
+        FROM AIS2101 AA
+        , AIS2102 BB
+        WHERE AA.LANG_CD = #{langType}
+        AND BB.LANG_CD = AA.LANG_CD )
+
+        <if test="axisYstr != null and axisYstr != ''">
+      <if test="axisYstrLikeType == 0">
+                AND B.CAPS_SRC_FILE_NAME LIKE '%' || #{axisYstr}
+            </if>
+      <if test="axisYstrLikeType == 1">
+                AND B.CAPS_SRC_FILE_NAME LIKE #{axisYstr} || '%'
+            </if>
+      <if test="axisYstrLikeType == 2">
+                AND B.CAPS_SRC_FILE_NAME LIKE '%' || #{axisYstr} || '%'
+            </if>
+    </if>
+        ) DT
+        <if test="axisXstr != null and axisXstr != ''">
+      <if test="axisXstrLikeType == 0">
+                WHERE UPPER(DT.COL_NAME) LIKE '%' || #{axisXstr}
+            </if>
+      <if test="axisXstrLikeType == 1">
+                WHERE UPPER(DT.COL_NAME) LIKE #{axisXstr} || '%'
+            </if>
+      <if test="axisXstrLikeType == 2">
+                WHERE UPPER(DT.COL_NAME) LIKE '%' || #{axisXstr} || '%'
+            </if>
+    </if>
+        /*GROUP BY COL_NAME, B.SRC_FILE_NAME*/
+        )
+        SELECT FILE_NAME AS "FILE_NAME"
+        ,COL_NAME AS "COL_NAME"
+        ,TYPE AS "TYPE"
+        FROM REL_TBL_REL AA
+        WHERE EXISTS ( SELECT 1
+        FROM (SELECT COL_NAME
+        FROM (SELECT COL_NAME
+        ,CEIL (((ROW_NUMBER () OVER (ORDER BY COL_NAME))/CAST(#{pageGap} AS NUMERIC))-1) AS PAGE
+        FROM (SELECT COL_NAME
+        FROM REL_TBL_REL
+        GROUP BY COL_NAME
+        ) X
+        ) XX
+        WHERE PAGE =  CAST(#{axisXidx} AS NUMERIC)
+        ) XXX
+        WHERE AA.COL_NAME = COL_NAME )
+        AND EXISTS ( SELECT 1
+        FROM (SELECT FILE_NAME
+        FROM (SELECT FILE_NAME
+        ,CEIL (((ROW_NUMBER () OVER (ORDER BY FILE_NAME))/CAST(#{pageGap} AS NUMERIC))-1) AS PAGE
+        FROM (SELECT FILE_NAME
+        FROM REL_TBL_REL
+        GROUP BY FILE_NAME
+        ) Y
+        ) YY
+        WHERE PAGE = CAST(#{axisYidx} AS NUMERIC)
+        ) YYY
+        WHERE AA.FILE_NAME = FILE_NAME )
+    </select>
+  <select id="getPgmFileToFilePopupList" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamInfo.xml.getPgmFileToFilePopupList */ /* ImpactStreamInfo.xml.getPgmFileToFilePopupList */ 
+        SELECT DISTINCT fn_PRJTREENAME(A.PRJ_ID) AS PRJ_PATH
+        , A.PRJ_ID, A.FILE_ID
+        , A.SRC_FILE_NAME AS FILE_NAME
+        , A.ORG_FILE_PATH
+        , A.SRC_FILE_FULL_PATH AS FILE_PATH
+        , D.LINE_NO
+        , D.CALL_FILE_NAME AS REL_FILE_NAME
+        FROM VW_AIS0010_UI A
+        , (
+        SELECT DISTINCT A.PRJ_ID
+        , A.FILE_ID
+        , A.CALL_PRJ_ID
+        , A.CALL_FILE_ID
+        , B.CAPS_SRC_FILE_NAME AS call_FILE_NAME
+        , 0 AS LINE_NO
+        FROM AIS0052 A
+        , VW_AIS0010_UI B
+        WHERE A.PRJ_ID <include refid="getMatrixPrjId" />
+        AND RTRIM(B.FILE_LST_YN)  = 'Y'
+        AND A.CALL_PRJ_ID       = B.PRJ_ID
+        AND A.CALL_FILE_ID      = B.FILE_ID
+        AND B.CAPS_SRC_FILE_NAME = #{fileNameX}
+        ) D
+        WHERE A.PRJ_ID <include refid="getMatrixPrjId" />
+        AND A.FILE_LST_YN    = 'Y'
+        AND A.CAPS_SRC_FILE_NAME = #{fileNameY}
+    </select>
+  <select id="getPgmFuncToFilePopupList" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamInfo.xml.getPgmFuncToFilePopupList */ /* ImpactStreamInfo.xml.getPgmFuncToFilePopupList */ 
+        SELECT DISTINCT A.PRJ_ID, A.FILE_ID, B.FUNC_NAME
+        ,CASE WHEN A.SRC_FILE_NAME = B.SRC_FILE_NAME THEN 'L'
+        WHEN A.SRC_FILE_NAME &lt;&gt; B.SRC_FILE_NAME THEN 'C' END AS TYPE
+        ,fn_PRJTREENAME(A.PRJ_ID) AS PRJ_PATH
+        ,A.SRC_FILE_FULL_PATH AS FILE_PATH
+        ,A.SRC_FILE_NAME AS FILE_NAME
+        ,A.ORG_FILE_PATH
+        ,A.LINE_NO
+        FROM (SELECT DISTINCT C.PRJ_ID
+        ,C.FILE_ID
+        ,C.SRC_FILE_NAME
+        ,(SELECT FUNC_NAME FROM AIS0012 WHERE PRJ_ID = D.CALL_PRJ_ID AND FILE_ID = D.CALL_FILE_ID AND OBJ_ID = D.CALL_OBJ_ID AND FUNC_ID = D.CALL_FUNC_ID) AS CALL_FUNC_NAME
+        ,C.CAPS_SRC_FILE_NAME
+        ,C.SRC_FILE_FULL_PATH
+        ,C.ORG_FILE_PATH
+        ,B.START_LINE_NO AS LINE_NO
+        FROM VW_AIS0010_UI C
+        ,AIS0052 D
+        ,AIS0012 B
+        WHERE C.PRJ_ID <include refid="getMatrixPrjId" />
+        AND C.PRJ_ID         = B.PRJ_ID
+        AND C.FILE_ID        = B.FILE_ID
+        AND C.PRJ_ID         = D.PRJ_ID
+        AND C.FILE_ID        = D.FILE_ID
+        AND B.OBJ_ID         = D.OBJ_ID
+        AND B.FUNC_ID        = D.FUNC_ID
+        ) a
+        ,(SELECT DISTINCT A.SRC_FILE_NAME, B.FUNC_NAME
+        FROM VW_AIS0010_UI A
+        , AIS0012 B
+        WHERE A.PRJ_ID <include refid="getMatrixPrjIdPopup" />
+        AND A.PRJ_ID       = B.PRJ_ID
+        AND A.FILE_ID      = B.FILE_ID
+        AND A.FILE_LST_YN  = 'Y'
+        ) b
+        WHERE A.CALL_FUNC_NAME = B.FUNC_NAME
+        AND A.CAPS_SRC_FILE_NAME = #{fileNameY}
+        AND UPPER(B.FUNC_NAME)   = #{funcNameX}
+        ORDER BY PRJ_ID, FILE_ID, TYPE, LINE_NO
+    </select>
+  <select id="getPgmDBTblToFilePopupList" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamInfo.xml.getPgmDBTblToFilePopupList */ /* ImpactStreamInfo.xml.getPgmDBTblToFilePopupList */ 
+        SELECT DISTINCT
+        DATA.PRJ_ID
+        , DATA.FILE_ID
+        , DATA.OBJ_ID
+        , DATA.PRJ_PATH
+        , DATA.FILE_NAME
+        , DATA.TABLE_NAME
+        , DATA.OBJ_NAME
+        , DATA.TYPE
+        , DATA.LINE_NO_DISP
+        , DATA.FILE_PATH
+        , DATA.ORG_FILE_PATH
+        , DATA.VARNAME
+        , DATA.VARVALUE
+        , DATA.BEGINLINE
+        , DATA.SQL_SRC_TYPE
+        , DATA.SQL_START_LINE_NO
+        , DATA.OBJ_NAME_SOURCE
+        , DATA.COLUMN_NO
+        FROM (
+        SELECT A.PRJ_ID, A.FILE_ID, A.OBJ_ID, A.FUNC_ID
+        
+        , fn_PRJTREENAME(A.PRJ_ID) AS PRJ_PATH
+        , C.SRC_FILE_NAME AS FILE_NAME
+        , A.TABLE_NAME
+        , A.TABLE_NAME AS OBJ_NAME
+        , A.QUERY_TYPE AS TYPE
+        , A.QUERY_LINE_NO AS LINE_NO
+        , CASE WHEN SUBSTR(A.TABLE_NAME,1,2) = '::' THEN
+        H.BEGINLINE
+        ELSE
+        A.QUERY_LINE_NO
+        END AS LINE_NO_DISP
+        , C.SRC_FILE_FULL_PATH AS FILE_PATH
+        , C.ORG_FILE_PATH
+        , H.VARNAME
+        , H.VARVALUE
+        , H.BEGINLINE
+        , H.BEGINCOLUMN
+        , B.SQL_SRC_TYPE
+        , CASE WHEN B.SQL_SRC_TYPE = 'EM' THEN
+        B.LINE_NO
+        ELSE
+        CASE WHEN C.EXT_CD IN ('XML', 'XSQL')  THEN
+        B.LINE_NO
+        ELSE
+        G.START_LINE_NO
+        END
+        END AS SQL_START_LINE_NO
+        
+
+
+
+
+        ,CASE WHEN A.CAPS_TABLE_NAME LIKE '::%' THEN H.VARVALUE || ' [' || A.CAPS_TABLE_NAME || ']'
+        ELSE A.CAPS_TABLE_NAME END AS OBJ_NAME_SOURCE
+        , A.COLUMN_NO
+        
+        FROM AIS0102 A
+        ,VW_AIS0100 B
+        ,VW_AIS0010_UI C
+        ,AIS0107 H
+        ,AIS0012 G
+        WHERE A.PRJ_ID <include refid="getMatrixPrjId" />
+        AND A.INLINEVIEW_YN      = 'N'
+        AND A.PRJ_ID             = B.PRJ_ID
+        AND A.FILE_ID            = B.FILE_ID
+        AND A.SQL_ID             = B.SQL_ID
+        AND A.PRJ_ID             = C.PRJ_ID
+        AND A.FILE_ID            = C.FILE_ID
+        AND A.PRJ_ID             = H.PRJ_ID(+)
+        AND A.FILE_ID            = H.FILE_ID(+)
+        
+
+        AND A.TABLE_NAME         = H.VARNAME(+)
+        AND A.PRJ_ID             = G.PRJ_ID (+)
+        AND A.FILE_ID            = G.FILE_ID(+)
+        AND A.OBJ_ID             = G.OBJ_ID (+)
+        AND A.FUNC_ID            = G.FUNC_ID(+)
+        AND RTRIM(C.FILE_LST_YN) = 'Y'
+        ) DATA
+        WHERE UPPER(DATA.OBJ_NAME_SOURCE)    = #{tableNameX}
+        AND UPPER(DATA.FILE_NAME) = #{fileNameY}
+        ORDER BY  DATA.PRJ_ID, DATA.FILE_ID, DATA.TABLE_NAME, DATA.LINE_NO_DISP
+    </select>
+  <select id="getPgmDBColumnToFilePopupList" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamInfo.xml.getPgmDBColumnToFilePopupList */ /* ImpactStreamInfo.xml.getPgmDBColumnToFilePopupList */ 
+        SELECT DISTINCT DT.PRJ_ID, DT.FILE_ID, DT.OBJ_ID, DT.FUNC_ID
+        , DT.PRJ_PATH
+        , DT.FILE_NAME
+        , DT.LINE_NO
+        , DT.LINE_NO_DISP
+        , DT.COL_NAME
+        , DT.TYPE
+        , DT.ORG_FILE_PATH
+        , DT.FILE_PATH
+        , DT.SQL_SRC_TYPE
+        , DT.VARNAME
+        , DT.VARVALUE
+        , DT.BEGINLINE
+        , DT.BEGINCOLUMN
+        , DT.SQL_START_LINE_NO
+        , DT.OBJ_NAME_SOURCE
+        , DT.COLUMN_NO
+        FROM (
+        SELECT B.PRJ_ID, B.FILE_ID, B.OBJ_ID, B.FUNC_ID
+        , fn_PRJTREENAME(A.PRJ_ID) AS PRJ_PATH
+        , C.SRC_FILE_NAME AS FILE_NAME
+        , B.QUERY_LINE_NO AS LINE_NO
+        , CASE WHEN SUBSTR(B.COL_NAME,1,2) = '::' THEN
+        H.BEGINLINE
+        ELSE
+        B.QUERY_LINE_NO
+        END AS LINE_NO_DISP
+        , B.COL_NAME
+        , A.QUERY_TYPE AS TYPE
+        , C.ORG_FILE_PATH
+        , C.SRC_FILE_FULL_PATH AS FILE_PATH
+        , D.SQL_SRC_TYPE
+        , H.VARNAME
+        , H.VARVALUE
+        , H.BEGINLINE
+        , H.BEGINCOLUMN
+        , CASE WHEN D.SQL_SRC_TYPE = 'EM' THEN
+        D.LINE_NO
+        ELSE
+        CASE WHEN C.EXT_CD IN ('XML', 'XSQL')  THEN
+        D.LINE_NO
+        ELSE
+        G.START_LINE_NO
+        END
+        END AS SQL_START_LINE_NO
+        ,CASE WHEN B.COL_NAME LIKE '::%' THEN H.VARVALUE || ' [' || B.COL_NAME || ']' || ' [' || A.CAPS_TABLE_NAME || ']'
+        ELSE B.COL_NAME || ' [' || A.CAPS_TABLE_NAME || ']' END AS OBJ_NAME_SOURCE
+        , B.COLUMN_NO
+        FROM AIS0102 A
+        , AIS0103 B
+        , VW_AIS0010_UI C
+        , VW_AIS0100 D
+        , AIS0107 H
+        , AIS0012 G
+        WHERE A.PRJ_ID <include refid="getMatrixPrjId" />
+        AND A.PRJ_ID               = B.PRJ_ID
+        AND A.FILE_ID              = B.FILE_ID
+        AND A.TABLE_ID             = B.TABLE_ID
+        AND A.SQL_ID               = B.SQL_ID
+        AND A.PRJ_ID               = D.PRJ_ID
+        AND A.FILE_ID              = D.FILE_ID
+        AND A.SQL_ID               = D.SQL_ID
+        AND A.PRJ_ID               = C.PRJ_ID
+        AND A.FILE_ID              = C.FILE_ID
+        AND B.PRJ_ID               = H.PRJ_ID(+)
+        AND B.FILE_ID              = H.FILE_ID(+)
+        AND B.COL_NAME             = H.VARNAME(+)
+        AND B.PRJ_ID               = G.PRJ_ID (+)
+        AND B.FILE_ID              = G.FILE_ID(+)
+        AND B.OBJ_ID               = G.OBJ_ID (+)
+        AND B.FUNC_ID              = G.FUNC_ID(+)
+        AND FILE_LST_YN            = 'Y'
+        AND B.COL_VALUE_YN = 'N'
+        ) DT
+        WHERE UPPER(DT.FILE_NAME) = #{fileNameY}
+        AND UPPER(DT.OBJ_NAME_SOURCE)  = #{colNameX}
+        ORDER BY DT.PRJ_ID, DT.FILE_ID, DT.COL_NAME, DT.LINE_NO
+    </select>
+</mapper>

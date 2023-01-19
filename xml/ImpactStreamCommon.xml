@@ -1,0 +1,2212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+            PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+            "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.datastreams.impactstream.dao.CommonControlDao">
+  <resultMap id="getBusinessTreeListMap" type="java.util.HashMap">
+    <result column="DEPTH" javaType="java.lang.String" property="DEPTH" />
+    <result column="OBJID" javaType="java.lang.String" property="OBJID" />
+    <result column="LABEL" javaType="java.lang.String" property="LABEL" />
+    <result column="ENGLABEL" javaType="java.lang.String" property="ENGLABEL" />
+    <result column="UPPER_BIZ_ID" javaType="java.lang.String" property="UPPER_BIZ_ID" />
+    <result column="OBJTYPE" javaType="java.lang.String" property="OBJTYPE" />
+  </resultMap>
+  <resultMap id="getPrjInfoMap" type="java.util.HashMap">
+    <result column="PRJ_ID" property="prjId" />
+    <result column="PRJ_NAME" property="prjName" />
+    <result column="PRJ_DESC" property="prjDesc" />
+    <result column="PRJ_SCAN_YN" property="scanYn" />
+    <result column="PRJ_ANLY_YN" property="analyYn" />
+    <result column="UPPER_BIZ_ID" property="upperBizId" />
+    <result column="UPPER_BIZ_NAME" property="upperBizName" />
+  </resultMap>
+  <resultMap id="getBizInfoMap" type="java.util.HashMap">
+    <result column="DEPTH" property="depth" />
+    <result column="BIZ_ID" property="bizId" />
+    <result column="BIZ_KOR_NAME" property="bizName" />
+    <result column="BIZ_DESC" property="bizDesc" />
+    <result column="UPPER_BIZ_ID" property="upperBizId" />
+    <result column="UPPER_BIZ_NAME" property="upperBizName" />
+  </resultMap>
+  <resultMap id="getFileInfoMap" type="java.util.HashMap">
+    <result column="PRJ_ID" property="prjId" />
+    <result column="PRJ_NAME" property="prjName" />
+    <result column="UPPER_BIZ_ID" property="upperBizId" />
+    <result column="FILE_ID" property="fileId" />
+    <result column="ORG_FILE_NAME" property="orgFileName" />
+    <result column="CAPS_FILE_NAME" property="capsFileName" />
+    <result column="LANG_TYPE" property="langType" />
+    <result column="EXT_CD" property="extCD" />
+    <result column="FILE_ANLY_YN" property="fileAnalYN" />
+    <result column="SRC_FILE_PATH" property="srcFilePath" />
+    <result column="ORG_FILE_PATH" property="orgFilePath" />
+    <result column="LANG_TYPE" property="langType" />
+  </resultMap>
+  <resultMap id="getAppFileSrcInfoTreeListMap" type="java.util.HashMap">
+    <result column="FILE_ID" javaType="java.lang.String" property="FILE_ID" />
+    <result column="LABEL" javaType="java.lang.String" property="LABEL" />
+    <result column="DIRSEQ" javaType="java.lang.String" property="DIRSEQ" />
+    <result column="OBJID" javaType="java.lang.String" property="OBJID" />
+    <result column="UPFILEID" javaType="java.lang.String" property="UPFILEID" />
+    <result column="OBJTYPE" javaType="java.lang.String" property="OBJTYPE" />
+    <result column="LANGTYPE" javaType="java.lang.String" property="LANGTYPE" />
+    <result column="GUBNTYPE" javaType="java.lang.String" property="GUBNTYPE" />
+    <result column="BIZ_ID" javaType="java.lang.String" property="BIZ_ID" />
+    <result column="PRJ_ID" javaType="java.lang.String" property="PRJ_ID" />
+    <result column="FILE_ANLY_YN" javaType="java.lang.String" property="FILE_ANLY_YN" />
+    <result column="PRJ_KOR_NAME" javaType="java.lang.String" property="PRJ_KOR_NAME" />
+    <result column="UI_VIEW_IDX" javaType="java.lang.String" property="UI_VIEW_IDX" />
+    <result column="BIZ_PATH" javaType="java.lang.String" property="BIZ_PATH" />
+  </resultMap>
+  <resultMap id="getAppHierarchySrcTreeListMap" type="java.util.HashMap">
+    <result column="LABEL" javaType="java.lang.String" property="LABEL" />
+    <result column="DIRSEQ" javaType="java.lang.String" property="DIRSEQ" />
+    <result column="OBJID" javaType="java.lang.String" property="OBJID" />
+    <result column="UPFILEID" javaType="java.lang.String" property="UPFILEID" />
+    <result column="OBJTYPE" javaType="java.lang.String" property="OBJTYPE" />
+    <result column="LANGTYPE" javaType="java.lang.String" property="LANGTYPE" />
+    <result column="GUBNTYPE" javaType="java.lang.String" property="GUBNTYPE" />
+    <result column="BIZ_ID" javaType="java.lang.String" property="BIZ_ID" />
+    <result column="PRJ_ID" javaType="java.lang.String" property="PRJ_ID" />
+    <result column="FILE_ANLY_YN" javaType="java.lang.String" property="FILE_ANLY_YN" />
+    <result column="PRJ_KOR_NAME" javaType="java.lang.String" property="PRJ_KOR_NAME" />
+    <result column="BIZ_PATH" javaType="java.lang.String" property="BIZ_PATH" />
+  </resultMap>
+  <resultMap id="getAppFirstSrcTreeListMap" type="java.util.HashMap">
+    <result column="LABEL" javaType="java.lang.String" property="LABEL" />
+    <result column="DIRSEQ" javaType="java.lang.String" property="DIRSEQ" />
+    <result column="OBJID" javaType="java.lang.String" property="OBJID" />
+    <result column="UPFILEID" javaType="java.lang.String" property="UPFILEID" />
+    <result column="OBJTYPE" javaType="java.lang.String" property="OBJTYPE" />
+    <result column="LANGTYPE" javaType="java.lang.String" property="LANGTYPE" />
+    <result column="GUBNTYPE" javaType="java.lang.String" property="GUBNTYPE" />
+    <result column="BIZ_ID" javaType="java.lang.String" property="BIZ_ID" />
+    <result column="PRJ_ID" javaType="java.lang.String" property="PRJ_ID" />
+    <result column="FILE_ANLY_YN" javaType="java.lang.String" property="FILE_ANLY_YN" />
+    <result column="PRJ_KOR_NAME" javaType="java.lang.String" property="PRJ_KOR_NAME" />
+    <result column="BIZ_PATH" javaType="java.lang.String" property="BIZ_PATH" />
+  </resultMap>
+  <resultMap id="getAppPrgTreeListMap" type="java.util.HashMap">
+    <result column="LABEL" javaType="java.lang.String" property="LABEL" />
+    <result column="REF_BIZ_ID" javaType="java.lang.String" property="REF_BIZ_ID" />
+    <result column="DIRSEQ" javaType="java.lang.String" property="DIRSEQ" />
+    <result column="OBJID" javaType="java.lang.String" property="OBJID" />
+    <result column="PRJ_ID" javaType="java.lang.String" property="PRJ_ID" />
+    <result column="BIZ_ID" javaType="java.lang.String" property="BIZ_ID" />
+    <result column="UPFILEID" javaType="java.lang.String" property="UPFILEID" />
+    <result column="OBJTYPE" javaType="java.lang.String" property="OBJTYPE" />
+    <result column="LANGTYPE" javaType="java.lang.String" property="LANGTYPE" />
+    <result column="GUBNTYPE" javaType="java.lang.String" property="GUBNTYPE" />
+    <result column="FILE_ANLY_YN" javaType="java.lang.String" property="FILE_ANLY_YN" />
+    <result column="PRJ_KOR_NAME" javaType="java.lang.String" property="PRJ_KOR_NAME" />
+  </resultMap>
+  <resultMap id="getSearchingFileListMap" type="java.util.HashMap">
+    <result column="L__GRID__LINE__NUM" javaType="java.lang.String" property="L__GRID__LINE__NUM" />
+    <result column="PGNO" javaType="java.lang.String" property="PGNO" />
+    <result column="TOTALCNT" javaType="java.lang.String" property="TOTALCNT" />
+    <result column="LABEL" javaType="java.lang.String" property="LABEL" />
+    <result column="OBJID" javaType="java.lang.String" property="OBJID" />
+    <result column="UPFILEID" javaType="java.lang.String" property="UPFILEID" />
+    <result column="FILE_ID" javaType="java.lang.String" property="FILE_ID" />
+    <result column="OBJTYPE" javaType="java.lang.String" property="OBJTYPE" />
+    <result column="LANGTYPE" javaType="java.lang.String" property="LANGTYPE" />
+    <result column="PRJ_ID" javaType="java.lang.String" property="PRJ_ID" />
+    <result column="PRJ_KOR_NAME" javaType="java.lang.String" property="PRJ_KOR_NAME" />
+    <result column="BIZ_ID" javaType="java.lang.String" property="BIZ_ID" />
+    <result column="BIZ_KOR_NAME" javaType="java.lang.String" property="BIZ_KOR_NAME" />
+    <result column="ORG_FILE_PATH" javaType="java.lang.String" property="ORG_FILE_PATH" />
+    <result column="FILE_ANLY_YN" javaType="java.lang.String" property="FILE_ANLY_YN" />
+    <result column="FILE_NAME" javaType="java.lang.String" property="FILE_NAME" />
+    <result column="BIZ_PATH" javaType="java.lang.String" property="BIZ_PATH" />
+    <result column="BIZUNIT_NAME" javaType="java.lang.String" property="BIZUNIT_NAME" />
+    <result column="START_LINE_NO" javaType="java.lang.String" property="START_LINE_NO" />
+  </resultMap>
+  <resultMap id="getIncludeImportListMap" type="java.util.HashMap">
+    <result column="toID" javaType="java.lang.String" property="toID" />
+    <result column="prj_id" javaType="java.lang.String" property="prj_id" />
+    <result column="file_id" javaType="java.lang.String" property="file_id" />
+    <result column="rel_file_name" javaType="java.lang.String" property="rel_file_name" />
+    <result column="FILE_PATH" javaType="java.lang.String" property="FILE_PATH" />
+    <result column="PKG_NAME" javaType="java.lang.String" property="PKG_NAME" />
+    <result column="name" javaType="java.lang.String" property="name" />
+    <result column="rel_obj_type" javaType="java.lang.String" property="rel_obj_type" />
+    <result column="lineNo" javaType="java.lang.String" property="lineNo" />
+    <result column="fromID" javaType="java.lang.String" property="fromID" />
+    <result column="depth" javaType="java.lang.String" property="depth" />
+  </resultMap>
+  <resultMap id="getCallNodeMap" type="java.util.HashMap">
+    <result column="ID" javaType="java.lang.String" property="ID" />
+    <result column="BIZ_PATH" javaType="java.lang.String" property="BIZ_PATH" />
+    <result column="BIZ_ID" javaType="java.lang.String" property="BIZ_ID" />
+    <result column="PRJ_ID" javaType="java.lang.String" property="PRJ_ID" />
+    <result column="PRJ_NAME" javaType="java.lang.String" property="PRJ_NAME" />
+    <result column="OBJ_ID" javaType="java.lang.String" property="OBJ_ID" />
+    <result column="NAME" javaType="java.lang.String" property="NAME" />
+    <result column="FILE_PATH" javaType="java.lang.String" property="FILE_PATH" />
+    <result column="ORG_FILE_PATH" javaType="java.lang.String" property="ORG_FILE_PATH" />
+    <result column="OBJ_TYPE" javaType="java.lang.String" property="OBJ_TYPE" />
+    <result column="OBJ_NAME" javaType="java.lang.String" property="OBJ_NAME" />
+    <result column="NODE_COLOR" javaType="java.lang.String" property="NODE_COLOR" />
+    <result column="UNIQUE_ID" javaType="java.lang.String" property="UNIQUE_ID" />
+    <result column="LANG_TYPE" javaType="java.lang.String" property="LANG_TYPE" />
+  </resultMap>
+  <resultMap id="getTreeCallMap" type="java.util.HashMap">
+    <result column="fromID" javaType="java.lang.String" property="fromID" />
+    <result column="biz_id" javaType="java.lang.String" property="biz_id" />
+    <result column="OBJID" javaType="java.lang.String" property="OBJID" />
+    <result column="PRJ_PATH" javaType="java.lang.String" property="PRJ_PATH" />
+    <result column="FILE_ID" javaType="java.lang.String" property="FILE_ID" />
+    <result column="LABEL" javaType="java.lang.String" property="LABEL" />
+    <result column="FILE_PATH" javaType="java.lang.String" property="FILE_PATH" />
+    <result column="REL_OBJ_NAME" javaType="java.lang.String" property="REL_OBJ_NAME" />
+    <result column="OBJTYPE" javaType="java.lang.String" property="OBJTYPE" />
+    <result column="rel_id" javaType="java.lang.String" property="rel_id" />
+    <result column="REL_PRJ_ID" javaType="java.lang.String" property="REL_PRJ_ID" />
+    <result column="REL_FILE_ID" javaType="java.lang.String" property="REL_FILE_ID" />
+    <result column="rel_file_name" javaType="java.lang.String" property="rel_file_name" />
+    <result column="REL_DEPTH" javaType="java.lang.String" property="REL_DEPTH" />
+    <result column="DEPTH" javaType="java.lang.String" property="DEPTH" />
+    <result column="CALL_TYPE" javaType="java.lang.String" property="callType" />
+  </resultMap>
+  <resultMap id="getNextFilesMap" type="java.util.HashMap">
+    <result column="FROMID" javaType="java.lang.String" property="FROMID" />
+    <result column="BIZ_ID" javaType="java.lang.String" property="BIZ_ID" />
+    <result column="OBJID" javaType="java.lang.String" property="OBJID" />
+    <result column="FILE_ID" javaType="java.lang.String" property="FILE_ID" />
+    <result column="LABEL" javaType="java.lang.String" property="LABEL" />
+    <result column="REL_ID" javaType="java.lang.String" property="REL_ID" />
+    <result column="REL_PRJ_ID" javaType="java.lang.String" property="REL_PRJ_ID" />
+    <result column="REL_FILE_ID" javaType="java.lang.String" property="REL_FILE_ID" />
+    <result column="REL_FILE_NAME" javaType="java.lang.String" property="REL_FILE_NAME" />
+    <result column="REL_OBJ_NAME" javaType="java.lang.String" property="REL_OBJ_NAME" />
+    <result column="OBJTYPE" javaType="java.lang.String" property="OBJTYPE" />
+    <result column="FILE_PATH" javaType="java.lang.String" property="FILE_PATH" />
+    <result column="REL_DEPTH" javaType="java.lang.String" property="REL_DEPTH" />
+    <result column="PRJ_PATH" javaType="java.lang.String" property="PRJ_PATH" />
+    <result column="DEPTH" javaType="java.lang.String" property="DEPTH" />
+    <result column="CALL_TYPE" javaType="java.lang.String" property="callType" />
+  </resultMap>
+  <resultMap id="getSqlSrcInfoMap" type="java.util.HashMap">
+    <result column="PRJ_ID" javaType="java.lang.String" property="PRJ_ID" />
+    <result column="SQL_SRC" javaType="java.lang.String" property="SQL_SRC" />
+    <result column="SRC_FILE_NAME" javaType="java.lang.String" property="SRC_FILE_NAME" />
+    <result column="FILE_ID" javaType="java.lang.String" property="FILE_ID" />
+    <result column="ORG_FILE_PATH" javaType="java.lang.String" property="ORG_FILE_PATH" />
+    <result column="LINE_NO" javaType="java.lang.String" property="LINE_NO" />
+    <result column="EXT_CD" javaType="java.lang.String" property="EXT_CD" />
+  </resultMap>
+  <resultMap id="getSrcInfoMap" type="java.util.HashMap">
+    <result column="PRJ_ID" javaType="java.lang.String" property="PRJ_ID" />
+    <result column="SRC_FILE_NAME" javaType="java.lang.String" property="SRC_FILE_NAME" />
+    <result column="FILE_ID" javaType="java.lang.String" property="FILE_ID" />
+    <result column="ORG_FILE_PATH" javaType="java.lang.String" property="ORG_FILE_PATH" />
+    <result column="EXT_CD" javaType="java.lang.String" property="EXT_CD" />
+  </resultMap>
+  <resultMap id="getFileSrcInfoMap" type="java.util.HashMap">
+    <result column="FILE_PATH" javaType="java.lang.String" property="FILE_PATH" />
+    <result column="ORG_FILE_PATH" javaType="java.lang.String" property="ORG_FILE_PATH" />
+    <result column="FILE_NAME" javaType="java.lang.String" property="FILE_NAME" />
+    <result column="LINE_NO" javaType="java.lang.String" property="LINE_NO" />
+  </resultMap>
+  <select id="getBusinessTreeList" parameterType="java.util.HashMap" resultMap="getBusinessTreeListMap">/* ImpactStreamCommon.xml.getBusinessTreeList */ /* ImpactStreamCommon.xml.getBusinessTreeList */ 
+        with recursive biz_tree(depth, objid, label, englabel, upper_biz_id) as (
+            select 1     as depth,
+                   a.biz_id,
+                   a.biz_kor_name,
+                   a.biz_eng_name,
+                   a.upper_biz_id,
+                   'biz' as objtype
+            from vw_ais1000 a
+            where a.upper_biz_id is null
+              and a.del_yn = 'N'
+            union all
+            select b.depth + 1 as depth,
+                   a.biz_id,
+                   a.biz_kor_name,
+                   a.biz_eng_name,
+                   a.upper_biz_id,
+                   'biz'       as objtype
+            from vw_ais1000 a,
+                 biz_tree b
+            where a.del_yn = 'N'
+              and a.upper_biz_id = b.objId
+        )
+        select *
+        from biz_tree
+        order by depth
+    </select>
+  <select id="getCodeList" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamCommon.xml.getCodeList */ /* ImpactStreamCommon.xml.getCodeList */ 
+<if test="allYn == 'Y'">
+            SELECT 'ALL' AS SCODE, 'ALL' AS CODE_NAME
+            FROM DUAL
+            UNION ALL
+        </if>
+        SELECT SCODE, CODE_NAME
+        FROM AIS2100
+        WHERE MCODE = #{gubn}
+        AND USE_YN ='Y'
+        <if test="desc == 'Y'">
+            order by code_name desc
+        </if>
+  </select>
+  <select id="getLangCodeList" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamCommon.xml.getLangCodeList */ /* ImpactStreamCommon.xml.getLangCodeList */ 
+        select
+            'ALL' as "LANG_NAME",
+            'ALL' as "LANG_CD"
+        union all
+        select
+            LANG.LANG_NAME,
+            LANG.LANG_CD
+        from
+            (
+                select
+                    LANG_NAME,
+                    LANG_CD
+                from
+                    AIS2101 A
+                where
+                    exists (
+                            select
+                                1
+                            from
+                                AIS2102 B
+                            where
+                                B.LANG_CD = A.LANG_CD
+                              and B.DISPLAY_YN = 'Y'
+                            limit 1 )
+                order by
+                    LANG_NAME ) LANG
+    </select>
+  <select id="getServerTypeList" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamCommon.xml.getServerTypeList */ /* ImpactStreamCommon.xml.getServerTypeList */ 
+        SELECT CODE_NAME AS LABEL
+             , SCODE     AS CODE
+        FROM AIS2100
+        WHERE USE_YN = 'Y'
+          AND MCODE = 'AGENT_YN'
+    </select>
+  <select id="getprjinfo" parameterType="java.util.HashMap" resultMap="getPrjInfoMap">/* ImpactStreamCommon.xml.getprjinfo */ /* ImpactStreamCommon.xml.getprjinfo */ 
+        SELECT A.PRJ_ID       AS PRJ_ID
+             , A.PRJ_KOR_NAME AS PRJ_NAME
+             , A.PRJ_DESC     AS PRJ_DESC
+             , A.SCAN_YN      AS PRJ_SCAN_YN
+             , A.ANLY_YN      AS PRJ_ANLY_YN
+             , B.BIZ_ID       AS UPPER_BIZ_ID
+             , B.BIZ_KOR_NAME AS UPPER_BIZ_NAME
+        FROM AIS1001 A, VW_AIS1000 B
+        WHERE A.UPPER_BIZ_ID = B.BIZ_ID
+          AND A.PRJ_ID = #{prjId}
+    </select>
+  <select id="getbizinfo" parameterType="java.util.HashMap" resultMap="getBizInfoMap">/* ImpactStreamCommon.xml.getbizinfo */ /* ImpactStreamCommon.xml.getbizinfo */ 
+        with recursive biz_info (depth,biz_id,biz_kor_name,biz_desc,upper_biz_id,upper_biz_name) as (
+            select
+                1 as depth,
+                a.biz_id ,
+                a.biz_kor_name ,
+                a.biz_desc ,
+                a.upper_biz_id ,
+                case
+                    when (
+                        select
+                            b.biz_kor_name
+                        from
+                            vw_ais1000 b
+                        where
+                            a.upper_biz_id = b.biz_id ) is null then 'top level'
+                    else (
+                        select
+                            b.biz_kor_name
+                        from
+                            vw_ais1000 b
+                        where
+                            a.upper_biz_id = b.biz_id )
+                    end as upper_biz_name
+            from
+                vw_ais1000 a
+            where
+                a.biz_id = #{bizId}
+              and a.del_yn = 'N'
+            union all
+            select
+                b.depth + 1 as depth,
+                a.biz_id,
+                a.biz_kor_name,
+                a.biz_desc,
+                a.upper_biz_id ,
+                case
+                    when (
+                        select
+                            b.biz_kor_name
+                        from
+                            vw_ais1000 b
+                        where
+                            a.upper_biz_id = b.biz_id ) is null then 'top level'
+                    else (
+                        select
+                            b.biz_kor_name
+                        from
+                            vw_ais1000 b
+                        where
+                            a.upper_biz_id = b.biz_id )
+                    end as upper_biz_name
+            from
+                vw_ais1000 a ,
+                biz_info b
+            where
+                a.del_yn = 'N'
+              and a.upper_biz_id = b.biz_id
+        )
+        select
+            *
+        from
+            biz_info
+    </select>
+  <select id="getfileinfo" parameterType="java.util.HashMap" resultMap="getFileInfoMap">/* ImpactStreamCommon.xml.getfileinfo */ /* ImpactStreamCommon.xml.getfileinfo */ 
+        SELECT A.PRJ_ID                     AS PRJ_ID
+             , B.PRJ_KOR_NAME               AS PRJ_NAME
+             , B.UPPER_BIZ_ID               AS UPPER_BIZ_ID
+             , A.FILE_ID                    AS FILE_ID
+             , A.SRC_FILE_NAME              AS ORG_FILE_NAME
+             , A.CAPS_SRC_FILE_NAME         AS CAPS_FILE_NAME
+             , (SELECT
+                    case
+                        when C.LANG_CD is null then 'undefined'
+                        else C.LANG_CD
+                        end
+                FROM AIS2102 C
+                WHERE A.EXT_CD = C.EXT_CD) AS LANG_TYPE
+             , A.EXT_CD                     AS EXT_CD
+             , A.FILE_ANLY_YN               AS FILE_ANLY_YN
+             , A.SRC_FILE_FULL_PATH         AS SRC_FILE_PATH
+             , A.ORG_FILE_PATH              AS ORG_FILE_PATH
+        FROM AIS0010 A, AIS1001 B
+        WHERE A.PRJ_ID = B.PRJ_ID
+          AND A.PRJ_ID = CAST(#{prjId} AS TEXT)
+          AND A.FILE_ID = CAST(#{fileId} AS NUMERIC)
+    </select>
+  <select id="getAuthCodeList" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamCommon.xml.getAuthCodeList */ /* ImpactStreamCommon.xml.getAuthCodeList */ 
+        SELECT A.SCODE ,CODE_NAME
+        FROM AIS2100 A
+           ,(SELECT FILE_MENU
+             FROM AIS2008
+             WHERE AUTH_CODE = (SELECT LANG_CD
+                                FROM AIS2102
+                                WHERE EXT_CD = #{langType})
+               AND DISPLAY_YN = 'N'
+        ) B
+        WHERE A.MCODE='FILE_MENU'
+          AND A.SCODE = B.FILE_MENU
+    </select>
+  <select id="getAppFileSrcInfoTreeList" parameterType="java.util.HashMap" resultMap="getAppFileSrcInfoTreeListMap">/* ImpactStreamCommon.xml.getAppFileSrcInfoTreeList */ /* ImpactStreamCommon.xml.getAppFileSrcInfoTreeList */ 
+        SELECT 'include/import' AS LABEL
+             ,0              AS DIRSEQ
+             ,0              AS OBJID
+             ,0              AS FILE_ID
+             ,0              AS UPFILEID
+             ,'fimp'         AS OBJTYPE
+             ,''             AS LANGTYPE
+             ,''             AS GUBNTYPE
+             ,'0'            AS BIZ_ID
+             ,'0'            AS PRJ_ID
+             ,''             AS FILE_ANLY_YN
+             ,''             AS PRJ_KOR_NAME
+             ,0              AS UI_VIEW_IDX
+             ,''             AS BIZ_PATH
+        UNION ALL
+        SELECT DISTINCT B.PKG_NAME||'.'||B.HEDR_FILE_NAME AS LABEL
+                      ,0                                          AS DIRSEQ
+                      ,B.HEDR_FILE_ID                             AS OBJID
+                      ,A.FILE_ID                                  AS FILE_ID
+                      ,A.FILE_ID                                  AS UPFILEID
+                      ,'imp'                                      AS OBJTYPE
+                      ,A.EXT_CD                                   AS LANGTYPE
+                      ,''                                         AS GUBNTYPE
+                      ,#{bizId}                                    AS BIZ_ID
+                      ,A.PRJ_ID
+                      ,'Y' AS FILE_ANLY_YN
+                      ,C.PRJ_KOR_NAME
+                      ,1                                          AS UI_VIEW_IDX
+                      ,fn_PRJTREENAME(A.PRJ_ID)                   AS BIZ_PATH
+        FROM VW_AIS0010_UI A
+           ,AIS0031 B
+           ,AIS1001 C
+        WHERE A.FILE_ID      = B.FILE_ID
+          AND A.PRJ_ID    = B.PRJ_ID
+          AND B.PRJ_ID    = C.PRJ_ID
+          AND A.PRJ_ID    = CAST(#{prjId} AS TEXT)
+          AND A.FILE_ID   =  CAST(#{fileId} AS NUMERIC)
+          AND B.HEDR_TYPE &lt;&gt; 'P'
+        UNION ALL
+        SELECT DISTINCT 'struct/enum' AS LABEL
+                      ,0             AS DIRSEQ
+                      ,0             AS OBJID
+                      ,0             AS FILE_ID
+                      ,0             AS UPFILEID
+                      ,'fstrc'       AS OBJTYPE
+                      ,''            AS LANGTYPE
+                      ,''            AS GUBNTYPE
+                      ,'0'           AS BIZ_ID
+                      ,'0'           AS PRJ_ID
+                      ,''            AS FILE_ANLY_YN
+                      ,''            AS PRJ_KOR_NAME
+                      ,2             AS UI_VIEW_IDX
+                      ,''            AS BIZ_PATH
+        FROM VW_AIS0010_UI A
+           ,AIS0014 B
+           ,AIS1001 C
+        WHERE A.PRJ_ID      = B.PRJ_ID
+          AND A.FILE_ID  = B.FILE_ID
+          AND B.PRJ_ID   = C.PRJ_ID
+          AND A.PRJ_ID   =  CAST(#{prjId} AS TEXT)
+          AND A.FILE_ID  =  CAST(#{fileId} AS NUMERIC)
+          AND B.VAR_TYPE &lt;&gt; 'local'
+          AND B.VAR_TYPE &lt;&gt; 'global'
+        UNION ALL
+        SELECT DISTINCT B.VAR_NAME      AS LABEL
+                      ,0                        AS DIRSEQ
+                      ,B.VAR_ID                 AS OBJID
+                      ,A.FILE_ID                AS FILE_ID
+                      ,A.FILE_ID                AS UPFILEID
+                      ,'strc'                   AS OBJTYPE
+                      ,A.EXT_CD                 AS LANGTYPE
+                      ,B.VAR_TYPE               AS GUBNTYPE
+                      ,#{bizId}                  AS BIZ_ID
+                      ,A.PRJ_ID                 AS PRJ_ID
+                      ,'Y'                      AS FILE_ANLY_YN
+                      ,C.PRJ_KOR_NAME           AS PRJ_KOR_NAME
+                      ,3                        AS UI_VIEW_IDX
+                      ,fn_PRJTREENAME(A.PRJ_ID) AS BIZ_PATH
+        FROM VW_AIS0010_UI A
+           ,AIS0014 B
+           ,AIS1001 C
+        WHERE A.PRJ_ID   = B.PRJ_ID
+          AND A.FILE_ID  = B.FILE_ID
+          AND B.PRJ_ID   = C.PRJ_ID
+          AND A.PRJ_ID   =  CAST(#{prjId} AS TEXT)
+          AND A.FILE_ID  =  CAST(#{fileId} AS NUMERIC)
+          AND B.VAR_TYPE &lt;&gt; 'local'
+          AND B.VAR_TYPE &lt;&gt; 'global'
+        UNION ALL
+        SELECT 'variable' AS LABEL
+             ,0          AS DIRSEQ
+             ,0          AS OBJID
+             ,0          AS FILE_ID
+             ,0          AS UPFILEID
+             ,'fvar'     AS OBJTYPE
+             ,''         AS LANGTYPE
+             ,''         AS GUBNTYPE
+             ,'0'        AS BIZ_ID
+             ,'0'        AS PRJ_ID
+             ,''         AS FILE_ANLY_YN
+             ,''         AS PRJ_KOR_NAME
+             ,4          AS UI_VIEW_IDX
+             ,''         AS BIZ_PATH
+        UNION ALL
+        SELECT DISTINCT B.VAR_NAME      AS LABEL
+                      ,0                        AS DIRSEQ
+                      ,B.VAR_ID                 AS OBJID
+                      ,A.FILE_ID                AS FILE_ID
+                      ,A.FILE_ID                AS UPFILEID
+                      ,'var'                    AS OBJTYPE
+                      ,A.EXT_CD                 AS LANGTYPE
+                      ,B.VAR_TYPE               AS GUBNTYPE
+                      ,#{bizId}                  AS BIZ_ID
+                      ,A.PRJ_ID                 AS PRJ_ID
+                      ,'Y'                      AS FILE_ANLY_YN
+                      ,C.PRJ_KOR_NAME           AS PRJ_KOR_NAME
+                      ,5                        AS UI_VIEW_IDX
+                      ,fn_PRJTREENAME(A.PRJ_ID) AS BIZ_PATH
+        FROM VW_AIS0010_UI A
+           ,AIS0014 B
+           ,AIS1001 C
+        WHERE A.PRJ_ID      = B.PRJ_ID
+          AND A.FILE_ID  = B.FILE_ID
+          AND B.PRJ_ID   = C.PRJ_ID
+          AND A.PRJ_ID   =  CAST(#{prjId} AS TEXT)
+          AND A.FILE_ID  =  CAST(#{fileId} AS NUMERIC)
+          AND B.VAR_TYPE = 'global'
+        UNION ALL
+        SELECT 'function' AS LABEL
+             ,0          AS DIRSEQ
+             ,0          AS OBJID
+             ,0          AS FILE_ID
+             ,0          AS UPFILEID
+             ,'ffunc'    AS OBJTYPE
+             ,''         AS LANGTYPE
+             ,''         AS GUBNTYPE
+             ,'0'        AS BIZ_ID
+             ,'0'        AS PRJ_ID
+             ,''         AS FILE_ANLY_YN
+             ,''         AS PRJ_KOR_NAME
+             ,6          AS UI_VIEW_IDX
+             ,''         AS BIZ_PATH
+        UNION ALL
+        SELECT DISTINCT B.FUNC_NAME     AS LABEL
+                      ,0                        AS DIRSEQ
+                      ,B.FUNC_ID                AS OBJID
+                      ,A.FILE_ID                AS FILE_ID
+                      ,A.FILE_ID                AS UPFILEID
+                      ,'func'                   AS OBJTYPE
+                      ,A.EXT_CD                 AS LANGTYPE
+                      ,B.FUNC_ACCS_TYPE         AS GUBNTYPE
+                      ,#{bizId}                 AS BIZ_ID
+                      ,A.PRJ_ID                 AS PRJ_ID
+                      ,'Y'                      AS FILE_ANLY_YN
+                      ,C.PRJ_KOR_NAME           AS PRJ_KOR_NAME
+                      ,7                        AS UI_VIEW_IDX
+                      ,fn_PRJTREENAME(A.PRJ_ID) AS BIZ_PATH
+        FROM VW_AIS0010_UI A
+           ,AIS0012 B
+           ,AIS1001 C
+        WHERE A.PRJ_ID       = B.PRJ_ID
+          AND A.FILE_ID   = B.FILE_ID
+          AND B.PRJ_ID    = C.PRJ_ID
+          AND A.PRJ_ID    =  CAST(#{prjId} AS TEXT)
+          AND A.FILE_ID   =  CAST(#{fileId} AS NUMERIC)
+          AND B.FUNC_NAME &lt;&gt; 'N/A'
+        ORDER BY UI_VIEW_IDX, LABEL
+    </select>
+  <select id="getAppHierarchySrcTreeList" parameterType="java.util.HashMap" resultMap="getAppHierarchySrcTreeListMap">/* ImpactStreamCommon.xml.getAppHierarchySrcTreeList */ /* ImpactStreamCommon.xml.getAppHierarchySrcTreeList */ 
+        SELECT DT.LABEL                       AS LABEL
+             , DT.DIRSEQ                      AS DIRSEQ
+             , DT.OBJID                       AS OBJID
+             , DT.UPFILEID                    AS UPFILEID
+             , DT.OBJTYPE                     AS OBJTYPE
+             , DT.LANGTYPE                    AS LANGTYPE
+             , DT.GUBNTYPE                    AS GUBNTYPE
+             , DT.BIZ_ID                      AS BIZ_ID
+             , DT.PRJ_ID                      AS PRJ_ID
+             , DT.FILE_ANLY_YN                AS FILE_ANLY_YN
+             , (SELECT C.PRJ_KOR_NAME
+                FROM AIS1001 C
+                WHERE C.PRJ_ID = DT.PRJ_ID)  AS PRJ_KOR_NAME
+             , fn_PRJTREENAME(DT.PRJ_ID)      AS BIZ_PATH
+        FROM ( SELECT A.DIR_NAME               AS LABEL
+                    , A.DIR_SEQ                AS DIRSEQ
+                    , 0                        AS OBJID
+                    , 0                        AS UPFILEID
+                    , 'folder'                 AS OBJTYPE
+                    , ''                       AS LANGTYPE
+                    , ''                       AS GUBNTYPE
+                    , #{bizId}                  AS BIZ_ID
+                    , A.PRJ_ID                 AS PRJ_ID
+                    , ''                       AS FILE_ANLY_YN
+                    , (SELECT COUNT(B.FILE_ID)
+                       FROM VW_AIS0010_UI B
+                       WHERE ( B.PRJ_ID, B.DIR_SEQ )
+                                 IN ( SELECT D.PRJ_ID, D.DIR_SEQ
+                                      FROM AIS0030 D
+                                      WHERE D.PRJ_ID   =    A.PRJ_ID
+                                        AND D.DIR_PATH LIKE A.DIR_PATH || SUBSTR(A.DIR_PATH,1,1) || '%'
+                                      UNION ALL
+                                      SELECT A.PRJ_ID, A.DIR_SEQ
+                             )
+                                                  limit 1 )     AS FILE_CNT
+            FROM AIS0030 A
+        WHERE A.PRJ_ID        = #{prjId}::text
+          AND A.UPPER_DIR_SEQ = #{dirSeq}::numeric
+        UNION ALL
+        SELECT A.SRC_FILE_NAME          AS LABEL
+             , 0                        AS DIRSEQ
+             , A.FILE_ID                AS OBJID
+             , A.FILE_ID                AS UPFILEID
+             , 'file'                   AS OBJTYPE
+             , A.EXT_CD                 AS LANGTYPE
+             , ''                       AS GUBNTYPE
+             , #{bizId}                 AS BIZ_ID
+             , A.PRJ_ID                 AS PRJ_ID
+             , A.FILE_ANLY_YN           AS FILE_ANLY_YN
+             , 1                        AS FILE_CNT
+        FROM VW_AIS0010 A
+        WHERE A.PRJ_ID     = #{prjId}::text
+	            AND A.DIR_SEQ    = #{dirSeq}::numeric
+          AND A.DISPLAY_YN = 'Y'
+            ) DT
+        WHERE DT.FILE_CNT &gt; 0
+        ORDER BY DT.OBJTYPE DESC,  DT.DIRSEQ,  DT.LABEL
+    </select>
+  <select id="getAppFirstSrcTreeList" parameterType="java.util.HashMap" resultMap="getAppFirstSrcTreeListMap">/* ImpactStreamCommon.xml.getAppFirstSrcTreeList */ /* ImpactStreamCommon.xml.getAppFirstSrcTreeList */ 
+        SELECT DT.LABEL                       AS LABEL
+             , DT.DIRSEQ                      AS DIRSEQ
+             , DT.OBJID                       AS OBJID
+             , DT.UPFILEID                    AS UPFILEID
+             , DT.OBJTYPE                     AS OBJTYPE
+             , DT.LANGTYPE                    AS LANGTYPE
+             , DT.GUBNTYPE                    AS GUBNTYPE
+             , DT.BIZ_ID                      AS BIZ_ID
+             , DT.PRJ_ID                      AS PRJ_ID
+             , DT.FILE_ANLY_YN                AS FILE_ANLY_YN
+             , (SELECT C.PRJ_KOR_NAME
+                FROM AIS1001 C
+                WHERE C.PRJ_ID = DT.PRJ_ID)  AS PRJ_KOR_NAME
+             , fn_PRJTREENAME(DT.PRJ_ID)      AS BIZ_PATH
+        FROM ( SELECT A.DIR_NAME               AS LABEL
+                    , A.DIR_SEQ                AS DIRSEQ
+                    , 0                        AS OBJID
+                    , 0                        AS UPFILEID
+                    , 'folder'                 AS OBJTYPE
+                    , ''                       AS LANGTYPE
+                    , ''                       AS GUBNTYPE
+                    , #{bizId}                  AS BIZ_ID
+                    , A.PRJ_ID                 AS PRJ_ID
+                    , ''                       AS FILE_ANLY_YN
+                    , (SELECT COUNT(B.FILE_ID)
+                       FROM VW_AIS0010_UI B
+                       WHERE ( B.PRJ_ID, B.DIR_SEQ )
+                           IN ( SELECT D.PRJ_ID, D.DIR_SEQ
+                                FROM AIS0030 D
+                                WHERE D.PRJ_ID   =    A.PRJ_ID
+                                  AND D.DIR_PATH LIKE A.DIR_PATH || SUBSTR(A.DIR_PATH,1,1) || '%'
+                                UNION ALL
+                                SELECT A.PRJ_ID, A.DIR_SEQ FROM DUAL
+                             )
+                         AND ROWNUM = 1 )     AS FILE_CNT
+               FROM AIS0030 A
+               WHERE A.PRJ_ID    = #{prjId}
+                 AND A.DIR_DEPTH = 1
+               UNION ALL
+               SELECT A.SRC_FILE_NAME          AS LABEL
+                    , 0                        AS DIRSEQ
+                    , A.FILE_ID                AS OBJID
+                    , A.FILE_ID                AS UPFILEID
+                    , 'file'                   AS OBJTYPE
+                    , A.EXT_CD                 AS LANGTYPE
+                    , ''                       AS GUBNTYPE
+                    , #bizId#                  AS BIZ_ID
+                    , A.PRJ_ID                 AS PRJ_ID
+                    , A.FILE_ANLY_YN           AS FILE_ANLY_YN
+                    , 1                        AS FILE_CNT
+               FROM VW_AIS0010 A
+               WHERE A.PRJ_ID     = #{prjId}
+                 AND A.DIR_SEQ    = 0
+                 AND A.DISPLAY_YN = 'Y'
+             ) DT
+        WHERE DT.FILE_CNT &gt; 0
+        ORDER BY DT.OBJTYPE DESC,  DT.DIRSEQ,  DT.LABEL
+    </select>
+  <select id="getAppPrgTreeList" parameterType="java.util.HashMap" resultMap="getAppPrgTreeListMap">/* ImpactStreamCommon.xml.getAppPrgTreeList */ /* ImpactStreamCommon.xml.getAppPrgTreeList */ 
+        SELECT DISTINCT PRGTREE.LABEL
+                      ,PRGTREE.REF_BIZ_ID
+                      ,PRGTREE.DIRSEQ
+                      ,PRGTREE.OBJID
+                      ,PRGTREE.PRJ_ID
+                      ,PRGTREE.BIZ_ID
+                      ,PRGTREE.UPFILEID
+                      ,PRGTREE.OBJTYPE
+                      ,PRGTREE.LANGTYPE
+                      ,PRGTREE.GUBNTYPE
+                      ,'' AS FILE_ANLY_YN
+                      ,PRGTREE.PRJ_KOR_NAME
+        FROM (
+                 SELECT E.PRJ_KOR_NAME AS LABEL
+                      ,D.BIZ_ID       AS REF_BIZ_ID
+                      ,0 AS DIRSEQ
+                      ,E.PRJ_ID       AS OBJID
+                      ,E.PRJ_ID
+                      ,D.BIZ_ID
+                      ,''             AS UPFILEID
+                      ,'program'      AS OBJTYPE
+                      ,''             AS LANGTYPE
+                      ,''             AS GUBNTYPE
+                      ,''             AS FILE_ANLY_YN
+                      ,E.PRJ_KOR_NAME
+                 FROM AIS1003 A
+                    ,AIS1010 B
+                    ,AIS1011 C
+                    ,VW_AIS1000 D
+                    ,AIS1001 E
+                 WHERE D.BIZ_ID          = #{bizId}
+                   AND E.UPPER_BIZ_ID = D.BIZ_ID
+                   AND A.PRJ_ID       = E.PRJ_ID
+                   AND A.JOB_ID       = B.JOB_ID
+                   AND B.JOB_ID       = C.JOB_ID
+                   AND B.JOB_TYPE     = 'JC'
+                   AND C.RCV_TYPE     &lt;&gt; '03'
+                   AND B.DEL_YN       = 'N'
+                   AND E.DEL_YN       = 'N'
+                 UNION ALL
+                 SELECT DISTINCT B.PRJ_KOR_NAME  || '[REF]-' || fn_PRJTREENAME(D.PRJ_ID) AS PRJ_KOR_NAME
+                               ,B.UPPER_BIZ_ID AS REF_BIZ_ID
+                               ,0 AS DIRSEQ
+                               ,B.PRJ_ID       AS OBJID
+                               ,D.PRJ_ID
+                               ,H.BIZ_ID
+                               ,''             AS UPFILEID
+                               ,'program'      AS OBJTYPE
+                               ,''             AS LANGTYPE
+                               ,''             AS GUBNTYPE
+                               ,''             AS FILE_ANLY_YN
+                               ,G.PRJ_KOR_NAME
+                 FROM AIS1003 A
+                    ,AIS1001 B
+                    ,AIS1002 C
+                    ,AIS1003 D
+                    ,AIS1011 E
+                    ,AIS1010 F
+                    ,AIS1001 G
+                    ,VW_AIS1000 H
+                 WHERE B.UPPER_BIZ_ID    = #{bizId}
+                   AND A.PRJ_ID       = B.PRJ_ID
+                   AND A.PRJ_ID       = C.PRJ_ID
+                   AND C.REL_PRJ_ID   = D.PRJ_ID
+                   AND D.JOB_ID       = E.JOB_ID
+                   AND E.JOB_ID       = F.JOB_ID
+                   AND E.RCV_TYPE     &lt;&gt; '03'
+                   AND C.REL_PRJ_ID   = G.PRJ_ID
+                   AND G.UPPER_BIZ_ID = H.BIZ_ID
+                   AND F.JOB_TYPE     = 'JC'
+                   AND B.DEL_YN       = 'N'
+                   AND G.DEL_YN       = 'N'
+                   AND F.DEL_YN       = 'N'
+                   AND NOT EXISTS (SELECT 1
+                                   FROM AIS1001
+                                   WHERE UPPER_BIZ_ID = #{bizId}
+                                     AND PRJ_ID    = C.REL_PRJ_ID)
+             ) PRGTREE
+        ORDER BY LABEL
+    </select>
+  <select id="getSearchingFileList" parameterType="java.util.HashMap" resultMap="getSearchingFileListMap">/* ImpactStreamCommon.xml.getSearchingFileList */ /* ImpactStreamCommon.xml.getSearchingFileList */ 
+<include refid="impact.pagingSql_Start" />
+    <if test="searchType == 'FILE'">
+            SELECT A.SRC_FILE_NAME           AS LABEL
+            , A.FILE_ID                 AS OBJID
+            , A.FILE_ID                 AS UPFILEID
+            , A.FILE_ID                 AS FILE_ID
+            , 'file'                    AS OBJTYPE
+            , A.EXT_CD                  AS LANGTYPE
+            , A.PRJ_ID                  AS PRJ_ID
+            , B.PRJ_KOR_NAME            AS PRJ_KOR_NAME
+            , C.BIZ_ID                  AS BIZ_ID
+            , C.BIZ_KOR_NAME            AS BIZ_KOR_NAME
+            , A.ORG_FILE_PATH           AS ORG_FILE_PATH
+            , A.FILE_ANLY_YN            AS FILE_ANLY_YN
+            , A.SRC_FILE_NAME           AS FILE_NAME
+            , fn_PRJTREENAME(A.PRJ_ID)  AS BIZ_PATH
+            , ''                        AS BIZUNIT_NAME
+            ,''                         AS START_LINE_NO
+            FROM VW_AIS0010 A
+            , AIS1001 B
+            , VW_AIS1000 C
+            WHERE A.PRJ_ID <include refid="impact.fullPrjIdSql" />
+            AND C.BIZ_ID            = RTRIM(B.UPPER_BIZ_ID)
+            AND B.PRJ_ID            = RTRIM(A.PRJ_ID)
+            AND B.DEL_YN            = 'N'
+            AND A.DISPLAY_YN        = 'Y'
+            AND A.CAPS_SRC_FILE_NAME  LIKE '%' || #{searchValue} || '%'
+            ORDER BY LABEL
+        </if>
+    <if test="searchType == 'FUNC'">
+            SELECT D.FUNC_NAME              AS LABEL
+            , D.FUNC_ID                  AS OBJID
+            , C.FILE_ID                  AS UPFILEID
+            , C.FILE_ID                  AS FILE_ID
+            , 'func'                     AS OBJTYPE
+            , C.EXT_CD                   AS LANGTYPE
+            , D.FUNC_ACCS_TYPE           AS GUBNTYPE
+            , B.PRJ_ID                   AS PRJ_ID
+            , B.PRJ_KOR_NAME             AS PRJ_KOR_NAME
+            , A.BIZ_ID                   AS BIZ_ID
+            , A.BIZ_KOR_NAME             AS BIZ_KOR_NAME
+            , C.ORG_FILE_PATH            AS ORG_FILE_PATH
+            , C.FILE_ANLY_YN             AS FILE_ANLY_YN
+            , C.SRC_FILE_NAME            AS FILE_NAME
+            , fn_PRJTREENAME(B.PRJ_ID)   AS BIZ_PATH
+            , ''                         AS BIZUNIT_NAME
+            , ''                         AS START_LINE_NO
+            FROM VW_AIS1000 A
+            , AIS1001 B
+            , VW_AIS0010 C
+            , AIS0012 D
+            WHERE B.PRJ_ID <include refid="impact.fullPrjIdSql" />
+            AND B.UPPER_BIZ_ID = A.BIZ_ID
+            AND C.PRJ_ID = B.PRJ_ID
+            AND C.PRJ_ID = D.PRJ_ID
+            AND B.DEL_YN = 'N'
+            AND C.FILE_ID = D.FILE_ID
+            AND UPPER(D.FUNC_NAME) LIKE '%' || #{searchValue} || '%'
+            AND C.DISPLAY_YN = 'Y'
+            ORDER BY LABEL
+        </if>
+    <if test="searchType == 'CLASS'">
+            SELECT C.OBJ_NAME               AS LABEL
+            ,C.OBJ_ID                   AS OBJID
+            ,C.FILE_ID                  AS UPFILEID
+            ,D.FILE_ID                  AS FILE_ID
+            ,C.OBJ_TYPE                 AS OBJTYPE
+            ,D.EXT_CD                   AS LANGTYPE
+            ,''                         AS GUBNTYPE
+            ,B.PRJ_ID                   AS PRJ_ID
+            ,B.PRJ_KOR_NAME             AS PRJ_KOR_NAME
+            ,A.BIZ_ID                   AS BIZ_ID
+            ,A.BIZ_KOR_NAME             AS BIZ_KOR_NAME
+            ,D.ORG_FILE_PATH            AS ORG_FILE_PATH
+            , D.FILE_ANLY_YN             AS FILE_ANLY_YN
+            ,D.SRC_FILE_NAME            AS FILE_NAME
+            ,fn_PRJTREENAME(B.PRJ_ID)   AS BIZ_PATH
+            ,''                         AS BIZUNIT_NAME
+            ,C.START_LINE_NO            AS START_LINE_NO
+            FROM VW_AIS1000 A
+            , AIS1001 B
+            , AIS0011 C
+            , VW_AIS0010 D
+            WHERE D.PRJ_ID <include refid="impact.fullPrjIdSql" />
+            AND B.UPPER_BIZ_ID = A.BIZ_ID
+            AND C.PRJ_ID = B.PRJ_ID
+            AND D.PRJ_ID = C.PRJ_ID
+            AND D.FILE_ID = C.FILE_ID
+            AND D.DISPLAY_YN = 'Y'
+            AND UPPER(C.OBJ_NAME) LIKE '%' || #{searchValue} || '%'
+            ORDER BY LABEL
+        </if>
+    <if test="searchType == 'TBL'">
+            (
+            SELECT DISTINCT D.TABLE_NAME    AS LABEL
+            , A.FILE_ID                AS OBJID
+            , A.FILE_ID                AS UPFILEID
+            , A.FILE_ID                AS FILE_ID
+            , 'file'                   AS OBJTYPE
+            , A.EXT_CD                 AS LANGTYPE
+            , ''                       AS GUBNTYPE
+            , A.PRJ_ID                 AS PRJ_ID
+            , B.PRJ_KOR_NAME           AS PRJ_KOR_NAME
+            , C.BIZ_ID                 AS BIZ_ID
+            , C.BIZ_KOR_NAME           AS BIZ_KOR_NAME
+            , A.ORG_FILE_PATH          AS ORG_FILE_PATH
+            , A.FILE_ANLY_YN             AS FILE_ANLY_YN
+            , A.SRC_FILE_NAME            AS FILE_NAME
+            , fn_PRJTREENAME(A.PRJ_ID) AS BIZ_PATH
+            , ''                       AS BIZUNIT_NAME
+            , ''                       AS START_LINE_NO
+            FROM VW_AIS0010 A
+            , AIS1001 B
+            , VW_AIS1000 C
+            , AIS0102 D
+            WHERE B.PRJ_ID  <include refid="impact.fullPrjIdSql" />
+            AND C.BIZ_ID          = B.UPPER_BIZ_ID
+            AND B.PRJ_ID          = A.PRJ_ID
+            AND B.DEL_YN          = 'N'
+            AND A.PRJ_ID          = D.PRJ_ID
+            AND A.FILE_ID         = D.FILE_ID
+            AND A.DISPLAY_YN      = 'Y'
+            AND D.INLINEVIEW_YN   = 'N'
+            AND D.CAPS_TABLE_NAME LIKE '%' || #{searchValue} || '%'
+            UNION ALL
+            SELECT DISTINCT D.TABLE_NAME    AS LABEL
+            , A.FILE_ID                AS OBJID
+            , A.FILE_ID                AS UPFILEID
+            , A.FILE_ID                AS FILE_ID
+            , 'file'                   AS OBJTYPE
+            , A.EXT_CD                 AS LANGTYPE
+            , ''                       AS GUBNTYPE
+            , A.PRJ_ID                 AS PRJ_ID
+            , B.PRJ_KOR_NAME           AS PRJ_KOR_NAME
+            , C.BIZ_ID                 AS BIZ_ID
+            , C.BIZ_KOR_NAME           AS BIZ_KOR_NAME
+            , A.ORG_FILE_PATH          AS ORG_FILE_PATH
+            , A.FILE_ANLY_YN             AS FILE_ANLY_YN
+            , A.SRC_FILE_NAME            AS FILE_NAME
+            , fn_PRJTREENAME(A.PRJ_ID) AS BIZ_PATH
+            , ''                       AS BIZUNIT_NAME
+            , ''                       AS START_LINE_NO
+            FROM  VW_AIS0010 A
+            , AIS1001 B
+            , VW_AIS1000 C
+            , AIS0102 D
+            WHERE B.UPPER_BIZ_ID IN (
+            SELECT UPPER_BIZ_ID
+            FROM AIS1001
+            WHERE PRJ_ID IN(
+            (SELECT REL_PRJ_ID
+            FROM AIS1002 A
+            WHERE PRJ_ID IN (
+            SELECT PRJ_ID
+            FROM AIS1001
+            WHERE PRJ_ID <include refid="impact.fullPrjIdSql" />
+            )
+            AND NOT EXISTS(
+            SELECT 1
+            FROM AIS1001
+            WHERE PRJ_ID <include refid="impact.fullPrjIdSql" />
+            AND A.REL_PRJ_ID = PRJ_ID
+            )
+            )
+            )
+            )
+            AND C.BIZ_ID          = B.UPPER_BIZ_ID
+            AND B.PRJ_ID          = A.PRJ_ID
+            AND B.DEL_YN          = 'N'
+            AND A.PRJ_ID          = D.PRJ_ID
+            AND A.FILE_ID         = D.FILE_ID
+            AND A.DISPLAY_YN      = 'Y'
+            AND D.INLINEVIEW_YN   = 'N'
+            AND D.CAPS_TABLE_NAME LIKE '%' || #{searchValue} || '%'
+            )ORDER BY LABEL
+        </if>
+    <if test="searchType == 'COL'">
+            (
+            SELECT DISTINCT A.SRC_FILE_NAME AS LABEL
+            , A.FILE_ID                AS OBJID
+            , A.FILE_ID                AS UPFILEID
+            , A.FILE_ID                AS FILE_ID
+            , 'file'                   AS OBJTYPE
+            , A.EXT_CD                 AS LANGTYPE
+            , ''                       AS GUBNTYPE
+            , A.PRJ_ID                 AS PRJ_ID
+            , B.PRJ_KOR_NAME           AS PRJ_KOR_NAME
+            , C.BIZ_ID                 AS BIZ_ID
+            , C.BIZ_KOR_NAME           AS BIZ_KOR_NAME
+            , A.ORG_FILE_PATH          AS ORG_FILE_PATH
+            , A.FILE_ANLY_YN             AS FILE_ANLY_YN
+            , A.SRC_FILE_NAME            AS FILE_NAME
+            , fn_PRJTREENAME(A.PRJ_ID) AS BIZ_PATH
+            , ''                       AS BIZUNIT_NAME
+            , ''                       AS START_LINE_NO
+            FROM VW_AIS0010 A
+            , AIS1001 B
+            , VW_AIS1000 C
+            , AIS0103 D
+            WHERE B.PRJ_ID <include refid="impact.fullPrjIdSql" />
+            AND C.BIZ_ID = B.UPPER_BIZ_ID
+            AND B.PRJ_ID = A.PRJ_ID
+            AND B.DEL_YN = 'N'
+            AND A.PRJ_ID = D.PRJ_ID
+            AND A.FILE_ID = D.FILE_ID
+            AND A.DISPLAY_YN = 'Y'
+            AND UPPER(D.COL_NAME) LIKE '%' || #{searchValue} || '%'
+            UNION ALL
+            SELECT DISTINCT A.SRC_FILE_NAME AS LABEL
+            , A.FILE_ID                AS OBJID
+            , A.FILE_ID                AS UPFILEID
+            , A.FILE_ID                AS FILE_ID
+            , 'file'                   AS OBJTYPE
+            , A.EXT_CD                 AS LANGTYPE
+            , ''                       AS GUBNTYPE
+            , A.PRJ_ID                 AS PRJ_ID
+            , B.PRJ_KOR_NAME           AS PRJ_KOR_NAME
+            , C.BIZ_ID                 AS BIZ_ID
+            , C.BIZ_KOR_NAME           AS BIZ_KOR_NAME
+            , A.ORG_FILE_PATH          AS ORG_FILE_PATH
+            , A.FILE_ANLY_YN             AS FILE_ANLY_YN
+            , A.SRC_FILE_NAME            AS FILE_NAME
+            , fn_PRJTREENAME(A.PRJ_ID) AS BIZ_PATH
+            , ''                       AS BIZUNIT_NAME
+            , ''                       AS START_LINE_NO
+            FROM  VW_AIS0010 A
+            , AIS1001 B
+            , VW_AIS1000 C
+            , AIS0103 D
+            WHERE B.UPPER_BIZ_ID IN (
+            SELECT UPPER_BIZ_ID
+            FROM AIS1001
+            WHERE PRJ_ID IN(
+            (SELECT REL_PRJ_ID
+            FROM AIS1002 A
+            WHERE PRJ_ID IN (
+            SELECT PRJ_ID
+            FROM AIS1001
+            WHERE PRJ_ID <include refid="impact.fullPrjIdSql" />
+            )
+            AND NOT EXISTS(
+            SELECT 1
+            FROM AIS1001
+            WHERE PRJ_ID <include refid="impact.fullPrjIdSql" />
+            AND A.REL_PRJ_ID = PRJ_ID
+            )
+            )
+            )
+            )
+            AND C.BIZ_ID          = B.UPPER_BIZ_ID
+            AND B.PRJ_ID          = A.PRJ_ID
+            AND B.DEL_YN          = 'N'
+            AND A.PRJ_ID          = D.PRJ_ID
+            AND A.FILE_ID         = D.FILE_ID
+            AND A.DISPLAY_YN      = 'Y'
+            AND UPPER(D.COL_NAME) LIKE '%' || #{searchValue} || '%'
+            )ORDER BY LABEL
+        </if>
+    <include refid="impact.pagingSql_End" />
+  </select>
+  <select id="getModifyIncludeImportList" parameterType="java.util.HashMap" resultMap="getIncludeImportListMap">/* ImpactStreamCommon.xml.getModifyIncludeImportList */ /* ImpactStreamCommon.xml.getModifyIncludeImportList */ 
+        SELECT ROW_NUMBER() OVER()         AS toID
+             ,PRJ_ID         AS prj_id
+             ,FILE_ID        AS file_id
+             ,FILE_NAME      AS rel_file_name
+             ,FILE_PATH
+             ,PKG_NAME
+             ,HEDR_FILE_NAME AS name
+             ,'file'         AS rel_obj_type
+             ,START_LINE_NO  AS lineNo
+             ,fromID
+             ,depth
+        FROM (
+                 SELECT PRJ_ID             AS PRJ_ID
+                      ,FILE_ID            AS FILE_ID
+                      ,SRC_FILE_NAME      AS FILE_NAME
+                      ,SRC_FILE_FULL_PATH AS FILE_PATH
+                      ,''                 AS PKG_NAME
+                      ,SRC_FILE_NAME      AS HEDR_FILE_NAME
+                      ,0                  AS START_LINE_NO
+                      ,0                  AS fromID
+                      ,0                  AS depth
+                 FROM VW_AIS0010_UI
+                 WHERE PRJ_ID     = CAST(#{prjId} AS TEXT)
+                   AND FILE_ID = CAST(#{fileId} AS NUMERIC)
+                 UNION ALL
+                 SELECT A.PRJ_ID
+                      ,A.FILE_ID
+                      ,A.SRC_FILE_NAME                 AS FILE_NAME
+                      ,A.SRC_FILE_FULL_PATH            AS FILE_PATH
+                      ,B.PKG_NAME
+                      ,CASE WHEN B.HEDR_TYPE = 'I' AND B.PKG_NAME IS NOT NULL THEN B.PKG_NAME || '.' || B.HEDR_FILE_NAME
+                            ELSE B.HEDR_FILE_NAME END  AS HEDR_FILE_NAME
+                      ,B.START_LINE_NO
+                      ,1                               AS fromID
+                      ,1                               AS depth
+                 FROM VW_AIS0010_UI A
+                    ,AIS0031 B
+                 WHERE A.PRJ_ID     = B.PRJ_ID
+                   AND A.FILE_ID = B.FILE_ID
+                   AND A.PRJ_ID  = CAST(#{prjId} AS TEXT)
+                   AND A.FILE_ID = CAST(#{fileId} AS NUMERIC)
+             ) DATA
+    </select>
+  <select id="getIncludeImportListH" parameterType="java.util.HashMap" resultMap="getIncludeImportListMap">/* ImpactStreamCommon.xml.getIncludeImportListH */ /* ImpactStreamCommon.xml.getIncludeImportListH */ 
+        SELECT PRJ_ID         AS prj_id
+        , FILE_ID        AS file_id
+        
+        , ''             AS REL_FILE_NAME
+        , FILE_PATH      AS FILE_PATH
+        , PKG_NAME       AS PKG_NAME
+        , FILE_NAME      AS name
+        , 'file'         AS rel_obj_type
+        , START_LINE_NO  AS lineNo
+        , fromID         AS fromID
+        , ROWNUM         AS toID
+        , depth          AS depth
+        FROM (
+        SELECT PRJ_ID             AS PRJ_ID
+        , FILE_ID            AS FILE_ID
+        , SRC_FILE_NAME      AS FILE_NAME
+        , ORG_FILE_PATH      AS FILE_PATH
+        , ''                 AS PKG_NAME
+        , SRC_FILE_NAME      AS HEDR_FILE_NAME
+        , 0                  AS START_LINE_NO
+        , 0                  AS fromID
+        , 0                  AS depth
+        FROM VW_AIS0010
+        WHERE PRJ_ID     = #{prjId}
+        AND FILE_ID    = #{fileId}
+        UNION ALL
+        SELECT A.PRJ_ID                        AS PRJ_ID
+        , A.FILE_ID                       AS FILE_ID
+        , A.SRC_FILE_NAME                 AS FILE_NAME
+        , A.ORG_FILE_PATH                 AS FILE_PATH
+        , B.PKG_NAME                      AS PKG_NAME
+        , CASE WHEN B.HEDR_TYPE = 'I' AND B.PKG_NAME IS NOT NULL
+        THEN B.PKG_NAME || '.' || B.HEDR_FILE_NAME
+        ELSE B.HEDR_FILE_NAME
+        END                            AS HEDR_FILE_NAME
+        , B.START_LINE_NO                 AS START_LINE_NO
+        , 1                               AS fromID
+        , 1                               AS depth
+        FROM VW_AIS0010 A
+        , AIS0031 B
+        WHERE A.PRJ_ID  = B.PRJ_ID
+        AND A.FILE_ID = B.FILE_ID
+        AND A.PRJ_ID = #{prjId}
+        AND UPPER(B.HEDR_FILE_NAME) = UPPER(#{hedrFileName})
+        )
+    </select>
+  <select id="getRootFileNode" parameterType="java.util.HashMap" resultMap="getCallNodeMap">/* ImpactStreamCommon.xml.getRootFileNode */ /* ImpactStreamCommon.xml.getRootFileNode */ 
+        SELECT 1                          AS ID
+             ,FN_PRJTREENAME(A.PRJ_ID)   AS BIZ_PATH
+             ,C.BIZ_ID                   AS BIZ_ID
+             ,A.PRJ_ID                   AS PRJ_ID
+             ,B.PRJ_KOR_NAME             AS PRJ_NAME
+             ,A.FILE_ID                  AS OBJ_ID
+             ,A.SRC_FILE_NAME            AS NAME
+             ,A.SRC_FILE_FULL_PATH       AS FILE_PATH
+             ,A.ORG_FILE_PATH            AS ORG_FILE_PATH
+             ,A.EXT_CD                   AS LANG_TYPE
+             ,'b'||C.BIZ_ID||'p'||A.PRJ_ID||'o'||A.FILE_ID||'s'||A.FILE_ID AS UNIQUE_ID
+             ,'file'                     AS OBJ_TYPE
+             ,'File'                     AS OBJ_NAME
+             ,'0x99CC00'                 AS NODE_COLOR
+        FROM VW_AIS0010_UI A
+           ,AIS1001 B
+           , VW_AIS1000 C
+        WHERE A.PRJ_ID    = CAST(#{prjId} AS TEXT)
+          AND A.FILE_ID   = CAST(#{fileId} AS NUMERIC)
+          AND A.PRJ_ID    = B.PRJ_ID
+          AND C.BIZ_ID    = B.UPPER_BIZ_ID
+    </select>
+  <select id="getCallingNodeOneDepth" parameterType="java.util.HashMap" resultMap="getCallNodeMap">/* ImpactStreamCommon.xml.getCallingNodeOneDepth */ /* ImpactStreamCommon.xml.getCallingNodeOneDepth */ 
+        SELECT ROW_NUMBER() OVER()  AS ID
+        ,BIZ_PATH               AS BIZ_PATH
+        ,BIZ_ID                 AS BIZ_ID
+        ,PRJ_ID                 AS PRJ_ID
+        ,PRJ_KOR_NAME           AS PRJ_NAME
+        ,FILE_ID                AS OBJ_ID
+        ,CALL_OBJ_NAME          AS NAME
+        ,SRC_FILE_FULL_PATH     AS FILE_PATH
+        ,ORG_FILE_PATH          AS ORG_FILE_PATH
+        ,EXT_CD                 AS LANG_TYPE
+        ,UNIQUEID               AS UNIQUE_ID
+        ,OBJ_TYPE               AS OBJ_TYPE
+        ,OBJ_NAME               AS OBJ_NAME
+        ,NODE_COLOR             AS NODE_COLOR
+        FROM (
+        <include refid="impact.Calling_File" />
+        UNION ALL
+        <include refid="impact.Calling_Tbl" />
+        ) DAT
+        <if test="uniqueIds !=null and uniqueIds !=''">
+            WHERE UNIQUEID NOT IN
+            <foreach close=")" collection="uniqueIds" index="index" item="item" open="(" separator=",">
+                #{item}
+            </foreach>
+    </if>
+        ORDER BY CALL_OBJ_NAME
+    </select>
+  <select id="getCalledNodeOneDepth" parameterType="java.util.HashMap" resultMap="getCallNodeMap">/* ImpactStreamCommon.xml.getCalledNodeOneDepth */ /* ImpactStreamCommon.xml.getCalledNodeOneDepth */ 
+        SELECT ROW_NUMBER() OVER() AS ID
+        ,BIZ_PATH               AS BIZ_PATH
+        ,BIZ_ID                 AS BIZ_ID
+        ,PRJ_ID                 AS PRJ_ID
+        ,PRJ_KOR_NAME           AS PRJ_NAME
+        ,FILE_ID                AS OBJ_ID
+        ,CALL_OBJ_NAME          AS NAME
+        ,SRC_FILE_FULL_PATH     AS FILE_PATH
+        ,ORG_FILE_PATH          AS ORG_FILE_PATH
+        ,EXT_CD                 AS LANG_TYPE
+        ,UNIQUEID               AS UNIQUE_ID
+        ,OBJ_TYPE               AS OBJ_TYPE
+        ,OBJ_NAME               AS OBJ_NAME
+        ,'0x99CC00'             AS NODE_COLOR
+        FROM (
+        SELECT DISTINCT FN_PRJTREENAME(C.PRJ_ID) AS BIZ_PATH
+        ,D.BIZ_ID
+        ,C.PRJ_ID
+        ,C.PRJ_KOR_NAME
+        ,B.FILE_ID
+        ,B.SRC_FILE_NAME                   AS CALL_OBJ_NAME
+        ,B.SRC_FILE_FULL_PATH
+        ,B.ORG_FILE_PATH
+        ,B.EXT_CD
+        ,'b'||D.BIZ_ID||'p'||C.PRJ_ID||'o'||B.FILE_ID||'s'||B.FILE_ID AS UNIQUEID
+        ,'file'                            AS OBJ_TYPE
+        ,'File'                            AS OBJ_NAME
+        ,'0x99CC00'                        AS NODE_COLOR
+        FROM (
+        <if test="site != 'DGBANK'">
+            SELECT CALL_PRJ_ID
+            , CALL_FILE_ID
+            , PRJ_ID
+            , FILE_ID
+            FROM AIS0052
+            WHERE 1=1
+            AND CALL_PRJ_ID = CAST(#{prjId} AS TEXT)
+            AND CALL_FILE_ID = CAST(#{fileId} AS NUMERIC)
+        </if>
+    <if test="site == 'DGBANK'">
+      <if test="dFlag == 'N'">
+                SELECT CALL_PRJ_ID
+                , CALL_FILE_ID
+                , PRJ_ID
+                , FILE_ID
+                FROM AIS0052
+                WHERE 1=1
+                AND PRJ_ID &gt; 3000
+                AND CALL_PRJ_ID = #{prjId}
+                AND CALL_FILE_ID = #{fileId}
+                <if test="rootPrjIdFlag == 'Y'">
+                    UNION
+                    SELECT CALL_PRJ_ID
+                    , CALL_FILE_ID
+                    , PRJ_ID
+                    , FILE_ID
+                    FROM AIS0052
+                    WHERE PRJ_ID      = #{rootPrjId}
+                    AND CALL_PRJ_ID = #{prjId}
+                    AND CALL_FILE_ID = #{fileId}
+                    AND FILE_ID in
+                    <foreach close=")" collection="fileList" index="index" item="item" open="(" separator=",">
+                        #{item}
+                    </foreach>
+        </if>
+      </if>
+      <if test="dFlag == 'Y'">
+                SELECT TO_NUMBER(#{prjId}) AS CALL_PRJ_ID
+                , TO_NUMBER(#{fileId}) AS CALL_FILE_ID
+                , PRJ_ID
+                , FILE_ID
+                FROM AIS0052
+                WHERE 1=1
+                AND PRJ_ID &gt; 3000
+                AND ( CALL_PRJ_ID, CALL_FILE_ID ) = ( SELECT PRJ_ID, FILE_ID
+                FROM VW_AIS0010_UI
+                WHERE SRC_FILE_NAME IN ( SELECT A.SRC_FILE_NAME
+                FROM AIS0010 A
+                WHERE A.PRJ_ID = #{prjId}
+                AND A.FILE_ID = #{fileId} )
+                AND PRJ_ID &gt; 3000
+                AND ROWNUM &lt; 2 )
+                UNION
+                SELECT CALL_PRJ_ID, CALL_FILE_ID, PRJ_ID, FILE_ID
+                FROM AIS0052
+                WHERE PRJ_ID      = #{prjId}
+                AND CALL_PRJ_ID = #{prjId}
+                AND CALL_FILE_ID = #{fileId}
+                AND FILE_ID in
+                <foreach close=")" collection="fileList" index="index" item="item" open="(" separator=",">
+                    #{item}
+                </foreach>
+      </if>
+    </if>
+
+        ) A
+        ,VW_AIS0010_UI B
+        ,AIS1001 C
+        , VW_AIS1000 D
+        WHERE A.CALL_PRJ_ID      = CAST(#{prjId} AS TEXT)
+        AND A.CALL_FILE_ID  = CAST(#{fileId} AS NUMERIC)
+        AND A.PRJ_ID        = B.PRJ_ID
+        AND A.PRJ_ID        = C.PRJ_ID
+        AND A.FILE_ID       = B.FILE_ID
+        AND C.UPPER_BIZ_ID  = D.BIZ_ID
+        AND C.DEL_YN        = 'N'
+        AND D.DEL_YN        = 'N'
+        <if test="searchName !=null and searchName !=''">
+        AND B.CAPS_SRC_FILE_NAME LIKE '%' || #{searchName} || '%'
+        </if>
+        ) DAT
+        WHERE 1=1
+        <if test="uniqueIds !=null and uniqueIds !=''">
+            AND UNIQUEID NOT IN
+            <foreach close=")" collection="uniqueIds" index="index" item="item" open="(" separator=",">
+                #{item}
+            </foreach>
+    </if>
+    <if test="site == 'DGBANK'">
+      <if test="rootPrjIdFlag == 'Y'">
+                AND (PRJ_ID, FILE_ID) NOT IN ( SELECT PRJ_ID, FILE_ID
+                FROM VW_AIS0010
+                WHERE 1=1
+                AND PRJ_ID &gt; 3000
+                AND SRC_FILE_NAME IN (
+                SELECT SRC_FILE_NAME
+                FROM AIS0010
+                WHERE PRJ_ID = #rootPrjId#
+                AND FILE_ID IN
+                <foreach close=")" collection="fileList" index="index" item="item" open="(" separator=",">
+                    #{item}
+                </foreach>
+                )
+                )
+            </if>
+    </if>
+        ORDER BY CALL_OBJ_NAME
+    </select>
+  <select id="getTreeCalledOneDepth" parameterType="java.util.HashMap" resultMap="getTreeCallMap">/* ImpactStreamCommon.xml.getTreeCalledOneDepth */ /* ImpactStreamCommon.xml.getTreeCalledOneDepth */ 
+        SELECT 0                        AS fromID
+        , C.BIZ_ID                 AS biz_id
+        , A.PRJ_ID                 AS OBJID
+        , fn_PRJTREENAME(B.PRJ_ID) AS PRJ_PATH
+        , A.FILE_ID                AS FILE_ID
+        , 'CALLED'                 AS LABEL
+        , SUBSTR(A.SRC_FILE_FULL_PATH,46) AS FILE_PATH
+        , 'FILE'                   AS REL_OBJ_NAME
+        , 'file'                   AS OBJTYPE
+        , 0                        AS REL_ID
+        , '0'                        AS REL_PRJ_ID
+        , 0                        AS REL_FILE_ID
+        , ''                       AS REL_FILE_NAME
+        , 0                        AS REL_DEPTH
+        , 1                       AS DEPTH
+        , 'CALLED'                  AS CALL_TYPE
+        FROM VW_AIS0010_UI A, AIS1001 B, VW_AIS1000 C
+        WHERE A.PRJ_ID    = CAST(#{prjId} AS TEXT)
+        AND A.FILE_ID   = CAST(#{fileId} AS NUMERIC)
+        AND A.PRJ_ID    = B.PRJ_ID
+        AND C.BIZ_ID    = B.UPPER_BIZ_ID
+        UNION
+        SELECT row_number() over()      AS fromID
+        , BIZ_ID                   AS biz_id
+        , PRJ_ID                   AS OBJID
+        , PRJ_PATH                 AS PRJ_PATH
+        , FILE_ID                  AS FILE_ID
+        , FILE_NAME                AS LABEL
+        , FILE_PATH                AS FILE_PATH
+        , OBJ_NAME                 AS REL_OBJ_NAME
+        , OBJ_TYPE                 AS OBJTYPE
+        , 0                        AS rel_id
+        , REL_PRJ_ID               AS REL_PRJ_ID
+        , REL_FILE_ID              AS REL_FILE_ID
+        , ''                       AS rel_file_name
+        , 1                        AS REL_DEPTH
+        , ABS(REL_DEPTH) +1        AS DEPTH
+        , 'CALLED'                  AS CALL_TYPE
+        FROM (
+        SELECT row_number() over()+1         AS CAL_ID
+        , A.BIZ_ID
+        , A.PRJ_ID
+        , A.PRJ_PATH
+        , A.FILE_ID
+        , A.FILE_NAME||' - [' || A.PRJ_PATH ||'] [PATH] ' || A.FILE_PATH AS FILE_NAME
+        , A.FILE_PATH
+        , A.OBJ_NAME
+        , A.OBJ_TYPE
+        , A.REL_PRJ_ID
+        , A.REL_FILE_ID
+        , A.REL_DEPTH
+        FROM (
+        SELECT DISTINCT D.BIZ_ID                 AS BIZ_ID
+        , FN_PRJTREENAME(C.PRJ_ID)          AS PRJ_PATH
+        , C.PRJ_ID                          AS PRJ_ID
+        , C.PRJ_KOR_NAME                    AS PRJ_KOR_NAME
+        , B.FILE_ID                         AS FILE_ID
+        , B.SRC_FILE_NAME                   AS FILE_NAME
+        , substr(B.SRC_FILE_FULL_PATH,46)   AS FILE_PATH
+        , B.ORG_FILE_PATH                   AS ORG_FILE_PATH
+        , B.EXT_CD                          AS EXT_CD
+        , 'FILE'                            AS OBJ_NAME
+        , 'file'                            AS OBJ_TYPE
+        , A.CALL_PRJ_ID                     AS REL_PRJ_ID
+        , A.CALL_FILE_ID                    AS REL_FILE_ID
+        , 1                                 AS REL_DEPTH
+        FROM (
+        <if test="site != 'DGBANK'">
+            SELECT CALL_PRJ_ID
+            , CALL_FILE_ID
+            , PRJ_ID
+            , FILE_ID
+            FROM AIS0052
+            WHERE 1=1
+            AND CALL_PRJ_ID = CAST(#{prjId} AS TEXT)
+            AND CALL_FILE_ID = CAST(#{fileId} AS NUMERIC)
+        </if>
+    <if test="site == 'DGBANK'">
+      <if test="dFlag == 'N'">
+                SELECT CALL_PRJ_ID
+                , CALL_FILE_ID
+                , PRJ_ID
+                , FILE_ID
+                FROM AIS0052
+                WHERE 1=1
+                AND PRJ_ID &gt; 3000
+                AND CALL_PRJ_ID = CAST(#{prjId} AS TEXT)
+                AND CALL_FILE_ID = CAST(#{fileId} AS NUMERIC)
+                <if test="rootPrjIdFlag == 'Y'">
+                    UNION
+                    SELECT CALL_PRJ_ID
+                    , CALL_FILE_ID
+                    , PRJ_ID
+                    , FILE_ID
+                    FROM AIS0052
+                    WHERE PRJ_ID      = CAST(#{rootPrjId} AS TEXT)
+                    AND CALL_PRJ_ID = CAST(#{prjId} AS TEXT)
+                    AND CALL_FILE_ID = CAST(#{fileId} AS NUMERIC)
+                    AND FILE_ID in
+                    <foreach close=")" collection="fileList" index="index" item="item" open="(" separator=",">
+                        #{item}
+                    </foreach>
+        </if>
+      </if>
+      <if test="dFlag == 'Y'">
+                SELECT TO_NUMBER(#{prjId})  AS CALL_PRJ_ID
+                , TO_NUMBER(#{fileId}) AS CALL_FILE_ID
+                , PRJ_ID              AS PRJ_ID
+                , FILE_ID             AS FILE_ID
+                FROM AIS0052
+                WHERE 1=1
+                AND PRJ_ID &gt; 3000
+                AND ( CALL_PRJ_ID, CALL_FILE_ID ) = ( SELECT PRJ_ID, FILE_ID
+                FROM VW_AIS0010_UI
+                WHERE SRC_FILE_NAME IN ( SELECT A.SRC_FILE_NAME
+                FROM AIS0010 A
+                WHERE A.PRJ_ID = CAST(#{prjId} AS TEXT)
+                AND A.FILE_ID = CAST(#{fileId} AS NUMERIC)
+                )
+                AND PRJ_ID &gt; 3000
+                AND ROWNUM &lt; 2
+                )
+                UNION
+                SELECT CALL_PRJ_ID
+                , CALL_FILE_ID
+                , PRJ_ID
+                , FILE_ID
+                FROM AIS0052
+                WHERE PRJ_ID       = CAST(#{prjId} AS TEXT)
+                AND CALL_PRJ_ID  = CAST(#{prjId} AS TEXT)
+                AND CALL_FILE_ID = CAST(#{fileId} AS NUMERIC)
+                AND FILE_ID in
+                <foreach close=")" collection="fileList" index="index" item="item" open="(" separator=",">
+                    #{item}
+                </foreach>
+      </if>
+    </if>
+        ) A
+        , VW_AIS0010_UI B
+        , AIS1001 C
+        , VW_AIS1000 D
+        WHERE A.CALL_PRJ_ID   = CAST(#{prjId} AS TEXT)
+        AND A.CALL_FILE_ID  = CAST(#{fileId} AS NUMERIC)
+        AND A.PRJ_ID        = B.PRJ_ID
+        AND A.PRJ_ID        = C.PRJ_ID
+        AND A.FILE_ID       = B.FILE_ID
+        AND C.UPPER_BIZ_ID  = D.BIZ_ID
+        AND C.DEL_YN        = 'N'
+        AND D.DEL_YN        = 'N'
+        ) A
+        <if test="site == 'DGBANK'">
+      <if test="rootPrjIdFlag == 'Y'">
+                WHERE (PRJ_ID, FILE_ID) NOT IN (SELECT PRJ_ID, FILE_ID
+                FROM VW_AIS0010
+                WHERE 1=1
+                AND PRJ_ID &gt; 3000
+                AND SRC_FILE_NAME IN (
+                SELECT SRC_FILE_NAME
+                FROM AIS0010
+                WHERE PRJ_ID = CAST(#{rootPrjId} AS TEXT)
+                AND FILE_ID IN
+                <foreach close=")" collection="fileList" index="index" item="item" open="(" separator=",">
+                    #{item}
+                </foreach>
+                )
+                )
+            </if>
+    </if>
+        ) DAT
+        ORDER BY DEPTH, OBJTYPE, LABEL
+    </select>
+  <select id="getTreeCallingOneDepth" parameterType="java.util.HashMap" resultMap="getTreeCallMap">/* ImpactStreamCommon.xml.getTreeCallingOneDepth */ /* ImpactStreamCommon.xml.getTreeCallingOneDepth */ 
+        SELECT 0                               AS fromID
+        , C.BIZ_ID                        AS biz_id
+        , A.PRJ_ID                        AS OBJID
+        , fn_PRJTREENAME(B.PRJ_ID)        AS PRJ_PATH
+        , A.FILE_ID                       AS FILE_ID
+        , 'CALLING'                       AS LABEL
+        , SUBSTR(A.SRC_FILE_FULL_PATH,46) AS FILE_PATH
+        , 'FILE'                          AS REL_OBJ_NAME
+        , 'file'                          AS OBJTYPE
+        , 0                               AS rel_id
+        , A.PRJ_ID                        AS REL_PRJ_ID
+        , A.FILE_ID                       AS REL_FILE_ID
+        , ''                              AS rel_file_name
+        , 0                               AS REL_DEPTH
+        , 1                               AS DEPTH
+        , 'CALLING'                        AS CALL_TYPE
+        FROM VW_AIS0010_UI A, AIS1001 B, VW_AIS1000 C
+        WHERE A.PRJ_ID    = CAST(#{prjId} AS TEXT)
+        AND A.FILE_ID   = CAST(#{fileId} AS NUMERIC)
+        AND A.PRJ_ID    = B.PRJ_ID
+        AND C.BIZ_ID    = B.UPPER_BIZ_ID
+        UNION
+        SELECT row_number() over()             AS fromID
+        , BIZ_ID                          AS biz_id
+        , PRJ_ID                          AS OBJID
+        , PRJ_PATH                        AS PRJ_PATH
+        , FILE_ID                         AS FILE_ID
+        , FILE_NAME||' -'||DBC_CHECK|| FILE_COMMENT ||' [' || PRJ_PATH ||'] [PATH] ' || FILE_PATH AS LABEL
+        , FILE_PATH                       AS FILE_PATH
+        , OBJ_NAME                        AS REL_OBJ_NAME
+        , OBJ_TYPE                        AS OBJTYPE
+        , 0                               AS rel_id
+        , REL_PRJ_ID                      AS REL_PRJ_ID
+        , REL_FILE_ID                     AS REL_FILE_ID
+        , ''                              AS rel_file_name
+        , 1                               AS REL_DEPTH
+        , ABS(REL_DEPTH) +1               AS DEPTH
+        , 'CALLING'                       AS CALL_TYPE
+        FROM (
+        SELECT row_number() over()+1     AS CAL_ID
+        , A.BIZ_ID
+        , A.PRJ_ID
+        , A.PRJ_PATH
+        , A.FILE_ID
+        , CASE WHEN A.OBJ_TYPE = 'tbl'
+        THEN A.FILE_NAME||' -'||A.DBC_CHECK|| A.FILE_COMMENT ||' [' || A.PRJ_PATH ||']' || '(' || A.CRUD || ')'
+        ELSE A.FILE_NAME||' -'|| A.FILE_COMMENT ||' [' || A.PRJ_PATH ||'] [PATH] ' || A.FILE_PATH
+        END         AS FILE_NAME
+        , A.FILE_PATH     AS FILE_PATH
+        , ''              AS FILE_COMMENT
+        , ''              AS CRUD
+        , ''              AS DBC_CHECK
+        , A.OBJ_NAME      AS OBJ_NAME
+        , A.OBJ_TYPE      AS OBJ_TYPE
+        , A.REL_CAL_ID    AS REL_CAL_ID
+        , A.REL_PRJ_ID    AS REL_PRJ_ID
+        , A.REL_FILE_ID   AS REL_FILE_ID
+        , A.REL_FILE_NAME AS REL_FILE_NAME
+        , A.REL_DEPTH     AS REL_DEPTH
+        FROM (
+        
+        SELECT DISTINCT D.BIZ_ID                                                         AS BIZ_ID
+        , A.PRJ_ID                                                                  AS PRJ_ID
+        , a.FILE_ID                                                                 AS FILE_ID
+        , fn_PRJTREENAME(A.PRJ_ID)                                                  AS PRJ_PATH
+        , A.TABLE_NAME                                                              AS FILE_NAME
+        , ''                                                                        AS FILE_PATH
+        <if test="site == 'DGBANK'">
+            , ( SELECT DISTINCT X.OBJECT_NAME
+            FROM (SELECT *
+            FROM MOBJ_POPULATOR
+            WHERE CLASS_ID = 500100) X
+            WHERE X.ABBR_NAME = A.CAPS_TABLE_NAME
+            AND ROWNUM = 1 )                                                     AS FILE_COMMENT
+        </if>
+    <if test="site != 'DGBANK'">
+        , A.TABLE_NAME                                                              AS FILE_COMMENT
+        </if>
+        , (SELECT MAX(CRUD_C) || MAX(CRUD_R) || MAX(CRUD_U) || MAX(CRUD_D)
+        FROM (
+        SELECT CASE WHEN QUERY_TYPE = 'C' THEN 'C' ELSE '' END AS CRUD_C
+        , CASE WHEN QUERY_TYPE = 'R' THEN 'R' ELSE '' END AS CRUD_R
+        , CASE WHEN QUERY_TYPE = 'U' THEN 'U' ELSE '' END AS CRUD_U
+        , CASE WHEN QUERY_TYPE = 'D' THEN 'D' ELSE '' END AS CRUD_D
+        , TABLE_NAME
+        , PRJ_ID
+        , FILE_ID
+        FROM AIS0102
+        ) X
+        WHERE X.TABLE_NAME = A.TABLE_NAME
+        AND X.PRJ_ID     = A.PRJ_ID
+        AND X.FILE_ID    = A.FILE_ID
+        AND X.TABLE_NAME = A.TABLE_NAME
+        )                                                                        AS CRUD
+        , CASE WHEN A.TABLE_NAME IN (SELECT DISTINCT TBL_NAME FROM VW_DBCTBLINFO)
+        THEN '[Y]' ELSE '[N]'END                                             AS DBC_CHECK
+        , 'Table'                                                                   AS OBJ_NAME
+        , 'tbl'                                                                     AS OBJ_TYPE
+        , 1                                                                         AS REL_CAL_ID
+        , A.PRJ_ID                                                                  AS REL_PRJ_ID
+        , A.FILE_ID                                                                 AS REL_FILE_ID
+        , ''                                                                        AS REL_FILE_NAME
+        , 1                                                                         AS REL_DEPTH
+        FROM AIS0102 A
+        , AIS1001 C
+        , VW_AIS1000 D
+        where A.INLINEVIEW_YN = 'N'
+        AND A.PRJ_ID = CAST(#{prjId} AS TEXT)
+        AND A.FILE_ID = CAST(#{fileId} AS NUMERIC)
+        AND A.PRJ_ID        = C.PRJ_ID
+        AND C.UPPER_BIZ_ID       = D.BIZ_ID
+        AND C.DEL_YN             = 'N'
+        AND D.DEL_YN             = 'N'
+        
+        UNION
+        SELECT DISTINCT D.BIZ_ID                 AS BIZ_ID
+        , B.PRJ_ID                          AS PRJ_ID
+        , B.FILE_ID                         AS FILE_ID
+        , FN_PRJTREENAME(B.PRJ_ID)          AS PRJ_PATH
+        , B.SRC_FILE_NAME                   AS FILE_NAME
+        , SUBSTR(B.SRC_FILE_FULL_PATH,46)   AS FILE_PATH
+        , ''                                AS FILE_COMMENT
+        , ''                                AS CRUD
+        , ''                                AS DBC_CHECK
+        , 'FILE'                            AS OBJ_NAME
+        , 'file'                            AS OBJ_TYPE
+        , 1                                  AS REL_CAL_ID
+        , A.PRJ_ID                           AS REL_PRJ_ID
+        , A.FILE_ID                          AS REL_FILE_ID
+        , ''                                 AS REL_FILE_NAME
+        , 1                                  AS REL_DEPTH
+        FROM (
+        <if test="site != 'DGBANK'">
+            SELECT CALL_PRJ_ID
+            , CALL_FILE_ID
+            , PRJ_ID
+            , FILE_ID
+            FROM AIS0052
+            WHERE PRJ_ID      = CAST(#{prjId} AS TEXT)
+            AND FILE_ID     = CAST(#{fileId} AS NUMERIC)
+        </if>
+    <if test="site == 'DGBANK'">
+      <if test="dFlag == 'N'">
+                SELECT CALL_PRJ_ID
+                , CALL_FILE_ID
+                , PRJ_ID
+                , FILE_ID
+                FROM AIS0052
+                WHERE PRJ_ID      = CAST(#{prjId} AS TEXT)
+                AND FILE_ID     = CAST(#{fileId} AS NUMERIC)
+                AND CALL_PRJ_ID &gt; 3000
+                <if test="rootPrjIdFlag == 'Y'">
+                    UNION
+                    SELECT CALL_PRJ_ID
+                    , CALL_FILE_ID
+                    , PRJ_ID
+                    , FILE_ID
+                    FROM AIS0052
+                    WHERE PRJ_ID      = CAST(#{rootPrjId} AS TEXT)
+                    AND FILE_ID     = CAST(#{fileId} AS NUMERIC)
+                    AND CALL_PRJ_ID = CAST(#{prjId} AS TEXT)
+                </if>
+      </if>
+      <if test="dFlag == 'Y'">
+                SELECT CALL_PRJ_ID, CALL_FILE_ID, PRJ_ID, FILE_ID
+                FROM AIS0052
+                WHERE PRJ_ID      = CAST(#{prjId} AS TEXT)
+                AND FILE_ID     = CAST(#{fileId} AS NUMERIC)
+                AND CALL_PRJ_ID &gt; 3000
+                UNION
+                SELECT CALL_PRJ_ID, CALL_FILE_ID, PRJ_ID, FILE_ID
+                FROM AIS0052
+                WHERE PRJ_ID      = CAST(#{prjId} AS TEXT)
+                AND FILE_ID     = CAST(#{fileId} AS NUMERIC)
+                AND CALL_PRJ_ID = CAST(#{prjId} AS TEXT)
+                AND CALL_FILE_ID IN
+                <foreach close=")" collection="fileList" index="index" item="item" open="(" separator=",">
+                    #{item}
+                </foreach>
+      </if>
+    </if>
+        ) A, VW_AIS0010_UI B, AIS1001 C, VW_AIS1000 D
+        WHERE A.PRJ_ID             = CAST(#{prjId} AS TEXT)
+        AND A.FILE_ID            = CAST(#{fileId} AS NUMERIC)
+        AND A.CALL_PRJ_ID        = B.PRJ_ID
+        AND A.CALL_FILE_ID       = B.FILE_ID
+        AND A.CALL_PRJ_ID        = C.PRJ_ID
+        AND C.UPPER_BIZ_ID       = D.BIZ_ID
+        AND C.DEL_YN             = 'N'
+        AND D.DEL_YN             = 'N'
+        <if test="site == 'DGBANK'">
+      <if test="rootPrjIdFlag == 'Y'">
+                AND (A.CALL_PRJ_ID, A.CALL_FILE_ID) NOT IN (SELECT PRJ_ID, FILE_ID
+                FROM VW_AIS0010
+                WHERE 1=1
+                AND PRJ_ID &gt; 3000
+                AND SRC_FILE_NAME IN (
+                SELECT SRC_FILE_NAME
+                FROM AIS0010
+                WHERE PRJ_ID = CAST(#{rootPrjId} AS TEXT)
+                AND FILE_ID IN
+                <foreach close=")" collection="fileList" index="index" item="item" open="(" separator=",">
+                    #{item}
+                </foreach>
+                )
+                )
+            </if>
+    </if>
+        ) A
+        ) DAT
+        ORDER BY DEPTH, OBJTYPE, LABEL
+    </select>
+  <select id="getNextFilesCalling" parameterType="java.util.HashMap" resultMap="getNextFilesMap">/* ImpactStreamCommon.xml.getNextFilesCalling */ /* ImpactStreamCommon.xml.getNextFilesCalling */ 
+        SELECT ROW_NUMBER() OVER() AS FROMID
+        , A.BIZ_ID AS BIZ_ID
+        , A.PRJ_ID AS OBJID
+        , A.FILE_ID
+        , CASE WHEN A.OBJ_TYPE = 'tbl'
+        THEN A.FILE_NAME||' -'||A.DBC_CHECK|| A.FILE_COMMENT ||' [' || A.PRJ_PATH ||']' || '(' || A.CRUD || ')'
+        ELSE A.FILE_NAME||' -'|| A.FILE_COMMENT ||' [' || A.PRJ_PATH ||'] [PATH] ' || A.FILE_PATH
+        END  AS LABEL
+        , ROW_NUMBER() OVER() AS REL_ID
+        , A.REL_PRJ_ID
+        , A.REL_FILE_ID
+        , A.REL_FILE_NAME
+        , A.OBJ_NAME AS REL_OBJ_NAME
+        , A.OBJ_TYPE AS OBJTYPE
+        , A.FILE_PATH
+        , A.REL_DEPTH
+        , A.PRJ_PATH
+        , ABS(A.REL_DEPTH) +1 AS DEPTH
+        , 'CALLING'           AS CALL_TYPE
+        FROM (
+        SELECT DISTINCT E.BIZ_ID
+        , A.PRJ_ID
+        , a.FILE_ID                       AS FILE_ID
+        , fn_PRJTREENAME(A.PRJ_ID)        AS PRJ_PATH
+        , A.TABLE_NAME                    AS FILE_NAME
+        , ''                              AS FILE_PATH
+        <if test="site == 'DGBANK'">
+            , ( SELECT DISTINCT X.OBJECT_NAME
+            FROM (SELECT *
+            FROM MOBJ_POPULATOR
+            WHERE CLASS_ID = 500100
+            ) X
+            WHERE X.ABBR_NAME = A.CAPS_TABLE_NAME
+            AND ROWNUM = 1
+            )                    AS FILE_COMMENT
+        </if>
+    <if test="site != 'DGBANK'">
+        , A.CAPS_TABLE_NAME    AS FILE_COMMENT
+        </if>
+        , (SELECT MAX(CRUD_C) || MAX(CRUD_R) || MAX(CRUD_U) || MAX(CRUD_D)
+        FROM (
+        SELECT CASE WHEN QUERY_TYPE = 'C' THEN 'C' ELSE '' END AS CRUD_C
+        , CASE WHEN QUERY_TYPE = 'R' THEN 'R' ELSE '' END AS CRUD_R
+        , CASE WHEN QUERY_TYPE = 'U' THEN 'U' ELSE '' END AS CRUD_U
+        , CASE WHEN QUERY_TYPE = 'D' THEN 'D' ELSE '' END AS CRUD_D
+        , table_name ,prj_id ,file_id
+        FROM AIS0102
+        ) X
+        WHERE x.TABLE_NAME = A.TABLE_NAME
+        and x.prj_id = a.prj_id
+        and x.file_id = a.file_id
+        and x.table_name = a.table_name
+        ) AS CRUD
+        , CASE WHEN A.TABLE_NAME IN (SELECT DISTINCT TBL_NAME FROM VW_DBCTBLINFO)
+        THEN '[Y]'
+        ELSE '[N]'
+        END AS DBC_CHECK
+        , 'Table' AS OBJ_NAME
+        , 'tbl' AS OBJ_TYPE
+        , ''                             AS REL_CAL_ID
+        , A.PRJ_ID                       AS REL_PRJ_ID
+        , A.FILE_ID                      AS REL_FILE_ID
+        , ''                             AS REL_FILE_NAME
+        , (#{depth}+1)                    AS REL_DEPTH
+        FROM AIS0102 A
+        , AIS1001 D
+        , VW_AIS1000 E
+        where A.INLINEVIEW_YN = 'N'
+        and a.prj_id        = #{prjId}
+        and a.file_id       = CAST(#{fileId} AS NUMERIC)
+        and a.prj_id        = d.prj_id
+        AND D.UPPER_BIZ_ID  = E.BIZ_ID
+        AND D.DEL_YN        = 'N'
+        AND E.DEL_YN        = 'N'
+        UNION
+        SELECT DISTINCT E.BIZ_ID
+        , C.PRJ_ID
+        , C.FILE_ID                       AS FILE_ID
+        , fn_PRJTREENAME(A.PRJ_ID)        AS PRJ_PATH
+        , C.SRC_FILE_NAME                 AS FILE_NAME
+        , substr(C.SRC_FILE_FULL_PATH,46) AS FILE_PATH
+        , ''                             AS FILE_COMMENT
+        , ''                             AS CRUD
+        , ''                             AS DBC_CHECK
+        , 'FILE'                         AS OBJ_NAME
+        , 'file'                         AS OBJ_TYPE
+        , ''                             AS REL_CAL_ID
+        , A.PRJ_ID                       AS REL_PRJ_ID
+        , A.FILE_ID                      AS REL_FILE_ID
+        , ''                             AS REL_FILE_NAME
+        , (#{depth}+1)                    AS REL_DEPTH
+        FROM (
+        <if test="site != 'DGBANK'">
+            SELECT CALL_PRJ_ID
+            , CALL_FILE_ID
+            , PRJ_ID
+            , FILE_ID
+            FROM AIS0052
+            WHERE PRJ_ID      = #{prjId}
+            AND FILE_ID     = CAST(#{fileId} AS NUMERIC)
+        </if>
+    <if test="site == 'DGBANK'">
+      <if test="dFlag == 'N'">
+                SELECT CALL_PRJ_ID
+                , CALL_FILE_ID
+                , PRJ_ID
+                , FILE_ID
+                FROM AIS0052
+                WHERE PRJ_ID      = #{prjId}
+                AND FILE_ID     = CAST(#{fileId} AS NUMERIC)
+                AND CALL_PRJ_ID &gt; 3000
+                <if test="rootPrjIdFlag == 'Y'">
+                    UNION
+                    SELECT CALL_PRJ_ID
+                    , CALL_FILE_ID
+                    , PRJ_ID
+                    , FILE_ID
+                    FROM AIS0052
+                    WHERE PRJ_ID      = #{rootPrjId}
+                    AND FILE_ID     = CAST(#{fileId} AS NUMERIC)
+                    AND CALL_PRJ_ID = #{prjId}
+                </if>
+      </if>
+      <if test="dFlag == 'Y'">
+                SELECT CALL_PRJ_ID, CALL_FILE_ID, PRJ_ID, FILE_ID
+                FROM AIS0052
+                WHERE PRJ_ID      = #{prjId}
+                AND FILE_ID     = CAST(#{fileId} AS NUMERIC)
+                AND CALL_PRJ_ID &gt; 3000
+                UNION
+                SELECT CALL_PRJ_ID, CALL_FILE_ID, PRJ_ID, FILE_ID
+                FROM AIS0052
+                WHERE PRJ_ID      = #{prjId}
+                AND FILE_ID     = CAST(#{fileId} AS NUMERIC)
+                AND CALL_PRJ_ID = #{prjId}
+                AND CALL_FILE_ID IN
+                <foreach close=")" collection="fileList" index="index" item="item" open="(" separator=",">
+                    #{item}
+                </foreach>
+      </if>
+    </if>
+        ) A
+        , VW_AIS0010_UI B
+        , VW_AIS0010_UI C
+        , AIS1001 D
+        , VW_AIS1000 E
+        WHERE A.PRJ_ID           = #{prjId}
+        AND A.FILE_ID       = CAST(#{fileId} AS NUMERIC)
+        AND A.PRJ_ID        = B.PRJ_ID
+        AND A.FILE_ID       = B.FILE_ID
+        AND A.CALL_PRJ_ID   = C.PRJ_ID
+        AND A.CALL_PRJ_ID   = D.PRJ_ID
+        AND A.CALL_FILE_ID  = C.FILE_ID
+        AND B.FILE_ID &lt;&gt; C.FILE_ID
+        AND D.UPPER_BIZ_ID  = E.BIZ_ID
+        AND D.DEL_YN        = 'N'
+        AND E.DEL_YN        = 'N'
+        <if test="searchName !=null and searchName !=''">
+        AND C.CAPS_SRC_FILE_NAME LIKE '%' || #{searchName} || '%'
+        </if>
+    <if test="site == 'DGBANK'">
+      <if test="rootPrjIdFlag == 'Y'">
+                AND (A.CALL_PRJ_ID, A.CALL_FILE_ID) NOT IN (SELECT PRJ_ID, FILE_ID
+                FROM VW_AIS0010
+                WHERE 1=1
+                AND PRJ_ID &gt; 3000
+                AND SRC_FILE_NAME IN ( SELECT SRC_FILE_NAME
+                FROM AIS0010
+                WHERE PRJ_ID = #{rootPrjId}
+                AND FILE_ID IN
+                <foreach close=")" collection="fileList" index="index" item="item" open="(" separator=",">
+                    #{item}
+                </foreach>
+                )
+                )
+            </if>
+    </if>
+        ) A
+    </select>
+  <select id="getNextFilesCalled" parameterType="java.util.HashMap" resultMap="getNextFilesMap">/* ImpactStreamCommon.xml.getNextFilesCalled */ /* ImpactStreamCommon.xml.getNextFilesCalled */ 
+        SELECT ROW_NUMBER() OVER() AS FROMID
+        , A.BIZ_ID AS BIZ_ID
+        , A.PRJ_ID AS OBJID
+        , A.FILE_ID
+        , A.FILE_NAME||' - [' || A.PRJ_PATH ||'] [PATH] ' || A.FILE_PATH AS LABEL
+        , ROW_NUMBER() OVER() AS REL_ID
+        , A.REL_PRJ_ID
+        , A.REL_FILE_ID
+        , A.REL_FILE_NAME
+        , A.OBJ_NAME AS REL_OBJ_NAME
+        , A.OBJ_TYPE AS OBJTYPE
+        , A.FILE_PATH
+        , A.REL_DEPTH
+        , A.PRJ_PATH
+        , ABS(A.REL_DEPTH) +1 AS DEPTH
+        , 'CALLED'            AS CALL_TYPE
+        FROM (
+        SELECT DISTINCT D.BIZ_ID                 AS BIZ_ID
+        , FN_PRJTREENAME(C.PRJ_ID)          AS PRJ_PATH
+        , C.PRJ_ID                          AS PRJ_ID
+        , C.PRJ_KOR_NAME                    AS PRJ_KOR_NAME
+        , B.FILE_ID                         AS FILE_ID
+        , B.SRC_FILE_NAME                   AS FILE_NAME
+        , substr(B.SRC_FILE_FULL_PATH,46)   AS FILE_PATH
+        , B.ORG_FILE_PATH                   AS ORG_FILE_PATH
+        , B.EXT_CD                          AS EXT_CD
+        , 'FILE'                            AS OBJ_NAME
+        , 'file'                            AS OBJ_TYPE
+        , ''                                AS REL_CAL_ID
+        , A.CALL_PRJ_ID                     AS REL_PRJ_ID
+        , A.CALL_FILE_ID                    AS REL_FILE_ID
+        , ''                                AS REL_FILE_NAME
+        , (CAST(#{depth} AS NUMERIC)+1)                       AS REL_DEPTH
+        FROM (
+        <if test="site != 'DGBANK'">
+            SELECT CALL_PRJ_ID
+            , CALL_FILE_ID
+            , PRJ_ID
+            , FILE_ID
+            FROM AIS0052
+            WHERE 1=1
+            AND CALL_PRJ_ID = CAST(#{prjId} AS TEXT)
+            AND CALL_FILE_ID = CAST(#{fileId} AS NUMERIC)
+        </if>
+    <if test="site == 'DGBANK'">
+      <if test="dFlag == 'N'">
+                SELECT CALL_PRJ_ID
+                , CALL_FILE_ID
+                , PRJ_ID
+                , FILE_ID
+                FROM AIS0052
+                WHERE 1=1
+                AND PRJ_ID &gt; 3000
+                AND CALL_PRJ_ID = CAST(#{prjId} AS TEXT)
+                AND CALL_FILE_ID = CAST(#{fileId} AS NUMERIC)
+                <if test="rootPrjIdFlag == 'Y'">
+                    UNION
+                    SELECT CALL_PRJ_ID
+                    , CALL_FILE_ID
+                    , PRJ_ID
+                    , FILE_ID
+                    FROM AIS0052
+                    WHERE PRJ_ID = CAST(#{rootPrjId} AS TEXT)
+                    AND CALL_PRJ_ID = CAST(#{prjId} AS TEXT)
+                    AND CALL_FILE_ID = CAST(#{fileId} AS NUMERIC)
+                    AND FILE_ID IN
+                    <foreach close=")" collection="fileList" index="index" item="item" open="(" separator=",">
+                        #{item}
+                    </foreach>
+        </if>
+      </if>
+      <if test="dFlag == 'Y'">
+                SELECT CALL_PRJ_ID
+                , CALL_FILE_ID
+                , PRJ_ID
+                , FILE_ID
+                FROM AIS0052
+                WHERE 1=1
+                AND PRJ_ID &gt; 3000
+                AND CALL_PRJ_ID = CAST(#{prjId} AS TEXT)
+                AND CALL_FILE_ID in
+                <foreach close=")" collection="fileList" index="index" item="item" open="(" separator=",">
+                    #{item}
+                </foreach>
+                UNION
+                SELECT CALL_PRJ_ID
+                , CALL_FILE_ID
+                , PRJ_ID
+                , FILE_ID
+                FROM AIS0052
+                WHERE PRJ_ID      = CAST(#{prjId} AS TEXT)
+                AND call_prj_id = CAST(#{prjId} AS TEXT)
+                AND call_FILE_ID = CAST(#{fileId} AS NUMERIC)
+                AND FILE_ID IN
+                <foreach close=")" collection="fileList" index="index" item="item" open="(" separator=",">
+                    #{item}
+                </foreach>
+      </if>
+    </if>
+        ) A
+        , VW_AIS0010_UI B
+        , AIS1001 C
+        , VW_AIS1000 D
+        WHERE A.CALL_PRJ_ID   = CAST(#{prjId} AS TEXT)
+        AND A.CALL_FILE_ID  = CAST(#{fileId} AS NUMERIC)
+        AND A.PRJ_ID        = B.PRJ_ID
+        AND A.PRJ_ID        = C.PRJ_ID
+        AND A.FILE_ID       = B.FILE_ID
+        AND C.UPPER_BIZ_ID  = D.BIZ_ID
+        AND C.DEL_YN        = 'N'
+        AND D.DEL_YN        = 'N'
+        ) A
+        <if test="site == 'DGBANK'">
+      <if test="rootPrjIdFlag == 'Y'">
+                WHERE (A.PRJ_ID, A.FILE_ID) NOT IN (SELECT PRJ_ID, FILE_ID
+                FROM VW_AIS0010
+                WHERE 1=1
+                AND PRJ_ID &gt; 3000
+                AND SRC_FILE_NAME IN (
+                SELECT SRC_FILE_NAME
+                FROM AIS0010
+                WHERE PRJ_ID = CAST(#{rootPrjId} AS TEXT)
+                AND FILE_ID IN
+                <foreach close=")" collection="fileList" index="index" item="item" open="(" separator=",">
+                    #{item}
+                </foreach>
+                )
+                )
+            </if>
+    </if>
+  </select>
+  <select id="getFile2Relation" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamCommon.xml.getFile2Relation */ /* ImpactStreamCommon.xml.getFile2Relation */ 
+        SELECT DISTINCT B.PRJ_ID
+                      , B.FILE_ID
+                      , B.OBJ_ID
+                      , 0 AS FUNC_ID
+                      , 0 AS VAR_ID
+                      , B.START_LINE_NO AS LINE_NO
+                      , '[OBJECT] '|| B.OBJ_NAME AS OBJ_NAME
+        FROM AIS0052 A
+           , AIS0011 B
+        WHERE A.PRJ_ID       = #{prjId}
+          AND A.FILE_ID      = #{fileId}
+          AND A.OBJ_ID       = #{objId}
+          AND A.FUNC_ID      = #{funcId}
+          AND A.CALL_PRJ_ID  = #{relPrjId}
+          AND A.CALL_FILE_ID = #{relObjId}
+          AND A.CALL_PRJ_ID  = B.PRJ_ID
+          AND A.CALL_FILE_ID = B.FILE_ID
+          AND A.CALL_OBJ_ID  = B.OBJ_ID
+        UNION
+        SELECT DISTINCT B.PRJ_ID
+                      , B.FILE_ID
+                      , B.OBJ_ID
+                      , B.FUNC_ID
+                      , 0 AS VAR_ID
+                      , B.START_LINE_NO AS LINE_NO
+                      , CASE WHEN B.FUNC_FULL_NAME IS NULL THEN '[FUNCTION] '|| B.FUNC_NAME
+                             ELSE '[FUNCTION] '|| B.FUNC_FULL_NAME END AS OBJ_NAME
+        FROM AIS0052 A
+           , AIS0012 B
+        WHERE A.PRJ_ID       = #{prjId}
+          AND A.FILE_ID      = #{fileId}
+          AND A.OBJ_ID       = #{objId}
+          AND A.FUNC_ID      = #{funcId}
+          AND A.CALL_PRJ_ID  = #{relPrjId}
+          AND A.CALL_FILE_ID = #{relObjId}
+          AND A.CALL_PRJ_ID  = B.PRJ_ID
+          AND A.CALL_FILE_ID = B.FILE_ID
+          AND A.CALL_OBJ_ID  = B.OBJ_ID
+          AND A.CALL_FUNC_ID = B.FUNC_ID
+        UNION
+        SELECT DISTINCT B.PRJ_ID
+                      , B.FILE_ID
+                      , B.OBJ_ID
+                      , B.FUNC_ID
+                      , B.VAR_ID
+                      , B.VAR_LINE_NO AS LINE_NO
+                      , '[VARIABLE] '|| B.VAR_NAME AS OBJ_NAME
+        FROM AIS0052 A
+           , AIS0014 B
+        WHERE A.PRJ_ID       = #{prjId}
+          AND A.FILE_ID      = #{fileId}
+          AND A.OBJ_ID       = #{objId}
+          AND A.FUNC_ID      = #{funcId}
+          AND A.CALL_PRJ_ID  = #{relPrjId}
+          AND A.CALL_FILE_ID = #{relObjId}
+          AND A.CALL_PRJ_ID  = B.PRJ_ID
+          AND A.CALL_FILE_ID = B.FILE_ID
+          AND A.CALL_OBJ_ID  = B.OBJ_ID
+          AND A.CALL_FUNC_ID = B.FUNC_ID
+          AND A.CALL_VAR_ID  = B.VAR_ID
+          AND A.CALL_VAR_ID  &gt; -1
+        UNION
+        SELECT DISTINCT B.PRJ_ID
+                      , B.FILE_ID
+                      , B.OBJ_ID
+                      , B.FUNC_ID
+                      , B.VAR_ID
+                      , B.VAR_LINE_NO AS LINE_NO
+                      , '[VARIABLE] '|| B.VAR_NAME AS OBJ_NAME
+        FROM AIS0052 A
+           , AIS0014 B
+        WHERE A.PRJ_ID       = #{prjId}
+          AND A.FILE_ID      = #{fileId}
+          AND A.OBJ_ID       = #{objId}
+          AND A.FUNC_ID      = #{funcId}
+          AND A.CALL_PRJ_ID  = #{relPrjId}
+          AND A.CALL_FILE_ID = #{relObjId}
+          AND A.PRJ_ID       = B.PRJ_ID
+          AND A.FILE_ID      = B.FILE_ID
+          AND A.OBJ_ID       = B.OBJ_ID
+          AND A.FUNC_ID      = B.FUNC_ID
+          AND A.VAR_ID       = B.VAR_ID
+          AND A.CALL_VAR_ID  = -1
+    </select>
+  <select id="getSqlSrcInfo" parameterType="java.util.HashMap" resultMap="getSqlSrcInfoMap">/* ImpactStreamCommon.xml.getSqlSrcInfo */ /* ImpactStreamCommon.xml.getSqlSrcInfo */ 
+        SELECT A.PRJ_ID, A.FILE_ID, A.ORG_FILE_PATH, A.SRC_FILE_NAME, A.EXT_CD, B.LINE_NO, B.SQL_SRC
+        FROM VW_AIS0010 A
+           , AIS0100 B
+        WHERE A.PRJ_ID  = #{prjId}
+          AND A.FILE_ID = cast(#{fileId} as numeric )
+          AND A.PRJ_ID = B.PRJ_ID
+          AND A.FILE_ID = B.FILE_ID
+          AND B.SQL_ID = cast(#{sqlId} as numeric )
+    </select>
+  <select id="getSrcInfo" parameterType="java.util.HashMap" resultMap="getSrcInfoMap">/* ImpactStreamCommon.xml.getSrcInfo */ /* ImpactStreamCommon.xml.getSrcInfo */ 
+        SELECT A.PRJ_ID, A.FILE_ID, A.ORG_FILE_PATH, A.SRC_FILE_NAME, A.EXT_CD
+        FROM VW_AIS0010 A
+        WHERE A.PRJ_ID  = CAST(#{prjId} AS TEXT)
+          AND A.FILE_ID = CAST(#{fileId} AS NUMERIC)
+    </select>
+  <select id="getParseEnc" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamCommon.xml.getParseEnc */ /* ImpactStreamCommon.xml.getParseEnc */ 
+        SELECT scode AS "SCODE"
+        FROM AIS2100
+        WHERE MCODE = 'PARSER_ENC'
+    </select>
+  <select id="getFileSrcInfo" parameterType="java.util.HashMap" resultMap="getFileSrcInfoMap">/* ImpactStreamCommon.xml.getFileSrcInfo */ /* ImpactStreamCommon.xml.getFileSrcInfo */ 
+<if test="objType == 'file'">
+            SELECT DISTINCT A.SRC_FILE_FULL_PATH AS FILE_PATH
+            ,A.ORG_FILE_PATH               AS ORG_FILE_PATH
+            ,A.SRC_FILE_NAME               AS FILE_NAME
+            ,'0'                           AS LINE_NO
+            FROM VW_AIS0010_UI A
+            WHERE A.PRJ_ID     = #{prjId}
+            AND A.FILE_ID = #{fileId}
+        </if>
+    <if test="objType == 'imp'">
+            SELECT DISTINCT B.START_LINE_NO AS LINE_NO
+            ,A.SRC_FILE_FULL_PATH     AS FILE_PATH
+            ,A.ORG_FILE_PATH          AS ORG_FILE_PATH
+            ,A.SRC_FILE_NAME          AS FILE_NAME
+            FROM VW_AIS0010_UI A
+            ,AIS0031 B
+            WHERE A.PRJ_ID          = #{prjId}
+            AND A.FILE_ID      = #{fileId}
+            AND B.HEDR_FILE_ID = #{id}
+            AND A.PRJ_ID       = B.PRJ_ID
+            AND A.FILE_ID      = B.FILE_ID
+        </if>
+    <if test="objType == 'class'">
+            SELECT DISTINCT B.START_LINE_NO AS LINE_NO
+            ,A.SRC_FILE_FULL_PATH     AS FILE_PATH
+            ,A.ORG_FILE_PATH          AS ORG_FILE_PATH
+            ,A.SRC_FILE_NAME          AS FILE_NAME
+            FROM VW_AIS0010_UI A
+            ,AIS0011 B
+            WHERE A.PRJ_ID     = #{prjId}
+            AND A.FILE_ID = #{fileId}
+            AND B.OBJ_ID  = #{id}
+            AND A.PRJ_ID  = B.PRJ_ID
+            AND A.FILE_ID = B.FILE_ID
+            AND B.OBJ_TYPE IN ('interface', 'class')
+        </if>
+    <if test="objType == 'strc'">
+            SELECT DISTINCT B.START_LINE_NO AS LINE_NO
+            ,A.SRC_FILE_FULL_PATH     AS FILE_PATH
+            ,A.ORG_FILE_PATH          AS ORG_FILE_PATH
+            ,A.SRC_FILE_NAME          AS FILE_NAME
+            FROM VW_AIS0010_UI A
+            ,AIS0011 B
+            WHERE A.PRJ_ID     = #{prjId}
+            AND A.FILE_ID = #{fileId}
+            AND B.OBJ_ID  = #{id}
+            AND A.PRJ_ID   = B.PRJ_ID
+            AND A.FILE_ID  = B.FILE_ID
+            AND B.OBJ_TYPE &lt;&gt; 'interface'
+            AND B.OBJ_TYPE &lt;&gt; 'class'
+        </if>
+    <if test="objType == 'var'">
+            SELECT DISTINCT B.VAR_LINE_NO   AS LINE_NO
+            ,A.SRC_FILE_FULL_PATH     AS FILE_PATH
+            ,A.ORG_FILE_PATH          AS ORG_FILE_PATH
+            ,A.SRC_FILE_NAME          AS FILE_NAME
+            FROM VW_AIS0010_UI A
+            ,AIS0014 B
+            WHERE A.PRJ_ID     = #{prjId}
+            AND A.FILE_ID = #{fileId}
+            AND B.VAR_ID  = #{id}
+            AND A.PRJ_ID  = B.PRJ_ID
+            AND A.FILE_ID = B.FILE_ID
+        </if>
+    <if test="objType == 'func'">
+            SELECT DISTINCT B.START_LINE_NO AS LINE_NO
+            ,A.SRC_FILE_FULL_PATH     AS FILE_PATH
+            ,A.ORG_FILE_PATH          AS ORG_FILE_PATH
+            ,A.SRC_FILE_NAME          AS FILE_NAME
+            FROM VW_AIS0010_UI A
+            ,AIS0012 B
+            WHERE A.PRJ_ID  = #{prjId}
+            AND A.FILE_ID = #{fileId}
+            AND B.FUNC_ID = #{id}
+            AND A.PRJ_ID  = B.PRJ_ID
+            AND A.FILE_ID = B.FILE_ID
+        </if>
+  </select>
+  <select id="getSrcInfoWithFileId" parameterType="java.util.HashMap" resultMap="getSqlSrcInfoMap">/* ImpactStreamCommon.xml.getSrcInfoWithFileId */ /* ImpactStreamCommon.xml.getSrcInfoWithFileId */ 
+        SELECT A.PRJ_ID, A.FILE_ID, A.ORG_FILE_PATH, A.SRC_FILE_NAME
+        FROM VW_AIS0010_UI A
+        WHERE A.PRJ_ID  = #{prjId}
+          AND A.FILE_ID = #{fileId}
+    </select>
+  <select id="getSrcInfo2" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamCommon.xml.getSrcInfo2 */ /* ImpactStreamCommon.xml.getSrcInfo2 */ 
+        SELECT VARVALUE, BEGINLINE, BEGINCOLUMN
+        FROM AIS0107
+        WHERE PRJ_ID  = #{prjId}
+          AND FILE_ID = #{fileId}
+          AND VARNAME = #{objName}
+    </select>
+  <select id="getLangCodeExtList" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamCommon.xml.getLangCodeExtList */ /* ImpactStreamCommon.xml.getLangCodeExtList */ 
+        SELECT 'ALL' AS "EXT_CD"
+        UNION ALL
+        SELECT EXT_CD
+        FROM AIS2102
+        WHERE LANG_CD = #{langType}
+          AND DISPLAY_YN = 'Y'
+    </select>
+</mapper>

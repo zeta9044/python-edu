@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+            PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+            "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="impact">
+  <sql id="pagingSql_Start">
+        WITH DS__AIS__TEMP__TBL__ AS (
+    </sql>
+  <sql id="pagingSql_End">
+        )
+        SELECT * FROM (
+                          SELECT ROW_NUMBER() OVER() AS "L__GRID__LINE__NUM", (CEIL((ROW_NUMBER() OVER())/CAST(#{pageGap} AS NUMERIC))-1) AS "PGNO"
+                               ,AA.*
+                               ,COUNT(*) OVER() AS "TOTALCNT"
+                          FROM DS__AIS__TEMP__TBL__ AA
+                      ) PAGE
+        WHERE "PGNO" = CAST(#{pgNo} AS NUMERIC)
+    </sql>
+  <sql id="fullPrjIdSql">
+        IN (
+        SELECT
+            PRJ_ID
+        FROM
+            AIS1001
+        WHERE
+            UPPER_BIZ_ID IN(
+                WITH RECURSIVE BIZ_INFO (BIZ_ID) AS (
+                    SELECT
+                        A.BIZ_ID
+                    FROM
+                        VW_AIS1000 A
+                    WHERE
+                        A.BIZ_ID = #{prjId}
+        AND A.DEL_YN = 'N'
+        UNION ALL
+        SELECT
+        A.BIZ_ID
+        FROM
+        VW_AIS1000 A ,
+        BIZ_INFO B
+        WHERE
+        A.DEL_YN = 'N'
+        AND A.UPPER_BIZ_ID = B.BIZ_ID
+        )
+        SELECT
+        BIZ_ID
+        FROM
+        BIZ_INFO )
+        AND DEL_YN = 'N'
+        )
+    </sql>
+  <sql id="Calling_File">
+        SELECT DISTINCT FN_PRJTREENAME(C.PRJ_ID) AS BIZ_PATH
+        ,E.BIZ_ID
+        ,D.PRJ_ID
+        ,D.PRJ_KOR_NAME
+        ,C.FILE_ID
+        ,C.SRC_FILE_NAME                   AS CALL_OBJ_NAME
+        ,C.SRC_FILE_FULL_PATH
+        ,C.ORG_FILE_PATH
+        ,C.EXT_CD
+        ,'b'||E.BIZ_ID||'p'||D.PRJ_ID||'o'||C.FILE_ID||'s'||C.FILE_ID AS UNIQUEID
+        ,'file'                            AS OBJ_TYPE
+        ,'File'                            AS OBJ_NAME
+        ,'0x99CC00'                        AS NODE_COLOR
+        FROM (
+        <if test="site != 'DGBANK'">
+            SELECT CALL_PRJ_ID
+            , CALL_FILE_ID
+            , PRJ_ID
+            , FILE_ID
+            FROM AIS0052
+            WHERE PRJ_ID      = CAST(#{prjId} AS TEXT)
+            AND FILE_ID     = CAST(#{objId} AS NUMERIC)
+        </if>
+    <if test="site == 'DGBANK'">
+      <if test="dFlag =='N'">
+                SELECT CALL_PRJ_ID
+                , CALL_FILE_ID
+                , PRJ_ID
+                , FILE_ID
+                FROM AIS0052
+                WHERE PRJ_ID      = CAST(#{prjId} AS TEXT)
+                AND FILE_ID     = CAST(#{objId} AS NUMERIC)
+                AND CALL_PRJ_ID &gt; 3000
+                <if test="rootPrjIdFlag =='Y'">
+                    UNION
+                    SELECT CALL_PRJ_ID
+                    , CALL_FILE_ID
+                    , PRJ_ID
+                    , FILE_ID
+                    FROM AIS0052
+                    WHERE PRJ_ID      = CAST(#{rootPrjId} AS TEXT)
+                    AND FILE_ID     = CAST(#{objId} AS NUMERIC)
+                    AND CALL_PRJ_ID = CAST(#{prjId} AS TEXT)
+                </if>
+      </if>
+      <if test="dFlag =='Y'">
+                SELECT CALL_PRJ_ID
+                , CALL_FILE_ID
+                , PRJ_ID
+                , FILE_ID
+                FROM AIS0052
+                WHERE PRJ_ID      = CAST(#{prjId} AS TEXT)
+                AND FILE_ID     = CAST(#{objId} AS NUMERIC)
+                AND CALL_PRJ_ID &gt; 3000
+                UNION
+                SELECT CALL_PRJ_ID, CALL_FILE_ID, PRJ_ID, FILE_ID
+                FROM AIS0052
+                WHERE PRJ_ID      = CAST(#{prjId} AS TEXT)
+                AND FILE_ID     = CAST(#{objId} AS NUMERIC)
+                AND CALL_PRJ_ID = CAST(#{prjId} AS TEXT)
+                AND CALL_FILE_ID IN
+                <foreach close=")" collection="fileList" index="index" item="item" open="(" separator=",">
+                    #{item}
+                </foreach>
+      </if>
+    </if>
+        ) A
+        ,VW_AIS0010_UI B
+        ,VW_AIS0010_UI C
+        ,AIS1001 D
+        , VW_AIS1000 E
+        WHERE A.PRJ_ID           = CAST(#{prjId} AS TEXT)
+        AND A.FILE_ID       = CAST(#{objId} AS NUMERIC)
+        AND A.PRJ_ID        = B.PRJ_ID
+        AND A.FILE_ID       = B.FILE_ID
+        AND A.CALL_PRJ_ID   = C.PRJ_ID
+        AND A.CALL_PRJ_ID   = D.PRJ_ID
+        AND A.CALL_FILE_ID  = C.FILE_ID
+        AND B.FILE_ID &lt;&gt; C.FILE_ID
+        AND D.UPPER_BIZ_ID  = E.BIZ_ID
+        AND D.DEL_YN        = 'N'
+        AND E.DEL_YN        = 'N'
+        <if test="searchName !=null and searchName !=''">
+            AND C.CAPS_SRC_FILE_NAME LIKE '%' || #{searchName} || '%'
+        </if>
+    <if test="site =='DGBANK'">
+      <if test="rootPrjIdFlag =='Y'">
+                AND (A.CALL_PRJ_ID, A.CALL_FILE_ID) NOT IN (SELECT PRJ_ID, FILE_ID
+                FROM VW_AIS0010
+                WHERE 1=1
+                AND PRJ_ID &gt; 3000
+                AND SRC_FILE_NAME IN ( SELECT SRC_FILE_NAME
+                FROM AIS0010
+                WHERE PRJ_ID = CAST(#{rootPrjId} AS TEXT)
+                AND FILE_ID IN
+                <foreach close=")" collection="fileList" index="index" item="item" open="(" separator=",">
+                    #{item}
+                </foreach>
+                )
+                )
+            </if>
+    </if>
+  </sql>
+  <sql id="Calling_Tbl">
+        SELECT DISTINCT BIZ_PATH
+        , BIZ_ID
+        , PRJ_ID
+        , PRJ_KOR_NAME
+        , FILE_ID
+        , CALL_OBJ_NAME
+        , SRC_FILE_FULL_PATH
+        , ORG_FILE_PATH
+        , EXT_CD
+        , UNIQUEID
+        , OBJ_TYPE
+        , OBJ_NAME
+        , NODE_COLOR
+        FROM (SELECT FN_PRJTREENAME(B.PRJ_ID) AS BIZ_PATH
+        , C.BIZ_ID
+        , B.PRJ_ID
+        , B.PRJ_KOR_NAME
+        , 0                                 AS FILE_ID
+        , A.TABLE_NAME                      AS CALL_OBJ_NAME
+        , ''                                AS SRC_FILE_FULL_PATH
+        , ''                                AS ORG_FILE_PATH
+        , ''                                AS EXT_CD
+        , 'tbl'                             AS OBJ_TYPE
+        , 'Table'                           AS OBJ_NAME
+        , '0x0501FF'                        AS NODE_COLOR
+        , 'b'||C.BIZ_ID||'p'||B.PRJ_ID||'_tbl_'||A.TABLE_NAME AS UNIQUEID
+        FROM AIS0102 A
+        , AIS1001 B
+        , VW_AIS1000 C
+        WHERE A.PRJ_ID          = CAST(#{prjId} AS TEXT)
+        AND A.PRJ_ID            = B.PRJ_ID
+        AND A.FILE_ID           = CAST(#{objId} AS NUMERIC)
+        AND C.BIZ_ID            = B.UPPER_BIZ_ID
+        AND B.DEL_YN            = 'N'
+        AND C.DEL_YN            = 'N'
+        AND A.INLINEVIEW_YN = 'N'
+        <if test="searchName !=null and searchName !=''">
+            AND A.TABLE_NAME LIKE '%' || #{searchName} || '%'
+        </if>
+        UNION ALL
+        SELECT FN_PRJTREENAME(B.PRJ_ID) AS BIZ_PATH
+        , C.BIZ_ID
+        , B.PRJ_ID
+        , B.PRJ_KOR_NAME
+        , 0                                 AS FILE_ID
+        , A.STOD_NAME                      AS CALL_OBJ_NAME
+        , ''                                AS SRC_FILE_FULL_PATH
+        , ''                                AS ORG_FILE_PATH
+        , ''                                AS EXT_CD
+        , CASE WHEN A.STOD_TYPE = 'P' THEN 'proc'
+        WHEN A.STOD_TYPE = 'F' THEN 'func'
+        ELSE '' END AS OBJ_TYPE
+        , CASE WHEN A.STOD_TYPE = 'P' THEN 'Procedure'
+        WHEN A.STOD_TYPE = 'F' THEN 'Function'
+        ELSE '' END AS OBJ_NAME
+        , CASE WHEN A.STOD_TYPE = 'P' THEN '0x0501FF'
+        WHEN A.STOD_TYPE = 'F' THEN '0x0501FF'
+        ELSE '0x0501FF' END AS NODE_COLOR
+        , 'b'||C.BIZ_ID||'p'||B.PRJ_ID||'_'||STOD_TYPE||'_'||A.STOD_NAME AS UNIQUEID
+        FROM AIS0104 A
+        , AIS1001 B
+        , VW_AIS1000 C
+        WHERE A.PRJ_ID          = CAST(#{prjId} AS TEXT)
+        AND A.PRJ_ID            = B.PRJ_ID
+        AND A.FILE_ID           = CAST(#{objId} AS NUMERIC)
+        AND C.BIZ_ID            = B.UPPER_BIZ_ID
+        AND B.DEL_YN            = 'N'
+        AND C.DEL_YN            = 'N'
+        <if test="searchName !=null and searchName !=''">
+            AND A.STOD_NAME LIKE '%' || #{searchName} || '%'
+        </if>
+        ) D
+        <if test="dbType !=null and dbType !=''">
+            WHERE OBJ_TYPE IN
+            <foreach close=")" collection="dbType" index="index" item="item" open="(" separator=",">
+                #{item}
+            </foreach>
+    </if>
+  </sql>
+</mapper>

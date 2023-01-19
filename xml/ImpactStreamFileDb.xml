@@ -1,0 +1,1524 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+            PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+            "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.datastreams.impactstream.dao.FileDbControlDao">
+  <resultMap id="getFileFlowChartMap" type="java.util.HashMap">
+    <result column="ID" javaType="java.lang.String" property="ID" />
+    <result column="PRJ_ID" javaType="java.lang.String" property="PRJ_ID" />
+    <result column="FILE_ID" javaType="java.lang.String" property="FILE_ID" />
+    <result column="CLASS_ID" javaType="java.lang.String" property="CLASS_ID" />
+    <result column="FUNC_ID" javaType="java.lang.String" property="FUNC_ID" />
+    <result column="FLOW_ID" javaType="java.lang.String" property="FLOW_ID" />
+    <result column="FLOW_CALL_ID" javaType="java.lang.String" property="FLOW_CALL_ID" />
+    <result column="NAME" javaType="java.lang.String" property="NAME" />
+    <result column="TOOLTIP" javaType="java.lang.String" property="TOOLTIP" />
+    <result column="LINE_NO" javaType="java.lang.String" property="LINE_NO" />
+    <result column="PARENT_SEQ_ID" javaType="java.lang.String" property="PARENT_SEQ_ID" />
+    <result column="FROM_SEQ_ID" javaType="java.lang.String" property="FROM_SEQ_ID" />
+    <result column="CONDITION_TYPE" javaType="java.lang.String" property="CONDITION_TYPE" />
+    <result column="CONDITION" javaType="java.lang.String" property="CONDITION" />
+    <result column="FLOW_TYPE" javaType="java.lang.String" property="FLOW_TYPE" />
+    <result column="SIMBOL_TYPE" javaType="java.lang.String" property="SIMBOL_TYPE" />
+  </resultMap>
+  <resultMap id="getSQLListMap" type="java.util.HashMap">
+    <result column="L__GRID__LINE__NUM" javaType="java.lang.String" property="L__GRID__LINE__NUM" />
+    <result column="PGNO" javaType="java.lang.String" property="PGNO" />
+    <result column="TOTALCNT" javaType="java.lang.String" property="TOTALCNT" />
+    <result column="PRJ_ID" javaType="java.lang.String" property="PRJ_ID" />
+    <result column="BIZ_PATH" javaType="java.lang.String" property="BIZ_PATH" />
+    <result column="FILE_ID" javaType="java.lang.String" property="FILE_ID" />
+    <result column="TABLE_NAME_DISP" javaType="java.lang.String" property="TABLE_NAME_DISP" />
+    <result column="TABLE_NAME" javaType="java.lang.String" property="TABLE_NAME" />
+    <result column="OBJ_NAME_DISP" javaType="java.lang.String" property="OBJ_NAME_DISP" />
+    <result column="OBJ_NAME" javaType="java.lang.String" property="OBJ_NAME" />
+    <result column="DB_OBJ_TYPE" javaType="java.lang.String" property="DB_OBJ_TYPE" />
+    <result column="FUNC_NAME" javaType="java.lang.String" property="FUNC_NAME" />
+    <result column="FILE_FULL_PATH" javaType="java.lang.String" property="FILE_FULL_PATH" />
+    <result column="ORG_FILE_PATH" javaType="java.lang.String" property="ORG_FILE_PATH" />
+    <result column="FILE_PATH" javaType="java.lang.String" property="FILE_PATH" />
+    <result column="FILE_NAME" javaType="java.lang.String" property="FILE_NAME" />
+    <result column="QUERY_TYPE" javaType="java.lang.String" property="QUERY_TYPE" />
+    <result column="COL_USE_TYPE" javaType="java.lang.String" property="COL_USE_TYPE" />
+    <result column="LINE_NO" javaType="java.lang.String" property="LINE_NO" />
+    <result column="SQL_SRC_TYPE" javaType="java.lang.String" property="SQL_SRC_TYPE" />
+    <result column="SQL_START_LINE_NO" javaType="java.lang.String" property="SQL_START_LINE_NO" />
+    <result column="SQL_START_LINE_NO_DISP" javaType="java.lang.String" property="SQL_START_LINE_NO_DISP" />
+    <result column="INLINEVIEW_YN" javaType="java.lang.String" property="INLINEVIEW_YN" />
+    <result column="INLINEVIEW_SRC" javaType="java.lang.String" property="INLINEVIEW_SRC" />
+    <result column="COLUMN_NO" javaType="java.lang.String" property="COLUMN_NO" />
+  </resultMap>
+  <resultMap id="getDGBDbInfoTreeListMap" type="java.util.HashMap">
+    <result column="LABEL" javaType="java.lang.String" property="LABEL" />
+    <result column="REF_BIZ_ID" javaType="java.lang.String" property="REF_BIZ_ID" />
+    <result column="DBID" javaType="java.lang.String" property="DBID" />
+    <result column="OBJID" javaType="java.lang.String" property="OBJID" />
+    <result column="OBJTYPE" javaType="java.lang.String" property="OBJTYPE" />
+    <result column="BIZ_ID" javaType="java.lang.String" property="BIZ_ID" />
+    <result column="BIZ_KOR_NAME" javaType="java.lang.String" property="BIZ_KOR_NAME" />
+    <result column="PRJ_ID" javaType="java.lang.String" property="PRJ_ID" />
+    <result column="PRJ_KOR_NAME" javaType="java.lang.String" property="PRJ_KOR_NAME" />
+  </resultMap>
+  <resultMap id="getDbInfoTreeListMap" type="java.util.HashMap">
+    <result column="LABEL" javaType="java.lang.String" property="LABEL" />
+    <result column="REF_BIZ_ID" javaType="java.lang.String" property="REF_BIZ_ID" />
+    <result column="DBID" javaType="java.lang.String" property="DBID" />
+    <result column="OBJID" javaType="java.lang.String" property="OBJID" />
+    <result column="OBJTYPE" javaType="java.lang.String" property="OBJTYPE" />
+    <result column="BIZ_ID" javaType="java.lang.String" property="BIZ_ID" />
+    <result column="BIZ_KOR_NAME" javaType="java.lang.String" property="BIZ_KOR_NAME" />
+    <result column="PRJ_ID" javaType="java.lang.String" property="PRJ_ID" />
+    <result column="PRJ_KOR_NAME" javaType="java.lang.String" property="PRJ_KOR_NAME" />
+  </resultMap>
+  <resultMap id="getDGBDBTreeListMap" type="java.util.HashMap">
+    <result column="LABEL" javaType="java.lang.String" property="LABEL" />
+    <result column="DBID" javaType="java.lang.String" property="DBID" />
+    <result column="OBJID" javaType="java.lang.String" property="OBJID" />
+    <result column="OBJTYPE" javaType="java.lang.String" property="OBJTYPE" />
+    <result column="BIZ_ID" javaType="java.lang.String" property="BIZ_ID" />
+    <result column="PRJ_ID" javaType="java.lang.String" property="PRJ_ID" />
+    <result column="PRJ_KOR_NAME" javaType="java.lang.String" property="PRJ_KOR_NAME" />
+    <result column="REF_BIZ_ID" javaType="java.lang.String" property="REF_BIZ_ID" />
+  </resultMap>
+  <resultMap id="getDBTreeListMap" type="java.util.HashMap">
+    <result column="LABEL" javaType="java.lang.String" property="LABEL" />
+    <result column="DBID" javaType="java.lang.String" property="DBID" />
+    <result column="OBJID" javaType="java.lang.String" property="OBJID" />
+    <result column="OBJTYPE" javaType="java.lang.String" property="OBJTYPE" />
+    <result column="BIZ_ID" javaType="java.lang.String" property="BIZ_ID" />
+    <result column="PRJ_ID" javaType="java.lang.String" property="PRJ_ID" />
+    <result column="PRJ_KOR_NAME" javaType="java.lang.String" property="PRJ_KOR_NAME" />
+    <result column="REF_BIZ_ID" javaType="java.lang.String" property="REF_BIZ_ID" />
+  </resultMap>
+  <resultMap id="getTableDetailTreeListMap" type="java.util.HashMap">
+    <result column="CNT" javaType="java.lang.String" property="CNT" />
+    <result column="LABEL" javaType="java.lang.String" property="LABEL" />
+    <result column="DBID" javaType="java.lang.String" property="DBID" />
+    <result column="OBJID" javaType="java.lang.String" property="OBJID" />
+    <result column="OBJTYPE" javaType="java.lang.String" property="OBJTYPE" />
+    <result column="BIZ_ID" javaType="java.lang.String" property="BIZ_ID" />
+    <result column="PRJ_ID" javaType="java.lang.String" property="PRJ_ID" />
+    <result column="PRJ_KOR_NAME" javaType="java.lang.String" property="PRJ_KOR_NAME" />
+    <result column="REF_BIZ_ID" javaType="java.lang.String" property="REF_BIZ_ID" />
+  </resultMap>
+  <resultMap id="getDGBImpactListMap" type="java.util.HashMap">
+    <result column="FROMID" javaType="java.lang.String" property="fromID" />
+    <result column="TOID" javaType="java.lang.String" property="toID" />
+    <result column="DB_ID" javaType="java.lang.String" property="DB_ID" />
+    <result column="NAME" javaType="java.lang.String" property="name" />
+    <result column="OBJ_TYPE" javaType="java.lang.String" property="OBJ_TYPE" />
+    <result column="DEPTH" javaType="java.lang.String" property="depth" />
+    <result column="NODECOLOR" javaType="java.lang.String" property="nodeColor" />
+  </resultMap>
+  <resultMap id="getImpactListMap" type="java.util.HashMap">
+    <result column="fromID" javaType="java.lang.String" property="fromID" />
+    <result column="toID" javaType="java.lang.String" property="toID" />
+    <result column="DB_ID" javaType="java.lang.String" property="DB_ID" />
+    <result column="name" javaType="java.lang.String" property="name" />
+    <result column="OBJ_TYPE" javaType="java.lang.String" property="OBJ_TYPE" />
+    <result column="depth" javaType="java.lang.String" property="depth" />
+    <result column="nodeColor" javaType="java.lang.String" property="nodeColor" />
+  </resultMap>
+  <resultMap id="getTableConstraintsMap" type="java.util.HashMap">
+    <result column="CONSTRAINT_NAME" javaType="java.lang.String" property="CONSTRAINT_NAME" />
+    <result column="CONSTRAINT_TYPE" javaType="java.lang.String" property="CONSTRAINT_TYPE" />
+    <result column="STATUS" javaType="java.lang.String" property="STATUS" />
+    <result column="DEFERRABLE" javaType="java.lang.String" property="DEFERRABLE" />
+    <result column="DEFERRED" javaType="java.lang.String" property="DEFERRED" />
+    <result column="COLS" javaType="java.lang.String" property="COLS" />
+  </resultMap>
+  <resultMap id="getViewSrcResultMap" type="java.util.HashMap">
+    <result column="SRC_TEXT" javaType="java.lang.String" property="SRC_TEXT" />
+  </resultMap>
+  <resultMap id="getDBTreeListMap2" type="java.util.HashMap">
+    <result column="LABEL" javaType="java.lang.String" property="LABEL" />
+    <result column="DBID" javaType="java.lang.String" property="DBID" />
+    <result column="OBJID" javaType="java.lang.String" property="OBJID" />
+    <result column="OBJID2" javaType="java.lang.String" property="OBJID2" />
+    <result column="OBJTYPE" javaType="java.lang.String" property="OBJTYPE" />
+    <result column="BIZ_ID" javaType="java.lang.String" property="BIZ_ID" />
+    <result column="PRJ_ID" javaType="java.lang.String" property="PRJ_ID" />
+    <result column="PRJ_KOR_NAME" javaType="java.lang.String" property="PRJ_KOR_NAME" />
+    <result column="REF_BIZ_ID" javaType="java.lang.String" property="REF_BIZ_ID" />
+  </resultMap>
+  <select id="getFunctionList" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamFileDb.xml.getFunctionList */ /* ImpactStreamFileDb.xml.getFunctionList */ 
+        SELECT *
+        FROM (
+                 SELECT B.PRJ_ID
+                      ,B.FILE_ID
+                      ,B.OBJ_ID
+                      ,B.FUNC_ID
+                      ,0 AS VAR_ID
+                      ,B.START_LINE_NO AS LINE_NO
+                      ,CASE WHEN B.FUNC_FULL_NAME IS NULL THEN B.FUNC_NAME
+                            ELSE B.FUNC_FULL_NAME END AS OBJ_NAME
+                      ,CASE WHEN B.FUNC_ID = A.FUNC_ID THEN 'Y'
+                            WHEN A.FUNC_ID = 0 THEN 'Y'
+                            ELSE 'N' END AS REL_YN
+                 FROM (SELECT DISTINCT PRJ_ID
+                                     ,FILE_ID
+                                     ,OBJ_ID
+                                     ,FUNC_ID
+                       FROM AIS0052
+                       WHERE CALL_PRJ_ID  = #{relPrjId}
+                         AND CALL_FILE_ID = #{relObjId}
+                 ) A
+                    ,AIS0012 B
+                 WHERE B.PRJ_ID          = #{prjId}
+                   AND B.FILE_ID         = #{objId}
+                   AND A.PRJ_ID(+)       = B.PRJ_ID
+                   AND A.FILE_ID(+)      = B.FILE_ID
+                   AND A.OBJ_ID(+)       = B.OBJ_ID
+                   AND A.FUNC_ID(+)      = B.FUNC_ID
+                   AND B.FUNC_ID &lt;&gt; 0
+                 UNION ALL
+                 SELECT DISTINCT PRJ_ID
+                               , FILE_ID
+                               , OBJ_ID
+                               , FUNC_ID
+                               , VAR_ID
+                               , 0 AS LINE_NO
+                               , '[N/A]' AS OBJ_NAME
+                               , 'Y' AS REL_YN
+                 FROM AIS0052
+                 WHERE PRJ_ID          = #{prjId}
+                   AND FILE_ID         = #{objId}
+                   AND FUNC_ID         = 0
+                   AND VAR_ID          = 0
+                   AND CALL_PRJ_ID     = #{relPrjId}
+                   AND CALL_FILE_ID    = #{relObjId}
+             )
+        ORDER BY LINE_NO
+    </select>
+  <select id="getFileFlowChart" parameterType="java.util.HashMap" resultMap="getFileFlowChartMap">/* ImpactStreamFileDb.xml.getFileFlowChart */ /* ImpactStreamFileDb.xml.getFileFlowChart */ 
+        SELECT SEQ_ID         AS ID
+             ,PRJ_ID         AS PRJ_ID
+             ,FILE_ID        AS FILE_ID
+             ,CLASS_ID       AS CLASS_ID
+             ,FUNC_ID        AS FUNC_ID
+             ,FLOW_ID        AS FLOW_ID
+             ,FLOW_CALL_ID   AS FLOW_CALL_ID
+             ,CASE WHEN FLOW_TYPE = 'S' THEN 'START'
+                   WHEN FLOW_TYPE = 'E' THEN 'END'
+                   WHEN CONDITION_TYPE = 'N/A' THEN 'CODE'
+                   ELSE CONDITION_TYPE
+            END AS NAME
+             ,CASE WHEN FLOW_TYPE = 'S' THEN 'START'
+                   WHEN FLOW_TYPE = 'E' THEN 'END'
+                   WHEN CONDITION = 'N/A' THEN ''
+                   ELSE CONDITION_TYPE||chr(13)||CONDITION
+            END AS TOOLTIP
+             ,START_LINE_NO  AS LINE_NO
+             ,PARENT_SEQ_ID  AS PARENT_SEQ_ID
+             ,FROM_SEQ_ID    AS FROM_SEQ_ID
+             ,CONDITION_TYPE AS CONDITION_TYPE
+             ,CONDITION      AS CONDITION
+             ,FLOW_TYPE      AS FLOW_TYPE
+             ,SIMBOL_TYPE    AS SIMBOL_TYPE
+        FROM AIS0059 A
+        WHERE PRJ_ID      = #{prjId}
+          AND FILE_ID  = #{fileId}
+          AND CLASS_ID = #{classId}
+          AND FUNC_ID  = #{funcId}
+        ORDER BY SEQ_ID
+    </select>
+  <select id="getFlowCharFuncList" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamFileDb.xml.getFlowCharFuncList */ /* ImpactStreamFileDb.xml.getFlowCharFuncList */ 
+        SELECT OBJ_ID
+             ,FUNC_ID
+             ,START_LINE_NO AS LINE_NO
+             ,FUNC_NAME
+        FROM AIS0012
+        WHERE PRJ_ID   = CAST(#{prjId} AS TEXT)
+          AND FILE_ID = CAST(#{fileId} AS NUMERIC)
+          AND FUNC_ID &lt;&gt; 0
+        ORDER BY FUNC_ID
+    </select>
+  <select id="getFunctionInfo" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamFileDb.xml.getFunctionInfo */ /* ImpactStreamFileDb.xml.getFunctionInfo */ 
+        SELECT DISTINCT DBOBJ_NAME
+                      , DBOBJ_OWNER
+                      , DBSTOR_RETURN_TYPE
+        FROM VW_DBCPROCINFO
+        WHERE JOB_ID = #{dbId}
+          AND DBOBJ_ID = #{dbobjId}
+    </select>
+  <select id="getFunctionArguments" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamFileDb.xml.getFunctionArguments */ /* ImpactStreamFileDb.xml.getFunctionArguments */ 
+        SELECT *
+        FROM VW_DBCPROCINFO2
+        WHERE DBSTOR_TYPE = 'FUNCTION'
+          AND JOB_ID = #{dbId}
+          AND DBOBJ_ID = #{dbobjId}
+    </select>
+  <select id="getFunctionUsed" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamFileDb.xml.getFunctionUsed */ /* ImpactStreamFileDb.xml.getFunctionUsed */ 
+        SELECT (ROW_NUMBER() OVER()) AS NUM
+             , D.DBOBJ_OWNER
+             , D.DBOBJ_TYPE
+             , D.DBOBJ_NAME
+             , 'VALID'          AS DBOBJ_STATUS
+        FROM VW_DBCRELINFO C
+           , VW_DBCOBJINFO D
+        WHERE C.JOB_ID          = #{dbId}
+          AND C.DBREF_OBJ_ID    = #{dbobjId}
+          AND C.JOB_ID          = D.JOB_ID
+          AND C.DBOBJ_ID        = D.DBOBJ_ID
+    </select>
+  <select id="getFunctionImpact" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamFileDb.xml.getFunctionImpact */ /* ImpactStreamFileDb.xml.getFunctionImpact */ 
+</select>
+  <select id="getFunctionImpactList" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamFileDb.xml.getFunctionImpactList */ /* ImpactStreamFileDb.xml.getFunctionImpactList */ 
+</select>
+  <select id="getFunctionSrcInfo" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamFileDb.xml.getFunctionSrcInfo */ /* ImpactStreamFileDb.xml.getFunctionSrcInfo */ 
+        SELECT SRC_TEXT
+        FROM AIS0310_HTY A
+           , AIS0301 B
+           , AIS0301_HTY C
+        WHERE B.JOB_ID = A.JOB_ID
+          AND B.JOB_ID = C.JOB_ID
+          AND B.DBOBJ_ID = A.DBOBJ_ID
+          AND B.DBOBJ_ID = C.DBOBJ_ID
+          AND B.DBOBJ_CHNG_CODE = A.REGCODE
+          AND B.DBOBJ_CHNG_CODE = C.REGCODE
+          AND B.JOB_ID = #{dbId}
+          AND B.DBOBJ_ID = #{dbobjId}
+        ORDER BY SRC_LINE
+    </select>
+  <select id="getFileGroupInfoList" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamFileDb.xml.getFileGroupInfoList */ /* ImpactStreamFileDb.xml.getFileGroupInfoList */ 
+        SELECT DISTINCT 
+        CASE WHEN A.EXT_CD IN (SELECT BB.EXT_CD FROM AIS2101 AA, AIS2102 BB WHERE AA.LANG_CD = 'JAVA' AND BB.LANG_CD = AA.LANG_CD) THEN 'method'
+        ELSE 'function' END AS "OBJ_TYPE"
+        ,B.FUNC_NAME          AS "OBJ_NAME"
+        ,B.FUNC_RTN_TYPE      AS "OBJ_RETM_TYPE"
+        ,B.FUNC_ACCS_TYPE     AS "OBJ_ACCS_TYPE"
+        ,B.START_LINE_NO      AS "LINE_NO"
+        ,'4'                  AS "VIEW_TYPE"
+        ,A.SRC_FILE_FULL_PATH AS "FILE_PATH"
+        ,#{prjId}             AS "PRJ_ID"
+        FROM VW_AIS0010_UI A
+        ,AIS0012 B
+        WHERE A.PRJ_ID  = CAST(#{prjId} AS TEXT)
+        AND A.FILE_ID = CAST(#{fileId} AS NUMERIC)
+        AND A.PRJ_ID  = B.PRJ_ID
+        AND A.FILE_ID = B.FILE_ID
+        AND B.FUNC_NAME &lt;&gt; 'N/A'
+        UNION ALL
+        SELECT DISTINCT 'variable'   AS OBJ_TYPE
+        ,B.VAR_NAME           AS OBJ_NAME
+        ,B.VAR_RTN_TYPE       AS OBJ_RETM_TYPE
+        ,''                   AS OBJ_ACCS_TYPE
+        ,B.VAR_LINE_NO        AS LINE_NO
+        ,'3'                  AS VIEW_TYPE
+        ,A.SRC_FILE_FULL_PATH AS FILE_PATH
+        ,#{prjId}              AS PRJ_ID
+        FROM VW_AIS0010_UI A
+        ,AIS0014 B
+        WHERE A.PRJ_ID   = CAST(#{prjId} AS TEXT)
+        AND A.FILE_ID  = CAST(#{fileId} AS NUMERIC)
+        AND A.PRJ_ID   = B.PRJ_ID
+        AND A.FILE_ID  = B.FILE_ID
+        AND B.VAR_TYPE = CASE WHEN A.EXT_CD IN ('HTM','HTML') THEN B.VAR_TYPE ELSE 'global' END
+        UNION ALL
+        SELECT DISTINCT 'struct/enum' AS OBJ_TYPE
+        ,B.VAR_NAME            AS OBJ_NAME
+        ,B.VAR_RTN_TYPE        AS OBJ_RETM_TYPE
+        ,''                   AS OBJ_ACCS_TYPE
+        ,B.VAR_LINE_NO         AS LINE_NO
+        ,'2'                   AS VIEW_TYPE
+        ,A.SRC_FILE_FULL_PATH  AS FILE_PATH
+        ,#{prjId}              AS PRJ_ID
+        FROM VW_AIS0010_UI A
+        ,AIS0014 B
+        WHERE A.PRJ_ID  = CAST(#{prjId} AS TEXT)
+        AND A.FILE_ID = CAST(#{fileId} AS NUMERIC)
+        AND A.PRJ_ID  = B.PRJ_ID
+        AND A.FILE_ID = B.FILE_ID
+        AND B.VAR_TYPE &lt;&gt; 'local'
+        AND B.VAR_TYPE &lt;&gt; 'global'
+        UNION ALL
+        SELECT DISTINCT 
+        CASE WHEN B.EXT_CD IN (SELECT BB.EXT_CD FROM AIS2101 AA, AIS2102 BB WHERE AA.LANG_CD = 'JAVA' AND BB.LANG_CD = AA.LANG_CD) THEN 'import'
+        ELSE 'include' END AS OBJ_TYPE
+        ,A.HEDR_FILE_NAME         AS OBJ_NAME
+        
+        ,CASE WHEN B.EXT_CD IN (SELECT BB.EXT_CD FROM AIS2101 AA, AIS2102 BB WHERE AA.LANG_CD = 'JAVA' AND BB.LANG_CD = AA.LANG_CD) THEN 'import'
+        ELSE 'include' END AS OBJ_RETM_TYPE
+        ,''                       AS OBJ_ACCS_TYPE
+        ,A.START_LINE_NO          AS LINE_NO
+        ,'1'                      AS VIEW_TYPE
+        ,B.SRC_FILE_FULL_PATH     AS FILE_PATH
+        ,#{prjId}                  AS PRJ_ID
+        FROM AIS0031 A
+        ,VW_AIS0010_UI B
+        WHERE A.PRJ_ID  = B.PRJ_ID
+        AND A.FILE_ID = B.FILE_ID
+        AND A.PRJ_ID  = CAST(#{prjId} AS TEXT)
+        AND A.FILE_ID = CAST(#{fileId} AS NUMERIC)
+        AND UPPER(A.HEDR_TYPE) &lt;&gt; 'P'
+        UNION ALL
+        SELECT DISTINCT 'package'    AS OBJ_TYPE
+        ,A.HEDR_FILE_NAME     AS OBJ_NAME
+        ,'package'            AS OBJ_RETM_TYPE
+        ,''                   AS OBJ_ACCS_TYPE
+        ,A.START_LINE_NO      AS LINE_NO
+        ,'0'                  AS VIEW_TYPE
+        ,B.SRC_FILE_FULL_PATH AS FILE_PATH
+        ,#{prjId}             AS PRJ_ID
+        FROM AIS0031 A
+        ,VW_AIS0010_UI B
+        WHERE A.PRJ_ID           = B.PRJ_ID
+        AND A.FILE_ID          = B.FILE_ID
+        AND A.PRJ_ID           = CAST(#{prjId} AS TEXT)
+        AND A.FILE_ID          = CAST(#{fileId} AS NUMERIC)
+        AND UPPER(A.HEDR_TYPE) = 'P'
+        ORDER BY "VIEW_TYPE", "LINE_NO"
+    </select>
+  <select id="getSQLList" parameterType="java.util.HashMap" resultMap="getSQLListMap">/* ImpactStreamFileDb.xml.getSQLList */ /* ImpactStreamFileDb.xml.getSQLList */ 
+<include refid="impact.pagingSql_Start" />
+        SELECT DISTINCT DT.PRJ_ID
+        , DT.BIZ_PATH
+        , DT.FILE_ID
+        , DT.TABLE_NAME_DISP
+        , DT.TABLE_NAME
+        , DT.OBJ_NAME_DISP
+        , DT.OBJ_NAME
+        , DT.DB_OBJ_TYPE
+        , DT.FUNC_NAME
+        , DT.FILE_FULL_PATH
+        , DT.ORG_FILE_PATH
+        , DT.FILE_PATH
+        , DT.FILE_NAME
+        , DT.QUERY_TYPE
+        , DT.COL_USE_TYPE
+        , DT.LINE_NO
+        , DT.SQL_SRC_TYPE
+        , DT.SQL_START_LINE_NO
+        , DT.SQL_START_LINE_NO_DISP
+        , DT.INLINEVIEW_YN
+        , substring( DT.INLINEVIEW_SRC from 1 for 3000) AS INLINEVIEW_SRC
+        , DT.COLUMN_NO
+        FROM (
+        SELECT A.PRJ_ID AS PRJ_ID
+        , fn_PRJTREENAME(A.PRJ_ID)       AS BIZ_PATH
+        , F.FILE_ID                      AS FILE_ID
+        , CASE WHEN SUBSTR(B.CAPS_TABLE_NAME,1,2) = '::' THEN (SELECT Z.VARNAME || ' [' || Z.VARVALUE || ']'
+        FROM AIS0107 Z
+        WHERE Z.PRJ_ID  = B.PRJ_ID
+        AND Z.FILE_ID = B.FILE_ID
+        AND Z.VARNAME = B.CAPS_TABLE_NAME
+        )
+        ELSE CAPS_TABLE_NAME
+        END                           AS TABLE_NAME_DISP
+        , B.CAPS_TABLE_NAME              AS TABLE_NAME
+        , CASE WHEN SUBSTR(C.COL_NAME,1,2) = '::' THEN (SELECT Z.VARNAME || ' [' || Z.VARVALUE || ']'
+        FROM AIS0107 Z
+        WHERE Z.PRJ_ID  = C.PRJ_ID
+        AND Z.FILE_ID = C.FILE_ID
+        AND Z.VARNAME = C.COL_NAME
+        )
+        ELSE C.COL_NAME
+        END                          AS OBJ_NAME_DISP
+        , CASE WHEN SUBSTR(C.COL_NAME,1,2) = '::' THEN (SELECT Z.VARVALUE
+        FROM AIS0107 Z
+        WHERE Z.PRJ_ID  = C.PRJ_ID
+        AND Z.FILE_ID = C.FILE_ID
+        AND Z.VARNAME = C.COL_NAME
+        )
+        ELSE C.COL_NAME_SRC
+        END                            AS OBJ_NAME
+        , 'Column'                       AS DB_OBJ_TYPE
+        , E.FUNC_NAME                    AS FUNC_NAME
+        , F.SRC_FILE_FULL_PATH           AS FILE_FULL_PATH
+        , F.ORG_FILE_PATH                AS ORG_FILE_PATH
+        , F.SRC_FILE_FULL_PATH           AS FILE_PATH
+        , F.SRC_FILE_NAME                AS FILE_NAME
+        , CASE WHEN B.QUERY_TYPE ='C' THEN 'Insert'
+        WHEN B.QUERY_TYPE ='R' THEN 'Select'
+        WHEN B.QUERY_TYPE ='S' THEN 'Select'
+        WHEN B.QUERY_TYPE ='U' THEN 'Update'
+        WHEN B.QUERY_TYPE ='D' THEN 'Delete'
+        WHEN B.QUERY_TYPE ='M' THEN 'Merge'
+        ELSE 'DDL'
+        END                           AS QUERY_TYPE
+        , CASE WHEN C.COL_USE_TYPE = 'O' THEN 'Output'
+        WHEN C.COL_USE_TYPE = 'L' THEN 'Local'
+        WHEN C.COL_USE_TYPE = 'C' THEN 'Condition'
+        ELSE ''
+        END                           AS COL_USE_TYPE
+        , CASE WHEN C.COL_NAME IS NULL THEN B.QUERY_LINE_NO
+        ELSE C.QUERY_LINE_NO
+        END                            AS LINE_NO
+        , CASE WHEN A.SQL_SRC_TYPE = 'EM' THEN 'Embedded'
+        WHEN A.SQL_SRC_TYPE = 'dy' THEN 'Dynamic'
+        WHEN A.SQL_SRC_TYPE = 'PL' THEN 'Procedural language'
+        ELSE ''
+        END                                    AS SQL_SRC_TYPE
+        , CASE WHEN A.SQL_SRC_TYPE = 'EM' THEN A.LINE_NO
+        ELSE CASE WHEN F.EXT_CD IN ('XML', 'XSQL')  THEN A.LINE_NO
+        ELSE E.START_LINE_NO
+        END
+        END                                    AS SQL_START_LINE_NO
+        , C.QUERY_LINE_NO                         AS SQL_START_LINE_NO_DISP
+        , B.INLINEVIEW_YN                         AS INLINEVIEW_YN
+        , B.INLINEVIEW_SRC                        AS INLINEVIEW_SRC
+        , C.COLUMN_NO                             AS COLUMN_NO
+        from
+        VW_AIS0100 A
+
+        inner join
+        AIS0102 B
+        on A.PRJ_ID = B.PRJ_ID
+        and A.FILE_ID = B.FILE_ID
+        and A.SQL_ID = B.SQL_ID
+
+        inner join
+        VW_AIS0010_UI F
+        on A.PRJ_ID = F.PRJ_ID
+        and A.FILE_ID = F.FILE_ID
+
+
+        right outer join
+        AIS0103 C
+        on  B.PRJ_ID = C.PRJ_ID
+        and B.FILE_ID = C.FILE_ID
+        and B.SQL_ID = C.SQL_ID
+        and B.TABLE_ID = C.TABLE_ID
+
+        left outer join
+        (
+        select
+        distinct PRJ_ID ,
+        FILE_ID ,
+        FUNC_ID ,
+        FUNC_NAME ,
+        START_LINE_NO
+        from
+        AIS0012
+        where
+        PRJ_ID = CAST(#{prjId} AS TEXT)
+        and FILE_ID = CAST(#{fileId} AS NUMERIC) ) E
+        on  A.PRJ_ID = E.PRJ_ID
+        and A.FILE_ID = E.FILE_ID
+        and A.FUNC_ID = E.FUNC_ID
+        where A.PRJ_ID = CAST(#{prjId} AS TEXT)
+        and A.FILE_ID = CAST(#{fileId} AS NUMERIC)
+        and B.TABLE_ID &gt; 0
+        <if test="funcId !=null and funcId !=''">
+            AND A.FUNC_ID = CAST(#{funcId} AS NUMERIC)
+        </if>
+        UNION ALL
+        SELECT A.PRJ_ID AS PRJ_ID
+        , fn_PRJTREENAME(A.PRJ_ID)       AS BIZ_PATH
+        , F.FILE_ID                      AS FILE_ID
+        , CASE WHEN SUBSTR(B.CAPS_TABLE_NAME,1,2) = '::' THEN (SELECT Z.VARVALUE || ' [' || Z.VARNAME || ']'
+        FROM AIS0107 Z
+        WHERE Z.PRJ_ID  = B.PRJ_ID
+        AND Z.FILE_ID = B.FILE_ID
+        AND Z.VARNAME = B.CAPS_TABLE_NAME
+        )
+        ELSE CAPS_TABLE_NAME
+        END                           AS TABLE_NAME_DISP
+        , B.CAPS_TABLE_NAME              AS TABLE_NAME
+        , CASE WHEN SUBSTR(C.COL_NAME,1,2) = '::' THEN (SELECT Z.VARNAME || ' [' || Z.VARVALUE || ']'
+        FROM AIS0107 Z
+        WHERE Z.PRJ_ID  = C.PRJ_ID
+        AND Z.FILE_ID = C.FILE_ID
+        AND Z.VARNAME = C.COL_NAME
+        )
+        ELSE COL_NAME
+        END                           AS OBJ_NAME_DISP
+        , CASE WHEN SUBSTR(C.COL_NAME,1,2) = '::' THEN (SELECT Z.VARVALUE
+        FROM AIS0107 Z
+        WHERE Z.PRJ_ID  = C.PRJ_ID
+        AND Z.FILE_ID = C.FILE_ID
+        AND Z.VARNAME = C.COL_NAME
+        )
+        ELSE C.COL_NAME
+        END                            AS OBJ_NAME
+        , 'Column'                        AS DB_OBJ_TYPE
+        , E.FUNC_NAME                     AS FUNC_NAME
+        , F.SRC_FILE_FULL_PATH            AS FILE_FULL_PATH
+        , F.ORG_FILE_PATH                 AS ORG_FILE_PATH
+        , F.SRC_FILE_FULL_PATH            AS FILE_PATH
+        , F.SRC_FILE_NAME                 AS FILE_NAME
+        , CASE WHEN B.QUERY_TYPE ='C' THEN 'Insert'
+        WHEN B.QUERY_TYPE ='R' THEN 'Select'
+        WHEN B.QUERY_TYPE ='S' THEN 'Select'
+        WHEN B.QUERY_TYPE ='U' THEN 'Update'
+        WHEN B.QUERY_TYPE ='D' THEN 'Delete'
+        WHEN B.QUERY_TYPE ='M' THEN 'Merge'
+        ELSE                        'DDL'
+        END                            AS QUERY_TYPE
+        , CASE WHEN C.COL_USE_TYPE = 'O' THEN 'Output'
+        WHEN C.COL_USE_TYPE = 'L' THEN 'Local'
+        WHEN C.COL_USE_TYPE = 'C' THEN 'Condition'
+        ELSE ''
+        END                            AS COL_USE_TYPE
+        , CASE WHEN C.COL_NAME IS NULL THEN B.QUERY_LINE_NO
+        ELSE C.QUERY_LINE_NO
+        END                            AS LINE_NO
+        , CASE WHEN A.SQL_SRC_TYPE = 'EM' THEN 'Embedded'
+        WHEN A.SQL_SRC_TYPE = 'dy' THEN 'Dynamic'
+        WHEN A.SQL_SRC_TYPE = 'PL' THEN 'Procedural language'
+        ELSE ''
+        END                            AS SQL_SRC_TYPE
+        , CASE WHEN A.SQL_SRC_TYPE = 'EM' THEN A.LINE_NO
+        ELSE CASE WHEN F.EXT_CD IN ('XML', 'XSQL')  THEN A.LINE_NO
+        ELSE E.START_LINE_NO
+        END
+        END                            AS SQL_START_LINE_NO
+        , C.QUERY_LINE_NO                 AS SQL_START_LINE_NO_DISP
+        , B.INLINEVIEW_YN                 AS INLINEVIEW_YN
+        , B.INLINEVIEW_SRC                AS INLINEVIEW_SRC
+        , C.COLUMN_NO                     AS COLUMN_NO
+        from
+        VW_AIS0100 A
+
+        inner join
+        AIS0102 B
+        on A.PRJ_ID = B.PRJ_ID
+        and A.FILE_ID = B.FILE_ID
+        and A.SQL_ID = B.SQL_ID
+
+        inner join
+        VW_AIS0010_UI F
+        on A.PRJ_ID = F.PRJ_ID
+        and A.FILE_ID = F.FILE_ID
+
+
+        right outer join
+        AIS0103 C
+        on  B.PRJ_ID = C.PRJ_ID
+        and B.FILE_ID = C.FILE_ID
+        and B.SQL_ID = C.SQL_ID
+        and B.TABLE_ID = C.TABLE_ID
+
+        left outer join
+        (
+        select
+        distinct PRJ_ID ,
+        FILE_ID ,
+        FUNC_ID ,
+        FUNC_NAME ,
+        START_LINE_NO
+        from
+        AIS0012
+        where
+        PRJ_ID = CAST(#{prjId} AS TEXT)
+        and FILE_ID = CAST(#{fileId} AS NUMERIC) ) E
+        on  A.PRJ_ID = E.PRJ_ID
+        and A.FILE_ID = E.FILE_ID
+        and A.FUNC_ID = E.FUNC_ID
+        where A.PRJ_ID = CAST(#{prjId} AS TEXT)
+        and A.FILE_ID = CAST(#{fileId} AS NUMERIC)
+        and B.TABLE_ID = 0
+        <if test="funcId !=null and funcId !=''">
+            AND A.FUNC_ID = CAST(#{funcId} AS NUMERIC)
+        </if>
+        ) DT
+        ORDER BY DT.LINE_NO, DT.COLUMN_NO
+        <include refid="impact.pagingSql_End" />
+  </select>
+  <select id="getDGBDbInfoTreeList" parameterType="java.util.HashMap" resultMap="getDGBDbInfoTreeListMap">/* ImpactStreamFileDb.xml.getDGBDbInfoTreeList */ /* ImpactStreamFileDb.xml.getDGBDbInfoTreeList */ 
+        SELECT LABEL
+             ,REF_BIZ_ID
+             ,DBID
+             ,OBJID
+             ,OBJTYPE
+             ,BIZ_ID
+             ,BIZ_KOR_NAME
+             ,PRJ_ID
+             ,PRJ_KOR_NAME
+        FROM(
+                SELECT DISTINCT B.JOB_NAME AS LABEL
+                              ,D.BIZ_ID            AS REF_BIZ_ID
+                              ,A.JOB_ID            AS DBID
+                              ,0                   AS OBJID
+                              ,'db'                AS OBJTYPE
+                              ,D.BIZ_ID
+                              ,D.BIZ_KOR_NAME
+                              ,E.PRJ_ID
+                              ,E.PRJ_KOR_NAME
+                FROM AIS1003 A
+                   ,AIS1010 B
+                   ,AIS1011 C
+                   , VW_AIS1000 D
+                   ,AIS1001 E
+                WHERE D.BIZ_ID          = #{bizId}
+                  AND E.UPPER_BIZ_ID = D.BIZ_ID
+                  AND A.PRJ_ID       = E.PRJ_ID
+                  AND A.JOB_ID       = B.JOB_ID
+                  AND B.JOB_ID       = C.JOB_ID
+                  AND B.JOB_TYPE     = 'JC'
+                  AND C.RCV_TYPE     = '03'
+                  AND B.DEL_YN       = 'N'
+                  AND E.DEL_YN       = 'N'
+                UNION ALL
+                SELECT DISTINCT E.PRJ_KOR_NAME || '[REF]-' || D.JOB_NAME AS LABEL
+                              , H.BIZ_ID                      AS REF_BIZ_ID
+                              , C.JOB_ID                      AS DBID
+                              , 0                             AS OBJID
+                              , 'db'                          AS OBJTYPE
+                              , H.BIZ_ID
+                              , H.BIZ_KOR_NAME
+                              , E.PRJ_ID
+                              , E.PRJ_KOR_NAME
+                FROM AIS1002 A
+                   , AIS1003 B
+                   , AIS1011 C
+                   , AIS1010 D
+                   , AIS1001 E
+                   , VW_AIS1000 H
+                WHERE E.UPPER_BIZ_ID = #{bizId}
+                  AND E.PRJ_ID       = A.PRJ_ID
+                  AND A.REL_PRJ_ID   = B.PRJ_ID
+                  AND B.JOB_ID       = C.JOB_ID
+                  AND B.JOB_ID       = D.JOB_ID
+                  AND A.PRJ_ID       = E.PRJ_ID
+                  AND E.UPPER_BIZ_ID = H.BIZ_ID
+                  AND C.RCV_TYPE     = '03'
+                  AND D.JOB_TYPE     = 'JC'
+                  AND E.DEL_YN       = 'N'
+                  AND H.DEL_YN       = 'N'
+                  AND D.DEL_YN       = 'N'
+                  AND NOT EXISTS (SELECT 1
+                                  FROM AIS1001
+                                  WHERE UPPER_BIZ_ID = #{bizId}
+                                    AND PRJ_ID       = A.REL_PRJ_ID)
+            )
+        ORDER BY LABEL
+    </select>
+  <select id="getDGBDbInfoTreeListOtherBiz" parameterType="java.util.HashMap" resultMap="getDGBDbInfoTreeListMap">/* ImpactStreamFileDb.xml.getDGBDbInfoTreeListOtherBiz */ /* ImpactStreamFileDb.xml.getDGBDbInfoTreeListOtherBiz */ 
+        SELECT d.BIZ_KOR_NAME ||'DB' as LABEL
+             ,d.BIZ_ID as REF_BIZ_ID
+             ,3997 as DBID
+             ,e.prj_id as OBJID
+             ,'db' as OBJTYPE
+             ,d.BIZ_ID
+             ,d.BIZ_KOR_NAME
+             ,e.PRJ_ID
+             ,e.PRJ_KOR_NAME
+        FROM VW_AIS1000 D,AIS1001 E
+        where d.biz_id = #{bizId}
+          and d.biz_id = e.upper_biz_id
+    </select>
+  <select id="getDbInfoTreeList" parameterType="java.util.HashMap" resultMap="getDbInfoTreeListMap">/* ImpactStreamFileDb.xml.getDbInfoTreeList */ /* ImpactStreamFileDb.xml.getDbInfoTreeList */ 
+        SELECT LABEL
+             ,REF_BIZ_ID
+             ,DBID
+             ,OBJID
+             ,OBJTYPE
+             ,BIZ_ID
+             ,BIZ_KOR_NAME
+             ,PRJ_ID
+             ,PRJ_KOR_NAME
+        FROM(
+                SELECT DISTINCT B.JOB_NAME AS LABEL
+                              ,D.BIZ_ID            AS REF_BIZ_ID
+                              ,A.JOB_ID            AS DBID
+                              ,0                   AS OBJID
+                              ,'db'                AS OBJTYPE
+                              ,D.BIZ_ID
+                              ,D.BIZ_KOR_NAME
+                              ,E.PRJ_ID
+                              ,E.PRJ_KOR_NAME
+                FROM AIS1003 A
+                   ,AIS1010 B
+                   ,AIS1011 C
+                   ,VW_AIS1000 D
+                   ,AIS1001 E
+                WHERE D.BIZ_ID          = #{bizId}
+                  AND E.UPPER_BIZ_ID = D.BIZ_ID
+                  AND A.PRJ_ID       = E.PRJ_ID
+                  AND A.JOB_ID       = B.JOB_ID
+                  AND B.JOB_ID       = C.JOB_ID
+                  AND B.JOB_TYPE     = 'JC'
+                  AND C.RCV_TYPE     = '03'
+                  AND B.DEL_YN       = 'N'
+                  AND E.DEL_YN       = 'N'
+                UNION ALL
+                SELECT DISTINCT E.PRJ_KOR_NAME || '[REF]-' || D.JOB_NAME AS LABEL
+                              , H.BIZ_ID                      AS REF_BIZ_ID
+                              , C.JOB_ID                      AS DBID
+                              , 0                             AS OBJID
+                              , 'db'                          AS OBJTYPE
+                              , H.BIZ_ID
+                              , H.BIZ_KOR_NAME
+                              , E.PRJ_ID
+                              , E.PRJ_KOR_NAME
+                FROM AIS1002 A
+                   , AIS1003 B
+                   , AIS1011 C
+                   , AIS1010 D
+                   , AIS1001 E
+                   , VW_AIS1000 H
+                WHERE E.UPPER_BIZ_ID = #{bizId}
+                  AND E.PRJ_ID       = A.PRJ_ID
+                  AND A.REL_PRJ_ID   = B.PRJ_ID
+                  AND B.JOB_ID       = C.JOB_ID
+                  AND B.JOB_ID       = D.JOB_ID
+                  AND A.PRJ_ID       = E.PRJ_ID
+                  AND E.UPPER_BIZ_ID = H.BIZ_ID
+                  AND C.RCV_TYPE     = '03'
+                  AND D.JOB_TYPE     = 'JC'
+                  AND E.DEL_YN       = 'N'
+                  AND H.DEL_YN       = 'N'
+                  AND D.DEL_YN       = 'N'
+                  AND NOT EXISTS (SELECT 1
+                                  FROM AIS1001
+                                  WHERE UPPER_BIZ_ID = #{bizId}
+                                    AND PRJ_ID       = A.REL_PRJ_ID)
+            ) DAT
+        ORDER BY LABEL
+    </select>
+  <select id="getDGBTableTreeList" parameterType="java.util.HashMap" resultMap="getDGBDBTreeListMap">/* ImpactStreamFileDb.xml.getDGBTableTreeList */ /* ImpactStreamFileDb.xml.getDGBTableTreeList */ 
+        SELECT DISTINCT C.TBL_NAME AS LABEL
+                      ,C.JOB_ID            AS DBID
+                      ,C.DBOBJ_ID          AS OBJID
+                      ,'tbl'               AS OBJTYPE
+                      ,#{bizId}             AS BIZ_ID
+                      ,#{prjId}             AS PRJ_ID
+                      ,#{prjName}           AS PRJ_KOR_NAME
+                      ,#{refBizId}          AS REF_BIZ_ID
+        FROM VW_DBCTBLINFO C
+        WHERE C.JOB_ID    = #{dbId}
+        ORDER BY C.TBL_NAME
+    </select>
+  <select id="getDGBTableTreeListOtherBiz" parameterType="java.util.HashMap" resultMap="getDGBDBTreeListMap">/* ImpactStreamFileDb.xml.getDGBTableTreeListOtherBiz */ /* ImpactStreamFileDb.xml.getDGBTableTreeListOtherBiz */ 
+        SELECT DISTINCT C.TBL_NAME AS LABEL
+                      ,C.JOB_ID            AS DBID
+                      ,C.DBOBJ_ID          AS OBJID
+                      ,'tbl'               AS OBJTYPE
+                      ,#{bizId}             AS BIZ_ID
+                      ,#{prjId}             AS PRJ_ID
+                      ,#{prjName}           AS PRJ_KOR_NAME
+                      ,#{refBizId}          AS REF_BIZ_ID
+        FROM VW_DBCTBLINFO C
+        WHERE C.JOB_ID    = #{dbId}
+          and substr(c.tbl_name, 4, 2) = (select to_char(BIZ_DESC) from VW_AIS1000 where biz_id = #{bizId})
+        ORDER BY C.TBL_NAME
+    </select>
+  <select id="getTableTreeList" parameterType="java.util.HashMap" resultMap="getDBTreeListMap">/* ImpactStreamFileDb.xml.getTableTreeList */ /* ImpactStreamFileDb.xml.getTableTreeList */ 
+        SELECT DISTINCT C.TBL_NAME AS LABEL
+                      ,C.JOB_ID            AS DBID
+                      ,C.DBOBJ_ID          AS OBJID
+                      ,'tbl'               AS OBJTYPE
+                      ,#{bizId}             AS BIZ_ID
+                      ,#{prjId}             AS PRJ_ID
+                      ,#{prjName}           AS PRJ_KOR_NAME
+                      ,#{refBizId}          AS REF_BIZ_ID
+        FROM VW_DBCTBLINFO C
+        WHERE C.JOB_ID    = #{dbId}
+        ORDER BY C.TBL_NAME
+    </select>
+  <select id="getTableDetailTreeList" parameterType="java.util.HashMap" resultMap="getTableDetailTreeListMap">/* ImpactStreamFileDb.xml.getTableDetailTreeList */ /* ImpactStreamFileDb.xml.getTableDetailTreeList */ 
+        SELECT COUNT(*) OVER() AS CNT
+     , LABEL
+             , DBID
+             , OBJID
+             , OBJTYPE
+             , REF_BIZ_ID
+             , PRJ_ID
+             , PRJ_KOR_NAME
+             , BIZ_ID
+        FROM (
+                 SELECT DISTINCT 'Columns'    AS LABEL
+                               , JOB_ID                AS DBID
+                               , DBOBJ_ID              AS OBJID
+                               , 'tfcol'               AS OBJTYPE
+                               , #{refBizId}            AS REF_BIZ_ID
+                               , #{prjId}               AS PRJ_ID
+                               , #{prjName}             AS PRJ_KOR_NAME
+                               , #{bizId}               AS BIZ_ID
+                 FROM VW_DBCTBLINFO
+                 WHERE JOB_ID                = #{dbId}
+                   AND DBOBJ_ID              = #{objId}
+                 UNION ALL
+                 SELECT LABEL                 AS LABEL
+                      , DBID                  AS DBID
+                      , OBJID                 AS OBJID
+                      , OBJTYPE               AS OBJTYPE
+                      , #{refBizId}            AS REF_BIZ_ID
+                      , #{prjId}               AS PRJ_ID
+                      , #{prjName}             AS PRJ_KOR_NAME
+                      , #{bizId}               AS BIZ_ID
+                 FROM (
+                          SELECT B.COL_NAME    AS LABEL
+                               ,B.JOB_ID      AS DBID
+                               ,B.DBOBJ_ID    AS OBJID
+                               ,'col'         AS OBJTYPE
+                          FROM AIS1011 A
+                             ,VW_DBCTBLINFO B
+                          WHERE A.JOB_ID       = B.JOB_ID
+                            AND A.JOB_ID    = #{dbId}
+                            AND B.DBOBJ_ID  = #{objId}
+                          ORDER BY B.COL_POSITION
+                      )
+             )
+        UNION ALL
+        SELECT COUNT(*) OVER() AS CNT
+     , LABEL
+             , DBID
+             , OBJID
+             , OBJTYPE
+             , REF_BIZ_ID
+             , PRJ_ID
+             , PRJ_KOR_NAME
+             , BIZ_ID
+        FROM (
+                 SELECT DISTINCT 'Views'    AS LABEL
+                               , JOB_ID              AS DBID
+                               , DBOBJ_ID            AS OBJID
+                               , 'tfview'            AS OBJTYPE
+                               , #{refBizId}          AS REF_BIZ_ID
+                               , #{prjId}             AS PRJ_ID
+                               , #{prjName}           AS PRJ_KOR_NAME
+                               , #{bizId}             AS BIZ_ID
+                 FROM VW_DBCTBLINFO
+                 WHERE JOB_ID              = #{dbId}
+                   AND DBOBJ_ID            = #{objId}
+                 UNION ALL
+                 SELECT A.VIEW_NAME         AS LABEL
+                      , A.JOB_ID            AS DBID
+                      , A.DBOBJ_ID          AS OBJID
+                      , 'view'              AS OBJTYPE
+                      , #{refBizId}          AS REF_BIZ_ID
+                      , #{prjId}             AS PRJ_ID
+                      , #{prjName}           AS PRJ_KOR_NAME
+                      , #{bizId}             AS BIZ_ID
+                 FROM VW_DBCVIEWINFO A
+                    , VW_DBCRELINFO B
+                 WHERE A.JOB_ID            = B.JOB_ID
+                   AND A.DBOBJ_ID          = B.DBOBJ_ID
+                   AND A.JOB_ID            = #{dbId}
+                   AND B.DBREF_OBJ_ID      = #{objId}
+             )
+        UNION ALL
+        SELECT COUNT(*) OVER() AS CNT
+     , LABEL
+             , DBID
+             , OBJID
+             , OBJTYPE
+             , REF_BIZ_ID
+             , PRJ_ID
+             , PRJ_KOR_NAME
+             , BIZ_ID
+        FROM (
+                 SELECT DISTINCT 'Triggers' AS LABEL
+                               , JOB_ID              AS DBID
+                               , DBOBJ_ID            AS OBJID
+                               , 'tftrg'             AS OBJTYPE
+                               , #{refBizId}          AS REF_BIZ_ID
+                               , #{prjId}             AS PRJ_ID
+                               , #{prjName}           AS PRJ_KOR_NAME
+                               , #{bizId}             AS BIZ_ID
+                 FROM VW_DBCTBLINFO
+                 WHERE JOB_ID              = #{dbId}
+                   AND DBOBJ_ID            = #{objId}
+                 UNION ALL
+                 SELECT A.TRIG_NAME         AS LABEL
+                      , A.JOB_ID            AS DBID
+                      , A.DBOBJ_ID          AS OBJID
+                      , 'trg'               AS OBJTYPE
+                      , #{refBizId}          AS REF_BIZ_ID
+                      , #{prjId}             AS PRJ_ID
+                      , #{prjName}           AS PRJ_KOR_NAME
+                      , #{bizId}             AS BIZ_ID
+                 FROM VW_DBCTRIGINFO A
+                    , VW_DBCRELINFO B
+                 WHERE A.JOB_ID            = B.JOB_ID
+                   AND A.DBOBJ_ID          = B.DBOBJ_ID
+                   AND A.JOB_ID            = #{dbId}
+                   AND B.DBREF_OBJ_ID      = #{objId}
+             )
+        UNION ALL
+        SELECT COUNT(*) OVER() AS CNT
+     , LABEL
+             , DBID
+             , OBJID
+             , OBJTYPE
+             , REF_BIZ_ID
+             , PRJ_ID
+             , PRJ_KOR_NAME
+             , BIZ_ID
+        FROM (
+                 SELECT DISTINCT 'Synonyms' AS LABEL
+                               , JOB_ID              AS DBID
+                               , DBOBJ_ID            AS OBJID
+                               , 'tfsyn'             AS OBJTYPE
+                               , #{refBizId}          AS REF_BIZ_ID
+                               , #{prjId}             AS PRJ_ID
+                               , #{prjName}           AS PRJ_KOR_NAME
+                               , #{bizId}             AS BIZ_ID
+                 FROM VW_DBCTBLINFO
+                 WHERE JOB_ID              = #{dbId}
+                   AND DBOBJ_ID            = #{objId}
+                 UNION ALL
+                 SELECT A.SYN_NAME          AS LABEL
+                      , A.JOB_ID            AS DBID
+                      , A.DBOBJ_ID          AS OBJID
+                      , 'syn'               AS OBJTYPE
+                      , #{refBizId}          AS REF_BIZ_ID
+                      , #{prjId}             AS PRJ_ID
+                      , #{prjName}           AS PRJ_KOR_NAME
+                      , #{bizId}             AS BIZ_ID
+                 FROM VW_DBCSYNINFO A
+                    , VW_DBCRELINFO B
+                 WHERE A.JOB_ID            = B.JOB_ID
+                   AND A.DBOBJ_ID          = B.DBOBJ_ID
+                   AND A.JOB_ID            = #{dbId}
+                   AND B.DBREF_OBJ_ID      = #{objId}
+             )
+    </select>
+  <select id="getTableInfo" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamFileDb.xml.getTableInfo */ /* ImpactStreamFileDb.xml.getTableInfo */ 
+        SELECT DISTINCT TBL_NAME
+                      , TBL_KOR_NAME
+        FROM VW_DBCTBLINFO2
+        WHERE JOB_ID   = #{dbId}
+          AND DBOBJ_ID = #{dbobjId}
+    </select>
+  <select id="getDGBImpactList" parameterType="java.util.HashMap" resultMap="getDGBImpactListMap">/* ImpactStreamFileDb.xml.getDGBImpactList */ /* ImpactStreamFileDb.xml.getDGBImpactList */ 
+        SELECT DISTINCT FROMID
+                      , TOID
+                      , DB_ID
+                      , NAME
+                      , OBJ_TYPE
+                      , DEPTH
+                      , NODECOLOR
+        FROM AIS_TEMP_DBCIMP
+        WHERE depth &lt;&gt; 0
+          and USER_ID = #{uniqueId}
+    </select>
+  <select id="getImpactList" parameterType="java.util.HashMap" resultMap="getImpactListMap">/* ImpactStreamFileDb.xml.getImpactList */ /* ImpactStreamFileDb.xml.getImpactList */ 
+        SELECT DISTINCT fromID
+                      , toID
+                      , DB_ID
+                      , name
+                      , OBJ_TYPE
+                      , depth
+                      , nodeColor
+        FROM CALL_T_${tblName}
+        WHERE depth &lt;&gt; 0
+    </select>
+  <select id="getTableColumnInfo" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamFileDb.xml.getTableColumnInfo */ /* ImpactStreamFileDb.xml.getTableColumnInfo */ 
+        SELECT COL_NAME
+             ,COL_TYPE
+             ,COL_SIZE
+             ,PRECISION
+             ,SCALE
+             ,COL_PKEY_YN
+             ,COL_NULL_YN
+             ,COL_FKEY_YN
+             ,COL_KOR_NAME AS COL_DESC
+        FROM VW_DBCTBLINFO
+        WHERE JOB_ID   = #{dbId}
+          AND DBOBJ_ID = #{dbobjId}
+    </select>
+  <select id="getTableIndexes" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamFileDb.xml.getTableIndexes */ /* ImpactStreamFileDb.xml.getTableIndexes */ 
+        SELECT (ROW_NUMBER() OVER()) AS NUM
+             , JOB_ID
+             , DBOBJ_ID
+             , DBOBJ_CHNG_CODE AS REGCODE
+             , DBIDX_NAME
+             , DBIDX_UNIQ_YN
+             , DBIDX_LOGGING
+             , DBIDX_DEGREE
+             , COL_NAME
+             , COL_ORDER_TYPE
+             , DBIDX_COL_POSITION
+             , DBOBJ_OWNER
+        FROM VW_DBCIDXINFO2
+        WHERE JOB_ID = #{dbId}
+          AND DBIDX_TABLE_ID = #{dbobjId}
+    </select>
+  <select id="getTableConstraintsCol" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamFileDb.xml.getTableConstraintsCol */ /* ImpactStreamFileDb.xml.getTableConstraintsCol */ 
+        SELECT distinct a.JOB_ID, a.DBOBJ_ID, a.REGCODE, a.COLUMN_NAME
+        FROM AIS0316_HTY A
+           , AIS0301 B
+        WHERE B.JOB_ID = #{dbId}
+          AND B.DBOBJ_ID = #{dbobjId}
+          AND B.JOB_ID = A.JOB_ID
+          AND B.DBOBJ_ID = A.DBOBJ_ID
+          AND B.DBOBJ_CHNG_CODE = A.REGCODE
+    </select>
+  <select id="getTableConstraints" parameterType="java.util.HashMap" resultMap="getTableConstraintsMap">/* ImpactStreamFileDb.xml.getTableConstraints */ /* ImpactStreamFileDb.xml.getTableConstraints */ 
+        SELECT distinct B.CONSTRAINT_NAME
+                      , B.CONSTRAINT_TYPE
+                      , B.STATUS
+                      , B.DELETE_RULE
+                      , B.DEFERRABLE
+                      , B.DEFERRED
+                      , B.VALIDATED
+                      , '' AS COLS
+                      , '' AS SEARCH_CONDITION
+        from ais0316_hty A
+           , ais0315_hty B
+        where A.JOB_ID = #{dbId}
+          and A.DBOBJ_ID = #{dbobjId}
+          and A.COLUMN_NAME = #{colName}
+          and A.REGCODE =#{regCode}
+          AND A.JOB_ID = b.JOB_ID
+          and a.DBOBJ_ID = b.DBOBJ_ID
+          and a.REGCODE = b.REGCODE
+    </select>
+  <select id="getColumnInfo" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamFileDb.xml.getColumnInfo */ /* ImpactStreamFileDb.xml.getColumnInfo */ 
+        SELECT DISTINCT TBL_NAME
+                      , DBOBJ_OWNER
+        FROM VW_DBCTBLINFO
+        WHERE JOB_ID = #{dbId}
+          AND DBOBJ_ID = #{dbobjId}
+    </select>
+  <select id="getColumnDetailInfo" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamFileDb.xml.getColumnDetailInfo */ /* ImpactStreamFileDb.xml.getColumnDetailInfo */ 
+        SELECT COL_NAME
+             , COL_TYPE
+             , COL_SIZE
+             , PRECISION
+             , SCALE
+             , COL_PKEY_YN
+             , COL_FKEY_YN
+             , COL_NULL_YN
+        FROM VW_DBCTBLINFO
+        WHERE JOB_ID = #{dbId}
+          AND DBOBJ_ID = #{dbobjId}
+          AND COL_NAME = #{objName}
+        ORDER BY COL_NAME
+    </select>
+  <select id="getViewTreeList" parameterType="java.util.HashMap" resultMap="getDBTreeListMap">/* ImpactStreamFileDb.xml.getViewTreeList */ /* ImpactStreamFileDb.xml.getViewTreeList */ 
+        SELECT DISTINCT VIEW_NAME  AS LABEL
+                      ,JOB_ID              AS DBID
+                      ,DBOBJ_ID            AS OBJID
+                      ,'view'              AS OBJTYPE
+                      ,#{bizId}             AS BIZ_ID
+                      ,#{prjId}             AS PRJ_ID
+                      ,#{prjName}           AS PRJ_KOR_NAME
+                      ,#{refBizId}          AS REF_BIZ_ID
+        FROM VW_DBCVIEWINFO
+        WHERE JOB_ID = #{dbId}
+        ORDER BY VIEW_NAME
+    </select>
+  <select id="getViewInfo" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamFileDb.xml.getViewInfo */ /* ImpactStreamFileDb.xml.getViewInfo */ 
+        SELECT DISTINCT VIEW_NAME
+                      , DBOBJ_OWNER
+        FROM VW_DBCVIEWINFO2
+        WHERE JOB_ID = #{dbId}
+          AND DBOBJ_ID = #{dbobjId}
+    </select>
+  <select id="getViewColumnInfo" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamFileDb.xml.getViewColumnInfo */ /* ImpactStreamFileDb.xml.getViewColumnInfo */ 
+        SELECT (ROW_NUMBER() OVER()) AS NUM
+             , COL_NAME
+             , COL_POSITION
+             , COL_TYPE
+             , COL_NULL_YN
+        FROM VW_DBCVIEWINFO2
+        WHERE JOB_ID = #{dbId}
+          AND DBOBJ_ID = #{dbobjId}
+        ORDER BY COL_POSITION
+    </select>
+  <select id="getViewSrc" parameterType="java.util.HashMap" resultMap="getViewSrcResultMap">/* ImpactStreamFileDb.xml.getViewSrc */ /* ImpactStreamFileDb.xml.getViewSrc */ 
+        SELECT VIEW_SRC AS SRC_TEXT
+        FROM VW_DBCVIEWINFO
+        WHERE JOB_ID = #{dbId}
+          AND DBOBJ_ID = #{dbobjId}
+    </select>
+  <select id="getViewSynonyms" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamFileDb.xml.getViewSynonyms */ /* ImpactStreamFileDb.xml.getViewSynonyms */ 
+        SELECT (ROW_NUMBER() OVER()) AS NUM
+             , DBOBJ_OWNER
+             , DBOBJ_NAME
+        FROM VW_DBCRELINFO
+        WHERE DBOBJ_TYPE = 'SYNONYM'
+          AND JOB_ID          = #{dbId}
+          AND DBREF_OBJ_ID    = #{dbobjId}
+    </select>
+  <select id="getViewTrigger" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamFileDb.xml.getViewTrigger */ /* ImpactStreamFileDb.xml.getViewTrigger */ 
+        SELECT D.TRIG_NAME
+             , D.TRIG_TYPE
+             , D.TRIG_EVENT
+             , D.DBOBJ_OWNER
+             , D.ACTION_TYPE
+             , D.BASE_OBJ_TYPE
+             , D.DBOBJ_ID
+        FROM VW_DBCRELINFO C
+           , VW_DBCTRIGINFO D
+        WHERE C.JOB_ID          = #{dbId}
+          AND C.DBREF_OBJ_ID    = #{dbobjId}
+          AND C.JOB_ID          = D.JOB_ID
+          AND C.DBOBJ_ID        = D.DBOBJ_ID
+    </select>
+  <select id="getIndexInfo" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamFileDb.xml.getIndexInfo */ /* ImpactStreamFileDb.xml.getIndexInfo */ 
+        SELECT DBIDX_NAME
+             , DBOBJ_OWNER
+             , DBIDX_TABLE_NAME
+        FROM VW_DBCIDXINFO
+        WHERE JOB_ID = #{dbId}
+          AND DBOBJ_ID = #{dbobjId}
+    </select>
+  <select id="getIndexColumn" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamFileDb.xml.getIndexColumn */ /* ImpactStreamFileDb.xml.getIndexColumn */ 
+        SELECT (ROW_NUMBER() OVER()) AS NUM
+             , COL_NAME
+             , COL_ORDER_TYPE
+             , COL_POSITION
+             , COL_SIZE
+             , DBIDX_TABLE_NAME
+             , DBOBJ_OWNER
+        FROM (
+                 SELECT DISTINCT COL_NAME
+                               , COL_ORDER_TYPE
+                               , COL_POSITION
+                               , COL_SIZE
+                               , DBIDX_TABLE_NAME
+                               , DBOBJ_OWNER
+                 FROM VW_DBCIDXINFO2
+                 WHERE JOB_ID   = #{dbId}
+                   AND DBOBJ_ID = #{dbobjId}
+                 ORDER BY COL_POSITION
+             )
+    </select>
+  <select id="getSequenceInfo" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamFileDb.xml.getSequenceInfo */ /* ImpactStreamFileDb.xml.getSequenceInfo */ 
+        SELECT DBSEQ_NAME
+             , DBOBJ_OWNER
+        FROM VW_DBCSEQINFO
+        WHERE JOB_ID = #{dbId}
+          AND DBOBJ_ID = #{dbobjId}
+    </select>
+  <select id="getSequenceDetailInfo" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamFileDb.xml.getSequenceDetailInfo */ /* ImpactStreamFileDb.xml.getSequenceDetailInfo */ 
+        SELECT DBSEQ_MIN
+             , DBSEQ_MAX
+             , DBSEQ_INCL
+             , DBSEQ_ORDER_YN
+             , DBSEQ_CACHE_SIZE
+             , DBSEQ_CYCLE_YN
+        FROM VW_DBCSEQINFO
+        WHERE JOB_ID = #{dbId}
+          AND DBOBJ_ID = #{dbobjId}
+    </select>
+  <select id="getStoredProgramTreeList" parameterType="java.util.HashMap" resultMap="getDBTreeListMap2">/* ImpactStreamFileDb.xml.getStoredProgramTreeList */ /* ImpactStreamFileDb.xml.getStoredProgramTreeList */ 
+        SELECT 'Package'      AS LABEL
+             ,JOB_ID         AS DBID
+             ,0              AS OBJID
+             ,0              AS OBJID2
+             ,'fpack'        AS OBJTYPE
+             ,#{bizId}        AS BIZ_ID
+             ,#{prjId}        AS PRJ_ID
+             ,#{prjName}      AS PRJ_KOR_NAME
+             ,#{refBizId}     AS REF_BIZ_ID
+        FROM AIS1011
+        WHERE JOB_ID = #{dbId}
+        UNION ALL
+        SELECT A.DBOBJ_NAME     AS LABEL
+             ,A.JOB_ID         AS DBID
+             ,A.DBOBJ_ID       AS OBJID
+             ,B.DBOBJ_ID       AS OBJID2
+             ,'pack'           AS OBJTYPE
+             ,#{bizId}          AS BIZ_ID
+             ,#{prjId}          AS PRJ_ID
+             ,#{prjName}        AS PRJ_KOR_NAME
+             ,#{refBizId}       AS REF_BIZ_ID
+        FROM VW_DBCOBJINFO A
+           , VW_DBCOBJINFO B
+        WHERE A.DBOBJ_TYPE  = 'PACKAGE'
+          AND B.DBOBJ_TYPE  = 'PACKAGE BODY'
+          AND A.JOB_ID      = #{dbId}
+          AND A.JOB_ID      = B.JOB_ID
+          AND A.DBOBJ_OWNER = B.DBOBJ_OWNER
+          AND A.DBOBJ_NAME  = B.DBOBJ_NAME
+        UNION ALL
+        SELECT 'Procedure'    AS LABEL
+             ,JOB_ID         AS DBID
+             ,0              AS OBJID
+             ,0              AS OBJID2
+             ,'fproc'        AS OBJTYPE
+             ,#{bizId}        AS BIZ_ID
+             ,#{prjId}        AS PRJ_ID
+             ,#{prjName}      AS PRJ_KOR_NAME
+             ,#{refBizId}     AS REF_BIZ_ID
+        FROM AIS1011
+        WHERE JOB_ID = #{dbId}
+        UNION ALL
+        SELECT DBOBJ_NAME      AS LABEL
+             ,JOB_ID          AS DBID
+             ,DBOBJ_ID        AS OBJID
+             ,0               AS OBJID2
+             ,'proc'          AS OBJTYPE
+             ,#{bizId}         AS BIZ_ID
+             ,#{prjId}         AS PRJ_ID
+             ,#{prjName}       AS PRJ_KOR_NAME
+             ,#{refBizId}      AS REF_BIZ_ID
+        FROM VW_DBCOBJINFO
+        WHERE DBOBJ_TYPE = 'PROCEDURE'
+          AND JOB_ID     = #{dbId}
+        UNION ALL
+        SELECT 'Function'     AS LABEL
+             ,JOB_ID         AS DBID
+             ,0              AS OBJID
+             ,0              AS OBJID2
+             ,'fdfunc'       AS OBJTYPE
+             ,#{bizId}        AS BIZ_ID
+             ,#{prjId}        AS PRJ_ID
+             ,#{prjName}      AS PRJ_KOR_NAME
+             ,#{refBizId}     AS REF_BIZ_ID
+        FROM AIS1011
+        WHERE JOB_ID = #{dbId}
+        UNION ALL
+        SELECT DBOBJ_NAME      AS LABEL
+             ,JOB_ID          AS DBID
+             ,DBOBJ_ID        AS OBJID
+             ,0               AS OBJID2
+             ,'dfunc'         AS OBJTYPE
+             ,#{bizId}         AS BIZ_ID
+             ,#{prjId}         AS PRJ_ID
+             ,#{prjName}       AS PRJ_KOR_NAME
+             ,#{refBizId}      AS REF_BIZ_ID
+        FROM VW_DBCOBJINFO
+        WHERE DBOBJ_TYPE = 'FUNCTION'
+          AND JOB_ID     = #{dbId}
+    </select>
+  <select id="getPackageInfo" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamFileDb.xml.getPackageInfo */ /* ImpactStreamFileDb.xml.getPackageInfo */ 
+        SELECT DISTINCT DBOBJ_NAME
+                      , DBOBJ_OWNER
+        FROM VW_DBCPROCINFO
+        WHERE JOB_ID = #{dbId}
+          AND DBOBJ_ID = #{dbobjId}
+    </select>
+  <select id="getPackageSpecSrc" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamFileDb.xml.getPackageSpecSrc */ /* ImpactStreamFileDb.xml.getPackageSpecSrc */ 
+        SELECT SRC_TEXT
+        FROM AIS0310_HTY A
+           , AIS0301 B
+           , AIS0301_HTY C
+        WHERE B.JOB_ID = A.JOB_ID
+          AND B.JOB_ID = C.JOB_ID
+          AND B.DBOBJ_ID = A.DBOBJ_ID
+          AND B.DBOBJ_ID = C.DBOBJ_ID
+          AND B.DBOBJ_CHNG_CODE = A.REGCODE
+          AND B.DBOBJ_CHNG_CODE = C.REGCODE
+          AND B.JOB_ID = #{dbId}
+          AND B.DBOBJ_ID = #{dbobjId}
+        ORDER BY SRC_LINE
+    </select>
+  <select id="getPackageSpecList" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamFileDb.xml.getPackageSpecList */ /* ImpactStreamFileDb.xml.getPackageSpecList */ 
+        SELECT (ROW_NUMBER() OVER()) AS NUM
+             , DBSTOR_NAME
+             , DBSTOR_TYPE
+             , DBSTOR_RETURN_TYPE
+             , DBSTOR_ARGS
+        FROM VW_DBCPROCINFO
+        WHERE JOB_ID = #{dbId}
+          AND DBOBJ_ID = #{dbobjId}
+          AND DBOBJ_STOR_ID &gt; 1
+        ORDER BY DBOBJ_STOR_ID
+    </select>
+  <select id="getPackageArguments" parameterType="java.util.HashMap" resultType="java.util.HashMap">/* ImpactStreamFileDb.xml.getPackageArguments */ /* ImpactStreamFileDb.xml.getPackageArguments */ 
+        SELECT *
+        FROM VW_DBCPROCINFO2
+        WHERE DBSTOR_TYPE = 'PACKAGE'
+          AND JOB_ID = #{dbId}
+          AND DBOBJ_ID = #{dbobjId}
+    </select>
+  <insert id="insertRelObjDGB" parameterType="java.util.HashMap">/* ImpactStreamFileDb.xml.insertRelObjDGB */ /* ImpactStreamFileDb.xml.insertRelObjDGB */ 
+        INSERT INTO AIS_TEMP_DBCIMP
+        SELECT #{uniqueId}   AS USER_ID
+             , DBOBJ_ID     AS FROMID
+             , 0            AS TOID
+             , JOB_ID       AS DB_ID
+             , DBOBJ_NAME   AS NAME
+             , DBOBJ_TYPE   AS OBJ_TYPE
+             , 0            AS DEPTH
+             , '0x676767'   AS NODECOLOR
+        FROM VW_DBCOBJINFO
+        WHERE JOB_ID = #{dbId}
+          AND DBOBJ_ID = #{dbobjId}
+    </insert>
+  <insert id="RelInfoByCallingDGB" parameterType="java.util.HashMap">/* ImpactStreamFileDb.xml.RelInfoByCallingDGB */ /* ImpactStreamFileDb.xml.RelInfoByCallingDGB */ 
+        INSERT INTO AIS_TEMP_DBCIMP
+        SELECT #{uniqueId}     AS USER_ID
+             , A.DBOBJ_ID     AS FROMID
+             , B.DBREF_OBJ_ID AS TOID
+             , A.JOB_ID       AS DB_ID
+             , A.DBOBJ_NAME   AS NAME
+             , A.DBOBJ_TYPE   AS OBJ_TYPE
+             , #{relDepth}+1   AS DEPTH
+             , '0x67e767'     AS NODECOLOR
+        FROM VW_DBCOBJINFO A
+           , VW_DBCRELINFO B
+           , (SELECT * FROM AIS_TEMP_DBCIMP WHERE depth = #{relDepth} )C
+        WHERE C.DB_ID    = A.JOB_ID
+          AND C.DB_ID    = B.JOB_ID
+          AND C.fromID   = A.DBOBJ_ID
+          AND C.fromID   = B.DBOBJ_ID
+          AND NOT EXISTS ( SELECT 1 FROM AIS_TEMP_DBCIMP WHERE DB_ID = C.DB_ID AND fromID = C.fromID AND depth &gt; 0 )
+    </insert>
+  <insert id="RelInfoByCallingENDDGB" parameterType="java.util.HashMap">/* ImpactStreamFileDb.xml.RelInfoByCallingENDDGB */ /* ImpactStreamFileDb.xml.RelInfoByCallingENDDGB */ 
+        INSERT INTO AIS_TEMP_DBCIMP
+        SELECT #{uniqueId}     AS USER_ID
+             , A.DBOBJ_ID     AS FROMID
+             , 0            AS TOID
+             , A.JOB_ID       AS DB_ID
+             , A.DBOBJ_NAME   AS NAME
+             , A.DBOBJ_TYPE   AS OBJ_TYPE
+             , #{relDepth}+1 AS DEPTH
+             , '0x3d3d3d'   AS NODECOLOR
+        FROM VW_DBCOBJINFO A
+           , AIS_TEMP_DBCIMP B
+        WHERE A.JOB_ID = B.DB_ID
+          AND A.DBOBJ_ID = B.toID
+          AND B.depth = #{relDepth}
+    </insert>
+  <insert id="RelInfoByCallingZeroDGB" parameterType="java.util.HashMap">/* ImpactStreamFileDb.xml.RelInfoByCallingZeroDGB */ /* ImpactStreamFileDb.xml.RelInfoByCallingZeroDGB */ 
+        INSERT INTO AIS_TEMP_DBCIMP
+        SELECT #{uniqueId}     AS USER_ID
+             , A.DBOBJ_ID     AS FROMID
+             , 0              AS TOID
+             , A.JOB_ID       AS DB_ID
+             , A.DBOBJ_NAME   AS NAME
+             , A.DBOBJ_TYPE   AS OBJ_TYPE
+             , #{relDepth}+1   AS DEPTH
+             , '0x67e767'     AS NODECOLOR
+        FROM VW_DBCOBJINFO A
+           , AIS_TEMP_DBCIMP B
+        WHERE A.JOB_ID = B.DB_ID
+          AND A.DBOBJ_ID = B.fromID
+          AND B.depth = #{relDepth}
+    </insert>
+  <insert id="RelInfoByCalledDGB" parameterType="java.util.HashMap">/* ImpactStreamFileDb.xml.RelInfoByCalledDGB */ /* ImpactStreamFileDb.xml.RelInfoByCalledDGB */ 
+        INSERT INTO AIS_TEMP_DBCIMP
+        SELECT #{uniqueId}     AS USER_ID
+             , B.DBOBJ_ID     AS FROMID
+             , B.DBREF_OBJ_ID AS TOID
+             , A.JOB_ID       AS DB_ID
+             , A.DBOBJ_NAME   AS NAME
+             , A.DBOBJ_TYPE   AS OBJ_TYPE
+             , #{relDepth}-1   AS DEPTH
+             , '0x3d3d3d'     AS NODECOLOR
+        FROM VW_DBCOBJINFO A
+           , VW_DBCRELINFO B
+           , (SELECT * FROM AIS_TEMP_DBCIMP WHERE depth = #{relDepth} )C
+        WHERE C.DB_ID     = A.JOB_ID
+          AND C.DB_ID     = B.JOB_ID
+          AND C.fromID    = B.DBREF_OBJ_ID
+          AND B.DBOBJ_ID  = A.DBOBJ_ID
+          AND NOT EXISTS ( SELECT 1 FROM AIS_TEMP_DBCIMP WHERE DB_ID = C.DB_ID AND fromID = C.fromID AND depth &lt; 0 )
+    </insert>
+  <insert id="RelInfoByCalledENDDGB" parameterType="java.util.HashMap">/* ImpactStreamFileDb.xml.RelInfoByCalledENDDGB */ /* ImpactStreamFileDb.xml.RelInfoByCalledENDDGB */ 
+        INSERT INTO AIS_TEMP_DBCIMP
+        SELECT #{uniqueId}     AS USER_ID
+             , 1              AS FROMID
+             , A.DBOBJ_ID     AS TOID
+             , A.JOB_ID       AS DB_ID
+             , 'START'        AS NAME
+             , 'FLAG'         AS OBJ_TYPE
+             , #{relDepth}-1   AS DEPTH
+             , '0xffffff'     AS NODECOLOR
+        FROM VW_DBCOBJINFO A
+           , AIS_TEMP_DBCIMP B
+        WHERE A.JOB_ID = B.DB_ID
+          AND A.DBOBJ_ID = B.fromID
+          AND B.depth = #{relDepth}
+    </insert>
+  <insert id="insertRelObj" parameterType="java.util.HashMap">/* ImpactStreamFileDb.xml.insertRelObj */ /* ImpactStreamFileDb.xml.insertRelObj */ 
+        INSERT INTO CALL_T_${tblName}
+        SELECT DBOBJ_ID     AS fromID
+             , 0            AS toID
+             , JOB_ID       AS DB_ID
+             , DBOBJ_NAME   AS name
+             , DBOBJ_TYPE   AS OBJ_TYPE
+             , 0            AS depth
+             , '0x676767'   AS nodeColor
+        FROM VW_DBCOBJINFO
+        WHERE JOB_ID = #{dbId}
+          AND DBOBJ_ID = #{dbobjId}
+    </insert>
+  <insert id="RelInfoByCalling" parameterType="java.util.HashMap">/* ImpactStreamFileDb.xml.RelInfoByCalling */ /* ImpactStreamFileDb.xml.RelInfoByCalling */ 
+        INSERT INTO CALL_T_${tblName}
+        SELECT A.DBOBJ_ID     AS fromID
+             , B.DBREF_OBJ_ID AS toID
+             , A.JOB_ID       AS DB_ID
+             , A.DBOBJ_NAME   AS name
+             , A.DBOBJ_TYPE   AS OBJ_TYPE
+             , #{relDepth}+1   AS depth
+             , '0x67e767'     AS nodeColor
+        FROM VW_DBCOBJINFO A
+           , VW_DBCRELINFO B
+           , (SELECT * FROM CALL_T_${tblName} WHERE depth = #{relDepth} )C
+        WHERE C.DB_ID    = A.JOB_ID
+          AND C.DB_ID    = B.JOB_ID
+          AND C.fromID   = A.DBOBJ_ID
+          AND C.fromID   = B.DBOBJ_ID
+          AND NOT EXISTS ( SELECT 1 FROM CALL_T_${tblName} WHERE DB_ID = C.DB_ID AND fromID = C.fromID AND depth &gt;0 )
+    </insert>
+  <insert id="RelInfoByCallingEND" parameterType="java.util.HashMap">/* ImpactStreamFileDb.xml.RelInfoByCallingEND */ /* ImpactStreamFileDb.xml.RelInfoByCallingEND */ 
+        INSERT INTO CALL_T_${tblName}
+        SELECT A.DBOBJ_ID     AS fromID
+             , 0            AS toID
+             , A.JOB_ID       AS DB_ID
+             , A.DBOBJ_NAME   AS name
+             , A.DBOBJ_TYPE   AS OBJ_TYPE
+             , #{relDepth}+1 AS depth
+             , '0x3d3d3d'   AS nodeColor
+        FROM VW_DBCOBJINFO A
+           , CALL_T_${tblName} B
+        WHERE A.JOB_ID = B.DB_ID
+          AND A.DBOBJ_ID = B.toID
+          AND B.depth = #{relDepth}
+    </insert>
+  <insert id="RelInfoByCallingZero" parameterType="java.util.HashMap">/* ImpactStreamFileDb.xml.RelInfoByCallingZero */ /* ImpactStreamFileDb.xml.RelInfoByCallingZero */ 
+        INSERT INTO CALL_T_${tblName}
+        SELECT A.DBOBJ_ID     AS fromID
+             , 0            AS toID
+             , A.JOB_ID       AS DB_ID
+             , A.DBOBJ_NAME   AS name
+             , A.DBOBJ_TYPE   AS OBJ_TYPE
+             , #{relDepth}+1 AS depth
+             , '0x67e767'   AS nodeColor
+        FROM VW_DBCOBJINFO A
+           , CALL_T_${tblName} B
+        WHERE A.JOB_ID = B.DB_ID
+          AND A.DBOBJ_ID = B.fromID
+          AND B.depth = #{relDepth}
+    </insert>
+  <insert id="RelInfoByCalled" parameterType="java.util.HashMap">/* ImpactStreamFileDb.xml.RelInfoByCalled */ /* ImpactStreamFileDb.xml.RelInfoByCalled */ 
+        INSERT INTO CALL_T_${tblName}
+        SELECT B.DBOBJ_ID     AS fromID
+             , B.DBREF_OBJ_ID AS toID
+             , A.JOB_ID       AS DB_ID
+             , A.DBOBJ_NAME   AS name
+             , A.DBOBJ_TYPE   AS OBJ_TYPE
+             , #{relDepth}-1   AS depth
+             , '0x3d3d3d'   AS nodeColor
+        FROM VW_DBCOBJINFO A
+           , VW_DBCRELINFO B
+           , (SELECT * FROM CALL_T_${tblName} WHERE depth = #{relDepth} )C
+        WHERE C.DB_ID     = A.JOB_ID
+          AND C.DB_ID     = B.JOB_ID
+          AND C.fromID    = B.DBREF_OBJ_ID
+          AND B.DBOBJ_ID  = A.DBOBJ_ID
+          AND NOT EXISTS ( SELECT 1 FROM CALL_T_${tblName} WHERE DB_ID = C.DB_ID AND fromID = C.fromID AND depth &lt;0 )
+    </insert>
+  <insert id="RelInfoByCalledEND" parameterType="java.util.HashMap">/* ImpactStreamFileDb.xml.RelInfoByCalledEND */ /* ImpactStreamFileDb.xml.RelInfoByCalledEND */ 
+        INSERT INTO CALL_T_${tblName}
+        SELECT 1              AS fromID
+             , A.DBOBJ_ID     AS toID
+             , A.JOB_ID       AS DB_ID
+             , 'START'        AS name
+             , 'FLAG'         AS OBJ_TYPE
+             , #{relDepth}-1   AS depth
+             , '0xffffff'   AS nodeColor
+        FROM VW_DBCOBJINFO A
+           , CALL_T_${tblName} B
+        WHERE A.JOB_ID = B.DB_ID
+          AND A.DBOBJ_ID = B.fromID
+          AND B.depth = #{relDepth}
+    </insert>
+  <update id="createTbl" parameterType="java.util.HashMap">/* ImpactStreamFileDb.xml.createTbl */ /* ImpactStreamFileDb.xml.createTbl */ 
+        CREATE TABLE ${tempTableName}
+        (
+            FROMID numeric
+            ,TOID numeric
+            ,DB_ID varchar(100)
+            ,NAME varchar(100)
+            ,OBJ_TYPE varchar(100)
+            ,DEPTH numeric
+            ,NODECOLOR varchar(100)
+        )
+    </update>
+  <delete id="deleteTblDGB">/* ImpactStreamFileDb.xml.deleteTblDGB */ /* ImpactStreamFileDb.xml.deleteTblDGB */ 
+        DELETE FROM AIS_TEMP_DBCIMP WHERE USER_ID = #{uniqueId}
+    </delete>
+  <delete id="dropTbl">/* ImpactStreamFileDb.xml.dropTbl */ /* ImpactStreamFileDb.xml.dropTbl */ 
+        DROP TABLE CALL_T_${tblName} CASCADE CONSTRAINTS
+    </delete>
+</mapper>
