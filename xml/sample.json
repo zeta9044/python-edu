@@ -1,0 +1,1419 @@
+{
+    "POWERMART": {
+        "@CREATION_DATE": "08/15/2020 04:20:03",
+        "@REPOSITORY_VERSION": "186.95",
+        "REPOSITORY": {
+            "@NAME": "REP_BDPPRD",
+            "@VERSION": "186",
+            "@CODEPAGE": "UTF-8",
+            "@DATABASETYPE": "Oracle",
+            "FOLDER": [
+                {
+                    "@NAME": "0.UBDP_TGT_META",
+                    "@GROUP": "",
+                    "@OWNER": "Administrator",
+                    "@SHARED": "SHARED",
+                    "@DESCRIPTION": "\ud0c0\uac9f \ud14c\uc774\ube14 \uad00\ub9ac \ud3f4\ub354",
+                    "@PERMISSIONS": "rwx---r--",
+                    "@UUID": "93bdae39-abeb-491b-840f-bb0b607479a2",
+                    "TARGET": {
+                        "@BUSINESSNAME": "",
+                        "@CONSTRAINT": "",
+                        "@DATABASETYPE": "Netezza",
+                        "@DESCRIPTION": "",
+                        "@NAME": "L0BIM_DBT_BLITEM_VOIP_GRP",
+                        "@OBJECTVERSION": "1",
+                        "@TABLEOPTIONS": "",
+                        "@VERSIONNUMBER": "1",
+                        "TARGETFIELD": [
+                            {
+                                "@BUSINESSNAME": "",
+                                "@DATATYPE": "nvarchar",
+                                "@DESCRIPTION": "",
+                                "@FIELDNUMBER": "1",
+                                "@KEYTYPE": "PRIMARY KEY",
+                                "@NAME": "BLITEM_NM",
+                                "@NULLABLE": "NOTNULL",
+                                "@PICTURETEXT": "",
+                                "@PRECISION": "60",
+                                "@SCALE": "0"
+                            },
+                            {
+                                "@BUSINESSNAME": "",
+                                "@DATATYPE": "nvarchar",
+                                "@DESCRIPTION": "",
+                                "@FIELDNUMBER": "2",
+                                "@KEYTYPE": "NOT A KEY",
+                                "@NAME": "VOIP_BLITEM_GRP",
+                                "@NULLABLE": "NULL",
+                                "@PICTURETEXT": "",
+                                "@PRECISION": "60",
+                                "@SCALE": "0"
+                            },
+                            {
+                                "@BUSINESSNAME": "",
+                                "@DATATYPE": "nvarchar",
+                                "@DESCRIPTION": "",
+                                "@FIELDNUMBER": "3",
+                                "@KEYTYPE": "NOT A KEY",
+                                "@NAME": "VOIP_BLITEM_GRP_DTL",
+                                "@NULLABLE": "NULL",
+                                "@PICTURETEXT": "",
+                                "@PRECISION": "60",
+                                "@SCALE": "0"
+                            },
+                            {
+                                "@BUSINESSNAME": "",
+                                "@DATATYPE": "timestamp",
+                                "@DESCRIPTION": "",
+                                "@FIELDNUMBER": "4",
+                                "@KEYTYPE": "NOT A KEY",
+                                "@NAME": "ETL_LOAD_DTTM",
+                                "@NULLABLE": "NULL",
+                                "@PICTURETEXT": "",
+                                "@PRECISION": "26",
+                                "@SCALE": "6"
+                            },
+                            {
+                                "@BUSINESSNAME": "",
+                                "@DATATYPE": "timestamp",
+                                "@DESCRIPTION": "",
+                                "@FIELDNUMBER": "5",
+                                "@KEYTYPE": "NOT A KEY",
+                                "@NAME": "BDP_LOAD_DTTM",
+                                "@NULLABLE": "NULL",
+                                "@PICTURETEXT": "",
+                                "@PRECISION": "26",
+                                "@SCALE": "6"
+                            },
+                            {
+                                "@BUSINESSNAME": "",
+                                "@DATATYPE": "varchar",
+                                "@DESCRIPTION": "",
+                                "@FIELDNUMBER": "6",
+                                "@KEYTYPE": "NOT A KEY",
+                                "@NAME": "BDP_LOAD_USER_ID",
+                                "@NULLABLE": "NULL",
+                                "@PICTURETEXT": "",
+                                "@PRECISION": "30",
+                                "@SCALE": "0"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@NAME": "0.UBDP_SRC_META",
+                    "@GROUP": "",
+                    "@OWNER": "Administrator",
+                    "@SHARED": "SHARED",
+                    "@DESCRIPTION": "\uc18c\uc2a4 \ud14c\uc774\ube14 \uad00\ub9ac \ud3f4\ub354",
+                    "@PERMISSIONS": "rwx---r--",
+                    "@UUID": "d3f8b018-ffa3-4580-97de-874ccec1263e",
+                    "SOURCE": {
+                        "@BUSINESSNAME": "",
+                        "@DATABASETYPE": "Vertica",
+                        "@DBDNAME": "BI_DIMBS_SCHM",
+                        "@DESCRIPTION": "DBT_VoIP\uccad\uad6c\ud56d\ubaa9\uadf8\ub8f9\ud551",
+                        "@NAME": "DBT_BLITEM_VOIP_GRP",
+                        "@OBJECTVERSION": "1",
+                        "@OWNERNAME": "dimbs_schm",
+                        "@VERSIONNUMBER": "1",
+                        "SOURCEFIELD": [
+                            {
+                                "@BUSINESSNAME": "",
+                                "@DATATYPE": "nvarchar",
+                                "@DESCRIPTION": "",
+                                "@FIELDNUMBER": "1",
+                                "@FIELDPROPERTY": "0",
+                                "@FIELDTYPE": "ELEMITEM",
+                                "@HIDDEN": "NO",
+                                "@KEYTYPE": "PRIMARY KEY",
+                                "@LENGTH": "0",
+                                "@LEVEL": "0",
+                                "@NAME": "BLITEM_NM",
+                                "@NULLABLE": "NOTNULL",
+                                "@OCCURS": "0",
+                                "@OFFSET": "0",
+                                "@PHYSICALLENGTH": "60",
+                                "@PHYSICALOFFSET": "0",
+                                "@PICTURETEXT": "",
+                                "@PRECISION": "60",
+                                "@SCALE": "0",
+                                "@USAGE_FLAGS": ""
+                            },
+                            {
+                                "@BUSINESSNAME": "",
+                                "@DATATYPE": "nvarchar",
+                                "@DESCRIPTION": "",
+                                "@FIELDNUMBER": "2",
+                                "@FIELDPROPERTY": "0",
+                                "@FIELDTYPE": "ELEMITEM",
+                                "@HIDDEN": "NO",
+                                "@KEYTYPE": "NOT A KEY",
+                                "@LENGTH": "0",
+                                "@LEVEL": "0",
+                                "@NAME": "VOIP_BLITEM_GRP",
+                                "@NULLABLE": "NULL",
+                                "@OCCURS": "0",
+                                "@OFFSET": "0",
+                                "@PHYSICALLENGTH": "60",
+                                "@PHYSICALOFFSET": "60",
+                                "@PICTURETEXT": "",
+                                "@PRECISION": "60",
+                                "@SCALE": "0",
+                                "@USAGE_FLAGS": ""
+                            },
+                            {
+                                "@BUSINESSNAME": "",
+                                "@DATATYPE": "nvarchar",
+                                "@DESCRIPTION": "",
+                                "@FIELDNUMBER": "3",
+                                "@FIELDPROPERTY": "0",
+                                "@FIELDTYPE": "ELEMITEM",
+                                "@HIDDEN": "NO",
+                                "@KEYTYPE": "NOT A KEY",
+                                "@LENGTH": "0",
+                                "@LEVEL": "0",
+                                "@NAME": "VOIP_BLITEM_GRP_DTL",
+                                "@NULLABLE": "NULL",
+                                "@OCCURS": "0",
+                                "@OFFSET": "0",
+                                "@PHYSICALLENGTH": "60",
+                                "@PHYSICALOFFSET": "120",
+                                "@PICTURETEXT": "",
+                                "@PRECISION": "60",
+                                "@SCALE": "0",
+                                "@USAGE_FLAGS": ""
+                            },
+                            {
+                                "@BUSINESSNAME": "",
+                                "@DATATYPE": "timestamp",
+                                "@DESCRIPTION": "",
+                                "@FIELDNUMBER": "4",
+                                "@FIELDPROPERTY": "0",
+                                "@FIELDTYPE": "ELEMITEM",
+                                "@HIDDEN": "NO",
+                                "@KEYTYPE": "NOT A KEY",
+                                "@LENGTH": "19",
+                                "@LEVEL": "0",
+                                "@NAME": "ETL_LOAD_DTTM",
+                                "@NULLABLE": "NULL",
+                                "@OCCURS": "0",
+                                "@OFFSET": "0",
+                                "@PHYSICALLENGTH": "26",
+                                "@PHYSICALOFFSET": "180",
+                                "@PICTURETEXT": "",
+                                "@PRECISION": "26",
+                                "@SCALE": "6",
+                                "@USAGE_FLAGS": ""
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@NAME": "01.UBDP_L0_BI",
+                    "@GROUP": "",
+                    "@OWNER": "Administrator",
+                    "@SHARED": "NOTSHARED",
+                    "@DESCRIPTION": "L0 \uc601\uc5ed \uacbd\uc601\uc9c0\ud45c \uc2dc\uc2a4\ud15c",
+                    "@PERMISSIONS": "rwx---r--",
+                    "@UUID": "61f34ec3-525a-41af-9da3-72afcab4da57",
+                    "MAPPING": {
+                        "@DESCRIPTION": "Source Table : OHW_DCF_SBGN_MART \r\nTarget Table : L0BIT_OHW_DCF_SBGN_MART \r\nRead Condition :  \r\nDelete Condition :  \r\nCreate : 2017-02-24",
+                        "@ISVALID": "YES",
+                        "@NAME": "m_L0BIM_DBT_BLITEM_VOIP_GRP_01_C",
+                        "@OBJECTVERSION": "1",
+                        "@VERSIONNUMBER": "1",
+                        "TRANSFORMATION": [
+                            {
+                                "@DESCRIPTION": "",
+                                "@NAME": "exp_L0BIT_OHW_DCF_SBGN_MART_01",
+                                "@OBJECTVERSION": "1",
+                                "@REUSABLE": "NO",
+                                "@TYPE": "Expression",
+                                "@VERSIONNUMBER": "1",
+                                "TRANSFORMFIELD": [
+                                    {
+                                        "@DATATYPE": "nstring",
+                                        "@DEFAULTVALUE": "",
+                                        "@DESCRIPTION": "",
+                                        "@EXPRESSION": "BLITEM_NM",
+                                        "@EXPRESSIONTYPE": "GENERAL",
+                                        "@NAME": "BLITEM_NM",
+                                        "@PICTURETEXT": "",
+                                        "@PORTTYPE": "INPUT/OUTPUT",
+                                        "@PRECISION": "60",
+                                        "@SCALE": "0"
+                                    },
+                                    {
+                                        "@DATATYPE": "nstring",
+                                        "@DEFAULTVALUE": "",
+                                        "@DESCRIPTION": "",
+                                        "@EXPRESSION": "VOIP_BLITEM_GRP",
+                                        "@EXPRESSIONTYPE": "GENERAL",
+                                        "@NAME": "VOIP_BLITEM_GRP",
+                                        "@PICTURETEXT": "",
+                                        "@PORTTYPE": "INPUT/OUTPUT",
+                                        "@PRECISION": "60",
+                                        "@SCALE": "0"
+                                    },
+                                    {
+                                        "@DATATYPE": "nstring",
+                                        "@DEFAULTVALUE": "",
+                                        "@DESCRIPTION": "",
+                                        "@EXPRESSION": "VOIP_BLITEM_GRP_DTL",
+                                        "@EXPRESSIONTYPE": "GENERAL",
+                                        "@NAME": "VOIP_BLITEM_GRP_DTL",
+                                        "@PICTURETEXT": "",
+                                        "@PORTTYPE": "INPUT/OUTPUT",
+                                        "@PRECISION": "60",
+                                        "@SCALE": "0"
+                                    },
+                                    {
+                                        "@DATATYPE": "date/time",
+                                        "@DEFAULTVALUE": "",
+                                        "@DESCRIPTION": "",
+                                        "@EXPRESSION": "ETL_LOAD_DTTM",
+                                        "@EXPRESSIONTYPE": "GENERAL",
+                                        "@NAME": "ETL_LOAD_DTTM",
+                                        "@PICTURETEXT": "",
+                                        "@PORTTYPE": "INPUT/OUTPUT",
+                                        "@PRECISION": "29",
+                                        "@SCALE": "9"
+                                    },
+                                    {
+                                        "@DATATYPE": "date/time",
+                                        "@DEFAULTVALUE": "ERROR('transformation error' )",
+                                        "@DESCRIPTION": "",
+                                        "@EXPRESSION": "SYSDATE",
+                                        "@EXPRESSIONTYPE": "GENERAL",
+                                        "@NAME": "BDP_LOAD_DTTM",
+                                        "@PICTURETEXT": "",
+                                        "@PORTTYPE": "OUTPUT",
+                                        "@PRECISION": "29",
+                                        "@SCALE": "9"
+                                    },
+                                    {
+                                        "@DATATYPE": "string",
+                                        "@DEFAULTVALUE": "ERROR('transformation error' )",
+                                        "@DESCRIPTION": "",
+                                        "@EXPRESSION": "'INFAADM'",
+                                        "@EXPRESSIONTYPE": "GENERAL",
+                                        "@NAME": "BDP_LOAD_USER_ID",
+                                        "@PICTURETEXT": "",
+                                        "@PORTTYPE": "OUTPUT",
+                                        "@PRECISION": "30",
+                                        "@SCALE": "0"
+                                    }
+                                ],
+                                "TABLEATTRIBUTE": {
+                                    "@NAME": "Tracing Level",
+                                    "@VALUE": "Normal"
+                                }
+                            },
+                            {
+                                "@DESCRIPTION": "",
+                                "@NAME": "SQ_Shortcut_to_DBT_BLITEM_VOIP_GRP",
+                                "@OBJECTVERSION": "1",
+                                "@REUSABLE": "NO",
+                                "@TYPE": "Source Qualifier",
+                                "@VERSIONNUMBER": "1",
+                                "TRANSFORMFIELD": [
+                                    {
+                                        "@DATATYPE": "nstring",
+                                        "@DEFAULTVALUE": "",
+                                        "@DESCRIPTION": "",
+                                        "@NAME": "BLITEM_NM",
+                                        "@PICTURETEXT": "",
+                                        "@PORTTYPE": "INPUT/OUTPUT",
+                                        "@PRECISION": "60",
+                                        "@SCALE": "0"
+                                    },
+                                    {
+                                        "@DATATYPE": "nstring",
+                                        "@DEFAULTVALUE": "",
+                                        "@DESCRIPTION": "",
+                                        "@NAME": "VOIP_BLITEM_GRP",
+                                        "@PICTURETEXT": "",
+                                        "@PORTTYPE": "INPUT/OUTPUT",
+                                        "@PRECISION": "60",
+                                        "@SCALE": "0"
+                                    },
+                                    {
+                                        "@DATATYPE": "nstring",
+                                        "@DEFAULTVALUE": "",
+                                        "@DESCRIPTION": "",
+                                        "@NAME": "VOIP_BLITEM_GRP_DTL",
+                                        "@PICTURETEXT": "",
+                                        "@PORTTYPE": "INPUT/OUTPUT",
+                                        "@PRECISION": "60",
+                                        "@SCALE": "0"
+                                    },
+                                    {
+                                        "@DATATYPE": "date/time",
+                                        "@DEFAULTVALUE": "",
+                                        "@DESCRIPTION": "",
+                                        "@NAME": "ETL_LOAD_DTTM",
+                                        "@PICTURETEXT": "",
+                                        "@PORTTYPE": "INPUT/OUTPUT",
+                                        "@PRECISION": "29",
+                                        "@SCALE": "9"
+                                    }
+                                ],
+                                "TABLEATTRIBUTE": [
+                                    {
+                                        "@NAME": "Sql Query",
+                                        "@VALUE": ""
+                                    },
+                                    {
+                                        "@NAME": "User Defined Join",
+                                        "@VALUE": ""
+                                    },
+                                    {
+                                        "@NAME": "Source Filter",
+                                        "@VALUE": ""
+                                    },
+                                    {
+                                        "@NAME": "Number Of Sorted Ports",
+                                        "@VALUE": "0"
+                                    },
+                                    {
+                                        "@NAME": "Tracing Level",
+                                        "@VALUE": "Normal"
+                                    },
+                                    {
+                                        "@NAME": "Select Distinct",
+                                        "@VALUE": "NO"
+                                    },
+                                    {
+                                        "@NAME": "Is Partitionable",
+                                        "@VALUE": "NO"
+                                    },
+                                    {
+                                        "@NAME": "Pre SQL",
+                                        "@VALUE": ""
+                                    },
+                                    {
+                                        "@NAME": "Post SQL",
+                                        "@VALUE": ""
+                                    },
+                                    {
+                                        "@NAME": "Output is deterministic",
+                                        "@VALUE": "NO"
+                                    },
+                                    {
+                                        "@NAME": "Output is repeatable",
+                                        "@VALUE": "Never"
+                                    }
+                                ]
+                            }
+                        ],
+                        "INSTANCE": [
+                            {
+                                "@DESCRIPTION": "",
+                                "@NAME": "Shortcut_to_L0BIM_DBT_BLITEM_VOIP_GRP",
+                                "@TRANSFORMATION_NAME": "Shortcut_to_L0BIM_DBT_BLITEM_VOIP_GRP",
+                                "@TRANSFORMATION_TYPE": "Target Definition",
+                                "@TYPE": "TARGET"
+                            },
+                            {
+                                "@DESCRIPTION": "",
+                                "@NAME": "exp_L0BIT_OHW_DCF_SBGN_MART_01",
+                                "@REUSABLE": "NO",
+                                "@TRANSFORMATION_NAME": "exp_L0BIT_OHW_DCF_SBGN_MART_01",
+                                "@TRANSFORMATION_TYPE": "Expression",
+                                "@TYPE": "TRANSFORMATION"
+                            },
+                            {
+                                "@DBDNAME": "BI_DIMBS_SCHM",
+                                "@DESCRIPTION": "",
+                                "@NAME": "Shortcut_to_DBT_BLITEM_VOIP_GRP",
+                                "@TRANSFORMATION_NAME": "Shortcut_to_DBT_BLITEM_VOIP_GRP",
+                                "@TRANSFORMATION_TYPE": "Source Definition",
+                                "@TYPE": "SOURCE"
+                            },
+                            {
+                                "@DESCRIPTION": "",
+                                "@NAME": "SQ_Shortcut_to_DBT_BLITEM_VOIP_GRP",
+                                "@REUSABLE": "NO",
+                                "@TRANSFORMATION_NAME": "SQ_Shortcut_to_DBT_BLITEM_VOIP_GRP",
+                                "@TRANSFORMATION_TYPE": "Source Qualifier",
+                                "@TYPE": "TRANSFORMATION",
+                                "ASSOCIATED_SOURCE_INSTANCE": {
+                                    "@NAME": "Shortcut_to_DBT_BLITEM_VOIP_GRP"
+                                }
+                            }
+                        ],
+                        "CONNECTOR": [
+                            {
+                                "@FROMFIELD": "BLITEM_NM",
+                                "@FROMINSTANCE": "exp_L0BIT_OHW_DCF_SBGN_MART_01",
+                                "@FROMINSTANCETYPE": "Expression",
+                                "@TOFIELD": "BLITEM_NM",
+                                "@TOINSTANCE": "Shortcut_to_L0BIM_DBT_BLITEM_VOIP_GRP",
+                                "@TOINSTANCETYPE": "Target Definition"
+                            },
+                            {
+                                "@FROMFIELD": "VOIP_BLITEM_GRP",
+                                "@FROMINSTANCE": "exp_L0BIT_OHW_DCF_SBGN_MART_01",
+                                "@FROMINSTANCETYPE": "Expression",
+                                "@TOFIELD": "VOIP_BLITEM_GRP",
+                                "@TOINSTANCE": "Shortcut_to_L0BIM_DBT_BLITEM_VOIP_GRP",
+                                "@TOINSTANCETYPE": "Target Definition"
+                            },
+                            {
+                                "@FROMFIELD": "VOIP_BLITEM_GRP_DTL",
+                                "@FROMINSTANCE": "exp_L0BIT_OHW_DCF_SBGN_MART_01",
+                                "@FROMINSTANCETYPE": "Expression",
+                                "@TOFIELD": "VOIP_BLITEM_GRP_DTL",
+                                "@TOINSTANCE": "Shortcut_to_L0BIM_DBT_BLITEM_VOIP_GRP",
+                                "@TOINSTANCETYPE": "Target Definition"
+                            },
+                            {
+                                "@FROMFIELD": "ETL_LOAD_DTTM",
+                                "@FROMINSTANCE": "exp_L0BIT_OHW_DCF_SBGN_MART_01",
+                                "@FROMINSTANCETYPE": "Expression",
+                                "@TOFIELD": "ETL_LOAD_DTTM",
+                                "@TOINSTANCE": "Shortcut_to_L0BIM_DBT_BLITEM_VOIP_GRP",
+                                "@TOINSTANCETYPE": "Target Definition"
+                            },
+                            {
+                                "@FROMFIELD": "BDP_LOAD_DTTM",
+                                "@FROMINSTANCE": "exp_L0BIT_OHW_DCF_SBGN_MART_01",
+                                "@FROMINSTANCETYPE": "Expression",
+                                "@TOFIELD": "BDP_LOAD_DTTM",
+                                "@TOINSTANCE": "Shortcut_to_L0BIM_DBT_BLITEM_VOIP_GRP",
+                                "@TOINSTANCETYPE": "Target Definition"
+                            },
+                            {
+                                "@FROMFIELD": "BDP_LOAD_USER_ID",
+                                "@FROMINSTANCE": "exp_L0BIT_OHW_DCF_SBGN_MART_01",
+                                "@FROMINSTANCETYPE": "Expression",
+                                "@TOFIELD": "BDP_LOAD_USER_ID",
+                                "@TOINSTANCE": "Shortcut_to_L0BIM_DBT_BLITEM_VOIP_GRP",
+                                "@TOINSTANCETYPE": "Target Definition"
+                            },
+                            {
+                                "@FROMFIELD": "BLITEM_NM",
+                                "@FROMINSTANCE": "SQ_Shortcut_to_DBT_BLITEM_VOIP_GRP",
+                                "@FROMINSTANCETYPE": "Source Qualifier",
+                                "@TOFIELD": "BLITEM_NM",
+                                "@TOINSTANCE": "exp_L0BIT_OHW_DCF_SBGN_MART_01",
+                                "@TOINSTANCETYPE": "Expression"
+                            },
+                            {
+                                "@FROMFIELD": "VOIP_BLITEM_GRP",
+                                "@FROMINSTANCE": "SQ_Shortcut_to_DBT_BLITEM_VOIP_GRP",
+                                "@FROMINSTANCETYPE": "Source Qualifier",
+                                "@TOFIELD": "VOIP_BLITEM_GRP",
+                                "@TOINSTANCE": "exp_L0BIT_OHW_DCF_SBGN_MART_01",
+                                "@TOINSTANCETYPE": "Expression"
+                            },
+                            {
+                                "@FROMFIELD": "VOIP_BLITEM_GRP_DTL",
+                                "@FROMINSTANCE": "SQ_Shortcut_to_DBT_BLITEM_VOIP_GRP",
+                                "@FROMINSTANCETYPE": "Source Qualifier",
+                                "@TOFIELD": "VOIP_BLITEM_GRP_DTL",
+                                "@TOINSTANCE": "exp_L0BIT_OHW_DCF_SBGN_MART_01",
+                                "@TOINSTANCETYPE": "Expression"
+                            },
+                            {
+                                "@FROMFIELD": "ETL_LOAD_DTTM",
+                                "@FROMINSTANCE": "SQ_Shortcut_to_DBT_BLITEM_VOIP_GRP",
+                                "@FROMINSTANCETYPE": "Source Qualifier",
+                                "@TOFIELD": "ETL_LOAD_DTTM",
+                                "@TOINSTANCE": "exp_L0BIT_OHW_DCF_SBGN_MART_01",
+                                "@TOINSTANCETYPE": "Expression"
+                            },
+                            {
+                                "@FROMFIELD": "BLITEM_NM",
+                                "@FROMINSTANCE": "Shortcut_to_DBT_BLITEM_VOIP_GRP",
+                                "@FROMINSTANCETYPE": "Source Definition",
+                                "@TOFIELD": "BLITEM_NM",
+                                "@TOINSTANCE": "SQ_Shortcut_to_DBT_BLITEM_VOIP_GRP",
+                                "@TOINSTANCETYPE": "Source Qualifier"
+                            },
+                            {
+                                "@FROMFIELD": "VOIP_BLITEM_GRP",
+                                "@FROMINSTANCE": "Shortcut_to_DBT_BLITEM_VOIP_GRP",
+                                "@FROMINSTANCETYPE": "Source Definition",
+                                "@TOFIELD": "VOIP_BLITEM_GRP",
+                                "@TOINSTANCE": "SQ_Shortcut_to_DBT_BLITEM_VOIP_GRP",
+                                "@TOINSTANCETYPE": "Source Qualifier"
+                            },
+                            {
+                                "@FROMFIELD": "VOIP_BLITEM_GRP_DTL",
+                                "@FROMINSTANCE": "Shortcut_to_DBT_BLITEM_VOIP_GRP",
+                                "@FROMINSTANCETYPE": "Source Definition",
+                                "@TOFIELD": "VOIP_BLITEM_GRP_DTL",
+                                "@TOINSTANCE": "SQ_Shortcut_to_DBT_BLITEM_VOIP_GRP",
+                                "@TOINSTANCETYPE": "Source Qualifier"
+                            },
+                            {
+                                "@FROMFIELD": "ETL_LOAD_DTTM",
+                                "@FROMINSTANCE": "Shortcut_to_DBT_BLITEM_VOIP_GRP",
+                                "@FROMINSTANCETYPE": "Source Definition",
+                                "@TOFIELD": "ETL_LOAD_DTTM",
+                                "@TOINSTANCE": "SQ_Shortcut_to_DBT_BLITEM_VOIP_GRP",
+                                "@TOINSTANCETYPE": "Source Qualifier"
+                            }
+                        ],
+                        "TARGETLOADORDER": {
+                            "@ORDER": "1",
+                            "@TARGETINSTANCE": "Shortcut_to_L0BIM_DBT_BLITEM_VOIP_GRP"
+                        },
+                        "MAPPINGVARIABLE": [
+                            {
+                                "@DATATYPE": "string",
+                                "@DEFAULTVALUE": "",
+                                "@DESCRIPTION": "",
+                                "@ISEXPRESSIONVARIABLE": "NO",
+                                "@ISPARAM": "YES",
+                                "@NAME": "$$mp_ETL_HH",
+                                "@PRECISION": "2",
+                                "@SCALE": "0",
+                                "@USERDEFINED": "YES"
+                            },
+                            {
+                                "@DATATYPE": "string",
+                                "@DEFAULTVALUE": "",
+                                "@DESCRIPTION": "",
+                                "@ISEXPRESSIONVARIABLE": "NO",
+                                "@ISPARAM": "YES",
+                                "@NAME": "$$mp_ETL_YW",
+                                "@PRECISION": "6",
+                                "@SCALE": "0",
+                                "@USERDEFINED": "YES"
+                            },
+                            {
+                                "@DATATYPE": "string",
+                                "@DEFAULTVALUE": "",
+                                "@DESCRIPTION": "",
+                                "@ISEXPRESSIONVARIABLE": "NO",
+                                "@ISPARAM": "YES",
+                                "@NAME": "$$mp_ETL_YM",
+                                "@PRECISION": "6",
+                                "@SCALE": "0",
+                                "@USERDEFINED": "YES"
+                            },
+                            {
+                                "@DATATYPE": "string",
+                                "@DEFAULTVALUE": "",
+                                "@DESCRIPTION": "",
+                                "@ISEXPRESSIONVARIABLE": "NO",
+                                "@ISPARAM": "YES",
+                                "@NAME": "$$mp_ETL_YMD",
+                                "@PRECISION": "8",
+                                "@SCALE": "0",
+                                "@USERDEFINED": "YES"
+                            },
+                            {
+                                "@DATATYPE": "string",
+                                "@DEFAULTVALUE": "",
+                                "@DESCRIPTION": "",
+                                "@ISEXPRESSIONVARIABLE": "NO",
+                                "@ISPARAM": "YES",
+                                "@NAME": "$$mp_ETL_FR_YMD",
+                                "@PRECISION": "8",
+                                "@SCALE": "0",
+                                "@USERDEFINED": "YES"
+                            },
+                            {
+                                "@DATATYPE": "string",
+                                "@DEFAULTVALUE": "",
+                                "@DESCRIPTION": "",
+                                "@ISEXPRESSIONVARIABLE": "NO",
+                                "@ISPARAM": "YES",
+                                "@NAME": "$$mp_ETL_TO_YMD",
+                                "@PRECISION": "8",
+                                "@SCALE": "0",
+                                "@USERDEFINED": "YES"
+                            },
+                            {
+                                "@DATATYPE": "string",
+                                "@DEFAULTVALUE": "",
+                                "@DESCRIPTION": "",
+                                "@ISEXPRESSIONVARIABLE": "NO",
+                                "@ISPARAM": "YES",
+                                "@NAME": "$$ENCRYPT_MODE",
+                                "@PRECISION": "1",
+                                "@SCALE": "0",
+                                "@USERDEFINED": "YES"
+                            }
+                        ],
+                        "ERPINFO": null
+                    },
+                    "SHORTCUT": [
+                        {
+                            "@COMMENTS": "DBT_VoIP\uccad\uad6c\ud56d\ubaa9\uadf8\ub8f9\ud551",
+                            "@DBDNAME": "BI_DIMBS_SCHM",
+                            "@FOLDERNAME": "0.UBDP_SRC_META",
+                            "@NAME": "Shortcut_to_DBT_BLITEM_VOIP_GRP",
+                            "@OBJECTSUBTYPE": "Source Definition",
+                            "@OBJECTTYPE": "SOURCE",
+                            "@REFERENCEDDBD": "BI_DIMBS_SCHM",
+                            "@REFERENCETYPE": "LOCAL",
+                            "@REFOBJECTNAME": "DBT_BLITEM_VOIP_GRP",
+                            "@REPOSITORYNAME": "REP_BDPPRD",
+                            "@VERSIONNUMBER": "1"
+                        },
+                        {
+                            "@COMMENTS": "",
+                            "@FOLDERNAME": "0.UBDP_TGT_META",
+                            "@NAME": "Shortcut_to_L0BIM_DBT_BLITEM_VOIP_GRP",
+                            "@OBJECTSUBTYPE": "Target Definition",
+                            "@OBJECTTYPE": "TARGET",
+                            "@EFERENCETYPE": "LOCAL",
+                            "@REFOBJECTNAME": "L0BIM_DBT_BLITEM_VOIP_GRP",
+                            "@REPOSITORYNAME": "REP_BDPPRD",
+                            "@VERSIONNUMBER": "1"
+                        }
+                    ],
+                    "CONFIG": {
+                        "@DESCRIPTION": "Default session configuration object",
+                        "@ISDEFAULT": "YES",
+                        "@NAME": "default_session_config",
+                        "@VERSIONNUMBER": "1",
+                        "ATTRIBUTE": [
+                            {
+                                "@NAME": "Advanced",
+                                "@VALUE": ""
+                            },
+                            {
+                                "@NAME": "Constraint based load ordering",
+                                "@VALUE": "NO"
+                            },
+                            {
+                                "@NAME": "Cache LOOKUP() function",
+                                "@VALUE": "YES"
+                            },
+                            {
+                                "@NAME": "Default buffer block size",
+                                "@VALUE": "Auto"
+                            },
+                            {
+                                "@NAME": "Line Sequential buffer length",
+                                "@VALUE": "1024"
+                            },
+                            {
+                                "@NAME": "Maximum Memory Allowed For Auto Memory Attributes",
+                                "@VALUE": "512MB"
+                            },
+                            {
+                                "@NAME": "Maximum Percentage of Total Memory Allowed For Auto Memory Attributes",
+                                "@VALUE": "5"
+                            },
+                            {
+                                "@NAME": "Additional Concurrent Pipelines for Lookup Cache Creation",
+                                "@VALUE": "Auto"
+                            },
+                            {
+                                "@NAME": "Custom Properties",
+                                "@VALUE": ""
+                            },
+                            {
+                                "@NAME": "Pre-build lookup cache",
+                                "@VALUE": "Auto"
+                            },
+                            {
+                                "@NAME": "Optimization Level",
+                                "@VALUE": "Medium"
+                            },
+                            {
+                                "@NAME": "DateTime Format String",
+                                "@VALUE": "MM/DD/YYYY HH24:MI:SS.US"
+                            },
+                            {
+                                "@NAME": "Pre 85 Timestamp Compatibility",
+                                "@VALUE": "NO"
+                            },
+                            {
+                                "@NAME": "Log Options",
+                                "@VALUE": "0"
+                            },
+                            {
+                                "@NAME": "Save session log by",
+                                "@VALUE": "Session runs"
+                            },
+                            {
+                                "@NAME": "Save session log for these runs",
+                                "@VALUE": "0"
+                            },
+                            {
+                                "@NAME": "Session Log File Max Size",
+                                "@VALUE": "0"
+                            },
+                            {
+                                "@NAME": "Session Log File Max Time Period",
+                                "@VALUE": "0"
+                            },
+                            {
+                                "@NAME": "Maximum Partial Session Log Files",
+                                "@VALUE": "1"
+                            },
+                            {
+                                "@NAME": "Writer Commit Statistics Log Frequency",
+                                "@VALUE": "1"
+                            },
+                            {
+                                "@NAME": "Writer Commit Statistics Log Interval",
+                                "@VALUE": "0"
+                            },
+                            {
+                                "@NAME": "Error handling",
+                                "@VALUE": ""
+                            },
+                            {
+                                "@NAME": "Stop on errors",
+                                "@VALUE": "0"
+                            },
+                            {
+                                "@NAME": "Override tracing",
+                                "@VALUE": "None"
+                            },
+                            {
+                                "@NAME": "On Stored Procedure error",
+                                "@VALUE": "Stop"
+                            },
+                            {
+                                "@NAME": "On Pre-session command task error",
+                                "@VALUE": "Stop"
+                            },
+                            {
+                                "@NAME": "On Pre-Post SQL error",
+                                "@VALUE": "Stop"
+                            },
+                            {
+                                "@NAME": "Enable Recovery",
+                                "@VALUE": "NO"
+                            },
+                            {
+                                "@NAME": "Error Log Type",
+                                "@VALUE": "None"
+                            },
+                            {
+                                "@NAME": "Error Log Table Name Prefix",
+                                "@VALUE": ""
+                            },
+                            {
+                                "@NAME": "Error Log File Name",
+                                "@VALUE": "PMError.log"
+                            },
+                            {
+                                "@NAME": "Log Source Row Data",
+                                "@VALUE": "NO"
+                            },
+                            {
+                                "@NAME": "Data Column Delimiter",
+                                "@VALUE": "|"
+                            },
+                            {
+                                "@NAME": "Partitioning Options",
+                                "@VALUE": ""
+                            },
+                            {
+                                "@NAME": "Dynamic Partitioning",
+                                "@VALUE": "Disabled"
+                            },
+                            {
+                                "@NAME": "Number of Partitions",
+                                "@VALUE": "1"
+                            },
+                            {
+                                "@NAME": "Multiplication Factor",
+                                "@VALUE": "Auto"
+                            },
+                            {
+                                "@NAME": "Session on Grid",
+                                "@VALUE": ""
+                            },
+                            {
+                                "@NAME": "Is Enabled",
+                                "@VALUE": "NO"
+                            }
+                        ]
+                    },
+                    "SESSION": {
+                        "@DESCRIPTION": "",
+                        "@ISVALID": "YES",
+                        "@MAPPINGNAME": "m_L0BIM_DBT_BLITEM_VOIP_GRP_01_C",
+                        "@NAME": "s_m_L0BIM_DBT_BLITEM_VOIP_GRP_01_C",
+                        "@REUSABLE": "YES",
+                        "@SORTORDER": "Binary",
+                        "@VERSIONNUMBER": "1",
+                        "SESSTRANSFORMATIONINST": [
+                            {
+                                "@ISREPARTITIONPOINT": "NO",
+                                "@PIPELINE": "1",
+                                "@SINSTANCENAME": "exp_L0BIT_OHW_DCF_SBGN_MART_01",
+                                "@STAGE": "2",
+                                "@TRANSFORMATIONNAME": "exp_L0BIT_OHW_DCF_SBGN_MART_01",
+                                "@TRANSFORMATIONTYPE": "Expression",
+                                "PARTITION": {
+                                    "@DESCRIPTION": "",
+                                    "@NAME": "\ud30c\ud2f0\uc158 #1"
+                                }
+                            },
+                            {
+                                "@ISREPARTITIONPOINT": "NO",
+                                "@PIPELINE": "0",
+                                "@SINSTANCENAME": "Shortcut_to_DBT_BLITEM_VOIP_GRP",
+                                "@STAGE": "0",
+                                "@TRANSFORMATIONNAME": "Shortcut_to_DBT_BLITEM_VOIP_GRP",
+                                "@TRANSFORMATIONTYPE": "Source Definition",
+                                "ATTRIBUTE": {
+                                    "@NAME": "Owner Name",
+                                    "@VALUE": "dimbs_schm"
+                                }
+                            },
+                            {
+                                "@ISREPARTITIONPOINT": "YES",
+                                "@PARTITIONTYPE": "PASS THROUGH",
+                                "@PIPELINE": "1",
+                                "@SINSTANCENAME": "SQ_Shortcut_to_DBT_BLITEM_VOIP_GRP",
+                                "@STAGE": "2",
+                                "@TRANSFORMATIONNAME": "SQ_Shortcut_to_DBT_BLITEM_VOIP_GRP",
+                                "@TRANSFORMATIONTYPE": "Source Qualifier"
+                            },
+                            {
+                                "@ISREPARTITIONPOINT": "YES",
+                                "@PARTITIONTYPE": "PASS THROUGH",
+                                "@PIPELINE": "1",
+                                "@SINSTANCENAME": "Shortcut_to_L0BIM_DBT_BLITEM_VOIP_GRP",
+                                "@STAGE": "4",
+                                "@TRANSFORMATIONNAME": "Shortcut_to_L0BIM_DBT_BLITEM_VOIP_GRP",
+                                "@TRANSFORMATIONTYPE": "Target Definition"
+                            }
+                        ],
+                        "CONFIGREFERENCE": {
+                            "@REFOBJECTNAME": "default_session_config",
+                            "@TYPE": "Session config"
+                        },
+                        "SESSIONEXTENSION": [
+                            {
+                                "@DSQINSTNAME": "SQ_Shortcut_to_DBT_BLITEM_VOIP_GRP",
+                                "@DSQINSTTYPE": "Source Qualifier",
+                                "@NAME": "Relational Reader",
+                                "@SINSTANCENAME": "Shortcut_to_DBT_BLITEM_VOIP_GRP",
+                                "@SUBTYPE": "Relational Reader",
+                                "@TRANSFORMATIONTYPE": "Source Definition",
+                                "@TYPE": "READER"
+                            },
+                            {
+                                "@NAME": "Relational Reader",
+                                "@SINSTANCENAME": "SQ_Shortcut_to_DBT_BLITEM_VOIP_GRP",
+                                "@SUBTYPE": "Relational Reader",
+                                "@TRANSFORMATIONTYPE": "Source Qualifier",
+                                "@TYPE": "READER",
+                                "CONNECTIONREFERENCE": {
+                                    "@CNXREFNAME": "DB Connection",
+                                    "@CONNECTIONNAME": "BI_DIMBS_SCHM_ODBC",
+                                    "@CONNECTIONNUMBER": "1",
+                                    "@CONNECTIONSUBTYPE": "ODBC",
+                                    "@CONNECTIONTYPE": "Relational",
+                                    "@VARIABLE": ""
+                                }
+                            },
+                            {
+                                "@COMPONENTVERSION": "1000000",
+                                "@NAME": "Netezza Bulk Writer ",
+                                "@SINSTANCENAME": "Shortcut_to_L0BIM_DBT_BLITEM_VOIP_GRP",
+                                "@SUBTYPE": "Netezza Bulk Writer ",
+                                "@TRANSFORMATIONTYPE": "Target Definition",
+                                "@TYPE": "WRITER",
+                                "CONNECTIONREFERENCE": {
+                                    "@CNXREFNAME": "Netezza",
+                                    "@CONNECTIONNAME": "B01DB_INFAADM_API",
+                                    "@CONNECTIONNUMBER": "1",
+                                    "@CONNECTIONSUBTYPE": "Netezza",
+                                    "@CONNECTIONTYPE": "Relational",
+                                    "@VARIABLE": ""
+                                },
+                                "ATTRIBUTE": [
+                                    {
+                                        "@NAME": "Insert",
+                                        "@VALUE": "YES"
+                                    },
+                                    {
+                                        "@NAME": "Delete",
+                                        "@VALUE": "NO"
+                                    },
+                                    {
+                                        "@NAME": "Update",
+                                        "@VALUE": "None"
+                                    },
+                                    {
+                                        "@NAME": "Truncate Target Table Option",
+                                        "@VALUE": "YES"
+                                    },
+                                    {
+                                        "@NAME": "Delimiter",
+                                        "@VALUE": "^"
+                                    },
+                                    {
+                                        "@NAME": "Null Value",
+                                        "@VALUE": ""
+                                    },
+                                    {
+                                        "@NAME": "Escape Character",
+                                        "@VALUE": "\\"
+                                    },
+                                    {
+                                        "@NAME": "Quoted Value",
+                                        "@VALUE": "NO"
+                                    },
+                                    {
+                                        "@NAME": "Duplicate Row Handling",
+                                        "@VALUE": "FIRST"
+                                    },
+                                    {
+                                        "@NAME": "Bad File Name",
+                                        "@VALUE": "s_m_L0BIM_DBT_BLITEM_VOIP_GRP_01_C.bad"
+                                    },
+                                    {
+                                        "@NAME": "Socket Buffer Size",
+                                        "@VALUE": "8388608"
+                                    },
+                                    {
+                                        "@NAME": "Control Character",
+                                        "@VALUE": "TRUE"
+                                    },
+                                    {
+                                        "@NAME": "CRINSTRING",
+                                        "@VALUE": "TRUE"
+                                    },
+                                    {
+                                        "@NAME": "Pipe Directory Path",
+                                        "@VALUE": ""
+                                    },
+                                    {
+                                        "@NAME": "Error Log Directory Name",
+                                        "@VALUE": "$PMBadFileDir\\"
+                                    }
+                                ]
+                            }
+                        ],
+                        "ATTRIBUTE": [
+                            {
+                                "@NAME": "General Options",
+                                "@VALUE": ""
+                            },
+                            {
+                                "@NAME": "Write Backward Compatible Session Log File",
+                                "@VALUE": "NO"
+                            },
+                            {
+                                "@NAME": "Session Log File Name",
+                                "@VALUE": "s_m_L0BIT_DBT_BLITEM_VOIP_GRP_01_C.log"
+                            },
+                            {
+                                "@NAME": "Session Log File directory",
+                                "@VALUE": "$PMSessionLogDir\\"
+                            },
+                            {
+                                "@NAME": "Parameter Filename",
+                                "@VALUE": "$PMRootDir/BWParam/INFA_Param.prm"
+                            },
+                            {
+                                "@NAME": "Enable Test Load",
+                                "@VALUE": "NO"
+                            },
+                            {
+                                "@NAME": "$Source connection value",
+                                "@VALUE": ""
+                            },
+                            {
+                                "@NAME": "$Target connection value",
+                                "@VALUE": ""
+                            },
+                            {
+                                "@NAME": "Treat source rows as",
+                                "@VALUE": "Insert"
+                            },
+                            {
+                                "@NAME": "Commit Type",
+                                "@VALUE": "Target"
+                            },
+                            {
+                                "@NAME": "Commit Interval",
+                                "@VALUE": "10000"
+                            },
+                            {
+                                "@NAME": "Commit On End Of File",
+                                "@VALUE": "YES"
+                            },
+                            {
+                                "@NAME": "Rollback Transactions on Errors",
+                                "@VALUE": "NO"
+                            },
+                            {
+                                "@NAME": "Recovery Strategy",
+                                "@VALUE": "Fail task and continue workflow"
+                            },
+                            {
+                                "@NAME": "Java Classpath",
+                                "@VALUE": "$INFA_HOME/server/bin/javalib/UBDP_encrypt.jar"
+                            },
+                            {
+                                "@NAME": "Performance",
+                                "@VALUE": ""
+                            },
+                            {
+                                "@NAME": "DTM buffer size",
+                                "@VALUE": "24000000"
+                            },
+                            {
+                                "@NAME": "Collect performance data",
+                                "@VALUE": "NO"
+                            },
+                            {
+                                "@NAME": "Write performance data to repository",
+                                "@VALUE": "NO"
+                            },
+                            {
+                                "@NAME": "Incremental Aggregation",
+                                "@VALUE": "NO"
+                            },
+                            {
+                                "@NAME": "Enable high precision",
+                                "@VALUE": "YES"
+                            },
+                            {
+                                "@NAME": "Session retry on deadlock",
+                                "@VALUE": "NO"
+                            },
+                            {
+                                "@NAME": "Pushdown Optimization",
+                                "@VALUE": "None"
+                            },
+                            {
+                                "@NAME": "Allow Temporary View for Pushdown",
+                                "@VALUE": "NO"
+                            },
+                            {
+                                "@NAME": "Allow Temporary Sequence for Pushdown",
+                                "@VALUE": "NO"
+                            },
+                            {
+                                "@NAME": "Allow Pushdown for User Incompatible Connections",
+                                "@VALUE": "NO"
+                            }
+                        ]
+                    },
+                    "WORKFLOW": {
+                        "@DESCRIPTION": "",
+                        "@ISENABLED": "YES",
+                        "@ISRUNNABLESERVICE": "NO",
+                        "@ISSERVICE": "NO",
+                        "@ISVALID": "YES",
+                        "@NAME": "RC_L0BIM_DBT_BLITEM_VOIP_GRP_01_C",
+                        "@REUSABLE_SCHEDULER": "NO",
+                        "@SCHEDULERNAME": "\uc2a4\ucf00\uc904\ub7ec",
+                        "@SERVERNAME": "IS_BDPPRD",
+                        "@SERVER_DOMAINNAME": "Domain_BDPPRD",
+                        "@SUSPEND_ON_ERROR": "NO",
+                        "@TASKS_MUST_RUN_ON_SERVER": "NO",
+                        "@VERSIONNUMBER": "1",
+                        "SCHEDULER": {
+                            "@DESCRIPTION": "",
+                            "@NAME": "\uc2a4\ucf00\uc904\ub7ec",
+                            "@REUSABLE": "NO",
+                            "@VERSIONNUMBER": "1",
+                            "SCHEDULEINFO": {
+                                "@SCHEDULETYPE": "ONDEMAND"
+                            }
+                        },
+                        "TASK": {
+                            "@DESCRIPTION": "",
+                            "@NAME": "\uc2dc\uc791",
+                            "@REUSABLE": "NO",
+                            "@TYPE": "Start",
+                            "@VERSIONNUMBER": "1"
+                        },
+                        "TASKINSTANCE": [
+                            {
+                                "@DESCRIPTION": "",
+                                "@ISENABLED": "YES",
+                                "@NAME": "\uc2dc\uc791",
+                                "@REUSABLE": "NO",
+                                "@TASKNAME": "\uc2dc\uc791",
+                                "@TASKTYPE": "Start"
+                            },
+                            {
+                                "@DESCRIPTION": "",
+                                "@FAIL_PARENT_IF_INSTANCE_DID_NOT_RUN": "NO",
+                                "@FAIL_PARENT_IF_INSTANCE_FAILS": "NO",
+                                "@ISENABLED": "YES",
+                                "@NAME": "s_m_L0BIM_DBT_BLITEM_VOIP_GRP_01_C",
+                                "@REUSABLE": "YES",
+                                "@TASKNAME": "s_m_L0BIM_DBT_BLITEM_VOIP_GRP_01_C",
+                                "@TASKTYPE": "Session",
+                                "@TREAT_INPUTLINK_AS_AND": "YES"
+                            }
+                        ],
+                        "WORKFLOWLINK": {
+                            "@CONDITION": "",
+                            "@FROMTASK": "\uc2dc\uc791",
+                            "@TOTASK": "s_m_L0BIM_DBT_BLITEM_VOIP_GRP_01_C"
+                        },
+                        "WORKFLOWVARIABLE": [
+                            {
+                                "@DATATYPE": "date/time",
+                                "@DEFAULTVALUE": "",
+                                "@DESCRIPTION": "The time this task started",
+                                "@ISNULL": "NO",
+                                "@ISPERSISTENT": "NO",
+                                "@NAME": "$\uc2dc\uc791.StartTime",
+                                "@USERDEFINED": "NO"
+                            },
+                            {
+                                "@DATATYPE": "date/time",
+                                "@DEFAULTVALUE": "",
+                                "@DESCRIPTION": "The time this task completed",
+                                "@ISNULL": "NO",
+                                "@ISPERSISTENT": "NO",
+                                "@NAME": "$\uc2dc\uc791.EndTime",
+                                "@USERDEFINED": "NO"
+                            },
+                            {
+                                "@DATATYPE": "integer",
+                                "@DEFAULTVALUE": "",
+                                "@DESCRIPTION": "Status of this task's execution",
+                                "@ISNULL": "NO",
+                                "@ISPERSISTENT": "NO",
+                                "@NAME": "$\uc2dc\uc791.Status",
+                                "@USERDEFINED": "NO"
+                            },
+                            {
+                                "@DATATYPE": "integer",
+                                "@DEFAULTVALUE": "",
+                                "@DESCRIPTION": "Status of the previous task that is not disabled",
+                                "@ISNULL": "NO",
+                                "@ISPERSISTENT": "NO",
+                                "@NAME": "$\uc2dc\uc791.PrevTaskStatus",
+                                "@USERDEFINED": "NO"
+                            },
+                            {
+                                "@DATATYPE": "integer",
+                                "@DEFAULTVALUE": "",
+                                "@DESCRIPTION": "Error code for this task's execution",
+                                "@ISNULL": "NO",
+                                "@ISPERSISTENT": "NO",
+                                "@NAME": "$\uc2dc\uc791.ErrorCode",
+                                "@USERDEFINED": "NO"
+                            },
+                            {
+                                "@DATATYPE": "string",
+                                "@DEFAULTVALUE": "",
+                                "@DESCRIPTION": "Error message for this task's execution",
+                                "@ISNULL": "NO",
+                                "@ISPERSISTENT": "NO",
+                                "@NAME": "$\uc2dc\uc791.ErrorMsg",
+                                "@USERDEFINED": "NO"
+                            },
+                            {
+                                "@DATATYPE": "date/time",
+                                "@DEFAULTVALUE": "",
+                                "@DESCRIPTION": "The time this task started",
+                                "@ISNULL": "NO",
+                                "@ISPERSISTENT": "NO",
+                                "@NAME": "$s_m_L0BIM_DBT_BLITEM_VOIP_GRP_01_C.StartTime",
+                                "@USERDEFINED": "NO"
+                            },
+                            {
+                                "@DATATYPE": "date/time",
+                                "@DEFAULTVALUE": "",
+                                "@DESCRIPTION": "The time this task completed",
+                                "@ISNULL": "NO",
+                                "@ISPERSISTENT": "NO",
+                                "@NAME": "$s_m_L0BIM_DBT_BLITEM_VOIP_GRP_01_C.EndTime",
+                                "@USERDEFINED": "NO"
+                            },
+                            {
+                                "@DATATYPE": "integer",
+                                "@DEFAULTVALUE": "",
+                                "@DESCRIPTION": "Status of this task's execution",
+                                "@ISNULL": "NO",
+                                "@ISPERSISTENT": "NO",
+                                "@NAME": "$s_m_L0BIM_DBT_BLITEM_VOIP_GRP_01_C.Status",
+                                "@USERDEFINED": "NO"
+                            },
+                            {
+                                "@DATATYPE": "integer",
+                                "@DEFAULTVALUE": "",
+                                "@DESCRIPTION": "Status of the previous task that is not disabled",
+                                "@ISNULL": "NO",
+                                "@ISPERSISTENT": "NO",
+                                "@NAME": "$s_m_L0BIM_DBT_BLITEM_VOIP_GRP_01_C.PrevTaskStatus",
+                                "@USERDEFINED": "NO"
+                            },
+                            {
+                                "@DATATYPE": "integer",
+                                "@DEFAULTVALUE": "",
+                                "@DESCRIPTION": "Error code for this task's execution",
+                                "@ISNULL": "NO",
+                                "@ISPERSISTENT": "NO",
+                                "@NAME": "$s_m_L0BIM_DBT_BLITEM_VOIP_GRP_01_C.ErrorCode",
+                                "@USERDEFINED": "NO"
+                            },
+                            {
+                                "@DATATYPE": "string",
+                                "@DEFAULTVALUE": "",
+                                "@DESCRIPTION": "Error message for this task's execution",
+                                "@ISNULL": "NO",
+                                "@ISPERSISTENT": "NO",
+                                "@NAME": "$s_m_L0BIM_DBT_BLITEM_VOIP_GRP_01_C.ErrorMsg",
+                                "@USERDEFINED": "NO"
+                            },
+                            {
+                                "@DATATYPE": "integer",
+                                "@DEFAULTVALUE": "",
+                                "@DESCRIPTION": "Rows successfully read",
+                                "@ISNULL": "NO",
+                                "@ISPERSISTENT": "NO",
+                                "@NAME": "$s_m_L0BIM_DBT_BLITEM_VOIP_GRP_01_C.SrcSuccessRows",
+                                "@USERDEFINED": "NO"
+                            },
+                            {
+                                "@DATATYPE": "integer",
+                                "@DEFAULTVALUE": "",
+                                "@DESCRIPTION": "Rows failed to read",
+                                "@ISNULL": "NO",
+                                "@ISPERSISTENT": "NO",
+                                "@NAME": "$s_m_L0BIM_DBT_BLITEM_VOIP_GRP_01_C.SrcFailedRows",
+                                "@USERDEFINED": "NO"
+                            },
+                            {
+                                "@DATATYPE": "integer",
+                                "@DEFAULTVALUE": "",
+                                "@DESCRIPTION": "Rows successfully loaded",
+                                "@ISNULL": "NO",
+                                "@ISPERSISTENT": "NO",
+                                "@NAME": "$s_m_L0BIM_DBT_BLITEM_VOIP_GRP_01_C.TgtSuccessRows",
+                                "@USERDEFINED": "NO"
+                            },
+                            {
+                                "@DATATYPE": "integer",
+                                "@DEFAULTVALUE": "",
+                                "@DESCRIPTION": "Rows failed to load",
+                                "@ISNULL": "NO",
+                                "@ISPERSISTENT": "NO",
+                                "@NAME": "$s_m_L0BIM_DBT_BLITEM_VOIP_GRP_01_C.TgtFailedRows",
+                                "@USERDEFINED": "NO"
+                            },
+                            {
+                                "@DATATYPE": "integer",
+                                "@DEFAULTVALUE": "",
+                                "@DESCRIPTION": "Total number of transformation errors",
+                                "@ISNULL": "NO",
+                                "@ISPERSISTENT": "NO",
+                                "@NAME": "$s_m_L0BIM_DBT_BLITEM_VOIP_GRP_01_C.TotalTransErrors",
+                                "@USERDEFINED": "NO"
+                            },
+                            {
+                                "@DATATYPE": "integer",
+                                "@DEFAULTVALUE": "",
+                                "@DESCRIPTION": "First error code",
+                                "@ISNULL": "NO",
+                                "@ISPERSISTENT": "NO",
+                                "@NAME": "$s_m_L0BIM_DBT_BLITEM_VOIP_GRP_01_C.FirstErrorCode",
+                                "@USERDEFINED": "NO"
+                            },
+                            {
+                                "@DATATYPE": "string",
+                                "@DEFAULTVALUE": "",
+                                "@DESCRIPTION": "First error message",
+                                "@ISNULL": "NO",
+                                "@ISPERSISTENT": "NO",
+                                "@NAME": "$s_m_L0BIM_DBT_BLITEM_VOIP_GRP_01_C.FirstErrorMsg",
+                                "@USERDEFINED": "NO"
+                            }
+                        ],
+                        "ATTRIBUTE": [
+                            {
+                                "@NAME": "Parameter Filename",
+                                "@VALUE": ""
+                            },
+                            {
+                                "@NAME": "Write Backward Compatible Workflow Log File",
+                                "@VALUE": "NO"
+                            },
+                            {
+                                "@NAME": "Workflow Log File Name",
+                                "@VALUE": "RC_L0BIT_DBT_BLITEM_VOIP_GRP_01_C.log"
+                            },
+                            {
+                                "@NAME": "Workflow Log File Directory",
+                                "@VALUE": "$PMWorkflowLogDir\\"
+                            },
+                            {
+                                "@NAME": "Save Workflow log by",
+                                "@VALUE": "By runs"
+                            },
+                            {
+                                "@NAME": "Save workflow log for these runs",
+                                "@VALUE": "0"
+                            },
+                            {
+                                "@NAME": "Service Name",
+                                "@VALUE": ""
+                            },
+                            {
+                                "@NAME": "Service Timeout",
+                                "@VALUE": "0"
+                            },
+                            {
+                                "@NAME": "Is Service Visible",
+                                "@VALUE": "NO"
+                            },
+                            {
+                                "@NAME": "Is Service Protected",
+                                "@VALUE": "NO"
+                            },
+                            {
+                                "@NAME": "Fail task after wait time",
+                                "@VALUE": "0"
+                            },
+                            {
+                                "@NAME": "Enable HA recovery",
+                                "@VALUE": "NO"
+                            },
+                            {
+                                "@NAME": "Automatically recover terminated tasks",
+                                "@VALUE": "NO"
+                            },
+                            {
+                                "@NAME": "Service Level Name",
+                                "@VALUE": "Default"
+                            },
+                            {
+                                "@NAME": "Allow concurrent run with unique run instance name",
+                                "@VALUE": "NO"
+                            },
+                            {
+                                "@NAME": "Allow concurrent run with same run instance name",
+                                "@VALUE": "NO"
+                            },
+                            {
+                                "@NAME": "Maximum number of concurrent runs",
+                                "@VALUE": "0"
+                            },
+                            {
+                                "@NAME": "Assigned Web Services Hubs",
+                                "@VALUE": ""
+                            },
+                            {
+                                "@NAME": "Maximum number of concurrent runs per Hub",
+                                "@VALUE": "1000"
+                            },
+                            {
+                                "@NAME": "Expected Service Time",
+                                "@VALUE": "1"
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    }
+}
