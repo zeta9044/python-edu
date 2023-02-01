@@ -4,6 +4,7 @@ import os
 import json
 from pyparsing import *
 
+
 parsing_file = os.path.abspath("D:\\git\\python-edu\\xml\\sample.xml")
 with open(parsing_file,mode='r',encoding='utf-8') as f:
     xml = f.read()
@@ -17,7 +18,6 @@ attr_value = QuotedString("'") | QuotedString('"')
 attribute = attr_name + Suppress("=") + attr_value
 attributes = ZeroOrMore(attribute)
 content.set_parse_action(lambda s,l,t:print(t))
-
 slash = Literal("/")
 left_angle_bracket = Literal("<")
 right_angle_bracket = Literal(">")
@@ -32,9 +32,26 @@ tag <<= open_tag +Opt(Group(ZeroOrMore(content) & ZeroOrMore(tag) & ZeroOrMore(s
 xml_declare = "<?xml"+SkipTo("?>")+"?>"
 doc_type= "<!DOCTYPE"+SkipTo(">")+">"
 
-pp = xml_declare + Opt(doc_type) + tag
+xml_expression = xml_declare + Opt(doc_type) + tag
 # result=pp.set_debug(True).parse_file(parsing_file)
 
-result = pp.parse_file(parsing_file)
+# xml_expression.setTraceParseAction(["name","args"])
+# xml_expression.set_debug()
+# print(pyparsing_test.with_line_numbers(xml))
+# result = xml_expression.parse_string(xml)
+result = xml_expression.parse_file(parsing_file)
+# result.pprint()
 
-print(result.dump())
+print(type(result))
+print(type(list(result)))
+
+s=""
+for i in result:
+    if not isinstance(i,str):
+        for x in i.items():
+            print(x)
+        # s=s+' '.join([x for x in i.values()])
+    else:
+        s=s+i
+print("="*100)
+print(s)
